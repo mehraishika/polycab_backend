@@ -3733,13 +3733,17 @@ export class PlantRepository {
 					in: plantIds,
 				},
 				deletedAt: null,
+				updatedAt: {
+					gte: dateFromObj,
+					lte: dateToObj,
+				},
 			},
 			select: {
 				id: true,
 				plantId: true,
 				serialNumber: true,
 				updatedAt: true,
-				type: true
+				type: true,
 			},
 		});
 

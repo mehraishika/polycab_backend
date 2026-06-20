@@ -148,18 +148,28 @@ async function getPlantListFileRoute(
         );
     }
 
-    return new Response(
-        rows.join('\n'),
-        {
-            headers: {
-                'Content-Type':
-                    'text/csv; charset=utf-8',
+    const BOM = '\uFEFF';
 
-                'Content-Disposition':
-                    'attachment; filename="plant-list.csv"',
-            },
+    return new Response(`${BOM}${rows.join('\n')}\n`, {
+        status: 200,
+        headers: {
+            'content-type': 'text/csv; charset=utf-8',
+            'content-disposition': 'attachment; filename="plants.csv"',
         },
-    );
+    });
+
+    // return new Response(
+    //     rows.join('\n'),
+    //     {
+    //         headers: {
+    //             'Content-Type':
+    //                 'text/csv; charset=utf-8',
+
+    //             'Content-Disposition':
+    //                 'attachment; filename="plant-list.csv"',
+    //         },
+    //     },
+    // );
 }
 
 export const GET =
