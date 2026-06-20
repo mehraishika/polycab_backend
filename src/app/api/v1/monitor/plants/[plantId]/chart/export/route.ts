@@ -110,6 +110,8 @@ async function getPlantChartExportRoute(
 			range: parsedQuery.data.range,
 			mode: parsedQuery.data.mode,
 			format: parsedQuery.data.format,
+			fromService: parsedQuery.data.fromService,
+			targetEndUserId: parsedQuery.data.targetEndUserId,
 		});
 
 		return successResponse('Chart export generated successfully.', {

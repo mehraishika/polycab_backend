@@ -77,6 +77,8 @@ export interface PlantChartParams {
 
 export interface PlantChartExportParams extends PlantChartParams {
 	format: 'csv';
+	fromService?: boolean;
+	targetEndUserId?: string;
 }
 
 export interface PlantCurrentAlertsParams {
@@ -1497,6 +1499,7 @@ export class PlantRepository {
 		const chart = await this.getPlantChart(params);
 		const fileName = 'plant-chart.csv';
 
+
 		const headers = ['time', ...chart.series.map((item) => item.key)];
 		const rows = [headers.join(',')];
 
@@ -1504,11 +1507,40 @@ export class PlantRepository {
 			rows.push(headers.map((header) => String(point[header] ?? '')).join(','));
 		}
 
+		const query = new URLSearchParams({
+			range: params.range,
+			mode: params.mode,
+			date: params.date,
+		});
+
+		if (params.scope.length) {
+			query.set(
+				'scope',
+				params.scope.join(','),
+			);
+		}
+
+		if (params.fromService) {
+			query.set(
+				'fromService',
+				'true',
+			);
+		}
+
+		if (params.targetEndUserId) {
+			query.set(
+				'targetEndUserId',
+				params.targetEndUserId,
+			);
+		}
+
 		return {
 			fileName,
 			csv: rows.join('\n'),
-			downloadUrl: `/api/v1/monitor/plants/${params.plantId}/chart/export/files/${fileName}?range=${params.range}&mode=${params.mode}&date=${encodeURIComponent(params.date)}${params.scope.length ? `&scope=${encodeURIComponent(params.scope.join(','))}` : ''}`,
-			expiresAt: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
+			downloadUrl: `/api/v1/monitor/plants/${params.plantId}/chart/export/files/${fileName}?${query.toString()}`,
+			expiresAt: new Date(
+				Date.now() + 15 * 60 * 1000,
+			).toISOString(),
 		};
 	}
 
