@@ -5,7 +5,7 @@ import type { AuthenticatedRequest } from '@/server/middleware/auth.middleware';
 import { withRequestLogging } from '@/server/middleware/request-log.middleware';
 import { MonitorUserService } from '@/server/services/monitor-user.service';
 import { errorResponse, successResponse } from '@/server/utils/api-response';
-import { relateMonitorUsersBodySchema } from '@/server/validators/monitor-user.validator';
+import { relateUserBodySchema } from '@/server/validators/monitor-user.validator';
 
 const monitorUserService = new MonitorUserService();
 
@@ -32,7 +32,7 @@ async function postRelateMonitorUsers(request: NextRequest): Promise<Response> {
 		return errorResponse('Invalid JSON payload', 400);
 	}
 
-	const parsed = relateMonitorUsersBodySchema.safeParse(body);
+	const parsed = relateUserBodySchema.safeParse(body);
 	if (!parsed.success) {
 		const firstIssue = parsed.error.issues[0];
 		const message = firstIssue

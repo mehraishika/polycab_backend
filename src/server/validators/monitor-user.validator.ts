@@ -64,21 +64,27 @@ const monitorUserIdsSchema = z
 	.min(1, 'At least one monitor user id is required')
 	.transform((ids) => ids.map((value) => BigInt(value)));
 
-export const relateMonitorUsersBodySchema = z.object({
-	monitorUserIds: monitorUserIdsSchema,
-	relatedUserId: z
-		.string()
-		.trim()
-		.regex(/^\d+$/, 'relatedUserId must be a positive integer')
-		.transform((value) => BigInt(value)),
+// export const relateMonitorUsersBodySchema = z.object({
+// 	monitorUserIds: monitorUserIdsSchema,
+// 	relatedUserId: z
+// 		.string()
+// 		.trim()
+// 		.regex(/^\d+$/, 'relatedUserId must be a positive integer')
+// 		.transform((value) => BigInt(value)),
+// });
+
+export const relateUserBodySchema = z.object({
+	account: z.string().trim().min(1, 'Account is required'),
+	serialNumber: z.string().trim().min(1, 'Serial number is required'),
 });
+
 
 export const assignMonitorUsersBodySchema = z.object({
 	monitorUserIds: monitorUserIdsSchema,
 	assignedToUserId: z
 		.string()
 		.trim()
-		.regex(/^\d+$/, 'assignedToUserId must be a positive integer')
+		.regex(/^\d+$/, "assignedToUserId must be a positive integer")
 		.transform((value) => BigInt(value)),
 });
 
@@ -113,6 +119,6 @@ export type MonitorUserStatusCountsQueryInput = z.infer<
 >;
 export type MonitorUserLiveSummaryQueryInput = z.infer<typeof monitorUserLiveSummaryQuerySchema>;
 export type MonitorUserPlantsQueryInput = z.infer<typeof monitorUserPlantsQuerySchema>;
-export type RelateMonitorUsersBodyInput = z.infer<typeof relateMonitorUsersBodySchema>;
+export type RelateUserBodyInput = z.infer<typeof relateUserBodySchema>;
 export type AssignMonitorUsersBodyInput = z.infer<typeof assignMonitorUsersBodySchema>;
 export type CreateMonitorUserBodyInput = z.infer<typeof createMonitorUserBodySchema>;

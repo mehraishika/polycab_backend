@@ -386,6 +386,44 @@ export class MonitorUserRepository {
 		});
 	}
 
+	async findMonitorUserByAccount(account: string) {
+		return this.dbClient.user.findFirst({
+			where: {
+				account,
+				portal: 'monitoring',
+				role: 'monitoring_user',
+				isDeleted: false,
+				status: 'active',
+			},
+			select: {
+				id: true,
+				account: true,
+			},
+		});
+	}
+
+	async findMappingBySerialNumber(serialNumber: string) {
+		return this.dbClient.userPlantInverterMap.findFirst({
+			where: {
+				serialNumber,
+				isDeleted: false,
+			},
+		});
+	}
+
+	async createUserPlantMapping(
+		userId: bigint,
+		serialNumber: string,
+	) {
+		return this.dbClient.userPlantInverterMap.create({
+			data: {
+				userId,
+				plantId: null,
+				serialNumber,
+			},
+		});
+	}
+
 	findByAccountInsensitive(account: string) {
 		return this.dbClient.user.findFirst({
 			where: {
@@ -393,6 +431,22 @@ export class MonitorUserRepository {
 					equals: account,
 					mode: 'insensitive',
 				},
+			},
+			select: { id: true },
+		});
+	}
+
+	findUserIdsByAccounts(accounts: string[]) {
+		return this.dbClient.user.findMany({
+			where: {
+				account: {
+					in: accounts,
+					mode: "insensitive",
+				},
+				portal: "monitoring",
+				role: "monitoring_user",
+				isDeleted: false,
+				status: "active",
 			},
 			select: { id: true },
 		});

@@ -346,7 +346,6 @@ export const DeviceDailySummaryPerLineChartScalarFieldEnum = {
   dcVoltage6: 'dcVoltage6',
   dcVoltage7: 'dcVoltage7',
   dcVoltage8: 'dcVoltage8',
-  dcVoltage9: 'dcVoltage9',
   dcCurrent1: 'dcCurrent1',
   dcCurrent2: 'dcCurrent2',
   dcCurrent3: 'dcCurrent3',
@@ -393,7 +392,8 @@ export const DeviceDailySummaryPerLineChartScalarFieldEnum = {
   messageType: 'messageType',
   hybridJson: 'hybridJson',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  dcVoltage9: 'dcVoltage9'
 } as const
 
 export type DeviceDailySummaryPerLineChartScalarFieldEnum = (typeof DeviceDailySummaryPerLineChartScalarFieldEnum)[keyof typeof DeviceDailySummaryPerLineChartScalarFieldEnum]
@@ -420,7 +420,7 @@ export const DeviceConnectionStatusScalarFieldEnum = {
   id: 'id',
   serialNumber: 'serialNumber',
   status: 'status',
-  lastSeenTime: 'lastSeenTime'
+  lastseentime: 'lastseentime'
 } as const
 
 export type DeviceConnectionStatusScalarFieldEnum = (typeof DeviceConnectionStatusScalarFieldEnum)[keyof typeof DeviceConnectionStatusScalarFieldEnum]

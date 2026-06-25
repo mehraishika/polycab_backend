@@ -7,7 +7,7 @@ import type {
 	MonitorUserListQueryInput,
 	MonitorUserPlantsQueryInput,
 	MonitorUserStatusCountsQueryInput,
-	RelateMonitorUsersBodyInput,
+	RelateUserBodyInput,
 } from '@/server/validators/monitor-user.validator';
 
 interface ServiceError {
@@ -656,6 +656,48 @@ export class MonitorUserService {
 		return summaries;
 	}
 
+	private buildMonitorUserCsv(items: MonitorUserItem[]): string {
+		const headers = [
+			'Account',
+			'Serial Number',
+			'Installation Date',
+			'Affiliation',
+			'Capacity (kWp)',
+			'Power',
+			'Power Unit',
+			'E-Today',
+			'E-Today Unit',
+			'E-Total',
+			'E-Total Unit',
+			'Status',
+		];
+
+		const escape = (value: unknown): string =>
+			`"${String(value ?? '').replace(/"/g, '""')}"`;
+
+		const rows = items.map((item) => [
+			escape(item.account),
+			escape(item.matched.serialNumber),
+			escape(item.matched.installationDate),
+			escape(item.affiliation),
+			escape(item.capacity),
+			escape(item.power.value),
+			escape(item.power.unit),
+			escape(item.today.value),
+			escape(item.today.unit),
+			escape(item.total.value),
+			escape(item.total.unit),
+			escape(
+				`Normal:${item.status.normal}, Fault:${item.status.fault}, Standby:${item.status.standby}, Offline:${item.status.offline},`
+			),
+		]);
+
+		return [
+			headers.join(','),
+			...rows.map((row) => row.join(',')),
+		].join('\n');
+	}
+
 
 
 
@@ -722,6 +764,37 @@ export class MonitorUserService {
 		};
 	}
 
+	async exportMonitorUsers(
+		actorId: bigint,
+		actorRole: string | undefined,
+		query: MonitorUserListQueryInput,
+	): Promise<{
+		status: number;
+		message: string;
+		csv: string;
+	}> {
+		const result = await this.getMonitorUserList(
+			actorId,
+			actorRole,
+			query,
+		);
+
+		if (result.status !== 200) {
+			return {
+				status: result.status,
+				message: result.message,
+				csv: '',
+			};
+		}
+
+		const csv = this.buildMonitorUserCsv(result.data.items);
+
+		return {
+			status: 200,
+			message: 'Monitor users exported successfully.',
+			csv,
+		};
+	}
 	async getMonitorUserStatusCounts(
 		actorId: bigint,
 		actorRole: string | undefined,
@@ -909,83 +982,168 @@ export class MonitorUserService {
 	}
 
 	private async updateMonitorUsersOwnership(
-		monitorUserIds: bigint[],
+		monitorUserIdentifiers: string[],
 		actorId: bigint,
 		actorRole: string | undefined,
 		targetUserId: bigint,
 	) {
-		const scopedUsers = await this.monitorUserRepository.findScopedMonitorUserIds(
-			actorId,
-			actorRole,
-			monitorUserIds,
-		);
+		const exactIds: bigint[] = [];
+		const accounts: string[] = [];
 
+		// Separate numeric string IDs from account names
+		for (const identifier of monitorUserIdentifiers) {
+			if (/^\d+$/.test(identifier)) {
+				exactIds.push(BigInt(identifier));
+			} else {
+				accounts.push(identifier);
+			}
+		}
 
-		if (scopedUsers.length !== monitorUserIds.length) {
+		// Fetch BigInt IDs for any provided account names
+		if (accounts.length > 0) {
+			const usersByAccount =
+				await this.monitorUserRepository.findUserIdsByAccounts(accounts);
+			for (const user of usersByAccount) {
+				exactIds.push(user.id);
+			}
+		}
+
+		// Remove any duplicate BigInt values
+		const uniqueIds = Array.from(new Set(exactIds));
+
+		if (uniqueIds.length === 0) {
 			return {
 				error: {
-					status: 403 as const,
-					message: 'One or more monitor users are outside your scope',
+					status: 400 as const,
+					message: "No valid monitor users found from the provided identifiers",
 				},
 				updatedCount: 0,
 			};
 		}
 
-		const updated = await this.monitorUserRepository.updateMonitorUsersAssignedBy(
-			actorId,
-			actorRole,
-			monitorUserIds,
-			targetUserId,
-		);
+		// Check permissions/scope against the final BigInt array
+		const scopedUsers =
+			await this.monitorUserRepository.findScopedMonitorUserIds(
+				actorId,
+				actorRole,
+				uniqueIds,
+			);
+
+		if (scopedUsers.length !== uniqueIds.length) {
+			return {
+				error: {
+					status: 403 as const,
+					message: "One or more monitor users are outside your scope",
+				},
+				updatedCount: 0,
+			};
+		}
+
+		const updated =
+			await this.monitorUserRepository.updateMonitorUsersAssignedBy(
+				actorId,
+				actorRole,
+				uniqueIds,
+				targetUserId,
+			);
 
 		return {
 			error: null,
 			updatedCount: updated.count,
+			resolvedIds: uniqueIds, // helpful for returning exact updated string IDs back to API response
 		};
 	}
+
+	// async relateMonitorUsers(
+	// 	actorId: bigint,
+	// 	actorRole: string | undefined,
+	// 	input: RelateMonitorUsersBodyInput,
+	// ): Promise<MonitorUserBulkUpdateResult> {
+	// 	const actor = await this.validateActor(actorId, actorRole);
+	// 	if ('status' in actor && actor.status !== undefined) {
+	// 		return actor;
+	// 	}
+
+	// 	const targetError = await this.validateTargetServiceUser(input.relatedUserId, actorId);
+	// 	if (targetError) {
+	// 		return targetError;
+	// 	}
+
+	// 	try {
+	// 		const updated = await this.updateMonitorUsersOwnership(
+	// 			input.monitorUserIds,
+	// 			actorId,
+	// 			actorRole,
+	// 			input.relatedUserId,
+	// 		);
+	// 		if (updated.error) {
+	// 			return updated.error;
+	// 		}
+
+	// 		return {
+	// 			status: 200,
+	// 			message: 'Monitor users related successfully.',
+	// 			data: {
+	// 				relatedUserId: String(input.relatedUserId),
+	// 				monitorUserIds: input.monitorUserIds.map((id) => String(id)),
+	// 				relatedCount: updated.updatedCount,
+	// 				updatedAt: new Date().toISOString(),
+	// 			},
+	// 		};
+	// 	} catch (error: unknown) {
+	// 		return {
+	// 			status: 500,
+	// 			message: toErrorMessage(error),
+	// 		};
+	// 	}
+	// }
 
 	async relateMonitorUsers(
 		actorId: bigint,
 		actorRole: string | undefined,
-		input: RelateMonitorUsersBodyInput,
-	): Promise<MonitorUserBulkUpdateResult> {
+		input: RelateUserBodyInput,
+	) {
 		const actor = await this.validateActor(actorId, actorRole);
-		if ('status' in actor && actor.status !== undefined) {
+		if ('status' in actor) {
 			return actor;
 		}
 
-		const targetError = await this.validateTargetServiceUser(input.relatedUserId, actorId);
-		if (targetError) {
-			return targetError;
+		const user = await this.monitorUserRepository.findMonitorUserByAccount(
+			input.account,
+		);
+
+		if (!user) {
+			return {
+				status: 404,
+				message: 'Monitor user not found.',
+			};
 		}
 
-		try {
-			const updated = await this.updateMonitorUsersOwnership(
-				input.monitorUserIds,
-				actorId,
-				actorRole,
-				input.relatedUserId,
+		const existing =
+			await this.monitorUserRepository.findMappingBySerialNumber(
+				input.serialNumber,
 			);
-			if (updated.error) {
-				return updated.error;
-			}
 
+		if (existing) {
 			return {
-				status: 200,
-				message: 'Monitor users related successfully.',
-				data: {
-					relatedUserId: String(input.relatedUserId),
-					monitorUserIds: input.monitorUserIds.map((id) => String(id)),
-					relatedCount: updated.updatedCount,
-					updatedAt: new Date().toISOString(),
-				},
-			};
-		} catch (error: unknown) {
-			return {
-				status: 500,
-				message: toErrorMessage(error),
+				status: 409,
+				message: 'Serial number is already assigned.',
 			};
 		}
+
+		await this.monitorUserRepository.createUserPlantMapping(
+			user.id,
+			input.serialNumber,
+		);
+
+		return {
+			status: 200,
+			message: 'User related successfully.',
+			data: {
+				account: user.account,
+				serialNumber: input.serialNumber,
+			},
+		};
 	}
 
 	async assignMonitorUsers(
@@ -994,18 +1152,21 @@ export class MonitorUserService {
 		input: AssignMonitorUsersBodyInput,
 	): Promise<MonitorUserBulkUpdateResult> {
 		const actor = await this.validateActor(actorId, actorRole);
-		if ('status' in actor && actor.status !== undefined) {
+		if ("status" in actor && actor.status !== undefined) {
 			return actor;
 		}
 
-		const targetError = await this.validateTargetServiceUser(input.assignedToUserId, actorId);
+		const targetError = await this.validateTargetServiceUser(
+			input.assignedToUserId,
+			actorId,
+		);
 		if (targetError) {
 			return targetError;
 		}
 
 		try {
 			const updated = await this.updateMonitorUsersOwnership(
-				input.monitorUserIds,
+				input.monitorUserIds.map(String),
 				actorId,
 				actorRole,
 				input.assignedToUserId,
@@ -1016,10 +1177,10 @@ export class MonitorUserService {
 
 			return {
 				status: 200,
-				message: 'Monitor users assigned successfully.',
+				message: "Monitor users assigned successfully.",
 				data: {
 					assignedToUserId: String(input.assignedToUserId),
-					monitorUserIds: input.monitorUserIds.map((id) => String(id)),
+					monitorUserIds: updated.resolvedIds.map((id) => String(id)),
 					assignedCount: updated.updatedCount,
 					updatedAt: new Date().toISOString(),
 				},
