@@ -68,10 +68,22 @@ export const monitorUserPlantsQuerySchema = z.object({
     .transform((value) => Math.min(value, 100)),
 });
 
+// const monitorUserIdsSchema = z
+// 	.array(z.string().trim().regex(/^\d+$/, 'monitorUserId must be a positive integer'))
+// 	.min(1, 'At least one monitor user id is required')
+// 	.transform((ids) => ids.map((value) => BigInt(value)));
+
 const monitorUserIdsSchema = z
-	.array(z.string().trim().regex(/^\d+$/, 'monitorUserId must be a positive integer'))
-	.min(1, 'At least one monitor user id is required')
-	.transform((ids) => ids.map((value) => BigInt(value)));
+  .array(z.string().trim().min(1, "Identifier cannot be empty"))
+  .min(1, "At least one monitor user id or account name is required");
+export const relateMonitorUsersBodySchema = z.object({
+  monitorUserIds: monitorUserIdsSchema,
+  relatedUserId: z
+    .string()
+    .trim()
+    .regex(/^\d+$/, "relatedUserId must be a positive integer")
+    .transform((value) => BigInt(value)),
+});
 
 // export const relateMonitorUsersBodySchema = z.object({
 // 	monitorUserIds: monitorUserIdsSchema,
