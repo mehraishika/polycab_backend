@@ -38,33 +38,21 @@ export type DeviceConnectionStatusMinAggregateOutputType = {
   id: bigint | null
   serialNumber: string | null
   status: string | null
-<<<<<<< HEAD
-  lastSeenTime: Date | null
-=======
   lastseentime: Date | null
->>>>>>> master
 }
 
 export type DeviceConnectionStatusMaxAggregateOutputType = {
   id: bigint | null
   serialNumber: string | null
   status: string | null
-<<<<<<< HEAD
-  lastSeenTime: Date | null
-=======
   lastseentime: Date | null
->>>>>>> master
 }
 
 export type DeviceConnectionStatusCountAggregateOutputType = {
   id: number
   serialNumber: number
   status: number
-<<<<<<< HEAD
-  lastSeenTime: number
-=======
   lastseentime: number
->>>>>>> master
   _all: number
 }
 
@@ -81,33 +69,21 @@ export type DeviceConnectionStatusMinAggregateInputType = {
   id?: true
   serialNumber?: true
   status?: true
-<<<<<<< HEAD
-  lastSeenTime?: true
-=======
   lastseentime?: true
->>>>>>> master
 }
 
 export type DeviceConnectionStatusMaxAggregateInputType = {
   id?: true
   serialNumber?: true
   status?: true
-<<<<<<< HEAD
-  lastSeenTime?: true
-=======
   lastseentime?: true
->>>>>>> master
 }
 
 export type DeviceConnectionStatusCountAggregateInputType = {
   id?: true
   serialNumber?: true
   status?: true
-<<<<<<< HEAD
-  lastSeenTime?: true
-=======
   lastseentime?: true
->>>>>>> master
   _all?: true
 }
 
@@ -201,11 +177,7 @@ export type DeviceConnectionStatusGroupByOutputType = {
   id: bigint
   serialNumber: string
   status: string
-<<<<<<< HEAD
-  lastSeenTime: Date | null
-=======
   lastseentime: Date | null
->>>>>>> master
   _count: DeviceConnectionStatusCountAggregateOutputType | null
   _avg: DeviceConnectionStatusAvgAggregateOutputType | null
   _sum: DeviceConnectionStatusSumAggregateOutputType | null
@@ -235,22 +207,14 @@ export type DeviceConnectionStatusWhereInput = {
   id?: Prisma.BigIntFilter<"DeviceConnectionStatus"> | bigint | number
   serialNumber?: Prisma.StringFilter<"DeviceConnectionStatus"> | string
   status?: Prisma.StringFilter<"DeviceConnectionStatus"> | string
-<<<<<<< HEAD
-  lastSeenTime?: Prisma.DateTimeNullableFilter<"DeviceConnectionStatus"> | Date | string | null
-=======
   lastseentime?: Prisma.DateTimeNullableFilter<"DeviceConnectionStatus"> | Date | string | null
->>>>>>> master
 }
 
 export type DeviceConnectionStatusOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   serialNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
-<<<<<<< HEAD
-  lastSeenTime?: Prisma.SortOrderInput | Prisma.SortOrder
-=======
   lastseentime?: Prisma.SortOrderInput | Prisma.SortOrder
->>>>>>> master
 }
 
 export type DeviceConnectionStatusWhereUniqueInput = Prisma.AtLeast<{
@@ -260,22 +224,14 @@ export type DeviceConnectionStatusWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.DeviceConnectionStatusWhereInput[]
   NOT?: Prisma.DeviceConnectionStatusWhereInput | Prisma.DeviceConnectionStatusWhereInput[]
   status?: Prisma.StringFilter<"DeviceConnectionStatus"> | string
-<<<<<<< HEAD
-  lastSeenTime?: Prisma.DateTimeNullableFilter<"DeviceConnectionStatus"> | Date | string | null
-=======
   lastseentime?: Prisma.DateTimeNullableFilter<"DeviceConnectionStatus"> | Date | string | null
->>>>>>> master
 }, "id" | "serialNumber">
 
 export type DeviceConnectionStatusOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   serialNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
-<<<<<<< HEAD
-  lastSeenTime?: Prisma.SortOrderInput | Prisma.SortOrder
-=======
   lastseentime?: Prisma.SortOrderInput | Prisma.SortOrder
->>>>>>> master
   _count?: Prisma.DeviceConnectionStatusCountOrderByAggregateInput
   _avg?: Prisma.DeviceConnectionStatusAvgOrderByAggregateInput
   _max?: Prisma.DeviceConnectionStatusMaxOrderByAggregateInput
@@ -290,99 +246,63 @@ export type DeviceConnectionStatusScalarWhereWithAggregatesInput = {
   id?: Prisma.BigIntWithAggregatesFilter<"DeviceConnectionStatus"> | bigint | number
   serialNumber?: Prisma.StringWithAggregatesFilter<"DeviceConnectionStatus"> | string
   status?: Prisma.StringWithAggregatesFilter<"DeviceConnectionStatus"> | string
-<<<<<<< HEAD
-  lastSeenTime?: Prisma.DateTimeNullableWithAggregatesFilter<"DeviceConnectionStatus"> | Date | string | null
-=======
   lastseentime?: Prisma.DateTimeNullableWithAggregatesFilter<"DeviceConnectionStatus"> | Date | string | null
->>>>>>> master
 }
 
 export type DeviceConnectionStatusCreateInput = {
   id?: bigint | number
   serialNumber: string
   status: string
-<<<<<<< HEAD
-  lastSeenTime?: Date | string | null
-=======
   lastseentime?: Date | string | null
->>>>>>> master
 }
 
 export type DeviceConnectionStatusUncheckedCreateInput = {
   id?: bigint | number
   serialNumber: string
   status: string
-<<<<<<< HEAD
-  lastSeenTime?: Date | string | null
-=======
   lastseentime?: Date | string | null
->>>>>>> master
 }
 
 export type DeviceConnectionStatusUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
-<<<<<<< HEAD
-  lastSeenTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-=======
   lastseentime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> master
 }
 
 export type DeviceConnectionStatusUncheckedUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
-<<<<<<< HEAD
-  lastSeenTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-=======
   lastseentime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> master
 }
 
 export type DeviceConnectionStatusCreateManyInput = {
   id?: bigint | number
   serialNumber: string
   status: string
-<<<<<<< HEAD
-  lastSeenTime?: Date | string | null
-=======
   lastseentime?: Date | string | null
->>>>>>> master
 }
 
 export type DeviceConnectionStatusUpdateManyMutationInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
-<<<<<<< HEAD
-  lastSeenTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-=======
   lastseentime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> master
 }
 
 export type DeviceConnectionStatusUncheckedUpdateManyInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
-<<<<<<< HEAD
-  lastSeenTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-=======
   lastseentime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> master
 }
 
 export type DeviceConnectionStatusCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   serialNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
-<<<<<<< HEAD
-  lastSeenTime?: Prisma.SortOrder
-=======
   lastseentime?: Prisma.SortOrder
->>>>>>> master
 }
 
 export type DeviceConnectionStatusAvgOrderByAggregateInput = {
@@ -393,22 +313,14 @@ export type DeviceConnectionStatusMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   serialNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
-<<<<<<< HEAD
-  lastSeenTime?: Prisma.SortOrder
-=======
   lastseentime?: Prisma.SortOrder
->>>>>>> master
 }
 
 export type DeviceConnectionStatusMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   serialNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
-<<<<<<< HEAD
-  lastSeenTime?: Prisma.SortOrder
-=======
   lastseentime?: Prisma.SortOrder
->>>>>>> master
 }
 
 export type DeviceConnectionStatusSumOrderByAggregateInput = {
@@ -421,50 +333,31 @@ export type DeviceConnectionStatusSelect<ExtArgs extends runtime.Types.Extension
   id?: boolean
   serialNumber?: boolean
   status?: boolean
-<<<<<<< HEAD
-  lastSeenTime?: boolean
-=======
   lastseentime?: boolean
->>>>>>> master
 }, ExtArgs["result"]["deviceConnectionStatus"]>
 
 export type DeviceConnectionStatusSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   serialNumber?: boolean
   status?: boolean
-<<<<<<< HEAD
-  lastSeenTime?: boolean
-=======
   lastseentime?: boolean
->>>>>>> master
 }, ExtArgs["result"]["deviceConnectionStatus"]>
 
 export type DeviceConnectionStatusSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   serialNumber?: boolean
   status?: boolean
-<<<<<<< HEAD
-  lastSeenTime?: boolean
-=======
   lastseentime?: boolean
->>>>>>> master
 }, ExtArgs["result"]["deviceConnectionStatus"]>
 
 export type DeviceConnectionStatusSelectScalar = {
   id?: boolean
   serialNumber?: boolean
   status?: boolean
-<<<<<<< HEAD
-  lastSeenTime?: boolean
-}
-
-export type DeviceConnectionStatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "serialNumber" | "status" | "lastSeenTime", ExtArgs["result"]["deviceConnectionStatus"]>
-=======
   lastseentime?: boolean
 }
 
 export type DeviceConnectionStatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "serialNumber" | "status" | "lastseentime", ExtArgs["result"]["deviceConnectionStatus"]>
->>>>>>> master
 
 export type $DeviceConnectionStatusPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "DeviceConnectionStatus"
@@ -473,11 +366,7 @@ export type $DeviceConnectionStatusPayload<ExtArgs extends runtime.Types.Extensi
     id: bigint
     serialNumber: string
     status: string
-<<<<<<< HEAD
-    lastSeenTime: Date | null
-=======
     lastseentime: Date | null
->>>>>>> master
   }, ExtArgs["result"]["deviceConnectionStatus"]>
   composites: {}
 }
@@ -904,11 +793,7 @@ export interface DeviceConnectionStatusFieldRefs {
   readonly id: Prisma.FieldRef<"DeviceConnectionStatus", 'BigInt'>
   readonly serialNumber: Prisma.FieldRef<"DeviceConnectionStatus", 'String'>
   readonly status: Prisma.FieldRef<"DeviceConnectionStatus", 'String'>
-<<<<<<< HEAD
-  readonly lastSeenTime: Prisma.FieldRef<"DeviceConnectionStatus", 'DateTime'>
-=======
   readonly lastseentime: Prisma.FieldRef<"DeviceConnectionStatus", 'DateTime'>
->>>>>>> master
 }
     
 
