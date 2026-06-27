@@ -423,6 +423,15 @@ export class UserService {
     };
   }
 
+  async getProfile(userId: string) {
+    const profile = await this.userRepository.getProfile(BigInt(userId));
+
+    return {
+      status: 200,
+      message: "Profile fetched successfully.",
+      data: profile,
+    };
+  }
   async getEditById(id: bigint): Promise<GetUserDetailResult> {
     const record = await this.userRepository.findDetailById(id);
 

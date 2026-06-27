@@ -156,6 +156,7 @@ export class UserRepository {
   async updateProfile(
     userId: bigint,
     payload: {
+      email?: string;
       phone?: string | null;
       address?: string | null;
       timezone?: string | null;
@@ -166,6 +167,7 @@ export class UserRepository {
         id: userId,
       },
       data: {
+        email: payload.email,
         phone: payload.phone ?? null,
         address: payload.address ?? null,
         timezone: payload.timezone ?? null,
@@ -177,6 +179,21 @@ export class UserRepository {
         address: true,
         timezone: true,
         updatedAt: true,
+      },
+    });
+  }
+
+  async getProfile(userId: bigint) {
+    return this.dbClient.user.findUnique({
+      where: {
+        id: userId,
+      },
+      select: {
+        account: true,
+        email: true,
+        phone: true,
+        address: true,
+        timezone: true,
       },
     });
   }

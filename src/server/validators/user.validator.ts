@@ -161,6 +161,7 @@ export const ForgotPasswordValidator = z
   });
 
 export const UpdateProfileValidator = z.object({
+  email: z.string().trim().email().optional(),
   phone: z.string().trim().nullable().optional(),
   address: z.string().trim().nullable().optional(),
   timezone: z.string().trim().nullable().optional(),
