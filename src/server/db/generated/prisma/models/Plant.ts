@@ -316,7 +316,6 @@ export type PlantWhereInput = {
   inverters?: Prisma.DeviceInverterListRelationFilter
   information_data?: Prisma.Information_dataListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  userInverterMaps?: Prisma.UserPlantInverterMapListRelationFilter
 }
 
 export type PlantOrderByWithRelationInput = {
@@ -340,7 +339,6 @@ export type PlantOrderByWithRelationInput = {
   inverters?: Prisma.DeviceInverterOrderByRelationAggregateInput
   information_data?: Prisma.information_dataOrderByRelationAggregateInput
   user?: Prisma.UserOrderByWithRelationInput
-  userInverterMaps?: Prisma.UserPlantInverterMapOrderByRelationAggregateInput
 }
 
 export type PlantWhereUniqueInput = Prisma.AtLeast<{
@@ -367,7 +365,6 @@ export type PlantWhereUniqueInput = Prisma.AtLeast<{
   inverters?: Prisma.DeviceInverterListRelationFilter
   information_data?: Prisma.Information_dataListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  userInverterMaps?: Prisma.UserPlantInverterMapListRelationFilter
 }, "id">
 
 export type PlantOrderByWithAggregationInput = {
@@ -436,7 +433,6 @@ export type PlantCreateInput = {
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
   user: Prisma.UserCreateNestedOneWithoutPlantsInput
-  userInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateInput = {
@@ -459,7 +455,6 @@ export type PlantUncheckedCreateInput = {
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUpdateInput = {
@@ -482,7 +477,6 @@ export type PlantUpdateInput = {
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateInput = {
@@ -505,7 +499,6 @@ export type PlantUncheckedUpdateInput = {
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateManyInput = {
@@ -712,20 +705,6 @@ export type PlantUpdateOneRequiredWithoutInvertersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlantUpdateToOneWithWhereWithoutInvertersInput, Prisma.PlantUpdateWithoutInvertersInput>, Prisma.PlantUncheckedUpdateWithoutInvertersInput>
 }
 
-export type PlantCreateNestedOneWithoutUserInverterMapsInput = {
-  create?: Prisma.XOR<Prisma.PlantCreateWithoutUserInverterMapsInput, Prisma.PlantUncheckedCreateWithoutUserInverterMapsInput>
-  connectOrCreate?: Prisma.PlantCreateOrConnectWithoutUserInverterMapsInput
-  connect?: Prisma.PlantWhereUniqueInput
-}
-
-export type PlantUpdateOneRequiredWithoutUserInverterMapsNestedInput = {
-  create?: Prisma.XOR<Prisma.PlantCreateWithoutUserInverterMapsInput, Prisma.PlantUncheckedCreateWithoutUserInverterMapsInput>
-  connectOrCreate?: Prisma.PlantCreateOrConnectWithoutUserInverterMapsInput
-  upsert?: Prisma.PlantUpsertWithoutUserInverterMapsInput
-  connect?: Prisma.PlantWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PlantUpdateToOneWithWhereWithoutUserInverterMapsInput, Prisma.PlantUpdateWithoutUserInverterMapsInput>, Prisma.PlantUncheckedUpdateWithoutUserInverterMapsInput>
-}
-
 export type PlantCreateNestedOneWithoutDataloggersInput = {
   create?: Prisma.XOR<Prisma.PlantCreateWithoutDataloggersInput, Prisma.PlantUncheckedCreateWithoutDataloggersInput>
   connectOrCreate?: Prisma.PlantCreateOrConnectWithoutDataloggersInput
@@ -773,7 +752,6 @@ export type PlantCreateWithoutUserInput = {
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
-  userInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateWithoutUserInput = {
@@ -795,7 +773,6 @@ export type PlantUncheckedCreateWithoutUserInput = {
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutUserInput = {
@@ -865,7 +842,6 @@ export type PlantCreateWithoutInvertersInput = {
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
   user: Prisma.UserCreateNestedOneWithoutPlantsInput
-  userInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateWithoutInvertersInput = {
@@ -887,7 +863,6 @@ export type PlantUncheckedCreateWithoutInvertersInput = {
   deletedAt?: Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutInvertersInput = {
@@ -925,7 +900,6 @@ export type PlantUpdateWithoutInvertersInput = {
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutInvertersInput = {
@@ -946,111 +920,6 @@ export type PlantUncheckedUpdateWithoutInvertersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
-  information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutPlantNestedInput
-}
-
-export type PlantCreateWithoutUserInverterMapsInput = {
-  id?: bigint | number
-  name: string
-  type: string
-  installed?: Date | string | null
-  lastUpdatedAt?: Date | string | null
-  kwp?: number | null
-  price?: number | null
-  priceUnit?: string | null
-  longitude?: string | null
-  latitude?: string | null
-  address?: string | null
-  pictureFileId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
-  inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
-  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
-  user: Prisma.UserCreateNestedOneWithoutPlantsInput
-}
-
-export type PlantUncheckedCreateWithoutUserInverterMapsInput = {
-  id?: bigint | number
-  name: string
-  type: string
-  installed?: Date | string | null
-  lastUpdatedAt?: Date | string | null
-  kwp?: number | null
-  price?: number | null
-  priceUnit?: string | null
-  longitude?: string | null
-  latitude?: string | null
-  address?: string | null
-  pictureFileId?: string | null
-  userAccount: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
-  inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
-  information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
-}
-
-export type PlantCreateOrConnectWithoutUserInverterMapsInput = {
-  where: Prisma.PlantWhereUniqueInput
-  create: Prisma.XOR<Prisma.PlantCreateWithoutUserInverterMapsInput, Prisma.PlantUncheckedCreateWithoutUserInverterMapsInput>
-}
-
-export type PlantUpsertWithoutUserInverterMapsInput = {
-  update: Prisma.XOR<Prisma.PlantUpdateWithoutUserInverterMapsInput, Prisma.PlantUncheckedUpdateWithoutUserInverterMapsInput>
-  create: Prisma.XOR<Prisma.PlantCreateWithoutUserInverterMapsInput, Prisma.PlantUncheckedCreateWithoutUserInverterMapsInput>
-  where?: Prisma.PlantWhereInput
-}
-
-export type PlantUpdateToOneWithWhereWithoutUserInverterMapsInput = {
-  where?: Prisma.PlantWhereInput
-  data: Prisma.XOR<Prisma.PlantUpdateWithoutUserInverterMapsInput, Prisma.PlantUncheckedUpdateWithoutUserInverterMapsInput>
-}
-
-export type PlantUpdateWithoutUserInverterMapsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  installed?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  kwp?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  priceUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  longitude?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  latitude?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  pictureFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
-  inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
-  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
-}
-
-export type PlantUncheckedUpdateWithoutUserInverterMapsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  installed?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  kwp?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  priceUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  longitude?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  latitude?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  pictureFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userAccount?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
-  inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
 }
 
@@ -1073,7 +942,6 @@ export type PlantCreateWithoutDataloggersInput = {
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
   user: Prisma.UserCreateNestedOneWithoutPlantsInput
-  userInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateWithoutDataloggersInput = {
@@ -1095,7 +963,6 @@ export type PlantUncheckedCreateWithoutDataloggersInput = {
   deletedAt?: Date | string | null
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutDataloggersInput = {
@@ -1133,7 +1000,6 @@ export type PlantUpdateWithoutDataloggersInput = {
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutDataloggersInput = {
@@ -1155,7 +1021,6 @@ export type PlantUncheckedUpdateWithoutDataloggersInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateWithoutInformation_dataInput = {
@@ -1177,7 +1042,6 @@ export type PlantCreateWithoutInformation_dataInput = {
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
   user: Prisma.UserCreateNestedOneWithoutPlantsInput
-  userInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateWithoutInformation_dataInput = {
@@ -1199,7 +1063,6 @@ export type PlantUncheckedCreateWithoutInformation_dataInput = {
   deletedAt?: Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutInformation_dataInput = {
@@ -1237,7 +1100,6 @@ export type PlantUpdateWithoutInformation_dataInput = {
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutInformation_dataInput = {
@@ -1259,7 +1121,6 @@ export type PlantUncheckedUpdateWithoutInformation_dataInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateManyUserInput = {
@@ -1299,7 +1160,6 @@ export type PlantUpdateWithoutUserInput = {
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutUserInput = {
@@ -1321,7 +1181,6 @@ export type PlantUncheckedUpdateWithoutUserInput = {
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
-  userInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateManyWithoutUserInput = {
@@ -1351,14 +1210,12 @@ export type PlantCountOutputType = {
   dataloggers: number
   inverters: number
   information_data: number
-  userInverterMaps: number
 }
 
 export type PlantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   dataloggers?: boolean | PlantCountOutputTypeCountDataloggersArgs
   inverters?: boolean | PlantCountOutputTypeCountInvertersArgs
   information_data?: boolean | PlantCountOutputTypeCountInformation_dataArgs
-  userInverterMaps?: boolean | PlantCountOutputTypeCountUserInverterMapsArgs
 }
 
 /**
@@ -1392,13 +1249,6 @@ export type PlantCountOutputTypeCountInformation_dataArgs<ExtArgs extends runtim
   where?: Prisma.information_dataWhereInput
 }
 
-/**
- * PlantCountOutputType without action
- */
-export type PlantCountOutputTypeCountUserInverterMapsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserPlantInverterMapWhereInput
-}
-
 
 export type PlantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1421,7 +1271,6 @@ export type PlantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   inverters?: boolean | Prisma.Plant$invertersArgs<ExtArgs>
   information_data?: boolean | Prisma.Plant$information_dataArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  userInverterMaps?: boolean | Prisma.Plant$userInverterMapsArgs<ExtArgs>
   _count?: boolean | Prisma.PlantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["plant"]>
 
@@ -1490,7 +1339,6 @@ export type PlantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   inverters?: boolean | Prisma.Plant$invertersArgs<ExtArgs>
   information_data?: boolean | Prisma.Plant$information_dataArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  userInverterMaps?: boolean | Prisma.Plant$userInverterMapsArgs<ExtArgs>
   _count?: boolean | Prisma.PlantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PlantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1507,7 +1355,6 @@ export type $PlantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     inverters: Prisma.$DeviceInverterPayload<ExtArgs>[]
     information_data: Prisma.$information_dataPayload<ExtArgs>[]
     user: Prisma.$UserPayload<ExtArgs>
-    userInverterMaps: Prisma.$UserPlantInverterMapPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -1924,7 +1771,6 @@ export interface Prisma__PlantClient<T, Null = never, ExtArgs extends runtime.Ty
   inverters<T extends Prisma.Plant$invertersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$invertersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceInverterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   information_data<T extends Prisma.Plant$information_dataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$information_dataArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$information_dataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  userInverterMaps<T extends Prisma.Plant$userInverterMapsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$userInverterMapsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPlantInverterMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2440,30 +2286,6 @@ export type Plant$information_dataArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.Information_dataScalarFieldEnum | Prisma.Information_dataScalarFieldEnum[]
-}
-
-/**
- * Plant.userInverterMaps
- */
-export type Plant$userInverterMapsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UserPlantInverterMap
-   */
-  select?: Prisma.UserPlantInverterMapSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the UserPlantInverterMap
-   */
-  omit?: Prisma.UserPlantInverterMapOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserPlantInverterMapInclude<ExtArgs> | null
-  where?: Prisma.UserPlantInverterMapWhereInput
-  orderBy?: Prisma.UserPlantInverterMapOrderByWithRelationInput | Prisma.UserPlantInverterMapOrderByWithRelationInput[]
-  cursor?: Prisma.UserPlantInverterMapWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserPlantInverterMapScalarFieldEnum | Prisma.UserPlantInverterMapScalarFieldEnum[]
 }
 
 /**

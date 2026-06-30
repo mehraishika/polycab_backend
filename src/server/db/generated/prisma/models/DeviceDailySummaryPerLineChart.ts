@@ -50,7 +50,6 @@ export type DeviceDailySummaryPerLineChartAvgAggregateOutputType = {
   dcVoltage6: number | null
   dcVoltage7: number | null
   dcVoltage8: number | null
-  dcVoltage9: number | null
   dcCurrent1: number | null
   dcCurrent2: number | null
   dcCurrent3: number | null
@@ -94,6 +93,7 @@ export type DeviceDailySummaryPerLineChartAvgAggregateOutputType = {
   totalProduction: number | null
   totalGenerationTime: number | null
   messageType: number | null
+  dcVoltage9: number | null
 }
 
 export type DeviceDailySummaryPerLineChartSumAggregateOutputType = {
@@ -120,7 +120,6 @@ export type DeviceDailySummaryPerLineChartSumAggregateOutputType = {
   dcVoltage6: number | null
   dcVoltage7: number | null
   dcVoltage8: number | null
-  dcVoltage9: number | null
   dcCurrent1: number | null
   dcCurrent2: number | null
   dcCurrent3: number | null
@@ -164,6 +163,7 @@ export type DeviceDailySummaryPerLineChartSumAggregateOutputType = {
   totalProduction: number | null
   totalGenerationTime: number | null
   messageType: number | null
+  dcVoltage9: number | null
 }
 
 export type DeviceDailySummaryPerLineChartMinAggregateOutputType = {
@@ -202,7 +202,6 @@ export type DeviceDailySummaryPerLineChartMinAggregateOutputType = {
   dcVoltage6: number | null
   dcVoltage7: number | null
   dcVoltage8: number | null
-  dcVoltage9: number | null
   dcCurrent1: number | null
   dcCurrent2: number | null
   dcCurrent3: number | null
@@ -249,6 +248,7 @@ export type DeviceDailySummaryPerLineChartMinAggregateOutputType = {
   messageType: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  dcVoltage9: number | null
 }
 
 export type DeviceDailySummaryPerLineChartMaxAggregateOutputType = {
@@ -287,7 +287,6 @@ export type DeviceDailySummaryPerLineChartMaxAggregateOutputType = {
   dcVoltage6: number | null
   dcVoltage7: number | null
   dcVoltage8: number | null
-  dcVoltage9: number | null
   dcCurrent1: number | null
   dcCurrent2: number | null
   dcCurrent3: number | null
@@ -334,6 +333,7 @@ export type DeviceDailySummaryPerLineChartMaxAggregateOutputType = {
   messageType: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  dcVoltage9: number | null
 }
 
 export type DeviceDailySummaryPerLineChartCountAggregateOutputType = {
@@ -372,7 +372,6 @@ export type DeviceDailySummaryPerLineChartCountAggregateOutputType = {
   dcVoltage6: number
   dcVoltage7: number
   dcVoltage8: number
-  dcVoltage9: number
   dcCurrent1: number
   dcCurrent2: number
   dcCurrent3: number
@@ -420,6 +419,7 @@ export type DeviceDailySummaryPerLineChartCountAggregateOutputType = {
   hybridJson: number
   createdAt: number
   updatedAt: number
+  dcVoltage9: number
   _all: number
 }
 
@@ -448,7 +448,6 @@ export type DeviceDailySummaryPerLineChartAvgAggregateInputType = {
   dcVoltage6?: true
   dcVoltage7?: true
   dcVoltage8?: true
-  dcVoltage9?: true
   dcCurrent1?: true
   dcCurrent2?: true
   dcCurrent3?: true
@@ -492,6 +491,7 @@ export type DeviceDailySummaryPerLineChartAvgAggregateInputType = {
   totalProduction?: true
   totalGenerationTime?: true
   messageType?: true
+  dcVoltage9?: true
 }
 
 export type DeviceDailySummaryPerLineChartSumAggregateInputType = {
@@ -518,7 +518,6 @@ export type DeviceDailySummaryPerLineChartSumAggregateInputType = {
   dcVoltage6?: true
   dcVoltage7?: true
   dcVoltage8?: true
-  dcVoltage9?: true
   dcCurrent1?: true
   dcCurrent2?: true
   dcCurrent3?: true
@@ -562,6 +561,7 @@ export type DeviceDailySummaryPerLineChartSumAggregateInputType = {
   totalProduction?: true
   totalGenerationTime?: true
   messageType?: true
+  dcVoltage9?: true
 }
 
 export type DeviceDailySummaryPerLineChartMinAggregateInputType = {
@@ -600,7 +600,6 @@ export type DeviceDailySummaryPerLineChartMinAggregateInputType = {
   dcVoltage6?: true
   dcVoltage7?: true
   dcVoltage8?: true
-  dcVoltage9?: true
   dcCurrent1?: true
   dcCurrent2?: true
   dcCurrent3?: true
@@ -647,6 +646,7 @@ export type DeviceDailySummaryPerLineChartMinAggregateInputType = {
   messageType?: true
   createdAt?: true
   updatedAt?: true
+  dcVoltage9?: true
 }
 
 export type DeviceDailySummaryPerLineChartMaxAggregateInputType = {
@@ -685,7 +685,6 @@ export type DeviceDailySummaryPerLineChartMaxAggregateInputType = {
   dcVoltage6?: true
   dcVoltage7?: true
   dcVoltage8?: true
-  dcVoltage9?: true
   dcCurrent1?: true
   dcCurrent2?: true
   dcCurrent3?: true
@@ -732,6 +731,7 @@ export type DeviceDailySummaryPerLineChartMaxAggregateInputType = {
   messageType?: true
   createdAt?: true
   updatedAt?: true
+  dcVoltage9?: true
 }
 
 export type DeviceDailySummaryPerLineChartCountAggregateInputType = {
@@ -770,7 +770,6 @@ export type DeviceDailySummaryPerLineChartCountAggregateInputType = {
   dcVoltage6?: true
   dcVoltage7?: true
   dcVoltage8?: true
-  dcVoltage9?: true
   dcCurrent1?: true
   dcCurrent2?: true
   dcCurrent3?: true
@@ -818,6 +817,7 @@ export type DeviceDailySummaryPerLineChartCountAggregateInputType = {
   hybridJson?: true
   createdAt?: true
   updatedAt?: true
+  dcVoltage9?: true
   _all?: true
 }
 
@@ -943,7 +943,6 @@ export type DeviceDailySummaryPerLineChartGroupByOutputType = {
   dcVoltage6: number | null
   dcVoltage7: number | null
   dcVoltage8: number | null
-  dcVoltage9: number | null
   dcCurrent1: number | null
   dcCurrent2: number | null
   dcCurrent3: number | null
@@ -991,6 +990,7 @@ export type DeviceDailySummaryPerLineChartGroupByOutputType = {
   hybridJson: runtime.JsonValue | null
   createdAt: Date
   updatedAt: Date
+  dcVoltage9: number | null
   _count: DeviceDailySummaryPerLineChartCountAggregateOutputType | null
   _avg: DeviceDailySummaryPerLineChartAvgAggregateOutputType | null
   _sum: DeviceDailySummaryPerLineChartSumAggregateOutputType | null
@@ -1052,7 +1052,6 @@ export type DeviceDailySummaryPerLineChartWhereInput = {
   dcVoltage6?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcVoltage7?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcVoltage8?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
-  dcVoltage9?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcCurrent1?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcCurrent2?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcCurrent3?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
@@ -1100,6 +1099,7 @@ export type DeviceDailySummaryPerLineChartWhereInput = {
   hybridJson?: Prisma.JsonNullableFilter<"DeviceDailySummaryPerLineChart">
   createdAt?: Prisma.DateTimeFilter<"DeviceDailySummaryPerLineChart"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceDailySummaryPerLineChart"> | Date | string
+  dcVoltage9?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   userPlantInverterMap?: Prisma.XOR<Prisma.UserPlantInverterMapScalarRelationFilter, Prisma.UserPlantInverterMapWhereInput>
   sourceLog?: Prisma.XOR<Prisma.DeviceLogsScalarRelationFilter, Prisma.DeviceLogsWhereInput>
 }
@@ -1140,7 +1140,6 @@ export type DeviceDailySummaryPerLineChartOrderByWithRelationInput = {
   dcVoltage6?: Prisma.SortOrderInput | Prisma.SortOrder
   dcVoltage7?: Prisma.SortOrderInput | Prisma.SortOrder
   dcVoltage8?: Prisma.SortOrderInput | Prisma.SortOrder
-  dcVoltage9?: Prisma.SortOrderInput | Prisma.SortOrder
   dcCurrent1?: Prisma.SortOrderInput | Prisma.SortOrder
   dcCurrent2?: Prisma.SortOrderInput | Prisma.SortOrder
   dcCurrent3?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -1188,6 +1187,7 @@ export type DeviceDailySummaryPerLineChartOrderByWithRelationInput = {
   hybridJson?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  dcVoltage9?: Prisma.SortOrderInput | Prisma.SortOrder
   userPlantInverterMap?: Prisma.UserPlantInverterMapOrderByWithRelationInput
   sourceLog?: Prisma.DeviceLogsOrderByWithRelationInput
 }
@@ -1232,7 +1232,6 @@ export type DeviceDailySummaryPerLineChartWhereUniqueInput = Prisma.AtLeast<{
   dcVoltage6?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcVoltage7?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcVoltage8?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
-  dcVoltage9?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcCurrent1?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcCurrent2?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcCurrent3?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
@@ -1280,6 +1279,7 @@ export type DeviceDailySummaryPerLineChartWhereUniqueInput = Prisma.AtLeast<{
   hybridJson?: Prisma.JsonNullableFilter<"DeviceDailySummaryPerLineChart">
   createdAt?: Prisma.DateTimeFilter<"DeviceDailySummaryPerLineChart"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceDailySummaryPerLineChart"> | Date | string
+  dcVoltage9?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   userPlantInverterMap?: Prisma.XOR<Prisma.UserPlantInverterMapScalarRelationFilter, Prisma.UserPlantInverterMapWhereInput>
   sourceLog?: Prisma.XOR<Prisma.DeviceLogsScalarRelationFilter, Prisma.DeviceLogsWhereInput>
 }, "id" | "sourceLogId" | "sno_dayDate_timestamp">
@@ -1320,7 +1320,6 @@ export type DeviceDailySummaryPerLineChartOrderByWithAggregationInput = {
   dcVoltage6?: Prisma.SortOrderInput | Prisma.SortOrder
   dcVoltage7?: Prisma.SortOrderInput | Prisma.SortOrder
   dcVoltage8?: Prisma.SortOrderInput | Prisma.SortOrder
-  dcVoltage9?: Prisma.SortOrderInput | Prisma.SortOrder
   dcCurrent1?: Prisma.SortOrderInput | Prisma.SortOrder
   dcCurrent2?: Prisma.SortOrderInput | Prisma.SortOrder
   dcCurrent3?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -1368,6 +1367,7 @@ export type DeviceDailySummaryPerLineChartOrderByWithAggregationInput = {
   hybridJson?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  dcVoltage9?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.DeviceDailySummaryPerLineChartCountOrderByAggregateInput
   _avg?: Prisma.DeviceDailySummaryPerLineChartAvgOrderByAggregateInput
   _max?: Prisma.DeviceDailySummaryPerLineChartMaxOrderByAggregateInput
@@ -1414,7 +1414,6 @@ export type DeviceDailySummaryPerLineChartScalarWhereWithAggregatesInput = {
   dcVoltage6?: Prisma.IntNullableWithAggregatesFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcVoltage7?: Prisma.IntNullableWithAggregatesFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcVoltage8?: Prisma.IntNullableWithAggregatesFilter<"DeviceDailySummaryPerLineChart"> | number | null
-  dcVoltage9?: Prisma.IntNullableWithAggregatesFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcCurrent1?: Prisma.IntNullableWithAggregatesFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcCurrent2?: Prisma.IntNullableWithAggregatesFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcCurrent3?: Prisma.IntNullableWithAggregatesFilter<"DeviceDailySummaryPerLineChart"> | number | null
@@ -1462,6 +1461,7 @@ export type DeviceDailySummaryPerLineChartScalarWhereWithAggregatesInput = {
   hybridJson?: Prisma.JsonNullableWithAggregatesFilter<"DeviceDailySummaryPerLineChart">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"DeviceDailySummaryPerLineChart"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"DeviceDailySummaryPerLineChart"> | Date | string
+  dcVoltage9?: Prisma.IntNullableWithAggregatesFilter<"DeviceDailySummaryPerLineChart"> | number | null
 }
 
 export type DeviceDailySummaryPerLineChartCreateInput = {
@@ -1498,7 +1498,6 @@ export type DeviceDailySummaryPerLineChartCreateInput = {
   dcVoltage6?: number | null
   dcVoltage7?: number | null
   dcVoltage8?: number | null
-  dcVoltage9?: number | null
   dcCurrent1?: number | null
   dcCurrent2?: number | null
   dcCurrent3?: number | null
@@ -1546,6 +1545,7 @@ export type DeviceDailySummaryPerLineChartCreateInput = {
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  dcVoltage9?: number | null
   userPlantInverterMap: Prisma.UserPlantInverterMapCreateNestedOneWithoutLineChartSummariesInput
   sourceLog: Prisma.DeviceLogsCreateNestedOneWithoutLineChartSnapshotsInput
 }
@@ -1586,7 +1586,6 @@ export type DeviceDailySummaryPerLineChartUncheckedCreateInput = {
   dcVoltage6?: number | null
   dcVoltage7?: number | null
   dcVoltage8?: number | null
-  dcVoltage9?: number | null
   dcCurrent1?: number | null
   dcCurrent2?: number | null
   dcCurrent3?: number | null
@@ -1634,6 +1633,7 @@ export type DeviceDailySummaryPerLineChartUncheckedCreateInput = {
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  dcVoltage9?: number | null
 }
 
 export type DeviceDailySummaryPerLineChartUpdateInput = {
@@ -1670,7 +1670,6 @@ export type DeviceDailySummaryPerLineChartUpdateInput = {
   dcVoltage6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1718,6 +1717,7 @@ export type DeviceDailySummaryPerLineChartUpdateInput = {
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userPlantInverterMap?: Prisma.UserPlantInverterMapUpdateOneRequiredWithoutLineChartSummariesNestedInput
   sourceLog?: Prisma.DeviceLogsUpdateOneRequiredWithoutLineChartSnapshotsNestedInput
 }
@@ -1758,7 +1758,6 @@ export type DeviceDailySummaryPerLineChartUncheckedUpdateInput = {
   dcVoltage6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1806,6 +1805,7 @@ export type DeviceDailySummaryPerLineChartUncheckedUpdateInput = {
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type DeviceDailySummaryPerLineChartCreateManyInput = {
@@ -1844,7 +1844,6 @@ export type DeviceDailySummaryPerLineChartCreateManyInput = {
   dcVoltage6?: number | null
   dcVoltage7?: number | null
   dcVoltage8?: number | null
-  dcVoltage9?: number | null
   dcCurrent1?: number | null
   dcCurrent2?: number | null
   dcCurrent3?: number | null
@@ -1892,6 +1891,7 @@ export type DeviceDailySummaryPerLineChartCreateManyInput = {
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  dcVoltage9?: number | null
 }
 
 export type DeviceDailySummaryPerLineChartUpdateManyMutationInput = {
@@ -1928,7 +1928,6 @@ export type DeviceDailySummaryPerLineChartUpdateManyMutationInput = {
   dcVoltage6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1976,6 +1975,7 @@ export type DeviceDailySummaryPerLineChartUpdateManyMutationInput = {
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type DeviceDailySummaryPerLineChartUncheckedUpdateManyInput = {
@@ -2014,7 +2014,6 @@ export type DeviceDailySummaryPerLineChartUncheckedUpdateManyInput = {
   dcVoltage6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2062,6 +2061,7 @@ export type DeviceDailySummaryPerLineChartUncheckedUpdateManyInput = {
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type DeviceDailySummaryPerLineChartListRelationFilter = {
@@ -2121,7 +2121,6 @@ export type DeviceDailySummaryPerLineChartCountOrderByAggregateInput = {
   dcVoltage6?: Prisma.SortOrder
   dcVoltage7?: Prisma.SortOrder
   dcVoltage8?: Prisma.SortOrder
-  dcVoltage9?: Prisma.SortOrder
   dcCurrent1?: Prisma.SortOrder
   dcCurrent2?: Prisma.SortOrder
   dcCurrent3?: Prisma.SortOrder
@@ -2169,6 +2168,7 @@ export type DeviceDailySummaryPerLineChartCountOrderByAggregateInput = {
   hybridJson?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  dcVoltage9?: Prisma.SortOrder
 }
 
 export type DeviceDailySummaryPerLineChartAvgOrderByAggregateInput = {
@@ -2195,7 +2195,6 @@ export type DeviceDailySummaryPerLineChartAvgOrderByAggregateInput = {
   dcVoltage6?: Prisma.SortOrder
   dcVoltage7?: Prisma.SortOrder
   dcVoltage8?: Prisma.SortOrder
-  dcVoltage9?: Prisma.SortOrder
   dcCurrent1?: Prisma.SortOrder
   dcCurrent2?: Prisma.SortOrder
   dcCurrent3?: Prisma.SortOrder
@@ -2239,6 +2238,7 @@ export type DeviceDailySummaryPerLineChartAvgOrderByAggregateInput = {
   totalProduction?: Prisma.SortOrder
   totalGenerationTime?: Prisma.SortOrder
   messageType?: Prisma.SortOrder
+  dcVoltage9?: Prisma.SortOrder
 }
 
 export type DeviceDailySummaryPerLineChartMaxOrderByAggregateInput = {
@@ -2277,7 +2277,6 @@ export type DeviceDailySummaryPerLineChartMaxOrderByAggregateInput = {
   dcVoltage6?: Prisma.SortOrder
   dcVoltage7?: Prisma.SortOrder
   dcVoltage8?: Prisma.SortOrder
-  dcVoltage9?: Prisma.SortOrder
   dcCurrent1?: Prisma.SortOrder
   dcCurrent2?: Prisma.SortOrder
   dcCurrent3?: Prisma.SortOrder
@@ -2324,6 +2323,7 @@ export type DeviceDailySummaryPerLineChartMaxOrderByAggregateInput = {
   messageType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  dcVoltage9?: Prisma.SortOrder
 }
 
 export type DeviceDailySummaryPerLineChartMinOrderByAggregateInput = {
@@ -2362,7 +2362,6 @@ export type DeviceDailySummaryPerLineChartMinOrderByAggregateInput = {
   dcVoltage6?: Prisma.SortOrder
   dcVoltage7?: Prisma.SortOrder
   dcVoltage8?: Prisma.SortOrder
-  dcVoltage9?: Prisma.SortOrder
   dcCurrent1?: Prisma.SortOrder
   dcCurrent2?: Prisma.SortOrder
   dcCurrent3?: Prisma.SortOrder
@@ -2409,6 +2408,7 @@ export type DeviceDailySummaryPerLineChartMinOrderByAggregateInput = {
   messageType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  dcVoltage9?: Prisma.SortOrder
 }
 
 export type DeviceDailySummaryPerLineChartSumOrderByAggregateInput = {
@@ -2435,7 +2435,6 @@ export type DeviceDailySummaryPerLineChartSumOrderByAggregateInput = {
   dcVoltage6?: Prisma.SortOrder
   dcVoltage7?: Prisma.SortOrder
   dcVoltage8?: Prisma.SortOrder
-  dcVoltage9?: Prisma.SortOrder
   dcCurrent1?: Prisma.SortOrder
   dcCurrent2?: Prisma.SortOrder
   dcCurrent3?: Prisma.SortOrder
@@ -2479,6 +2478,7 @@ export type DeviceDailySummaryPerLineChartSumOrderByAggregateInput = {
   totalProduction?: Prisma.SortOrder
   totalGenerationTime?: Prisma.SortOrder
   messageType?: Prisma.SortOrder
+  dcVoltage9?: Prisma.SortOrder
 }
 
 export type DeviceDailySummaryPerLineChartCreateNestedManyWithoutUserPlantInverterMapInput = {
@@ -2597,7 +2597,6 @@ export type DeviceDailySummaryPerLineChartCreateWithoutUserPlantInverterMapInput
   dcVoltage6?: number | null
   dcVoltage7?: number | null
   dcVoltage8?: number | null
-  dcVoltage9?: number | null
   dcCurrent1?: number | null
   dcCurrent2?: number | null
   dcCurrent3?: number | null
@@ -2645,6 +2644,7 @@ export type DeviceDailySummaryPerLineChartCreateWithoutUserPlantInverterMapInput
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  dcVoltage9?: number | null
   sourceLog: Prisma.DeviceLogsCreateNestedOneWithoutLineChartSnapshotsInput
 }
 
@@ -2683,7 +2683,6 @@ export type DeviceDailySummaryPerLineChartUncheckedCreateWithoutUserPlantInverte
   dcVoltage6?: number | null
   dcVoltage7?: number | null
   dcVoltage8?: number | null
-  dcVoltage9?: number | null
   dcCurrent1?: number | null
   dcCurrent2?: number | null
   dcCurrent3?: number | null
@@ -2731,6 +2730,7 @@ export type DeviceDailySummaryPerLineChartUncheckedCreateWithoutUserPlantInverte
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  dcVoltage9?: number | null
 }
 
 export type DeviceDailySummaryPerLineChartCreateOrConnectWithoutUserPlantInverterMapInput = {
@@ -2798,7 +2798,6 @@ export type DeviceDailySummaryPerLineChartScalarWhereInput = {
   dcVoltage6?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcVoltage7?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcVoltage8?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
-  dcVoltage9?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcCurrent1?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcCurrent2?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
   dcCurrent3?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
@@ -2846,6 +2845,7 @@ export type DeviceDailySummaryPerLineChartScalarWhereInput = {
   hybridJson?: Prisma.JsonNullableFilter<"DeviceDailySummaryPerLineChart">
   createdAt?: Prisma.DateTimeFilter<"DeviceDailySummaryPerLineChart"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceDailySummaryPerLineChart"> | Date | string
+  dcVoltage9?: Prisma.IntNullableFilter<"DeviceDailySummaryPerLineChart"> | number | null
 }
 
 export type DeviceDailySummaryPerLineChartCreateWithoutSourceLogInput = {
@@ -2882,7 +2882,6 @@ export type DeviceDailySummaryPerLineChartCreateWithoutSourceLogInput = {
   dcVoltage6?: number | null
   dcVoltage7?: number | null
   dcVoltage8?: number | null
-  dcVoltage9?: number | null
   dcCurrent1?: number | null
   dcCurrent2?: number | null
   dcCurrent3?: number | null
@@ -2930,6 +2929,7 @@ export type DeviceDailySummaryPerLineChartCreateWithoutSourceLogInput = {
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  dcVoltage9?: number | null
   userPlantInverterMap: Prisma.UserPlantInverterMapCreateNestedOneWithoutLineChartSummariesInput
 }
 
@@ -2968,7 +2968,6 @@ export type DeviceDailySummaryPerLineChartUncheckedCreateWithoutSourceLogInput =
   dcVoltage6?: number | null
   dcVoltage7?: number | null
   dcVoltage8?: number | null
-  dcVoltage9?: number | null
   dcCurrent1?: number | null
   dcCurrent2?: number | null
   dcCurrent3?: number | null
@@ -3016,6 +3015,7 @@ export type DeviceDailySummaryPerLineChartUncheckedCreateWithoutSourceLogInput =
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  dcVoltage9?: number | null
 }
 
 export type DeviceDailySummaryPerLineChartCreateOrConnectWithoutSourceLogInput = {
@@ -3068,7 +3068,6 @@ export type DeviceDailySummaryPerLineChartUpdateWithoutSourceLogInput = {
   dcVoltage6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -3116,6 +3115,7 @@ export type DeviceDailySummaryPerLineChartUpdateWithoutSourceLogInput = {
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userPlantInverterMap?: Prisma.UserPlantInverterMapUpdateOneRequiredWithoutLineChartSummariesNestedInput
 }
 
@@ -3154,7 +3154,6 @@ export type DeviceDailySummaryPerLineChartUncheckedUpdateWithoutSourceLogInput =
   dcVoltage6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -3202,6 +3201,7 @@ export type DeviceDailySummaryPerLineChartUncheckedUpdateWithoutSourceLogInput =
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type DeviceDailySummaryPerLineChartCreateManyUserPlantInverterMapInput = {
@@ -3239,7 +3239,6 @@ export type DeviceDailySummaryPerLineChartCreateManyUserPlantInverterMapInput = 
   dcVoltage6?: number | null
   dcVoltage7?: number | null
   dcVoltage8?: number | null
-  dcVoltage9?: number | null
   dcCurrent1?: number | null
   dcCurrent2?: number | null
   dcCurrent3?: number | null
@@ -3287,6 +3286,7 @@ export type DeviceDailySummaryPerLineChartCreateManyUserPlantInverterMapInput = 
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  dcVoltage9?: number | null
 }
 
 export type DeviceDailySummaryPerLineChartUpdateWithoutUserPlantInverterMapInput = {
@@ -3323,7 +3323,6 @@ export type DeviceDailySummaryPerLineChartUpdateWithoutUserPlantInverterMapInput
   dcVoltage6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -3371,6 +3370,7 @@ export type DeviceDailySummaryPerLineChartUpdateWithoutUserPlantInverterMapInput
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sourceLog?: Prisma.DeviceLogsUpdateOneRequiredWithoutLineChartSnapshotsNestedInput
 }
 
@@ -3409,7 +3409,6 @@ export type DeviceDailySummaryPerLineChartUncheckedUpdateWithoutUserPlantInverte
   dcVoltage6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -3457,6 +3456,7 @@ export type DeviceDailySummaryPerLineChartUncheckedUpdateWithoutUserPlantInverte
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type DeviceDailySummaryPerLineChartUncheckedUpdateManyWithoutUserPlantInverterMapInput = {
@@ -3494,7 +3494,6 @@ export type DeviceDailySummaryPerLineChartUncheckedUpdateManyWithoutUserPlantInv
   dcVoltage6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcVoltage8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   dcCurrent3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -3542,6 +3541,7 @@ export type DeviceDailySummaryPerLineChartUncheckedUpdateManyWithoutUserPlantInv
   hybridJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dcVoltage9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -3582,7 +3582,6 @@ export type DeviceDailySummaryPerLineChartSelect<ExtArgs extends runtime.Types.E
   dcVoltage6?: boolean
   dcVoltage7?: boolean
   dcVoltage8?: boolean
-  dcVoltage9?: boolean
   dcCurrent1?: boolean
   dcCurrent2?: boolean
   dcCurrent3?: boolean
@@ -3630,6 +3629,7 @@ export type DeviceDailySummaryPerLineChartSelect<ExtArgs extends runtime.Types.E
   hybridJson?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  dcVoltage9?: boolean
   userPlantInverterMap?: boolean | Prisma.UserPlantInverterMapDefaultArgs<ExtArgs>
   sourceLog?: boolean | Prisma.DeviceLogsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["deviceDailySummaryPerLineChart"]>
@@ -3670,7 +3670,6 @@ export type DeviceDailySummaryPerLineChartSelectCreateManyAndReturn<ExtArgs exte
   dcVoltage6?: boolean
   dcVoltage7?: boolean
   dcVoltage8?: boolean
-  dcVoltage9?: boolean
   dcCurrent1?: boolean
   dcCurrent2?: boolean
   dcCurrent3?: boolean
@@ -3718,6 +3717,7 @@ export type DeviceDailySummaryPerLineChartSelectCreateManyAndReturn<ExtArgs exte
   hybridJson?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  dcVoltage9?: boolean
   userPlantInverterMap?: boolean | Prisma.UserPlantInverterMapDefaultArgs<ExtArgs>
   sourceLog?: boolean | Prisma.DeviceLogsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["deviceDailySummaryPerLineChart"]>
@@ -3758,7 +3758,6 @@ export type DeviceDailySummaryPerLineChartSelectUpdateManyAndReturn<ExtArgs exte
   dcVoltage6?: boolean
   dcVoltage7?: boolean
   dcVoltage8?: boolean
-  dcVoltage9?: boolean
   dcCurrent1?: boolean
   dcCurrent2?: boolean
   dcCurrent3?: boolean
@@ -3806,6 +3805,7 @@ export type DeviceDailySummaryPerLineChartSelectUpdateManyAndReturn<ExtArgs exte
   hybridJson?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  dcVoltage9?: boolean
   userPlantInverterMap?: boolean | Prisma.UserPlantInverterMapDefaultArgs<ExtArgs>
   sourceLog?: boolean | Prisma.DeviceLogsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["deviceDailySummaryPerLineChart"]>
@@ -3846,7 +3846,6 @@ export type DeviceDailySummaryPerLineChartSelectScalar = {
   dcVoltage6?: boolean
   dcVoltage7?: boolean
   dcVoltage8?: boolean
-  dcVoltage9?: boolean
   dcCurrent1?: boolean
   dcCurrent2?: boolean
   dcCurrent3?: boolean
@@ -3894,9 +3893,10 @@ export type DeviceDailySummaryPerLineChartSelectScalar = {
   hybridJson?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  dcVoltage9?: boolean
 }
 
-export type DeviceDailySummaryPerLineChartOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sno" | "dayDate" | "timestamp" | "sourceLogId" | "lineWindowMinutes" | "maxPoints" | "loggerStatus" | "connectedPlant" | "moduleVersionNo" | "extendedSystemVersion" | "dataAcquisitionPeriod" | "maxConnectedDevices" | "signalStrength" | "moduleMacAddress" | "routerSsid" | "inverterType" | "productionComplianceCountry" | "ratedPower" | "mpptNo" | "protocolVersion" | "commSoftwareVersion1" | "commSoftwareVersion2" | "controlSoftwareVersion" | "deviceModel" | "firmwareVersion" | "productionType" | "dcVoltage1" | "dcVoltage2" | "dcVoltage3" | "dcVoltage4" | "dcVoltage5" | "dcVoltage6" | "dcVoltage7" | "dcVoltage8" | "dcVoltage9" | "dcCurrent1" | "dcCurrent2" | "dcCurrent3" | "dcCurrent4" | "dcCurrent5" | "dcCurrent6" | "dcCurrent7" | "dcCurrent8" | "dcPower1" | "dcPower2" | "dcPower3" | "dcPower4" | "dcPower5" | "dcPower6" | "dcPower7" | "dcPower8" | "acVoltageA" | "acVoltageB" | "acVoltageC" | "acCurrentA" | "acCurrentB" | "acCurrentC" | "acPowerA" | "acPowerB" | "acPowerC" | "fault1" | "fault2" | "fault3" | "fault4" | "fault5" | "totalInputPower" | "gridTotalActivePower" | "gridTotalReactivePower" | "dailyProduction" | "gridStatus" | "inverterStatus" | "acOutputFrequency" | "temperature1" | "temperature2" | "temperature3" | "totalProduction" | "totalGenerationTime" | "macAddress" | "messageType" | "hybridJson" | "createdAt" | "updatedAt", ExtArgs["result"]["deviceDailySummaryPerLineChart"]>
+export type DeviceDailySummaryPerLineChartOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sno" | "dayDate" | "timestamp" | "sourceLogId" | "lineWindowMinutes" | "maxPoints" | "loggerStatus" | "connectedPlant" | "moduleVersionNo" | "extendedSystemVersion" | "dataAcquisitionPeriod" | "maxConnectedDevices" | "signalStrength" | "moduleMacAddress" | "routerSsid" | "inverterType" | "productionComplianceCountry" | "ratedPower" | "mpptNo" | "protocolVersion" | "commSoftwareVersion1" | "commSoftwareVersion2" | "controlSoftwareVersion" | "deviceModel" | "firmwareVersion" | "productionType" | "dcVoltage1" | "dcVoltage2" | "dcVoltage3" | "dcVoltage4" | "dcVoltage5" | "dcVoltage6" | "dcVoltage7" | "dcVoltage8" | "dcCurrent1" | "dcCurrent2" | "dcCurrent3" | "dcCurrent4" | "dcCurrent5" | "dcCurrent6" | "dcCurrent7" | "dcCurrent8" | "dcPower1" | "dcPower2" | "dcPower3" | "dcPower4" | "dcPower5" | "dcPower6" | "dcPower7" | "dcPower8" | "acVoltageA" | "acVoltageB" | "acVoltageC" | "acCurrentA" | "acCurrentB" | "acCurrentC" | "acPowerA" | "acPowerB" | "acPowerC" | "fault1" | "fault2" | "fault3" | "fault4" | "fault5" | "totalInputPower" | "gridTotalActivePower" | "gridTotalReactivePower" | "dailyProduction" | "gridStatus" | "inverterStatus" | "acOutputFrequency" | "temperature1" | "temperature2" | "temperature3" | "totalProduction" | "totalGenerationTime" | "macAddress" | "messageType" | "hybridJson" | "createdAt" | "updatedAt" | "dcVoltage9", ExtArgs["result"]["deviceDailySummaryPerLineChart"]>
 export type DeviceDailySummaryPerLineChartInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   userPlantInverterMap?: boolean | Prisma.UserPlantInverterMapDefaultArgs<ExtArgs>
   sourceLog?: boolean | Prisma.DeviceLogsDefaultArgs<ExtArgs>
@@ -3952,7 +3952,6 @@ export type $DeviceDailySummaryPerLineChartPayload<ExtArgs extends runtime.Types
     dcVoltage6: number | null
     dcVoltage7: number | null
     dcVoltage8: number | null
-    dcVoltage9: number | null
     dcCurrent1: number | null
     dcCurrent2: number | null
     dcCurrent3: number | null
@@ -4000,6 +3999,7 @@ export type $DeviceDailySummaryPerLineChartPayload<ExtArgs extends runtime.Types
     hybridJson: runtime.JsonValue | null
     createdAt: Date
     updatedAt: Date
+    dcVoltage9: number | null
   }, ExtArgs["result"]["deviceDailySummaryPerLineChart"]>
   composites: {}
 }
@@ -4460,7 +4460,6 @@ export interface DeviceDailySummaryPerLineChartFieldRefs {
   readonly dcVoltage6: Prisma.FieldRef<"DeviceDailySummaryPerLineChart", 'Int'>
   readonly dcVoltage7: Prisma.FieldRef<"DeviceDailySummaryPerLineChart", 'Int'>
   readonly dcVoltage8: Prisma.FieldRef<"DeviceDailySummaryPerLineChart", 'Int'>
-  readonly dcVoltage9: Prisma.FieldRef<"DeviceDailySummaryPerLineChart", 'Int'>
   readonly dcCurrent1: Prisma.FieldRef<"DeviceDailySummaryPerLineChart", 'Int'>
   readonly dcCurrent2: Prisma.FieldRef<"DeviceDailySummaryPerLineChart", 'Int'>
   readonly dcCurrent3: Prisma.FieldRef<"DeviceDailySummaryPerLineChart", 'Int'>
@@ -4508,6 +4507,7 @@ export interface DeviceDailySummaryPerLineChartFieldRefs {
   readonly hybridJson: Prisma.FieldRef<"DeviceDailySummaryPerLineChart", 'Json'>
   readonly createdAt: Prisma.FieldRef<"DeviceDailySummaryPerLineChart", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"DeviceDailySummaryPerLineChart", 'DateTime'>
+  readonly dcVoltage9: Prisma.FieldRef<"DeviceDailySummaryPerLineChart", 'Int'>
 }
     
 
