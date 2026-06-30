@@ -208,7 +208,7 @@ export type UserPlantInverterMapGroupByArgs<ExtArgs extends runtime.Types.Extens
 export type UserPlantInverterMapGroupByOutputType = {
   id: bigint
   userId: bigint
-  plantId: bigint
+  plantId: bigint | null
   serialNumber: string
   isDeleted: boolean
   deletedAt: Date | null
@@ -242,7 +242,7 @@ export type UserPlantInverterMapWhereInput = {
   NOT?: Prisma.UserPlantInverterMapWhereInput | Prisma.UserPlantInverterMapWhereInput[]
   id?: Prisma.BigIntFilter<"UserPlantInverterMap"> | bigint | number
   userId?: Prisma.BigIntFilter<"UserPlantInverterMap"> | bigint | number
-  plantId?: Prisma.BigIntFilter<"UserPlantInverterMap"> | bigint | number
+  plantId?: Prisma.BigIntNullableFilter<"UserPlantInverterMap"> | bigint | number | null
   serialNumber?: Prisma.StringFilter<"UserPlantInverterMap"> | string
   isDeleted?: Prisma.BoolFilter<"UserPlantInverterMap"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"UserPlantInverterMap"> | Date | string | null
@@ -251,15 +251,13 @@ export type UserPlantInverterMapWhereInput = {
   dailySummaries?: Prisma.DeviceDailySummaryListRelationFilter
   lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartListRelationFilter
   invertorStatus?: Prisma.XOR<Prisma.DeviceInvertorStatusNullableScalarRelationFilter, Prisma.DeviceInvertorStatusWhereInput> | null
-  inverter?: Prisma.XOR<Prisma.DeviceInverterScalarRelationFilter, Prisma.DeviceInverterWhereInput>
-  plant?: Prisma.XOR<Prisma.PlantScalarRelationFilter, Prisma.PlantWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type UserPlantInverterMapOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  plantId?: Prisma.SortOrder
+  plantId?: Prisma.SortOrderInput | Prisma.SortOrder
   serialNumber?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -268,8 +266,6 @@ export type UserPlantInverterMapOrderByWithRelationInput = {
   dailySummaries?: Prisma.DeviceDailySummaryOrderByRelationAggregateInput
   lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartOrderByRelationAggregateInput
   invertorStatus?: Prisma.DeviceInvertorStatusOrderByWithRelationInput
-  inverter?: Prisma.DeviceInverterOrderByWithRelationInput
-  plant?: Prisma.PlantOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -280,7 +276,7 @@ export type UserPlantInverterMapWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.UserPlantInverterMapWhereInput[]
   NOT?: Prisma.UserPlantInverterMapWhereInput | Prisma.UserPlantInverterMapWhereInput[]
   userId?: Prisma.BigIntFilter<"UserPlantInverterMap"> | bigint | number
-  plantId?: Prisma.BigIntFilter<"UserPlantInverterMap"> | bigint | number
+  plantId?: Prisma.BigIntNullableFilter<"UserPlantInverterMap"> | bigint | number | null
   isDeleted?: Prisma.BoolFilter<"UserPlantInverterMap"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"UserPlantInverterMap"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"UserPlantInverterMap"> | Date | string
@@ -288,15 +284,13 @@ export type UserPlantInverterMapWhereUniqueInput = Prisma.AtLeast<{
   dailySummaries?: Prisma.DeviceDailySummaryListRelationFilter
   lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartListRelationFilter
   invertorStatus?: Prisma.XOR<Prisma.DeviceInvertorStatusNullableScalarRelationFilter, Prisma.DeviceInvertorStatusWhereInput> | null
-  inverter?: Prisma.XOR<Prisma.DeviceInverterScalarRelationFilter, Prisma.DeviceInverterWhereInput>
-  plant?: Prisma.XOR<Prisma.PlantScalarRelationFilter, Prisma.PlantWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "serialNumber">
 
 export type UserPlantInverterMapOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  plantId?: Prisma.SortOrder
+  plantId?: Prisma.SortOrderInput | Prisma.SortOrder
   serialNumber?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -315,7 +309,7 @@ export type UserPlantInverterMapScalarWhereWithAggregatesInput = {
   NOT?: Prisma.UserPlantInverterMapScalarWhereWithAggregatesInput | Prisma.UserPlantInverterMapScalarWhereWithAggregatesInput[]
   id?: Prisma.BigIntWithAggregatesFilter<"UserPlantInverterMap"> | bigint | number
   userId?: Prisma.BigIntWithAggregatesFilter<"UserPlantInverterMap"> | bigint | number
-  plantId?: Prisma.BigIntWithAggregatesFilter<"UserPlantInverterMap"> | bigint | number
+  plantId?: Prisma.BigIntNullableWithAggregatesFilter<"UserPlantInverterMap"> | bigint | number | null
   serialNumber?: Prisma.StringWithAggregatesFilter<"UserPlantInverterMap"> | string
   isDeleted?: Prisma.BoolWithAggregatesFilter<"UserPlantInverterMap"> | boolean
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"UserPlantInverterMap"> | Date | string | null
@@ -325,6 +319,8 @@ export type UserPlantInverterMapScalarWhereWithAggregatesInput = {
 
 export type UserPlantInverterMapCreateInput = {
   id?: bigint | number
+  plantId?: bigint | number | null
+  serialNumber: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -332,8 +328,6 @@ export type UserPlantInverterMapCreateInput = {
   dailySummaries?: Prisma.DeviceDailySummaryCreateNestedManyWithoutUserPlantInverterMapInput
   lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartCreateNestedManyWithoutUserPlantInverterMapInput
   invertorStatus?: Prisma.DeviceInvertorStatusCreateNestedOneWithoutUserPlantInverterMapInput
-  inverter: Prisma.DeviceInverterCreateNestedOneWithoutUserPlantMapsInput
-  plant: Prisma.PlantCreateNestedOneWithoutUserInverterMapsInput
   user: Prisma.UserCreateNestedOneWithoutPlantInverterMapsInput
 }
 
@@ -353,6 +347,8 @@ export type UserPlantInverterMapUncheckedCreateInput = {
 
 export type UserPlantInverterMapUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -360,15 +356,13 @@ export type UserPlantInverterMapUpdateInput = {
   dailySummaries?: Prisma.DeviceDailySummaryUpdateManyWithoutUserPlantInverterMapNestedInput
   lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartUpdateManyWithoutUserPlantInverterMapNestedInput
   invertorStatus?: Prisma.DeviceInvertorStatusUpdateOneWithoutUserPlantInverterMapNestedInput
-  inverter?: Prisma.DeviceInverterUpdateOneRequiredWithoutUserPlantMapsNestedInput
-  plant?: Prisma.PlantUpdateOneRequiredWithoutUserInverterMapsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantInverterMapsNestedInput
 }
 
 export type UserPlantInverterMapUncheckedUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  plantId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -382,7 +376,7 @@ export type UserPlantInverterMapUncheckedUpdateInput = {
 export type UserPlantInverterMapCreateManyInput = {
   id?: bigint | number
   userId: bigint | number
-  plantId: bigint | number
+  plantId?: bigint | number | null
   serialNumber: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
@@ -392,6 +386,8 @@ export type UserPlantInverterMapCreateManyInput = {
 
 export type UserPlantInverterMapUpdateManyMutationInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -401,7 +397,7 @@ export type UserPlantInverterMapUpdateManyMutationInput = {
 export type UserPlantInverterMapUncheckedUpdateManyInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  plantId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -417,11 +413,6 @@ export type UserPlantInverterMapListRelationFilter = {
 
 export type UserPlantInverterMapOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type UserPlantInverterMapNullableScalarRelationFilter = {
-  is?: Prisma.UserPlantInverterMapWhereInput | null
-  isNot?: Prisma.UserPlantInverterMapWhereInput | null
 }
 
 export type UserPlantInverterMapCountOrderByAggregateInput = {
@@ -516,80 +507,6 @@ export type UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.UserPlantInverterMapScalarWhereInput | Prisma.UserPlantInverterMapScalarWhereInput[]
 }
 
-export type UserPlantInverterMapCreateNestedManyWithoutPlantInput = {
-  create?: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutPlantInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutPlantInput> | Prisma.UserPlantInverterMapCreateWithoutPlantInput[] | Prisma.UserPlantInverterMapUncheckedCreateWithoutPlantInput[]
-  connectOrCreate?: Prisma.UserPlantInverterMapCreateOrConnectWithoutPlantInput | Prisma.UserPlantInverterMapCreateOrConnectWithoutPlantInput[]
-  createMany?: Prisma.UserPlantInverterMapCreateManyPlantInputEnvelope
-  connect?: Prisma.UserPlantInverterMapWhereUniqueInput | Prisma.UserPlantInverterMapWhereUniqueInput[]
-}
-
-export type UserPlantInverterMapUncheckedCreateNestedManyWithoutPlantInput = {
-  create?: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutPlantInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutPlantInput> | Prisma.UserPlantInverterMapCreateWithoutPlantInput[] | Prisma.UserPlantInverterMapUncheckedCreateWithoutPlantInput[]
-  connectOrCreate?: Prisma.UserPlantInverterMapCreateOrConnectWithoutPlantInput | Prisma.UserPlantInverterMapCreateOrConnectWithoutPlantInput[]
-  createMany?: Prisma.UserPlantInverterMapCreateManyPlantInputEnvelope
-  connect?: Prisma.UserPlantInverterMapWhereUniqueInput | Prisma.UserPlantInverterMapWhereUniqueInput[]
-}
-
-export type UserPlantInverterMapUpdateManyWithoutPlantNestedInput = {
-  create?: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutPlantInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutPlantInput> | Prisma.UserPlantInverterMapCreateWithoutPlantInput[] | Prisma.UserPlantInverterMapUncheckedCreateWithoutPlantInput[]
-  connectOrCreate?: Prisma.UserPlantInverterMapCreateOrConnectWithoutPlantInput | Prisma.UserPlantInverterMapCreateOrConnectWithoutPlantInput[]
-  upsert?: Prisma.UserPlantInverterMapUpsertWithWhereUniqueWithoutPlantInput | Prisma.UserPlantInverterMapUpsertWithWhereUniqueWithoutPlantInput[]
-  createMany?: Prisma.UserPlantInverterMapCreateManyPlantInputEnvelope
-  set?: Prisma.UserPlantInverterMapWhereUniqueInput | Prisma.UserPlantInverterMapWhereUniqueInput[]
-  disconnect?: Prisma.UserPlantInverterMapWhereUniqueInput | Prisma.UserPlantInverterMapWhereUniqueInput[]
-  delete?: Prisma.UserPlantInverterMapWhereUniqueInput | Prisma.UserPlantInverterMapWhereUniqueInput[]
-  connect?: Prisma.UserPlantInverterMapWhereUniqueInput | Prisma.UserPlantInverterMapWhereUniqueInput[]
-  update?: Prisma.UserPlantInverterMapUpdateWithWhereUniqueWithoutPlantInput | Prisma.UserPlantInverterMapUpdateWithWhereUniqueWithoutPlantInput[]
-  updateMany?: Prisma.UserPlantInverterMapUpdateManyWithWhereWithoutPlantInput | Prisma.UserPlantInverterMapUpdateManyWithWhereWithoutPlantInput[]
-  deleteMany?: Prisma.UserPlantInverterMapScalarWhereInput | Prisma.UserPlantInverterMapScalarWhereInput[]
-}
-
-export type UserPlantInverterMapUncheckedUpdateManyWithoutPlantNestedInput = {
-  create?: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutPlantInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutPlantInput> | Prisma.UserPlantInverterMapCreateWithoutPlantInput[] | Prisma.UserPlantInverterMapUncheckedCreateWithoutPlantInput[]
-  connectOrCreate?: Prisma.UserPlantInverterMapCreateOrConnectWithoutPlantInput | Prisma.UserPlantInverterMapCreateOrConnectWithoutPlantInput[]
-  upsert?: Prisma.UserPlantInverterMapUpsertWithWhereUniqueWithoutPlantInput | Prisma.UserPlantInverterMapUpsertWithWhereUniqueWithoutPlantInput[]
-  createMany?: Prisma.UserPlantInverterMapCreateManyPlantInputEnvelope
-  set?: Prisma.UserPlantInverterMapWhereUniqueInput | Prisma.UserPlantInverterMapWhereUniqueInput[]
-  disconnect?: Prisma.UserPlantInverterMapWhereUniqueInput | Prisma.UserPlantInverterMapWhereUniqueInput[]
-  delete?: Prisma.UserPlantInverterMapWhereUniqueInput | Prisma.UserPlantInverterMapWhereUniqueInput[]
-  connect?: Prisma.UserPlantInverterMapWhereUniqueInput | Prisma.UserPlantInverterMapWhereUniqueInput[]
-  update?: Prisma.UserPlantInverterMapUpdateWithWhereUniqueWithoutPlantInput | Prisma.UserPlantInverterMapUpdateWithWhereUniqueWithoutPlantInput[]
-  updateMany?: Prisma.UserPlantInverterMapUpdateManyWithWhereWithoutPlantInput | Prisma.UserPlantInverterMapUpdateManyWithWhereWithoutPlantInput[]
-  deleteMany?: Prisma.UserPlantInverterMapScalarWhereInput | Prisma.UserPlantInverterMapScalarWhereInput[]
-}
-
-export type UserPlantInverterMapCreateNestedOneWithoutInverterInput = {
-  create?: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutInverterInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutInverterInput>
-  connectOrCreate?: Prisma.UserPlantInverterMapCreateOrConnectWithoutInverterInput
-  connect?: Prisma.UserPlantInverterMapWhereUniqueInput
-}
-
-export type UserPlantInverterMapUncheckedCreateNestedOneWithoutInverterInput = {
-  create?: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutInverterInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutInverterInput>
-  connectOrCreate?: Prisma.UserPlantInverterMapCreateOrConnectWithoutInverterInput
-  connect?: Prisma.UserPlantInverterMapWhereUniqueInput
-}
-
-export type UserPlantInverterMapUpdateOneWithoutInverterNestedInput = {
-  create?: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutInverterInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutInverterInput>
-  connectOrCreate?: Prisma.UserPlantInverterMapCreateOrConnectWithoutInverterInput
-  upsert?: Prisma.UserPlantInverterMapUpsertWithoutInverterInput
-  disconnect?: Prisma.UserPlantInverterMapWhereInput | boolean
-  delete?: Prisma.UserPlantInverterMapWhereInput | boolean
-  connect?: Prisma.UserPlantInverterMapWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserPlantInverterMapUpdateToOneWithWhereWithoutInverterInput, Prisma.UserPlantInverterMapUpdateWithoutInverterInput>, Prisma.UserPlantInverterMapUncheckedUpdateWithoutInverterInput>
-}
-
-export type UserPlantInverterMapUncheckedUpdateOneWithoutInverterNestedInput = {
-  create?: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutInverterInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutInverterInput>
-  connectOrCreate?: Prisma.UserPlantInverterMapCreateOrConnectWithoutInverterInput
-  upsert?: Prisma.UserPlantInverterMapUpsertWithoutInverterInput
-  disconnect?: Prisma.UserPlantInverterMapWhereInput | boolean
-  delete?: Prisma.UserPlantInverterMapWhereInput | boolean
-  connect?: Prisma.UserPlantInverterMapWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserPlantInverterMapUpdateToOneWithWhereWithoutInverterInput, Prisma.UserPlantInverterMapUpdateWithoutInverterInput>, Prisma.UserPlantInverterMapUncheckedUpdateWithoutInverterInput>
-}
-
 export type UserPlantInverterMapCreateNestedOneWithoutInvertorStatusInput = {
   create?: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutInvertorStatusInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutInvertorStatusInput>
   connectOrCreate?: Prisma.UserPlantInverterMapCreateOrConnectWithoutInvertorStatusInput
@@ -634,6 +551,8 @@ export type UserPlantInverterMapUpdateOneRequiredWithoutLineChartSummariesNested
 
 export type UserPlantInverterMapCreateWithoutUserInput = {
   id?: bigint | number
+  plantId?: bigint | number | null
+  serialNumber: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -641,13 +560,11 @@ export type UserPlantInverterMapCreateWithoutUserInput = {
   dailySummaries?: Prisma.DeviceDailySummaryCreateNestedManyWithoutUserPlantInverterMapInput
   lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartCreateNestedManyWithoutUserPlantInverterMapInput
   invertorStatus?: Prisma.DeviceInvertorStatusCreateNestedOneWithoutUserPlantInverterMapInput
-  inverter: Prisma.DeviceInverterCreateNestedOneWithoutUserPlantMapsInput
-  plant: Prisma.PlantCreateNestedOneWithoutUserInverterMapsInput
 }
 
 export type UserPlantInverterMapUncheckedCreateWithoutUserInput = {
   id?: bigint | number
-  plantId: bigint | number
+  plantId?: bigint | number | null
   serialNumber: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
@@ -690,7 +607,7 @@ export type UserPlantInverterMapScalarWhereInput = {
   NOT?: Prisma.UserPlantInverterMapScalarWhereInput | Prisma.UserPlantInverterMapScalarWhereInput[]
   id?: Prisma.BigIntFilter<"UserPlantInverterMap"> | bigint | number
   userId?: Prisma.BigIntFilter<"UserPlantInverterMap"> | bigint | number
-  plantId?: Prisma.BigIntFilter<"UserPlantInverterMap"> | bigint | number
+  plantId?: Prisma.BigIntNullableFilter<"UserPlantInverterMap"> | bigint | number | null
   serialNumber?: Prisma.StringFilter<"UserPlantInverterMap"> | string
   isDeleted?: Prisma.BoolFilter<"UserPlantInverterMap"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"UserPlantInverterMap"> | Date | string | null
@@ -698,143 +615,23 @@ export type UserPlantInverterMapScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"UserPlantInverterMap"> | Date | string
 }
 
-export type UserPlantInverterMapCreateWithoutPlantInput = {
+export type UserPlantInverterMapCreateWithoutInvertorStatusInput = {
   id?: bigint | number
-  isDeleted?: boolean
-  deletedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  dailySummaries?: Prisma.DeviceDailySummaryCreateNestedManyWithoutUserPlantInverterMapInput
-  lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartCreateNestedManyWithoutUserPlantInverterMapInput
-  invertorStatus?: Prisma.DeviceInvertorStatusCreateNestedOneWithoutUserPlantInverterMapInput
-  inverter: Prisma.DeviceInverterCreateNestedOneWithoutUserPlantMapsInput
-  user: Prisma.UserCreateNestedOneWithoutPlantInverterMapsInput
-}
-
-export type UserPlantInverterMapUncheckedCreateWithoutPlantInput = {
-  id?: bigint | number
-  userId: bigint | number
+  plantId?: bigint | number | null
   serialNumber: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  dailySummaries?: Prisma.DeviceDailySummaryUncheckedCreateNestedManyWithoutUserPlantInverterMapInput
-  lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartUncheckedCreateNestedManyWithoutUserPlantInverterMapInput
-  invertorStatus?: Prisma.DeviceInvertorStatusUncheckedCreateNestedOneWithoutUserPlantInverterMapInput
-}
-
-export type UserPlantInverterMapCreateOrConnectWithoutPlantInput = {
-  where: Prisma.UserPlantInverterMapWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutPlantInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutPlantInput>
-}
-
-export type UserPlantInverterMapCreateManyPlantInputEnvelope = {
-  data: Prisma.UserPlantInverterMapCreateManyPlantInput | Prisma.UserPlantInverterMapCreateManyPlantInput[]
-  skipDuplicates?: boolean
-}
-
-export type UserPlantInverterMapUpsertWithWhereUniqueWithoutPlantInput = {
-  where: Prisma.UserPlantInverterMapWhereUniqueInput
-  update: Prisma.XOR<Prisma.UserPlantInverterMapUpdateWithoutPlantInput, Prisma.UserPlantInverterMapUncheckedUpdateWithoutPlantInput>
-  create: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutPlantInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutPlantInput>
-}
-
-export type UserPlantInverterMapUpdateWithWhereUniqueWithoutPlantInput = {
-  where: Prisma.UserPlantInverterMapWhereUniqueInput
-  data: Prisma.XOR<Prisma.UserPlantInverterMapUpdateWithoutPlantInput, Prisma.UserPlantInverterMapUncheckedUpdateWithoutPlantInput>
-}
-
-export type UserPlantInverterMapUpdateManyWithWhereWithoutPlantInput = {
-  where: Prisma.UserPlantInverterMapScalarWhereInput
-  data: Prisma.XOR<Prisma.UserPlantInverterMapUpdateManyMutationInput, Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutPlantInput>
-}
-
-export type UserPlantInverterMapCreateWithoutInverterInput = {
-  id?: bigint | number
-  isDeleted?: boolean
-  deletedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
   dailySummaries?: Prisma.DeviceDailySummaryCreateNestedManyWithoutUserPlantInverterMapInput
   lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartCreateNestedManyWithoutUserPlantInverterMapInput
-  invertorStatus?: Prisma.DeviceInvertorStatusCreateNestedOneWithoutUserPlantInverterMapInput
-  plant: Prisma.PlantCreateNestedOneWithoutUserInverterMapsInput
-  user: Prisma.UserCreateNestedOneWithoutPlantInverterMapsInput
-}
-
-export type UserPlantInverterMapUncheckedCreateWithoutInverterInput = {
-  id?: bigint | number
-  userId: bigint | number
-  plantId: bigint | number
-  isDeleted?: boolean
-  deletedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  dailySummaries?: Prisma.DeviceDailySummaryUncheckedCreateNestedManyWithoutUserPlantInverterMapInput
-  lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartUncheckedCreateNestedManyWithoutUserPlantInverterMapInput
-  invertorStatus?: Prisma.DeviceInvertorStatusUncheckedCreateNestedOneWithoutUserPlantInverterMapInput
-}
-
-export type UserPlantInverterMapCreateOrConnectWithoutInverterInput = {
-  where: Prisma.UserPlantInverterMapWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutInverterInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutInverterInput>
-}
-
-export type UserPlantInverterMapUpsertWithoutInverterInput = {
-  update: Prisma.XOR<Prisma.UserPlantInverterMapUpdateWithoutInverterInput, Prisma.UserPlantInverterMapUncheckedUpdateWithoutInverterInput>
-  create: Prisma.XOR<Prisma.UserPlantInverterMapCreateWithoutInverterInput, Prisma.UserPlantInverterMapUncheckedCreateWithoutInverterInput>
-  where?: Prisma.UserPlantInverterMapWhereInput
-}
-
-export type UserPlantInverterMapUpdateToOneWithWhereWithoutInverterInput = {
-  where?: Prisma.UserPlantInverterMapWhereInput
-  data: Prisma.XOR<Prisma.UserPlantInverterMapUpdateWithoutInverterInput, Prisma.UserPlantInverterMapUncheckedUpdateWithoutInverterInput>
-}
-
-export type UserPlantInverterMapUpdateWithoutInverterInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dailySummaries?: Prisma.DeviceDailySummaryUpdateManyWithoutUserPlantInverterMapNestedInput
-  lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartUpdateManyWithoutUserPlantInverterMapNestedInput
-  invertorStatus?: Prisma.DeviceInvertorStatusUpdateOneWithoutUserPlantInverterMapNestedInput
-  plant?: Prisma.PlantUpdateOneRequiredWithoutUserInverterMapsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutPlantInverterMapsNestedInput
-}
-
-export type UserPlantInverterMapUncheckedUpdateWithoutInverterInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  plantId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dailySummaries?: Prisma.DeviceDailySummaryUncheckedUpdateManyWithoutUserPlantInverterMapNestedInput
-  lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartUncheckedUpdateManyWithoutUserPlantInverterMapNestedInput
-  invertorStatus?: Prisma.DeviceInvertorStatusUncheckedUpdateOneWithoutUserPlantInverterMapNestedInput
-}
-
-export type UserPlantInverterMapCreateWithoutInvertorStatusInput = {
-  id?: bigint | number
-  isDeleted?: boolean
-  deletedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  dailySummaries?: Prisma.DeviceDailySummaryCreateNestedManyWithoutUserPlantInverterMapInput
-  lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartCreateNestedManyWithoutUserPlantInverterMapInput
-  inverter: Prisma.DeviceInverterCreateNestedOneWithoutUserPlantMapsInput
-  plant: Prisma.PlantCreateNestedOneWithoutUserInverterMapsInput
   user: Prisma.UserCreateNestedOneWithoutPlantInverterMapsInput
 }
 
 export type UserPlantInverterMapUncheckedCreateWithoutInvertorStatusInput = {
   id?: bigint | number
   userId: bigint | number
-  plantId: bigint | number
+  plantId?: bigint | number | null
   serialNumber: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
@@ -862,21 +659,21 @@ export type UserPlantInverterMapUpdateToOneWithWhereWithoutInvertorStatusInput =
 
 export type UserPlantInverterMapUpdateWithoutInvertorStatusInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dailySummaries?: Prisma.DeviceDailySummaryUpdateManyWithoutUserPlantInverterMapNestedInput
   lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartUpdateManyWithoutUserPlantInverterMapNestedInput
-  inverter?: Prisma.DeviceInverterUpdateOneRequiredWithoutUserPlantMapsNestedInput
-  plant?: Prisma.PlantUpdateOneRequiredWithoutUserInverterMapsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantInverterMapsNestedInput
 }
 
 export type UserPlantInverterMapUncheckedUpdateWithoutInvertorStatusInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  plantId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -888,21 +685,21 @@ export type UserPlantInverterMapUncheckedUpdateWithoutInvertorStatusInput = {
 
 export type UserPlantInverterMapCreateWithoutDailySummariesInput = {
   id?: bigint | number
+  plantId?: bigint | number | null
+  serialNumber: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartCreateNestedManyWithoutUserPlantInverterMapInput
   invertorStatus?: Prisma.DeviceInvertorStatusCreateNestedOneWithoutUserPlantInverterMapInput
-  inverter: Prisma.DeviceInverterCreateNestedOneWithoutUserPlantMapsInput
-  plant: Prisma.PlantCreateNestedOneWithoutUserInverterMapsInput
   user: Prisma.UserCreateNestedOneWithoutPlantInverterMapsInput
 }
 
 export type UserPlantInverterMapUncheckedCreateWithoutDailySummariesInput = {
   id?: bigint | number
   userId: bigint | number
-  plantId: bigint | number
+  plantId?: bigint | number | null
   serialNumber: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
@@ -930,21 +727,21 @@ export type UserPlantInverterMapUpdateToOneWithWhereWithoutDailySummariesInput =
 
 export type UserPlantInverterMapUpdateWithoutDailySummariesInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartUpdateManyWithoutUserPlantInverterMapNestedInput
   invertorStatus?: Prisma.DeviceInvertorStatusUpdateOneWithoutUserPlantInverterMapNestedInput
-  inverter?: Prisma.DeviceInverterUpdateOneRequiredWithoutUserPlantMapsNestedInput
-  plant?: Prisma.PlantUpdateOneRequiredWithoutUserInverterMapsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantInverterMapsNestedInput
 }
 
 export type UserPlantInverterMapUncheckedUpdateWithoutDailySummariesInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  plantId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -956,21 +753,21 @@ export type UserPlantInverterMapUncheckedUpdateWithoutDailySummariesInput = {
 
 export type UserPlantInverterMapCreateWithoutLineChartSummariesInput = {
   id?: bigint | number
+  plantId?: bigint | number | null
+  serialNumber: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   dailySummaries?: Prisma.DeviceDailySummaryCreateNestedManyWithoutUserPlantInverterMapInput
   invertorStatus?: Prisma.DeviceInvertorStatusCreateNestedOneWithoutUserPlantInverterMapInput
-  inverter: Prisma.DeviceInverterCreateNestedOneWithoutUserPlantMapsInput
-  plant: Prisma.PlantCreateNestedOneWithoutUserInverterMapsInput
   user: Prisma.UserCreateNestedOneWithoutPlantInverterMapsInput
 }
 
 export type UserPlantInverterMapUncheckedCreateWithoutLineChartSummariesInput = {
   id?: bigint | number
   userId: bigint | number
-  plantId: bigint | number
+  plantId?: bigint | number | null
   serialNumber: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
@@ -998,21 +795,21 @@ export type UserPlantInverterMapUpdateToOneWithWhereWithoutLineChartSummariesInp
 
 export type UserPlantInverterMapUpdateWithoutLineChartSummariesInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dailySummaries?: Prisma.DeviceDailySummaryUpdateManyWithoutUserPlantInverterMapNestedInput
   invertorStatus?: Prisma.DeviceInvertorStatusUpdateOneWithoutUserPlantInverterMapNestedInput
-  inverter?: Prisma.DeviceInverterUpdateOneRequiredWithoutUserPlantMapsNestedInput
-  plant?: Prisma.PlantUpdateOneRequiredWithoutUserInverterMapsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantInverterMapsNestedInput
 }
 
 export type UserPlantInverterMapUncheckedUpdateWithoutLineChartSummariesInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  plantId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1024,7 +821,7 @@ export type UserPlantInverterMapUncheckedUpdateWithoutLineChartSummariesInput = 
 
 export type UserPlantInverterMapCreateManyUserInput = {
   id?: bigint | number
-  plantId: bigint | number
+  plantId?: bigint | number | null
   serialNumber: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
@@ -1034,6 +831,8 @@ export type UserPlantInverterMapCreateManyUserInput = {
 
 export type UserPlantInverterMapUpdateWithoutUserInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1041,13 +840,11 @@ export type UserPlantInverterMapUpdateWithoutUserInput = {
   dailySummaries?: Prisma.DeviceDailySummaryUpdateManyWithoutUserPlantInverterMapNestedInput
   lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartUpdateManyWithoutUserPlantInverterMapNestedInput
   invertorStatus?: Prisma.DeviceInvertorStatusUpdateOneWithoutUserPlantInverterMapNestedInput
-  inverter?: Prisma.DeviceInverterUpdateOneRequiredWithoutUserPlantMapsNestedInput
-  plant?: Prisma.PlantUpdateOneRequiredWithoutUserInverterMapsNestedInput
 }
 
 export type UserPlantInverterMapUncheckedUpdateWithoutUserInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  plantId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1060,53 +857,7 @@ export type UserPlantInverterMapUncheckedUpdateWithoutUserInput = {
 
 export type UserPlantInverterMapUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  plantId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type UserPlantInverterMapCreateManyPlantInput = {
-  id?: bigint | number
-  userId: bigint | number
-  serialNumber: string
-  isDeleted?: boolean
-  deletedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type UserPlantInverterMapUpdateWithoutPlantInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dailySummaries?: Prisma.DeviceDailySummaryUpdateManyWithoutUserPlantInverterMapNestedInput
-  lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartUpdateManyWithoutUserPlantInverterMapNestedInput
-  invertorStatus?: Prisma.DeviceInvertorStatusUpdateOneWithoutUserPlantInverterMapNestedInput
-  inverter?: Prisma.DeviceInverterUpdateOneRequiredWithoutUserPlantMapsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutPlantInverterMapsNestedInput
-}
-
-export type UserPlantInverterMapUncheckedUpdateWithoutPlantInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dailySummaries?: Prisma.DeviceDailySummaryUncheckedUpdateManyWithoutUserPlantInverterMapNestedInput
-  lineChartSummaries?: Prisma.DeviceDailySummaryPerLineChartUncheckedUpdateManyWithoutUserPlantInverterMapNestedInput
-  invertorStatus?: Prisma.DeviceInvertorStatusUncheckedUpdateOneWithoutUserPlantInverterMapNestedInput
-}
-
-export type UserPlantInverterMapUncheckedUpdateManyWithoutPlantInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1166,8 +917,6 @@ export type UserPlantInverterMapSelect<ExtArgs extends runtime.Types.Extensions.
   dailySummaries?: boolean | Prisma.UserPlantInverterMap$dailySummariesArgs<ExtArgs>
   lineChartSummaries?: boolean | Prisma.UserPlantInverterMap$lineChartSummariesArgs<ExtArgs>
   invertorStatus?: boolean | Prisma.UserPlantInverterMap$invertorStatusArgs<ExtArgs>
-  inverter?: boolean | Prisma.DeviceInverterDefaultArgs<ExtArgs>
-  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.UserPlantInverterMapCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userPlantInverterMap"]>
@@ -1181,8 +930,6 @@ export type UserPlantInverterMapSelectCreateManyAndReturn<ExtArgs extends runtim
   deletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  inverter?: boolean | Prisma.DeviceInverterDefaultArgs<ExtArgs>
-  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userPlantInverterMap"]>
 
@@ -1195,8 +942,6 @@ export type UserPlantInverterMapSelectUpdateManyAndReturn<ExtArgs extends runtim
   deletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  inverter?: boolean | Prisma.DeviceInverterDefaultArgs<ExtArgs>
-  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userPlantInverterMap"]>
 
@@ -1216,19 +961,13 @@ export type UserPlantInverterMapInclude<ExtArgs extends runtime.Types.Extensions
   dailySummaries?: boolean | Prisma.UserPlantInverterMap$dailySummariesArgs<ExtArgs>
   lineChartSummaries?: boolean | Prisma.UserPlantInverterMap$lineChartSummariesArgs<ExtArgs>
   invertorStatus?: boolean | Prisma.UserPlantInverterMap$invertorStatusArgs<ExtArgs>
-  inverter?: boolean | Prisma.DeviceInverterDefaultArgs<ExtArgs>
-  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.UserPlantInverterMapCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserPlantInverterMapIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  inverter?: boolean | Prisma.DeviceInverterDefaultArgs<ExtArgs>
-  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type UserPlantInverterMapIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  inverter?: boolean | Prisma.DeviceInverterDefaultArgs<ExtArgs>
-  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
@@ -1238,14 +977,12 @@ export type $UserPlantInverterMapPayload<ExtArgs extends runtime.Types.Extension
     dailySummaries: Prisma.$DeviceDailySummaryPayload<ExtArgs>[]
     lineChartSummaries: Prisma.$DeviceDailySummaryPerLineChartPayload<ExtArgs>[]
     invertorStatus: Prisma.$DeviceInvertorStatusPayload<ExtArgs> | null
-    inverter: Prisma.$DeviceInverterPayload<ExtArgs>
-    plant: Prisma.$PlantPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
     userId: bigint
-    plantId: bigint
+    plantId: bigint | null
     serialNumber: string
     isDeleted: boolean
     deletedAt: Date | null
@@ -1648,8 +1385,6 @@ export interface Prisma__UserPlantInverterMapClient<T, Null = never, ExtArgs ext
   dailySummaries<T extends Prisma.UserPlantInverterMap$dailySummariesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserPlantInverterMap$dailySummariesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceDailySummaryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   lineChartSummaries<T extends Prisma.UserPlantInverterMap$lineChartSummariesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserPlantInverterMap$lineChartSummariesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceDailySummaryPerLineChartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invertorStatus<T extends Prisma.UserPlantInverterMap$invertorStatusArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserPlantInverterMap$invertorStatusArgs<ExtArgs>>): Prisma.Prisma__DeviceInvertorStatusClient<runtime.Types.Result.GetResult<Prisma.$DeviceInvertorStatusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  inverter<T extends Prisma.DeviceInverterDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeviceInverterDefaultArgs<ExtArgs>>): Prisma.Prisma__DeviceInverterClient<runtime.Types.Result.GetResult<Prisma.$DeviceInverterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  plant<T extends Prisma.PlantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlantDefaultArgs<ExtArgs>>): Prisma.Prisma__PlantClient<runtime.Types.Result.GetResult<Prisma.$PlantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.

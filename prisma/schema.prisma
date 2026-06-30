@@ -397,8 +397,9 @@ model information_data {
 model DeviceConnectionStatus {
   id           BigInt    @id @default(autoincrement())
   serialNumber String    @unique @map("serial_number") @db.VarChar(255)
+  macAddress   String?   @map("mac_address") @db.VarChar(255)
   status       String    @db.VarChar(50)
-  lastseentime DateTime? @db.Timestamptz(6)
+  lastSeenTime DateTime? @map("lastSeenTime") @db.Timestamptz(6)
 
   @@index([status], map: "idx_device_connection_status_status")
   @@map("device_connection_status")

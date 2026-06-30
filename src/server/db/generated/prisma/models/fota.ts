@@ -225,7 +225,7 @@ export type fotaWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.fotaWhereInput | Prisma.fotaWhereInput[]
   firmware?: Prisma.StringNullableFilter<"fota"> | string | null
   link?: Prisma.StringNullableFilter<"fota"> | string | null
-}, "mac_address" | "id">
+}, "id" | "mac_address">
 
 export type fotaOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -250,7 +250,6 @@ export type fotaScalarWhereWithAggregatesInput = {
 }
 
 export type fotaCreateInput = {
-  id?: number
   mac_address: string
   firmware?: string | null
   link?: string | null

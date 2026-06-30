@@ -1754,6 +1754,7 @@ export type Information_dataScalarFieldEnum = (typeof Information_dataScalarFiel
 export const DeviceConnectionStatusScalarFieldEnum = {
   id: 'id',
   serialNumber: 'serialNumber',
+  macAddress: 'macAddress',
   status: 'status',
   lastseentime: 'lastseentime'
 } as const
