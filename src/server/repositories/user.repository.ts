@@ -6,6 +6,8 @@ import type {
   ServiceAdminEditInput,
   ServiceAdminUserListInput,
 } from "@/server/validators/user.validator";
+import { UserRole } from "../db/generated/prisma/client";
+import { DeviceLatestRecord } from "../services/user.service";
 
 export interface UserDeleteRecord {
   id: bigint;
@@ -152,7 +154,63 @@ export class UserRepository {
       deletedAt: record.deletedAt,
     };
   }
+  async findMonitoringUserByAccount(
+    account: string,
+  ): Promise<UserDetailRecord | null> {
+    const user = await this.dbClient.user.findFirst({
+      where: {
+        account,
+        role: UserRole.monitoring_user,
+        isDeleted: false,
+      },
+      select: {
+        id: true,
+        account: true,
+        email: true,
+        portal: true,
+        role: true,
+        status: true,
+        timezone: true,
+        phone: true,
+        address: true,
+        assignedById: true,
+        isDeleted: true,
+        emailVerifiedAt: true,
+        lastLoginAt: true,
+        createdAt: true,
+        updatedAt: true,
+        deletedAt: true,
+      },
+    });
 
+    return user ? this.mapDetailRecord(user) : null;
+  }
+
+  async findLatestDeviceBySN(sno: string): Promise<DeviceLatestRecord | null> {
+    const device = await this.dbClient.deviceLogsLatest.findFirst({
+      where: {
+        sno,
+      },
+      orderBy: {
+        dayDate: "desc",
+      },
+      select: {
+        id: true,
+        sno: true,
+        inverterName: true,
+        dayDate: true,
+        latestTimestamp: true,
+        dailyProduction: true,
+        totalEnergy: true,
+        totalHours: true,
+        currentPower: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+
+    return device;
+  }
   async updateProfile(
     userId: bigint,
     payload: {
