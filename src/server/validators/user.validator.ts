@@ -166,16 +166,31 @@ export const UpdateProfileValidator = z.object({
   address: z.string().trim().nullable().optional(),
   timezone: z.string().trim().nullable().optional(),
 });
+
+export const searchMonitoringUserSchema = z.object({
+  account: z.string().trim().min(1, "Account is required"),
+});
+
+export type SearchMonitoringUserInput = z.infer<
+  typeof searchMonitoringUserSchema
+>;
+
 export type ForgotPasswordInput = z.infer<typeof ForgotPasswordValidator>;
 export type CreateSubUserInput = z.infer<typeof createSubUserSchema>;
 export type ServiceAdminUserListInput = z.infer<
   typeof serviceAdminUserListBodySchema
 >;
+
 export type ServiceAdminEditInput = z.infer<typeof serviceAdminEditBodySchema>;
 export type ServiceAdminDeleteInput = z.infer<
   typeof serviceAdminDeleteBodySchema
 >;
 
+export const searchDeviceRequestSchema = z.object({
+  sno: z.string().trim().min(1, "Serial Number is required"),
+});
+
+export type SearchDeviceRequest = z.infer<typeof searchDeviceRequestSchema>;
 export type ChangePasswordValidator = z.infer<typeof ChangePasswordValidator>;
 
 export type UserIdParamInput = z.infer<typeof userIdParamSchema>;

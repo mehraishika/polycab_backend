@@ -23,7 +23,44 @@ export interface CreateSubUserError {
   message: string;
 }
 
+export interface SearchMonitoringUserSuccess {
+  status: 200;
+  message: string;
+  data: {
+    user: UserDetailData;
+  };
+}
+
+export interface SearchMonitoringUserError {
+  status: 404;
+  message: string;
+}
+
+export type SearchMonitoringUserResult =
+  | SearchMonitoringUserSuccess
+  | SearchMonitoringUserError;
 export type CreateSubUserResult = CreateSubUserSuccess | CreateSubUserError;
+
+export interface DeviceLatestRecord {
+  id: bigint | string;
+  sno: string;
+  inverterName: string | null;
+  dayDate: Date | string;
+  latestTimestamp: Date | string;
+  dailyProduction: number | null;
+  totalEnergy: number | null;
+  totalHours: number | null;
+  currentPower: number | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+export interface SearchDeviceResult {
+  status: 200 | 404;
+  message: string;
+  data?: {
+    device: DeviceLatestRecord;
+  };
+}
 
 export interface DeleteUserServiceSuccess {
   status: 200;
@@ -210,6 +247,9 @@ type ForgotPasswordInput = {
 };
 
 export class UserService {
+  static searchDeviceBySN(sno: string) {
+    throw new Error("Method not implemented.");
+  }
   constructor(
     private readonly userRepository: UserRepository = new UserRepository(),
   ) {}
@@ -430,6 +470,74 @@ export class UserService {
       status: 200,
       message: "Profile fetched successfully.",
       data: profile,
+    };
+  }
+  async searchMonitoringUser(
+    account: string,
+  ): Promise<SearchMonitoringUserResult> {
+    const user = await this.userRepository.findMonitoringUserByAccount(account);
+
+    if (!user) {
+      return {
+        status: 404,
+        message: "Monitoring user not found.",
+      };
+    }
+
+    return {
+      status: 200,
+      message: "User found successfully.",
+      data: {
+        user: {
+          id: user.id.toString(),
+          account: user.account,
+          email: user.email,
+          portal: user.portal,
+          role: user.role,
+          status: user.status,
+          timezone: user.timezone,
+          phone: user.phone,
+          address: user.address,
+          assignedById: user.assignedById?.toString() ?? null,
+          isDeleted: user.isDeleted,
+          emailVerifiedAt: user.emailVerifiedAt?.toISOString() ?? null,
+          lastLoginAt: user.lastLoginAt?.toISOString() ?? null,
+          createdAt: user.createdAt.toISOString(),
+          updatedAt: user.updatedAt.toISOString(),
+          deletedAt: user.deletedAt?.toISOString() ?? null,
+        },
+      },
+    };
+  }
+
+  async searchDeviceBySN(sno: string): Promise<SearchDeviceResult> {
+    const device = await this.userRepository.findLatestDeviceBySN(sno);
+
+    if (!device) {
+      return {
+        status: 404,
+        message: "Device not found.",
+      };
+    }
+
+    return {
+      status: 200,
+      message: "Device found successfully.",
+      data: {
+        device: {
+          id: device.id.toString(),
+          sno: device.sno,
+          inverterName: device.inverterName,
+          dayDate: device.dayDate.toString(),
+          latestTimestamp: device.latestTimestamp.toString(),
+          dailyProduction: device.dailyProduction,
+          totalEnergy: device.totalEnergy,
+          totalHours: device.totalHours,
+          currentPower: device.currentPower,
+          createdAt: device.createdAt.toString(),
+          updatedAt: device.updatedAt.toString(),
+        },
+      },
     };
   }
   async getEditById(id: bigint): Promise<GetUserDetailResult> {
