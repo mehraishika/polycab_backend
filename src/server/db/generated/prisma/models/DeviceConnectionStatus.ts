@@ -39,7 +39,7 @@ export type DeviceConnectionStatusMinAggregateOutputType = {
   serialNumber: string | null
   macAddress: string | null
   status: string | null
-  lastseentime: Date | null
+  lastSeenTime: Date | null
 }
 
 export type DeviceConnectionStatusMaxAggregateOutputType = {
@@ -47,7 +47,7 @@ export type DeviceConnectionStatusMaxAggregateOutputType = {
   serialNumber: string | null
   macAddress: string | null
   status: string | null
-  lastseentime: Date | null
+  lastSeenTime: Date | null
 }
 
 export type DeviceConnectionStatusCountAggregateOutputType = {
@@ -55,7 +55,7 @@ export type DeviceConnectionStatusCountAggregateOutputType = {
   serialNumber: number
   macAddress: number
   status: number
-  lastseentime: number
+  lastSeenTime: number
   _all: number
 }
 
@@ -73,7 +73,7 @@ export type DeviceConnectionStatusMinAggregateInputType = {
   serialNumber?: true
   macAddress?: true
   status?: true
-  lastseentime?: true
+  lastSeenTime?: true
 }
 
 export type DeviceConnectionStatusMaxAggregateInputType = {
@@ -81,7 +81,7 @@ export type DeviceConnectionStatusMaxAggregateInputType = {
   serialNumber?: true
   macAddress?: true
   status?: true
-  lastseentime?: true
+  lastSeenTime?: true
 }
 
 export type DeviceConnectionStatusCountAggregateInputType = {
@@ -89,7 +89,7 @@ export type DeviceConnectionStatusCountAggregateInputType = {
   serialNumber?: true
   macAddress?: true
   status?: true
-  lastseentime?: true
+  lastSeenTime?: true
   _all?: true
 }
 
@@ -184,7 +184,7 @@ export type DeviceConnectionStatusGroupByOutputType = {
   serialNumber: string
   macAddress: string | null
   status: string
-  lastseentime: Date | null
+  lastSeenTime: Date | null
   _count: DeviceConnectionStatusCountAggregateOutputType | null
   _avg: DeviceConnectionStatusAvgAggregateOutputType | null
   _sum: DeviceConnectionStatusSumAggregateOutputType | null
@@ -215,7 +215,7 @@ export type DeviceConnectionStatusWhereInput = {
   serialNumber?: Prisma.StringFilter<"DeviceConnectionStatus"> | string
   macAddress?: Prisma.StringNullableFilter<"DeviceConnectionStatus"> | string | null
   status?: Prisma.StringFilter<"DeviceConnectionStatus"> | string
-  lastseentime?: Prisma.DateTimeNullableFilter<"DeviceConnectionStatus"> | Date | string | null
+  lastSeenTime?: Prisma.DateTimeNullableFilter<"DeviceConnectionStatus"> | Date | string | null
 }
 
 export type DeviceConnectionStatusOrderByWithRelationInput = {
@@ -223,7 +223,7 @@ export type DeviceConnectionStatusOrderByWithRelationInput = {
   serialNumber?: Prisma.SortOrder
   macAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
-  lastseentime?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastSeenTime?: Prisma.SortOrderInput | Prisma.SortOrder
 }
 
 export type DeviceConnectionStatusWhereUniqueInput = Prisma.AtLeast<{
@@ -234,7 +234,7 @@ export type DeviceConnectionStatusWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.DeviceConnectionStatusWhereInput | Prisma.DeviceConnectionStatusWhereInput[]
   macAddress?: Prisma.StringNullableFilter<"DeviceConnectionStatus"> | string | null
   status?: Prisma.StringFilter<"DeviceConnectionStatus"> | string
-  lastseentime?: Prisma.DateTimeNullableFilter<"DeviceConnectionStatus"> | Date | string | null
+  lastSeenTime?: Prisma.DateTimeNullableFilter<"DeviceConnectionStatus"> | Date | string | null
 }, "id" | "serialNumber">
 
 export type DeviceConnectionStatusOrderByWithAggregationInput = {
@@ -242,7 +242,7 @@ export type DeviceConnectionStatusOrderByWithAggregationInput = {
   serialNumber?: Prisma.SortOrder
   macAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
-  lastseentime?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastSeenTime?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.DeviceConnectionStatusCountOrderByAggregateInput
   _avg?: Prisma.DeviceConnectionStatusAvgOrderByAggregateInput
   _max?: Prisma.DeviceConnectionStatusMaxOrderByAggregateInput
@@ -258,7 +258,7 @@ export type DeviceConnectionStatusScalarWhereWithAggregatesInput = {
   serialNumber?: Prisma.StringWithAggregatesFilter<"DeviceConnectionStatus"> | string
   macAddress?: Prisma.StringNullableWithAggregatesFilter<"DeviceConnectionStatus"> | string | null
   status?: Prisma.StringWithAggregatesFilter<"DeviceConnectionStatus"> | string
-  lastseentime?: Prisma.DateTimeNullableWithAggregatesFilter<"DeviceConnectionStatus"> | Date | string | null
+  lastSeenTime?: Prisma.DateTimeNullableWithAggregatesFilter<"DeviceConnectionStatus"> | Date | string | null
 }
 
 export type DeviceConnectionStatusCreateInput = {
@@ -266,7 +266,7 @@ export type DeviceConnectionStatusCreateInput = {
   serialNumber: string
   macAddress?: string | null
   status: string
-  lastseentime?: Date | string | null
+  lastSeenTime?: Date | string | null
 }
 
 export type DeviceConnectionStatusUncheckedCreateInput = {
@@ -274,7 +274,7 @@ export type DeviceConnectionStatusUncheckedCreateInput = {
   serialNumber: string
   macAddress?: string | null
   status: string
-  lastseentime?: Date | string | null
+  lastSeenTime?: Date | string | null
 }
 
 export type DeviceConnectionStatusUpdateInput = {
@@ -282,7 +282,7 @@ export type DeviceConnectionStatusUpdateInput = {
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   macAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  lastseentime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastSeenTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DeviceConnectionStatusUncheckedUpdateInput = {
@@ -290,7 +290,7 @@ export type DeviceConnectionStatusUncheckedUpdateInput = {
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   macAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  lastseentime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastSeenTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DeviceConnectionStatusCreateManyInput = {
@@ -298,7 +298,7 @@ export type DeviceConnectionStatusCreateManyInput = {
   serialNumber: string
   macAddress?: string | null
   status: string
-  lastseentime?: Date | string | null
+  lastSeenTime?: Date | string | null
 }
 
 export type DeviceConnectionStatusUpdateManyMutationInput = {
@@ -306,7 +306,7 @@ export type DeviceConnectionStatusUpdateManyMutationInput = {
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   macAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  lastseentime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastSeenTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DeviceConnectionStatusUncheckedUpdateManyInput = {
@@ -314,7 +314,7 @@ export type DeviceConnectionStatusUncheckedUpdateManyInput = {
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   macAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  lastseentime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastSeenTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DeviceConnectionStatusCountOrderByAggregateInput = {
@@ -322,7 +322,7 @@ export type DeviceConnectionStatusCountOrderByAggregateInput = {
   serialNumber?: Prisma.SortOrder
   macAddress?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  lastseentime?: Prisma.SortOrder
+  lastSeenTime?: Prisma.SortOrder
 }
 
 export type DeviceConnectionStatusAvgOrderByAggregateInput = {
@@ -334,7 +334,7 @@ export type DeviceConnectionStatusMaxOrderByAggregateInput = {
   serialNumber?: Prisma.SortOrder
   macAddress?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  lastseentime?: Prisma.SortOrder
+  lastSeenTime?: Prisma.SortOrder
 }
 
 export type DeviceConnectionStatusMinOrderByAggregateInput = {
@@ -342,7 +342,7 @@ export type DeviceConnectionStatusMinOrderByAggregateInput = {
   serialNumber?: Prisma.SortOrder
   macAddress?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  lastseentime?: Prisma.SortOrder
+  lastSeenTime?: Prisma.SortOrder
 }
 
 export type DeviceConnectionStatusSumOrderByAggregateInput = {
@@ -356,7 +356,7 @@ export type DeviceConnectionStatusSelect<ExtArgs extends runtime.Types.Extension
   serialNumber?: boolean
   macAddress?: boolean
   status?: boolean
-  lastseentime?: boolean
+  lastSeenTime?: boolean
 }, ExtArgs["result"]["deviceConnectionStatus"]>
 
 export type DeviceConnectionStatusSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -364,7 +364,7 @@ export type DeviceConnectionStatusSelectCreateManyAndReturn<ExtArgs extends runt
   serialNumber?: boolean
   macAddress?: boolean
   status?: boolean
-  lastseentime?: boolean
+  lastSeenTime?: boolean
 }, ExtArgs["result"]["deviceConnectionStatus"]>
 
 export type DeviceConnectionStatusSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -372,7 +372,7 @@ export type DeviceConnectionStatusSelectUpdateManyAndReturn<ExtArgs extends runt
   serialNumber?: boolean
   macAddress?: boolean
   status?: boolean
-  lastseentime?: boolean
+  lastSeenTime?: boolean
 }, ExtArgs["result"]["deviceConnectionStatus"]>
 
 export type DeviceConnectionStatusSelectScalar = {
@@ -380,10 +380,10 @@ export type DeviceConnectionStatusSelectScalar = {
   serialNumber?: boolean
   macAddress?: boolean
   status?: boolean
-  lastseentime?: boolean
+  lastSeenTime?: boolean
 }
 
-export type DeviceConnectionStatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "serialNumber" | "macAddress" | "status" | "lastseentime", ExtArgs["result"]["deviceConnectionStatus"]>
+export type DeviceConnectionStatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "serialNumber" | "macAddress" | "status" | "lastSeenTime", ExtArgs["result"]["deviceConnectionStatus"]>
 
 export type $DeviceConnectionStatusPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "DeviceConnectionStatus"
@@ -393,7 +393,7 @@ export type $DeviceConnectionStatusPayload<ExtArgs extends runtime.Types.Extensi
     serialNumber: string
     macAddress: string | null
     status: string
-    lastseentime: Date | null
+    lastSeenTime: Date | null
   }, ExtArgs["result"]["deviceConnectionStatus"]>
   composites: {}
 }
@@ -821,7 +821,7 @@ export interface DeviceConnectionStatusFieldRefs {
   readonly serialNumber: Prisma.FieldRef<"DeviceConnectionStatus", 'String'>
   readonly macAddress: Prisma.FieldRef<"DeviceConnectionStatus", 'String'>
   readonly status: Prisma.FieldRef<"DeviceConnectionStatus", 'String'>
-  readonly lastseentime: Prisma.FieldRef<"DeviceConnectionStatus", 'DateTime'>
+  readonly lastSeenTime: Prisma.FieldRef<"DeviceConnectionStatus", 'DateTime'>
 }
     
 

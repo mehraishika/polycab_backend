@@ -58,6 +58,7 @@ model Plant {
   inverters        DeviceInverter[]
   information_data information_data[]
   user             User                   @relation(fields: [userAccount], references: [account])
+  currentStatus    PlantCurrentStatus?
 
   @@index([type])
   @@index([name])
@@ -412,6 +413,53 @@ model fota {
   link        String? @db.VarChar(255)
 
   @@map("fota")
+}
+
+model DeviceCurrentStatus {
+  id                BigInt      @id @default(autoincrement())
+  sno               String      @unique
+  status            PlantStatus @default(Offline)
+  lastTelemetryAt   DateTime?   @map("last_telemetry_at")
+  updatedAt         DateTime    @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@index([lastTelemetryAt])
+
+  @@map("device_current_status")
+}
+
+model DeviceStatusHistory {
+  id         BigInt      @id @default(autoincrement())
+  sno        String
+  plantId    BigInt?     @map("plant_id")
+  status     PlantStatus
+  createdAt  DateTime    @default(now()) @map("created_at")
+
+  @@index([sno])
+  @@index([plantId])
+  @@index([status])
+
+  @@map("device_status_history")
+}
+
+model PlantCurrentStatus {
+  id              BigInt      @id @default(autoincrement())
+  plantId         BigInt      @unique @map("plant_id")
+
+  status          PlantStatus @default(Offline)
+
+  totalDevices    Int         @default(0) @map("total_devices")
+  normalCount     Int         @default(0) @map("normal_count")
+  abnormalCount   Int         @default(0) @map("abnormal_count")
+  standbyCount    Int         @default(0) @map("standby_count")
+  offlineCount    Int         @default(0) @map("offline_count")
+
+  updatedAt       DateTime    @updatedAt @map("updated_at")
+
+  plant           Plant       @relation(fields: [plantId], references: [id])
+
+  @@index([status])
+  @@map("plant_current_status")
 }
 
 enum UserPortal {

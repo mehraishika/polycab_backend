@@ -385,6 +385,23 @@ export type IntWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedIntFilter<$PrismaModel>
 }
 
+export type EnumPlantStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.PlantStatus | Prisma.EnumPlantStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PlantStatus[] | Prisma.ListEnumPlantStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PlantStatus[] | Prisma.ListEnumPlantStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPlantStatusFilter<$PrismaModel> | $Enums.PlantStatus
+}
+
+export type EnumPlantStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PlantStatus | Prisma.EnumPlantStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PlantStatus[] | Prisma.ListEnumPlantStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PlantStatus[] | Prisma.ListEnumPlantStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPlantStatusWithAggregatesFilter<$PrismaModel> | $Enums.PlantStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPlantStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPlantStatusFilter<$PrismaModel>
+}
+
 export type NestedBigIntFilter<$PrismaModel = never> = {
   equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
   in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
@@ -729,6 +746,23 @@ export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedIntFilter<$PrismaModel>
   _max?: Prisma.NestedIntFilter<$PrismaModel>
+}
+
+export type NestedEnumPlantStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.PlantStatus | Prisma.EnumPlantStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PlantStatus[] | Prisma.ListEnumPlantStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PlantStatus[] | Prisma.ListEnumPlantStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPlantStatusFilter<$PrismaModel> | $Enums.PlantStatus
+}
+
+export type NestedEnumPlantStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PlantStatus | Prisma.EnumPlantStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PlantStatus[] | Prisma.ListEnumPlantStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PlantStatus[] | Prisma.ListEnumPlantStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPlantStatusWithAggregatesFilter<$PrismaModel> | $Enums.PlantStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPlantStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPlantStatusFilter<$PrismaModel>
 }
 
 

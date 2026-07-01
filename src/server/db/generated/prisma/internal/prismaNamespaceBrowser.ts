@@ -63,7 +63,10 @@ export const ModelName = {
   DeviceDailySummaryPerLineChart: 'DeviceDailySummaryPerLineChart',
   information_data: 'information_data',
   DeviceConnectionStatus: 'DeviceConnectionStatus',
-  fota: 'fota'
+  fota: 'fota',
+  DeviceCurrentStatus: 'DeviceCurrentStatus',
+  DeviceStatusHistory: 'DeviceStatusHistory',
+  PlantCurrentStatus: 'PlantCurrentStatus'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -421,7 +424,7 @@ export const DeviceConnectionStatusScalarFieldEnum = {
   serialNumber: 'serialNumber',
   macAddress: 'macAddress',
   status: 'status',
-  lastseentime: 'lastseentime'
+  lastSeenTime: 'lastSeenTime'
 } as const
 
 export type DeviceConnectionStatusScalarFieldEnum = (typeof DeviceConnectionStatusScalarFieldEnum)[keyof typeof DeviceConnectionStatusScalarFieldEnum]
@@ -435,6 +438,43 @@ export const FotaScalarFieldEnum = {
 } as const
 
 export type FotaScalarFieldEnum = (typeof FotaScalarFieldEnum)[keyof typeof FotaScalarFieldEnum]
+
+
+export const DeviceCurrentStatusScalarFieldEnum = {
+  id: 'id',
+  sno: 'sno',
+  status: 'status',
+  lastTelemetryAt: 'lastTelemetryAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceCurrentStatusScalarFieldEnum = (typeof DeviceCurrentStatusScalarFieldEnum)[keyof typeof DeviceCurrentStatusScalarFieldEnum]
+
+
+export const DeviceStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  sno: 'sno',
+  plantId: 'plantId',
+  status: 'status',
+  createdAt: 'createdAt'
+} as const
+
+export type DeviceStatusHistoryScalarFieldEnum = (typeof DeviceStatusHistoryScalarFieldEnum)[keyof typeof DeviceStatusHistoryScalarFieldEnum]
+
+
+export const PlantCurrentStatusScalarFieldEnum = {
+  id: 'id',
+  plantId: 'plantId',
+  status: 'status',
+  totalDevices: 'totalDevices',
+  normalCount: 'normalCount',
+  abnormalCount: 'abnormalCount',
+  standbyCount: 'standbyCount',
+  offlineCount: 'offlineCount',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlantCurrentStatusScalarFieldEnum = (typeof PlantCurrentStatusScalarFieldEnum)[keyof typeof PlantCurrentStatusScalarFieldEnum]
 
 
 export const SortOrder = {

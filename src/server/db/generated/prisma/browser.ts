@@ -82,3 +82,18 @@ export type DeviceConnectionStatus = Prisma.DeviceConnectionStatusModel
  * 
  */
 export type fota = Prisma.fotaModel
+/**
+ * Model DeviceCurrentStatus
+ * 
+ */
+export type DeviceCurrentStatus = Prisma.DeviceCurrentStatusModel
+/**
+ * Model DeviceStatusHistory
+ * 
+ */
+export type DeviceStatusHistory = Prisma.DeviceStatusHistoryModel
+/**
+ * Model PlantCurrentStatus
+ * 
+ */
+export type PlantCurrentStatus = Prisma.PlantCurrentStatusModel

@@ -396,7 +396,10 @@ export const ModelName = {
   DeviceDailySummaryPerLineChart: 'DeviceDailySummaryPerLineChart',
   information_data: 'information_data',
   DeviceConnectionStatus: 'DeviceConnectionStatus',
-  fota: 'fota'
+  fota: 'fota',
+  DeviceCurrentStatus: 'DeviceCurrentStatus',
+  DeviceStatusHistory: 'DeviceStatusHistory',
+  PlantCurrentStatus: 'PlantCurrentStatus'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -412,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "plant" | "deviceInverter" | "userPlantInverterMap" | "deviceInvertorStatus" | "deviceDatalogger" | "deviceLogs" | "deviceLogsLatest" | "deviceDailySummary" | "deviceDailySummaryPerLineChart" | "information_data" | "deviceConnectionStatus" | "fota"
+    modelProps: "user" | "plant" | "deviceInverter" | "userPlantInverterMap" | "deviceInvertorStatus" | "deviceDatalogger" | "deviceLogs" | "deviceLogsLatest" | "deviceDailySummary" | "deviceDailySummaryPerLineChart" | "information_data" | "deviceConnectionStatus" | "fota" | "deviceCurrentStatus" | "deviceStatusHistory" | "plantCurrentStatus"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1378,6 +1381,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DeviceCurrentStatus: {
+      payload: Prisma.$DeviceCurrentStatusPayload<ExtArgs>
+      fields: Prisma.DeviceCurrentStatusFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeviceCurrentStatusFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeviceCurrentStatusFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>
+        }
+        findFirst: {
+          args: Prisma.DeviceCurrentStatusFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeviceCurrentStatusFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>
+        }
+        findMany: {
+          args: Prisma.DeviceCurrentStatusFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>[]
+        }
+        create: {
+          args: Prisma.DeviceCurrentStatusCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>
+        }
+        createMany: {
+          args: Prisma.DeviceCurrentStatusCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeviceCurrentStatusCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>[]
+        }
+        delete: {
+          args: Prisma.DeviceCurrentStatusDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>
+        }
+        update: {
+          args: Prisma.DeviceCurrentStatusUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>
+        }
+        deleteMany: {
+          args: Prisma.DeviceCurrentStatusDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeviceCurrentStatusUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeviceCurrentStatusUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>[]
+        }
+        upsert: {
+          args: Prisma.DeviceCurrentStatusUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>
+        }
+        aggregate: {
+          args: Prisma.DeviceCurrentStatusAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeviceCurrentStatus>
+        }
+        groupBy: {
+          args: Prisma.DeviceCurrentStatusGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceCurrentStatusGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeviceCurrentStatusCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceCurrentStatusCountAggregateOutputType> | number
+        }
+      }
+    }
+    DeviceStatusHistory: {
+      payload: Prisma.$DeviceStatusHistoryPayload<ExtArgs>
+      fields: Prisma.DeviceStatusHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeviceStatusHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeviceStatusHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.DeviceStatusHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeviceStatusHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.DeviceStatusHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.DeviceStatusHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.DeviceStatusHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeviceStatusHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.DeviceStatusHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>
+        }
+        update: {
+          args: Prisma.DeviceStatusHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.DeviceStatusHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeviceStatusHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeviceStatusHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.DeviceStatusHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.DeviceStatusHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeviceStatusHistory>
+        }
+        groupBy: {
+          args: Prisma.DeviceStatusHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceStatusHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeviceStatusHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceStatusHistoryCountAggregateOutputType> | number
+        }
+      }
+    }
+    PlantCurrentStatus: {
+      payload: Prisma.$PlantCurrentStatusPayload<ExtArgs>
+      fields: Prisma.PlantCurrentStatusFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PlantCurrentStatusFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PlantCurrentStatusFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>
+        }
+        findFirst: {
+          args: Prisma.PlantCurrentStatusFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PlantCurrentStatusFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>
+        }
+        findMany: {
+          args: Prisma.PlantCurrentStatusFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>[]
+        }
+        create: {
+          args: Prisma.PlantCurrentStatusCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>
+        }
+        createMany: {
+          args: Prisma.PlantCurrentStatusCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PlantCurrentStatusCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>[]
+        }
+        delete: {
+          args: Prisma.PlantCurrentStatusDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>
+        }
+        update: {
+          args: Prisma.PlantCurrentStatusUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>
+        }
+        deleteMany: {
+          args: Prisma.PlantCurrentStatusDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PlantCurrentStatusUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PlantCurrentStatusUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>[]
+        }
+        upsert: {
+          args: Prisma.PlantCurrentStatusUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>
+        }
+        aggregate: {
+          args: Prisma.PlantCurrentStatusAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlantCurrentStatus>
+        }
+        groupBy: {
+          args: Prisma.PlantCurrentStatusGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlantCurrentStatusGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PlantCurrentStatusCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlantCurrentStatusCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1756,7 +1981,7 @@ export const DeviceConnectionStatusScalarFieldEnum = {
   serialNumber: 'serialNumber',
   macAddress: 'macAddress',
   status: 'status',
-  lastseentime: 'lastseentime'
+  lastSeenTime: 'lastSeenTime'
 } as const
 
 export type DeviceConnectionStatusScalarFieldEnum = (typeof DeviceConnectionStatusScalarFieldEnum)[keyof typeof DeviceConnectionStatusScalarFieldEnum]
@@ -1770,6 +1995,43 @@ export const FotaScalarFieldEnum = {
 } as const
 
 export type FotaScalarFieldEnum = (typeof FotaScalarFieldEnum)[keyof typeof FotaScalarFieldEnum]
+
+
+export const DeviceCurrentStatusScalarFieldEnum = {
+  id: 'id',
+  sno: 'sno',
+  status: 'status',
+  lastTelemetryAt: 'lastTelemetryAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceCurrentStatusScalarFieldEnum = (typeof DeviceCurrentStatusScalarFieldEnum)[keyof typeof DeviceCurrentStatusScalarFieldEnum]
+
+
+export const DeviceStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  sno: 'sno',
+  plantId: 'plantId',
+  status: 'status',
+  createdAt: 'createdAt'
+} as const
+
+export type DeviceStatusHistoryScalarFieldEnum = (typeof DeviceStatusHistoryScalarFieldEnum)[keyof typeof DeviceStatusHistoryScalarFieldEnum]
+
+
+export const PlantCurrentStatusScalarFieldEnum = {
+  id: 'id',
+  plantId: 'plantId',
+  status: 'status',
+  totalDevices: 'totalDevices',
+  normalCount: 'normalCount',
+  abnormalCount: 'abnormalCount',
+  standbyCount: 'standbyCount',
+  offlineCount: 'offlineCount',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlantCurrentStatusScalarFieldEnum = (typeof PlantCurrentStatusScalarFieldEnum)[keyof typeof PlantCurrentStatusScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1951,6 +2213,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
+
+/**
+ * Reference to a field of type 'PlantStatus'
+ */
+export type EnumPlantStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlantStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'PlantStatus[]'
+ */
+export type ListEnumPlantStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlantStatus[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -2074,6 +2350,9 @@ export type GlobalOmitConfig = {
   information_data?: Prisma.information_dataOmit
   deviceConnectionStatus?: Prisma.DeviceConnectionStatusOmit
   fota?: Prisma.fotaOmit
+  deviceCurrentStatus?: Prisma.DeviceCurrentStatusOmit
+  deviceStatusHistory?: Prisma.DeviceStatusHistoryOmit
+  plantCurrentStatus?: Prisma.PlantCurrentStatusOmit
 }
 
 /* Types for Logging */
