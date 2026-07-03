@@ -53,7 +53,12 @@ export interface DeviceLatestRecord {
   currentPower: number | null;
   createdAt: Date | string;
   updatedAt: Date | string;
+
+  status: string;
+  userId: string | null;
+  account: string | null;
 }
+
 export interface SearchDeviceResult {
   status: 200 | 404;
   message: string;
@@ -252,7 +257,7 @@ export class UserService {
   }
   constructor(
     private readonly userRepository: UserRepository = new UserRepository(),
-  ) {}
+  ) { }
 
   private isRoleAllowedForSubAccountManagement(
     role: string | undefined,
@@ -534,6 +539,9 @@ export class UserService {
           totalEnergy: device.totalEnergy,
           totalHours: device.totalHours,
           currentPower: device.currentPower,
+          status: device.status,
+          userId: device.userId?.toString() ?? null,
+          account: device.account,
           createdAt: device.createdAt.toString(),
           updatedAt: device.updatedAt.toString(),
         },

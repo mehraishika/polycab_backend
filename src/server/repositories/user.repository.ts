@@ -51,7 +51,7 @@ export interface ActorAccessRecord {
 }
 
 export class UserRepository {
-  constructor(private readonly dbClient: PrismaClient = prisma) {}
+  constructor(private readonly dbClient: PrismaClient = prisma) { }
 
   private buildWhere(roleType: UserRoleType, filters: UserListQueryInput) {
     const where: Record<string, unknown> = {};
@@ -192,7 +192,7 @@ export class UserRepository {
         sno,
       },
       orderBy: {
-        dayDate: "desc",
+        latestTimestamp: "desc",
       },
       select: {
         id: true,
@@ -209,8 +209,43 @@ export class UserRepository {
       },
     });
 
-    return device;
+    if (!device) {
+      return null;
+    }
+
+    const currentStatus = await this.dbClient.deviceCurrentStatus.findUnique({
+      where: {
+        sno,
+      },
+      select: {
+        status: true,
+      },
+    });
+
+    const userMapping = await this.dbClient.userPlantInverterMap.findFirst({
+      where: {
+        serialNumber: sno,
+        isDeleted: false,
+      },
+      select: {
+        userId: true,
+        user: {
+          select: {
+            account: true,
+          },
+        },
+      },
+    });
+
+    return {
+      ...device,
+      status: currentStatus?.status ?? "Offline",
+      userId: userMapping?.userId?.toString() ?? null,
+      account: userMapping?.user.account ?? null,
+    };
   }
+
+
   async updateProfile(
     userId: bigint,
     payload: {
