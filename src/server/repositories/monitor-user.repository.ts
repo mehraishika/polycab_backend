@@ -2,7 +2,7 @@ import { prisma, type PrismaClient } from "@/server/db/prisma";
 import { Prisma } from "@/server/db/generated/prisma/client";
 
 export class MonitorUserRepository {
-  constructor(private readonly dbClient: PrismaClient = prisma) {}
+  constructor(private readonly dbClient: PrismaClient = prisma) { }
   private async getLatestInverterTotals(serialNumbers?: string[]) {
     const filterClause =
       serialNumbers && serialNumbers.length > 0
@@ -131,6 +131,57 @@ export class MonitorUserRepository {
   // 		},
   // 	});
   // }
+
+  async getPlantStatusCountsForUsers(accounts: string[]) {
+    const plants = await this.dbClient.plant.findMany({
+      where: {
+        userAccount: {
+          in: accounts,
+        },
+        deletedAt: null,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    const plantIds = plants.map((p) => p.id);
+
+    const counts = await this.dbClient.plantCurrentStatus.aggregate({
+      where: {
+        plantId: {
+          in: plantIds,
+        },
+      },
+      _sum: {
+        totalDevices: true,
+        normalCount: true,
+        abnormalCount: true,
+        standbyCount: true,
+        offlineCount: true,
+      },
+    });
+
+    return counts._sum;
+  }
+
+  async findPlantStatusesByPlantIds(plantIds: bigint[]) {
+    return this.dbClient.plantCurrentStatus.findMany({
+      where: {
+        plantId: {
+          in: plantIds,
+        },
+      },
+      select: {
+        plantId: true,
+        totalDevices: true,
+        normalCount: true,
+        abnormalCount: true,
+        standbyCount: true,
+        offlineCount: true,
+      },
+    });
+  }
 
   findScopedMonitorUsersByIds(
     actorId: bigint,
@@ -363,96 +414,96 @@ export class MonitorUserRepository {
     });
   }
 
-	updateMonitorUsersAssignedBy(
-		actorId: bigint,
-		actorRole: string | undefined,
-		monitorUserIds: bigint[],
-		targetUserId: bigint,
-	) {
-		return this.dbClient.user.updateMany({
-			where: {
-				id: {
-					in: monitorUserIds,
-				},
-				portal: 'monitoring',
-				role: 'monitoring_user',
-				...(actorRole !== 'service_super_admin'
-					? { assignedById: actorId }
-					: {}),
-				isDeleted: false,
-				status: 'active',
-			},
-			data: {
-				assignedById: targetUserId,
-			},
-		});
-	}
+  updateMonitorUsersAssignedBy(
+    actorId: bigint,
+    actorRole: string | undefined,
+    monitorUserIds: bigint[],
+    targetUserId: bigint,
+  ) {
+    return this.dbClient.user.updateMany({
+      where: {
+        id: {
+          in: monitorUserIds,
+        },
+        portal: 'monitoring',
+        role: 'monitoring_user',
+        ...(actorRole !== 'service_super_admin'
+          ? { assignedById: actorId }
+          : {}),
+        isDeleted: false,
+        status: 'active',
+      },
+      data: {
+        assignedById: targetUserId,
+      },
+    });
+  }
 
-	async findMonitorUserByAccount(account: string) {
-		return this.dbClient.user.findFirst({
-			where: {
-				account,
-				portal: 'monitoring',
-				role: 'monitoring_user',
-				isDeleted: false,
-				status: 'active',
-			},
-			select: {
-				id: true,
-				account: true,
-			},
-		});
-	}
+  async findMonitorUserByAccount(account: string) {
+    return this.dbClient.user.findFirst({
+      where: {
+        account,
+        portal: 'monitoring',
+        role: 'monitoring_user',
+        isDeleted: false,
+        status: 'active',
+      },
+      select: {
+        id: true,
+        account: true,
+      },
+    });
+  }
 
-	async findMappingBySerialNumber(serialNumber: string) {
-		return this.dbClient.userPlantInverterMap.findFirst({
-			where: {
-				serialNumber,
-				isDeleted: false,
-			},
-		});
-	}
+  async findMappingBySerialNumber(serialNumber: string) {
+    return this.dbClient.userPlantInverterMap.findFirst({
+      where: {
+        serialNumber,
+        isDeleted: false,
+      },
+    });
+  }
 
-	async createUserPlantMapping(
-		userId: bigint,
-		serialNumber: string,
-	) {
-		return this.dbClient.userPlantInverterMap.create({
-			data: {
-				userId,
-				plantId: null,
-				serialNumber,
-			},
-		});
-	}
+  async createUserPlantMapping(
+    userId: bigint,
+    serialNumber: string,
+  ) {
+    return this.dbClient.userPlantInverterMap.create({
+      data: {
+        userId,
+        plantId: null,
+        serialNumber,
+      },
+    });
+  }
 
-	findByAccountInsensitive(account: string) {
-		return this.dbClient.user.findFirst({
-			where: {
-				account: {
-					equals: account,
-					mode: 'insensitive',
-				},
-			},
-			select: { id: true },
-		});
-	}
+  findByAccountInsensitive(account: string) {
+    return this.dbClient.user.findFirst({
+      where: {
+        account: {
+          equals: account,
+          mode: 'insensitive',
+        },
+      },
+      select: { id: true },
+    });
+  }
 
-	findUserIdsByAccounts(accounts: string[]) {
-		return this.dbClient.user.findMany({
-			where: {
-				account: {
-					in: accounts,
-					mode: "insensitive",
-				},
-				portal: "monitoring",
-				role: "monitoring_user",
-				isDeleted: false,
-				status: "active",
-			},
-			select: { id: true },
-		});
-	}
+  findUserIdsByAccounts(accounts: string[]) {
+    return this.dbClient.user.findMany({
+      where: {
+        account: {
+          in: accounts,
+          mode: "insensitive",
+        },
+        portal: "monitoring",
+        role: "monitoring_user",
+        isDeleted: false,
+        status: "active",
+      },
+      select: { id: true },
+    });
+  }
 
   findMonitoringUserByEmail(email: string) {
     return this.dbClient.user.findFirst({

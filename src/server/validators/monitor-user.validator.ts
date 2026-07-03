@@ -34,7 +34,7 @@ export const monitorUserListQuerySchema = z.object({
     .default(10)
     .transform((value) => Math.min(value, 100)),
   status: z
-    .enum(["all", "normal", "fault", "standby", "offline"])
+    .enum(["all", "online", "abnormal", "standby", "offline"])
     .optional()
     .default("all"),
   sortBy: z.enum(["", "power", "today", "total"]).optional().default(""),
