@@ -3,6 +3,7 @@ import { ApiError } from '@/server/utils/api-error';
 import type { User } from '@/server/utils/auth-helper';
 import { resolveUserScope } from '@/server/utils/scope-resolver';
 import { UserRepository } from '@/server/repositories/user.repository';
+import { Decimal } from '@prisma/client/runtime/client';
 
 
 export interface DeviceChartServiceParams {
@@ -260,7 +261,7 @@ export class DeviceService {
 		logs: Array<{
 			timestamp: Date;
 			total_input_power:
-			bigint | null;
+			Decimal | null;
 		}>,
 	) {
 		return logs.map(
@@ -748,8 +749,8 @@ export class DeviceService {
 	private createMonthPoints(
 		logs: Array<{
 			dayDate: Date;
-			dailyProduction: number | null;
-			totalEnergy: number | null;
+			dailyProduction: Decimal | null;
+			totalEnergy: Decimal | null;
 		}>,
 	) {
 		if (logs.length === 0) {
@@ -799,8 +800,8 @@ export class DeviceService {
 	private createYearPoints(
 		logs: Array<{
 			latestTimestamp: Date;
-			dailyProduction: number | null;
-			totalEnergy: number | null;
+			dailyProduction: Decimal | null;
+			totalEnergy: Decimal | null;
 		}>
 	) {
 		const monthTotals = new Map<number, number>();
@@ -809,13 +810,11 @@ export class DeviceService {
 			const month =
 				log.latestTimestamp.getMonth();
 
-			const current =
-				monthTotals.get(month) ?? 0;
+			const current = monthTotals.get(month) ?? 0;
 
 			monthTotals.set(
 				month,
-				current +
-				(log.dailyProduction ?? 0)
+				current + Number(log.dailyProduction ?? 0),
 			);
 		}
 

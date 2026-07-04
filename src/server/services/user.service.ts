@@ -9,6 +9,7 @@ import type {
   ServiceAdminUserListInput,
   UpdateProfileInput,
 } from "@/server/validators/user.validator";
+import { Decimal } from "@prisma/client/runtime/client";
 
 export interface CreateSubUserSuccess {
   status: 201;
@@ -47,10 +48,10 @@ export interface DeviceLatestRecord {
   inverterName: string | null;
   dayDate: Date | string;
   latestTimestamp: Date | string;
-  dailyProduction: number | null;
-  totalEnergy: number | null;
+  dailyProduction: Decimal | null;
+  totalEnergy: Decimal | null;
   totalHours: number | null;
-  currentPower: number | null;
+  currentPower: Decimal | null;
   createdAt: Date | string;
   updatedAt: Date | string;
 

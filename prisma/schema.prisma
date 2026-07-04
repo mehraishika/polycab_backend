@@ -174,60 +174,72 @@ model DeviceLogs {
   comm_software_version_1       Int?
   comm_software_version_2       Int?
   control_software_version      Int?
-  dc_voltage_1                  Int?
-  dc_voltage_2                  Int?
-  dc_voltage_3                  Int?
-  dc_voltage_4                  Int?
-  dc_voltage_5                  Int?
-  dc_voltage_6                  Int?
-  dc_voltage_7                  Int?
-  dc_voltage_8                  Int?
-  dc_voltage_9                  Int?
-  dc_current_1                  Int?
-  dc_current_2                  Int?
-  dc_current_3                  Int?
-  dc_current_4                  Int?
-  dc_current_5                  Int?
-  dc_current_6                  Int?
-  dc_current_7                  Int?
-  dc_current_8                  Int?
-  dc_current_9                  Int?
-  dc_power_1                    BigInt?
-  dc_power_2                    BigInt?
-  dc_power_3                    BigInt?
-  dc_power_4                    BigInt?
-  dc_power_5                    BigInt?
-  dc_power_6                    BigInt?
-  dc_power_7                    BigInt?
-  dc_power_8                    BigInt?
-  dc_power_9                    BigInt?
-  total_input_power             BigInt?
-  grid_total_active_power       BigInt?
-  grid_total_reactive_power     BigInt?
+  dc_voltage_1              Decimal? @db.Decimal(12, 3)
+  dc_voltage_2              Decimal? @db.Decimal(12, 3)
+  dc_voltage_3              Decimal? @db.Decimal(12, 3)
+  dc_voltage_4              Decimal? @db.Decimal(12, 3)
+  dc_voltage_5              Decimal? @db.Decimal(12, 3)
+  dc_voltage_6              Decimal? @db.Decimal(12, 3)
+  dc_voltage_7              Decimal? @db.Decimal(12, 3)
+  dc_voltage_8              Decimal? @db.Decimal(12, 3)
+  dc_voltage_9              Decimal? @db.Decimal(12, 3)
+
+  dc_current_1              Decimal? @db.Decimal(12, 3)
+  dc_current_2              Decimal? @db.Decimal(12, 3)
+  dc_current_3              Decimal? @db.Decimal(12, 3)
+  dc_current_4              Decimal? @db.Decimal(12, 3)
+  dc_current_5              Decimal? @db.Decimal(12, 3)
+  dc_current_6              Decimal? @db.Decimal(12, 3)
+  dc_current_7              Decimal? @db.Decimal(12, 3)
+  dc_current_8              Decimal? @db.Decimal(12, 3)
+  dc_current_9              Decimal? @db.Decimal(12, 3)
+
+  dc_power_1                Decimal? @db.Decimal(12, 3)
+  dc_power_2                Decimal? @db.Decimal(12, 3)
+  dc_power_3                Decimal? @db.Decimal(12, 3)
+  dc_power_4                Decimal? @db.Decimal(12, 3)
+  dc_power_5                Decimal? @db.Decimal(12, 3)
+  dc_power_6                Decimal? @db.Decimal(12, 3)
+  dc_power_7                Decimal? @db.Decimal(12, 3)
+  dc_power_8                Decimal? @db.Decimal(12, 3)
+  dc_power_9                Decimal? @db.Decimal(12, 3)
+
+  total_input_power         Decimal? @db.Decimal(14, 3)
+  grid_total_active_power   Decimal? @db.Decimal(14, 3)
+  grid_total_reactive_power Decimal? @db.Decimal(14, 3)
+
+  ac_voltage_a              Decimal? @db.Decimal(12, 3)
+  ac_voltage_b              Decimal? @db.Decimal(12, 3)
+  ac_voltage_c              Decimal? @db.Decimal(12, 3)
+
+  ac_current_a              Decimal? @db.Decimal(12, 3)
+  ac_current_b              Decimal? @db.Decimal(12, 3)
+  ac_current_c              Decimal? @db.Decimal(12, 3)
+
+  ac_power_a                Decimal? @db.Decimal(12, 3)
+  ac_power_b                Decimal? @db.Decimal(12, 3)
+  ac_power_c                Decimal? @db.Decimal(12, 3)
+
+  daily_production          Decimal? @db.Decimal(14, 3)
+
+  ac_output_frequency       Decimal? @db.Decimal(8, 2)
+
+  temperature_1             Decimal? @db.Decimal(8, 2)
+  temperature_2             Decimal? @db.Decimal(8, 2)
+  temperature_3             Decimal? @db.Decimal(8, 2)
+
+  total_production          Decimal? @db.Decimal(14, 3)
   fault_registers               Int?
   fault_1                       Int?
   fault_2                       Int?
   fault_3                       Int?
   fault_4                       Int?
   fault_5                       Int?
-  ac_voltage_a                  Int?
-  ac_voltage_b                  Int?
-  ac_voltage_c                  Int?
-  ac_current_a                  Int?
-  ac_current_b                  Int?
-  ac_current_c                  Int?
-  ac_power_a                    BigInt?
-  ac_power_b                    BigInt?
-  ac_power_c                    BigInt?
-  daily_production              Int?
+
   grid_status                   Int?
   inverter_status               Int?
-  ac_output_frequency           Int?
   temperature_count             Int?
-  temperature_1                 Int?
-  temperature_2                 Int?
-  temperature_3                 Int?
-  total_production              Int?
+
   total_generation_time         Int?
   timestamp                     DateTime
   mac_address                   String?                         @db.VarChar(255)
@@ -250,12 +262,15 @@ model DeviceLogsLatest {
   latestTimestamp DateTime   @map("latest_timestamp")
   sourceLogId     BigInt     @unique @map("source_log_id")
   batchKey        String     @unique @map("batch_key")
-  dailyProduction Int?       @map("daily_production")
-  totalEnergy     Int?       @map("total_energy")
+
+  dailyProduction Decimal?   @map("daily_production") @db.Decimal(14, 3)
+  totalEnergy     Decimal?   @map("total_energy") @db.Decimal(14, 3)
   totalHours      Int?       @map("total_hours")
-  currentPower    Int?       @map("current_power")
+  currentPower    Decimal?   @map("current_power") @db.Decimal(14, 3)
+
   createdAt       DateTime   @default(now()) @map("created_at")
   updatedAt       DateTime   @updatedAt @map("updated_at")
+
   sourceLog       DeviceLogs @relation(fields: [sourceLogId], references: [id], onDelete: Cascade)
 
   @@unique([sno, dayDate])
@@ -269,12 +284,15 @@ model DeviceDailySummary {
   id                   BigInt               @id @default(autoincrement())
   sno                  String               @db.VarChar(255)
   dayDate              DateTime             @map("day_date") @db.Date
-  currentPower         Int?                 @map("current_power")
-  eToday               Int?                 @map("e_today")
-  eTotal               Int?                 @map("e_total")
+
+  currentPower         Decimal?             @map("current_power") @db.Decimal(14, 3)
+  eToday               Decimal?             @map("e_today") @db.Decimal(14, 3)
+  eTotal               Decimal?             @map("e_total") @db.Decimal(14, 3)
   hTotal               Int?                 @map("h_total")
+
   createdAt            DateTime             @default(now()) @map("created_at")
   updatedAt            DateTime             @updatedAt @map("updated_at")
+
   userPlantInverterMap UserPlantInverterMap @relation(fields: [sno], references: [serialNumber])
 
   @@unique([sno, dayDate])

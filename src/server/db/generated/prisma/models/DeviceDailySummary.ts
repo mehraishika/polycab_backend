@@ -28,17 +28,17 @@ export type AggregateDeviceDailySummary = {
 
 export type DeviceDailySummaryAvgAggregateOutputType = {
   id: number | null
-  currentPower: number | null
-  eToday: number | null
-  eTotal: number | null
+  currentPower: runtime.Decimal | null
+  eToday: runtime.Decimal | null
+  eTotal: runtime.Decimal | null
   hTotal: number | null
 }
 
 export type DeviceDailySummarySumAggregateOutputType = {
   id: bigint | null
-  currentPower: number | null
-  eToday: number | null
-  eTotal: number | null
+  currentPower: runtime.Decimal | null
+  eToday: runtime.Decimal | null
+  eTotal: runtime.Decimal | null
   hTotal: number | null
 }
 
@@ -46,9 +46,9 @@ export type DeviceDailySummaryMinAggregateOutputType = {
   id: bigint | null
   sno: string | null
   dayDate: Date | null
-  currentPower: number | null
-  eToday: number | null
-  eTotal: number | null
+  currentPower: runtime.Decimal | null
+  eToday: runtime.Decimal | null
+  eTotal: runtime.Decimal | null
   hTotal: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -58,9 +58,9 @@ export type DeviceDailySummaryMaxAggregateOutputType = {
   id: bigint | null
   sno: string | null
   dayDate: Date | null
-  currentPower: number | null
-  eToday: number | null
-  eTotal: number | null
+  currentPower: runtime.Decimal | null
+  eToday: runtime.Decimal | null
+  eTotal: runtime.Decimal | null
   hTotal: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -223,9 +223,9 @@ export type DeviceDailySummaryGroupByOutputType = {
   id: bigint
   sno: string
   dayDate: Date
-  currentPower: number | null
-  eToday: number | null
-  eTotal: number | null
+  currentPower: runtime.Decimal | null
+  eToday: runtime.Decimal | null
+  eTotal: runtime.Decimal | null
   hTotal: number | null
   createdAt: Date
   updatedAt: Date
@@ -258,9 +258,9 @@ export type DeviceDailySummaryWhereInput = {
   id?: Prisma.BigIntFilter<"DeviceDailySummary"> | bigint | number
   sno?: Prisma.StringFilter<"DeviceDailySummary"> | string
   dayDate?: Prisma.DateTimeFilter<"DeviceDailySummary"> | Date | string
-  currentPower?: Prisma.IntNullableFilter<"DeviceDailySummary"> | number | null
-  eToday?: Prisma.IntNullableFilter<"DeviceDailySummary"> | number | null
-  eTotal?: Prisma.IntNullableFilter<"DeviceDailySummary"> | number | null
+  currentPower?: Prisma.DecimalNullableFilter<"DeviceDailySummary"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: Prisma.DecimalNullableFilter<"DeviceDailySummary"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: Prisma.DecimalNullableFilter<"DeviceDailySummary"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: Prisma.IntNullableFilter<"DeviceDailySummary"> | number | null
   createdAt?: Prisma.DateTimeFilter<"DeviceDailySummary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceDailySummary"> | Date | string
@@ -288,9 +288,9 @@ export type DeviceDailySummaryWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.DeviceDailySummaryWhereInput | Prisma.DeviceDailySummaryWhereInput[]
   sno?: Prisma.StringFilter<"DeviceDailySummary"> | string
   dayDate?: Prisma.DateTimeFilter<"DeviceDailySummary"> | Date | string
-  currentPower?: Prisma.IntNullableFilter<"DeviceDailySummary"> | number | null
-  eToday?: Prisma.IntNullableFilter<"DeviceDailySummary"> | number | null
-  eTotal?: Prisma.IntNullableFilter<"DeviceDailySummary"> | number | null
+  currentPower?: Prisma.DecimalNullableFilter<"DeviceDailySummary"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: Prisma.DecimalNullableFilter<"DeviceDailySummary"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: Prisma.DecimalNullableFilter<"DeviceDailySummary"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: Prisma.IntNullableFilter<"DeviceDailySummary"> | number | null
   createdAt?: Prisma.DateTimeFilter<"DeviceDailySummary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceDailySummary"> | Date | string
@@ -321,9 +321,9 @@ export type DeviceDailySummaryScalarWhereWithAggregatesInput = {
   id?: Prisma.BigIntWithAggregatesFilter<"DeviceDailySummary"> | bigint | number
   sno?: Prisma.StringWithAggregatesFilter<"DeviceDailySummary"> | string
   dayDate?: Prisma.DateTimeWithAggregatesFilter<"DeviceDailySummary"> | Date | string
-  currentPower?: Prisma.IntNullableWithAggregatesFilter<"DeviceDailySummary"> | number | null
-  eToday?: Prisma.IntNullableWithAggregatesFilter<"DeviceDailySummary"> | number | null
-  eTotal?: Prisma.IntNullableWithAggregatesFilter<"DeviceDailySummary"> | number | null
+  currentPower?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceDailySummary"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceDailySummary"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceDailySummary"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: Prisma.IntNullableWithAggregatesFilter<"DeviceDailySummary"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"DeviceDailySummary"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"DeviceDailySummary"> | Date | string
@@ -332,9 +332,9 @@ export type DeviceDailySummaryScalarWhereWithAggregatesInput = {
 export type DeviceDailySummaryCreateInput = {
   id?: bigint | number
   dayDate: Date | string
-  currentPower?: number | null
-  eToday?: number | null
-  eTotal?: number | null
+  currentPower?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -345,9 +345,9 @@ export type DeviceDailySummaryUncheckedCreateInput = {
   id?: bigint | number
   sno: string
   dayDate: Date | string
-  currentPower?: number | null
-  eToday?: number | null
-  eTotal?: number | null
+  currentPower?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -356,9 +356,9 @@ export type DeviceDailySummaryUncheckedCreateInput = {
 export type DeviceDailySummaryUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   dayDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eToday?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -369,9 +369,9 @@ export type DeviceDailySummaryUncheckedUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   sno?: Prisma.StringFieldUpdateOperationsInput | string
   dayDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eToday?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -381,9 +381,9 @@ export type DeviceDailySummaryCreateManyInput = {
   id?: bigint | number
   sno: string
   dayDate: Date | string
-  currentPower?: number | null
-  eToday?: number | null
-  eTotal?: number | null
+  currentPower?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -392,9 +392,9 @@ export type DeviceDailySummaryCreateManyInput = {
 export type DeviceDailySummaryUpdateManyMutationInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   dayDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eToday?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -404,9 +404,9 @@ export type DeviceDailySummaryUncheckedUpdateManyInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   sno?: Prisma.StringFieldUpdateOperationsInput | string
   dayDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eToday?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -524,9 +524,9 @@ export type DeviceDailySummaryUncheckedUpdateManyWithoutUserPlantInverterMapNest
 export type DeviceDailySummaryCreateWithoutUserPlantInverterMapInput = {
   id?: bigint | number
   dayDate: Date | string
-  currentPower?: number | null
-  eToday?: number | null
-  eTotal?: number | null
+  currentPower?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -535,9 +535,9 @@ export type DeviceDailySummaryCreateWithoutUserPlantInverterMapInput = {
 export type DeviceDailySummaryUncheckedCreateWithoutUserPlantInverterMapInput = {
   id?: bigint | number
   dayDate: Date | string
-  currentPower?: number | null
-  eToday?: number | null
-  eTotal?: number | null
+  currentPower?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -576,9 +576,9 @@ export type DeviceDailySummaryScalarWhereInput = {
   id?: Prisma.BigIntFilter<"DeviceDailySummary"> | bigint | number
   sno?: Prisma.StringFilter<"DeviceDailySummary"> | string
   dayDate?: Prisma.DateTimeFilter<"DeviceDailySummary"> | Date | string
-  currentPower?: Prisma.IntNullableFilter<"DeviceDailySummary"> | number | null
-  eToday?: Prisma.IntNullableFilter<"DeviceDailySummary"> | number | null
-  eTotal?: Prisma.IntNullableFilter<"DeviceDailySummary"> | number | null
+  currentPower?: Prisma.DecimalNullableFilter<"DeviceDailySummary"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: Prisma.DecimalNullableFilter<"DeviceDailySummary"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: Prisma.DecimalNullableFilter<"DeviceDailySummary"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: Prisma.IntNullableFilter<"DeviceDailySummary"> | number | null
   createdAt?: Prisma.DateTimeFilter<"DeviceDailySummary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceDailySummary"> | Date | string
@@ -587,9 +587,9 @@ export type DeviceDailySummaryScalarWhereInput = {
 export type DeviceDailySummaryCreateManyUserPlantInverterMapInput = {
   id?: bigint | number
   dayDate: Date | string
-  currentPower?: number | null
-  eToday?: number | null
-  eTotal?: number | null
+  currentPower?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -598,9 +598,9 @@ export type DeviceDailySummaryCreateManyUserPlantInverterMapInput = {
 export type DeviceDailySummaryUpdateWithoutUserPlantInverterMapInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   dayDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eToday?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -609,9 +609,9 @@ export type DeviceDailySummaryUpdateWithoutUserPlantInverterMapInput = {
 export type DeviceDailySummaryUncheckedUpdateWithoutUserPlantInverterMapInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   dayDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eToday?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -620,9 +620,9 @@ export type DeviceDailySummaryUncheckedUpdateWithoutUserPlantInverterMapInput = 
 export type DeviceDailySummaryUncheckedUpdateManyWithoutUserPlantInverterMapInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   dayDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eToday?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  eTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eToday?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  eTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hTotal?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -701,9 +701,9 @@ export type $DeviceDailySummaryPayload<ExtArgs extends runtime.Types.Extensions.
     id: bigint
     sno: string
     dayDate: Date
-    currentPower: number | null
-    eToday: number | null
-    eTotal: number | null
+    currentPower: runtime.Decimal | null
+    eToday: runtime.Decimal | null
+    eTotal: runtime.Decimal | null
     hTotal: number | null
     createdAt: Date
     updatedAt: Date
@@ -1134,9 +1134,9 @@ export interface DeviceDailySummaryFieldRefs {
   readonly id: Prisma.FieldRef<"DeviceDailySummary", 'BigInt'>
   readonly sno: Prisma.FieldRef<"DeviceDailySummary", 'String'>
   readonly dayDate: Prisma.FieldRef<"DeviceDailySummary", 'DateTime'>
-  readonly currentPower: Prisma.FieldRef<"DeviceDailySummary", 'Int'>
-  readonly eToday: Prisma.FieldRef<"DeviceDailySummary", 'Int'>
-  readonly eTotal: Prisma.FieldRef<"DeviceDailySummary", 'Int'>
+  readonly currentPower: Prisma.FieldRef<"DeviceDailySummary", 'Decimal'>
+  readonly eToday: Prisma.FieldRef<"DeviceDailySummary", 'Decimal'>
+  readonly eTotal: Prisma.FieldRef<"DeviceDailySummary", 'Decimal'>
   readonly hTotal: Prisma.FieldRef<"DeviceDailySummary", 'Int'>
   readonly createdAt: Prisma.FieldRef<"DeviceDailySummary", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"DeviceDailySummary", 'DateTime'>

@@ -1802,12 +1802,6 @@ export const DeviceLogsScalarFieldEnum = {
   total_input_power: 'total_input_power',
   grid_total_active_power: 'grid_total_active_power',
   grid_total_reactive_power: 'grid_total_reactive_power',
-  fault_registers: 'fault_registers',
-  fault_1: 'fault_1',
-  fault_2: 'fault_2',
-  fault_3: 'fault_3',
-  fault_4: 'fault_4',
-  fault_5: 'fault_5',
   ac_voltage_a: 'ac_voltage_a',
   ac_voltage_b: 'ac_voltage_b',
   ac_voltage_c: 'ac_voltage_c',
@@ -1818,14 +1812,20 @@ export const DeviceLogsScalarFieldEnum = {
   ac_power_b: 'ac_power_b',
   ac_power_c: 'ac_power_c',
   daily_production: 'daily_production',
-  grid_status: 'grid_status',
-  inverter_status: 'inverter_status',
   ac_output_frequency: 'ac_output_frequency',
-  temperature_count: 'temperature_count',
   temperature_1: 'temperature_1',
   temperature_2: 'temperature_2',
   temperature_3: 'temperature_3',
   total_production: 'total_production',
+  fault_registers: 'fault_registers',
+  fault_1: 'fault_1',
+  fault_2: 'fault_2',
+  fault_3: 'fault_3',
+  fault_4: 'fault_4',
+  fault_5: 'fault_5',
+  grid_status: 'grid_status',
+  inverter_status: 'inverter_status',
+  temperature_count: 'temperature_count',
   total_generation_time: 'total_generation_time',
   timestamp: 'timestamp',
   mac_address: 'mac_address',
@@ -2197,6 +2197,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 

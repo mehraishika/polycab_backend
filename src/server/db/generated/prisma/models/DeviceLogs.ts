@@ -42,60 +42,60 @@ export type DeviceLogsAvgAggregateOutputType = {
   comm_software_version_1: number | null
   comm_software_version_2: number | null
   control_software_version: number | null
-  dc_voltage_1: number | null
-  dc_voltage_2: number | null
-  dc_voltage_3: number | null
-  dc_voltage_4: number | null
-  dc_voltage_5: number | null
-  dc_voltage_6: number | null
-  dc_voltage_7: number | null
-  dc_voltage_8: number | null
-  dc_voltage_9: number | null
-  dc_current_1: number | null
-  dc_current_2: number | null
-  dc_current_3: number | null
-  dc_current_4: number | null
-  dc_current_5: number | null
-  dc_current_6: number | null
-  dc_current_7: number | null
-  dc_current_8: number | null
-  dc_current_9: number | null
-  dc_power_1: number | null
-  dc_power_2: number | null
-  dc_power_3: number | null
-  dc_power_4: number | null
-  dc_power_5: number | null
-  dc_power_6: number | null
-  dc_power_7: number | null
-  dc_power_8: number | null
-  dc_power_9: number | null
-  total_input_power: number | null
-  grid_total_active_power: number | null
-  grid_total_reactive_power: number | null
+  dc_voltage_1: runtime.Decimal | null
+  dc_voltage_2: runtime.Decimal | null
+  dc_voltage_3: runtime.Decimal | null
+  dc_voltage_4: runtime.Decimal | null
+  dc_voltage_5: runtime.Decimal | null
+  dc_voltage_6: runtime.Decimal | null
+  dc_voltage_7: runtime.Decimal | null
+  dc_voltage_8: runtime.Decimal | null
+  dc_voltage_9: runtime.Decimal | null
+  dc_current_1: runtime.Decimal | null
+  dc_current_2: runtime.Decimal | null
+  dc_current_3: runtime.Decimal | null
+  dc_current_4: runtime.Decimal | null
+  dc_current_5: runtime.Decimal | null
+  dc_current_6: runtime.Decimal | null
+  dc_current_7: runtime.Decimal | null
+  dc_current_8: runtime.Decimal | null
+  dc_current_9: runtime.Decimal | null
+  dc_power_1: runtime.Decimal | null
+  dc_power_2: runtime.Decimal | null
+  dc_power_3: runtime.Decimal | null
+  dc_power_4: runtime.Decimal | null
+  dc_power_5: runtime.Decimal | null
+  dc_power_6: runtime.Decimal | null
+  dc_power_7: runtime.Decimal | null
+  dc_power_8: runtime.Decimal | null
+  dc_power_9: runtime.Decimal | null
+  total_input_power: runtime.Decimal | null
+  grid_total_active_power: runtime.Decimal | null
+  grid_total_reactive_power: runtime.Decimal | null
+  ac_voltage_a: runtime.Decimal | null
+  ac_voltage_b: runtime.Decimal | null
+  ac_voltage_c: runtime.Decimal | null
+  ac_current_a: runtime.Decimal | null
+  ac_current_b: runtime.Decimal | null
+  ac_current_c: runtime.Decimal | null
+  ac_power_a: runtime.Decimal | null
+  ac_power_b: runtime.Decimal | null
+  ac_power_c: runtime.Decimal | null
+  daily_production: runtime.Decimal | null
+  ac_output_frequency: runtime.Decimal | null
+  temperature_1: runtime.Decimal | null
+  temperature_2: runtime.Decimal | null
+  temperature_3: runtime.Decimal | null
+  total_production: runtime.Decimal | null
   fault_registers: number | null
   fault_1: number | null
   fault_2: number | null
   fault_3: number | null
   fault_4: number | null
   fault_5: number | null
-  ac_voltage_a: number | null
-  ac_voltage_b: number | null
-  ac_voltage_c: number | null
-  ac_current_a: number | null
-  ac_current_b: number | null
-  ac_current_c: number | null
-  ac_power_a: number | null
-  ac_power_b: number | null
-  ac_power_c: number | null
-  daily_production: number | null
   grid_status: number | null
   inverter_status: number | null
-  ac_output_frequency: number | null
   temperature_count: number | null
-  temperature_1: number | null
-  temperature_2: number | null
-  temperature_3: number | null
-  total_production: number | null
   total_generation_time: number | null
   message_type: number | null
 }
@@ -116,60 +116,60 @@ export type DeviceLogsSumAggregateOutputType = {
   comm_software_version_1: number | null
   comm_software_version_2: number | null
   control_software_version: number | null
-  dc_voltage_1: number | null
-  dc_voltage_2: number | null
-  dc_voltage_3: number | null
-  dc_voltage_4: number | null
-  dc_voltage_5: number | null
-  dc_voltage_6: number | null
-  dc_voltage_7: number | null
-  dc_voltage_8: number | null
-  dc_voltage_9: number | null
-  dc_current_1: number | null
-  dc_current_2: number | null
-  dc_current_3: number | null
-  dc_current_4: number | null
-  dc_current_5: number | null
-  dc_current_6: number | null
-  dc_current_7: number | null
-  dc_current_8: number | null
-  dc_current_9: number | null
-  dc_power_1: bigint | null
-  dc_power_2: bigint | null
-  dc_power_3: bigint | null
-  dc_power_4: bigint | null
-  dc_power_5: bigint | null
-  dc_power_6: bigint | null
-  dc_power_7: bigint | null
-  dc_power_8: bigint | null
-  dc_power_9: bigint | null
-  total_input_power: bigint | null
-  grid_total_active_power: bigint | null
-  grid_total_reactive_power: bigint | null
+  dc_voltage_1: runtime.Decimal | null
+  dc_voltage_2: runtime.Decimal | null
+  dc_voltage_3: runtime.Decimal | null
+  dc_voltage_4: runtime.Decimal | null
+  dc_voltage_5: runtime.Decimal | null
+  dc_voltage_6: runtime.Decimal | null
+  dc_voltage_7: runtime.Decimal | null
+  dc_voltage_8: runtime.Decimal | null
+  dc_voltage_9: runtime.Decimal | null
+  dc_current_1: runtime.Decimal | null
+  dc_current_2: runtime.Decimal | null
+  dc_current_3: runtime.Decimal | null
+  dc_current_4: runtime.Decimal | null
+  dc_current_5: runtime.Decimal | null
+  dc_current_6: runtime.Decimal | null
+  dc_current_7: runtime.Decimal | null
+  dc_current_8: runtime.Decimal | null
+  dc_current_9: runtime.Decimal | null
+  dc_power_1: runtime.Decimal | null
+  dc_power_2: runtime.Decimal | null
+  dc_power_3: runtime.Decimal | null
+  dc_power_4: runtime.Decimal | null
+  dc_power_5: runtime.Decimal | null
+  dc_power_6: runtime.Decimal | null
+  dc_power_7: runtime.Decimal | null
+  dc_power_8: runtime.Decimal | null
+  dc_power_9: runtime.Decimal | null
+  total_input_power: runtime.Decimal | null
+  grid_total_active_power: runtime.Decimal | null
+  grid_total_reactive_power: runtime.Decimal | null
+  ac_voltage_a: runtime.Decimal | null
+  ac_voltage_b: runtime.Decimal | null
+  ac_voltage_c: runtime.Decimal | null
+  ac_current_a: runtime.Decimal | null
+  ac_current_b: runtime.Decimal | null
+  ac_current_c: runtime.Decimal | null
+  ac_power_a: runtime.Decimal | null
+  ac_power_b: runtime.Decimal | null
+  ac_power_c: runtime.Decimal | null
+  daily_production: runtime.Decimal | null
+  ac_output_frequency: runtime.Decimal | null
+  temperature_1: runtime.Decimal | null
+  temperature_2: runtime.Decimal | null
+  temperature_3: runtime.Decimal | null
+  total_production: runtime.Decimal | null
   fault_registers: number | null
   fault_1: number | null
   fault_2: number | null
   fault_3: number | null
   fault_4: number | null
   fault_5: number | null
-  ac_voltage_a: number | null
-  ac_voltage_b: number | null
-  ac_voltage_c: number | null
-  ac_current_a: number | null
-  ac_current_b: number | null
-  ac_current_c: number | null
-  ac_power_a: bigint | null
-  ac_power_b: bigint | null
-  ac_power_c: bigint | null
-  daily_production: number | null
   grid_status: number | null
   inverter_status: number | null
-  ac_output_frequency: number | null
   temperature_count: number | null
-  temperature_1: number | null
-  temperature_2: number | null
-  temperature_3: number | null
-  total_production: number | null
   total_generation_time: number | null
   message_type: number | null
 }
@@ -200,60 +200,60 @@ export type DeviceLogsMinAggregateOutputType = {
   comm_software_version_1: number | null
   comm_software_version_2: number | null
   control_software_version: number | null
-  dc_voltage_1: number | null
-  dc_voltage_2: number | null
-  dc_voltage_3: number | null
-  dc_voltage_4: number | null
-  dc_voltage_5: number | null
-  dc_voltage_6: number | null
-  dc_voltage_7: number | null
-  dc_voltage_8: number | null
-  dc_voltage_9: number | null
-  dc_current_1: number | null
-  dc_current_2: number | null
-  dc_current_3: number | null
-  dc_current_4: number | null
-  dc_current_5: number | null
-  dc_current_6: number | null
-  dc_current_7: number | null
-  dc_current_8: number | null
-  dc_current_9: number | null
-  dc_power_1: bigint | null
-  dc_power_2: bigint | null
-  dc_power_3: bigint | null
-  dc_power_4: bigint | null
-  dc_power_5: bigint | null
-  dc_power_6: bigint | null
-  dc_power_7: bigint | null
-  dc_power_8: bigint | null
-  dc_power_9: bigint | null
-  total_input_power: bigint | null
-  grid_total_active_power: bigint | null
-  grid_total_reactive_power: bigint | null
+  dc_voltage_1: runtime.Decimal | null
+  dc_voltage_2: runtime.Decimal | null
+  dc_voltage_3: runtime.Decimal | null
+  dc_voltage_4: runtime.Decimal | null
+  dc_voltage_5: runtime.Decimal | null
+  dc_voltage_6: runtime.Decimal | null
+  dc_voltage_7: runtime.Decimal | null
+  dc_voltage_8: runtime.Decimal | null
+  dc_voltage_9: runtime.Decimal | null
+  dc_current_1: runtime.Decimal | null
+  dc_current_2: runtime.Decimal | null
+  dc_current_3: runtime.Decimal | null
+  dc_current_4: runtime.Decimal | null
+  dc_current_5: runtime.Decimal | null
+  dc_current_6: runtime.Decimal | null
+  dc_current_7: runtime.Decimal | null
+  dc_current_8: runtime.Decimal | null
+  dc_current_9: runtime.Decimal | null
+  dc_power_1: runtime.Decimal | null
+  dc_power_2: runtime.Decimal | null
+  dc_power_3: runtime.Decimal | null
+  dc_power_4: runtime.Decimal | null
+  dc_power_5: runtime.Decimal | null
+  dc_power_6: runtime.Decimal | null
+  dc_power_7: runtime.Decimal | null
+  dc_power_8: runtime.Decimal | null
+  dc_power_9: runtime.Decimal | null
+  total_input_power: runtime.Decimal | null
+  grid_total_active_power: runtime.Decimal | null
+  grid_total_reactive_power: runtime.Decimal | null
+  ac_voltage_a: runtime.Decimal | null
+  ac_voltage_b: runtime.Decimal | null
+  ac_voltage_c: runtime.Decimal | null
+  ac_current_a: runtime.Decimal | null
+  ac_current_b: runtime.Decimal | null
+  ac_current_c: runtime.Decimal | null
+  ac_power_a: runtime.Decimal | null
+  ac_power_b: runtime.Decimal | null
+  ac_power_c: runtime.Decimal | null
+  daily_production: runtime.Decimal | null
+  ac_output_frequency: runtime.Decimal | null
+  temperature_1: runtime.Decimal | null
+  temperature_2: runtime.Decimal | null
+  temperature_3: runtime.Decimal | null
+  total_production: runtime.Decimal | null
   fault_registers: number | null
   fault_1: number | null
   fault_2: number | null
   fault_3: number | null
   fault_4: number | null
   fault_5: number | null
-  ac_voltage_a: number | null
-  ac_voltage_b: number | null
-  ac_voltage_c: number | null
-  ac_current_a: number | null
-  ac_current_b: number | null
-  ac_current_c: number | null
-  ac_power_a: bigint | null
-  ac_power_b: bigint | null
-  ac_power_c: bigint | null
-  daily_production: number | null
   grid_status: number | null
   inverter_status: number | null
-  ac_output_frequency: number | null
   temperature_count: number | null
-  temperature_1: number | null
-  temperature_2: number | null
-  temperature_3: number | null
-  total_production: number | null
   total_generation_time: number | null
   timestamp: Date | null
   mac_address: string | null
@@ -286,60 +286,60 @@ export type DeviceLogsMaxAggregateOutputType = {
   comm_software_version_1: number | null
   comm_software_version_2: number | null
   control_software_version: number | null
-  dc_voltage_1: number | null
-  dc_voltage_2: number | null
-  dc_voltage_3: number | null
-  dc_voltage_4: number | null
-  dc_voltage_5: number | null
-  dc_voltage_6: number | null
-  dc_voltage_7: number | null
-  dc_voltage_8: number | null
-  dc_voltage_9: number | null
-  dc_current_1: number | null
-  dc_current_2: number | null
-  dc_current_3: number | null
-  dc_current_4: number | null
-  dc_current_5: number | null
-  dc_current_6: number | null
-  dc_current_7: number | null
-  dc_current_8: number | null
-  dc_current_9: number | null
-  dc_power_1: bigint | null
-  dc_power_2: bigint | null
-  dc_power_3: bigint | null
-  dc_power_4: bigint | null
-  dc_power_5: bigint | null
-  dc_power_6: bigint | null
-  dc_power_7: bigint | null
-  dc_power_8: bigint | null
-  dc_power_9: bigint | null
-  total_input_power: bigint | null
-  grid_total_active_power: bigint | null
-  grid_total_reactive_power: bigint | null
+  dc_voltage_1: runtime.Decimal | null
+  dc_voltage_2: runtime.Decimal | null
+  dc_voltage_3: runtime.Decimal | null
+  dc_voltage_4: runtime.Decimal | null
+  dc_voltage_5: runtime.Decimal | null
+  dc_voltage_6: runtime.Decimal | null
+  dc_voltage_7: runtime.Decimal | null
+  dc_voltage_8: runtime.Decimal | null
+  dc_voltage_9: runtime.Decimal | null
+  dc_current_1: runtime.Decimal | null
+  dc_current_2: runtime.Decimal | null
+  dc_current_3: runtime.Decimal | null
+  dc_current_4: runtime.Decimal | null
+  dc_current_5: runtime.Decimal | null
+  dc_current_6: runtime.Decimal | null
+  dc_current_7: runtime.Decimal | null
+  dc_current_8: runtime.Decimal | null
+  dc_current_9: runtime.Decimal | null
+  dc_power_1: runtime.Decimal | null
+  dc_power_2: runtime.Decimal | null
+  dc_power_3: runtime.Decimal | null
+  dc_power_4: runtime.Decimal | null
+  dc_power_5: runtime.Decimal | null
+  dc_power_6: runtime.Decimal | null
+  dc_power_7: runtime.Decimal | null
+  dc_power_8: runtime.Decimal | null
+  dc_power_9: runtime.Decimal | null
+  total_input_power: runtime.Decimal | null
+  grid_total_active_power: runtime.Decimal | null
+  grid_total_reactive_power: runtime.Decimal | null
+  ac_voltage_a: runtime.Decimal | null
+  ac_voltage_b: runtime.Decimal | null
+  ac_voltage_c: runtime.Decimal | null
+  ac_current_a: runtime.Decimal | null
+  ac_current_b: runtime.Decimal | null
+  ac_current_c: runtime.Decimal | null
+  ac_power_a: runtime.Decimal | null
+  ac_power_b: runtime.Decimal | null
+  ac_power_c: runtime.Decimal | null
+  daily_production: runtime.Decimal | null
+  ac_output_frequency: runtime.Decimal | null
+  temperature_1: runtime.Decimal | null
+  temperature_2: runtime.Decimal | null
+  temperature_3: runtime.Decimal | null
+  total_production: runtime.Decimal | null
   fault_registers: number | null
   fault_1: number | null
   fault_2: number | null
   fault_3: number | null
   fault_4: number | null
   fault_5: number | null
-  ac_voltage_a: number | null
-  ac_voltage_b: number | null
-  ac_voltage_c: number | null
-  ac_current_a: number | null
-  ac_current_b: number | null
-  ac_current_c: number | null
-  ac_power_a: bigint | null
-  ac_power_b: bigint | null
-  ac_power_c: bigint | null
-  daily_production: number | null
   grid_status: number | null
   inverter_status: number | null
-  ac_output_frequency: number | null
   temperature_count: number | null
-  temperature_1: number | null
-  temperature_2: number | null
-  temperature_3: number | null
-  total_production: number | null
   total_generation_time: number | null
   timestamp: Date | null
   mac_address: string | null
@@ -402,12 +402,6 @@ export type DeviceLogsCountAggregateOutputType = {
   total_input_power: number
   grid_total_active_power: number
   grid_total_reactive_power: number
-  fault_registers: number
-  fault_1: number
-  fault_2: number
-  fault_3: number
-  fault_4: number
-  fault_5: number
   ac_voltage_a: number
   ac_voltage_b: number
   ac_voltage_c: number
@@ -418,14 +412,20 @@ export type DeviceLogsCountAggregateOutputType = {
   ac_power_b: number
   ac_power_c: number
   daily_production: number
-  grid_status: number
-  inverter_status: number
   ac_output_frequency: number
-  temperature_count: number
   temperature_1: number
   temperature_2: number
   temperature_3: number
   total_production: number
+  fault_registers: number
+  fault_1: number
+  fault_2: number
+  fault_3: number
+  fault_4: number
+  fault_5: number
+  grid_status: number
+  inverter_status: number
+  temperature_count: number
   total_generation_time: number
   timestamp: number
   mac_address: number
@@ -481,12 +481,6 @@ export type DeviceLogsAvgAggregateInputType = {
   total_input_power?: true
   grid_total_active_power?: true
   grid_total_reactive_power?: true
-  fault_registers?: true
-  fault_1?: true
-  fault_2?: true
-  fault_3?: true
-  fault_4?: true
-  fault_5?: true
   ac_voltage_a?: true
   ac_voltage_b?: true
   ac_voltage_c?: true
@@ -497,14 +491,20 @@ export type DeviceLogsAvgAggregateInputType = {
   ac_power_b?: true
   ac_power_c?: true
   daily_production?: true
-  grid_status?: true
-  inverter_status?: true
   ac_output_frequency?: true
-  temperature_count?: true
   temperature_1?: true
   temperature_2?: true
   temperature_3?: true
   total_production?: true
+  fault_registers?: true
+  fault_1?: true
+  fault_2?: true
+  fault_3?: true
+  fault_4?: true
+  fault_5?: true
+  grid_status?: true
+  inverter_status?: true
+  temperature_count?: true
   total_generation_time?: true
   message_type?: true
 }
@@ -555,12 +555,6 @@ export type DeviceLogsSumAggregateInputType = {
   total_input_power?: true
   grid_total_active_power?: true
   grid_total_reactive_power?: true
-  fault_registers?: true
-  fault_1?: true
-  fault_2?: true
-  fault_3?: true
-  fault_4?: true
-  fault_5?: true
   ac_voltage_a?: true
   ac_voltage_b?: true
   ac_voltage_c?: true
@@ -571,14 +565,20 @@ export type DeviceLogsSumAggregateInputType = {
   ac_power_b?: true
   ac_power_c?: true
   daily_production?: true
-  grid_status?: true
-  inverter_status?: true
   ac_output_frequency?: true
-  temperature_count?: true
   temperature_1?: true
   temperature_2?: true
   temperature_3?: true
   total_production?: true
+  fault_registers?: true
+  fault_1?: true
+  fault_2?: true
+  fault_3?: true
+  fault_4?: true
+  fault_5?: true
+  grid_status?: true
+  inverter_status?: true
+  temperature_count?: true
   total_generation_time?: true
   message_type?: true
 }
@@ -639,12 +639,6 @@ export type DeviceLogsMinAggregateInputType = {
   total_input_power?: true
   grid_total_active_power?: true
   grid_total_reactive_power?: true
-  fault_registers?: true
-  fault_1?: true
-  fault_2?: true
-  fault_3?: true
-  fault_4?: true
-  fault_5?: true
   ac_voltage_a?: true
   ac_voltage_b?: true
   ac_voltage_c?: true
@@ -655,14 +649,20 @@ export type DeviceLogsMinAggregateInputType = {
   ac_power_b?: true
   ac_power_c?: true
   daily_production?: true
-  grid_status?: true
-  inverter_status?: true
   ac_output_frequency?: true
-  temperature_count?: true
   temperature_1?: true
   temperature_2?: true
   temperature_3?: true
   total_production?: true
+  fault_registers?: true
+  fault_1?: true
+  fault_2?: true
+  fault_3?: true
+  fault_4?: true
+  fault_5?: true
+  grid_status?: true
+  inverter_status?: true
+  temperature_count?: true
   total_generation_time?: true
   timestamp?: true
   mac_address?: true
@@ -725,12 +725,6 @@ export type DeviceLogsMaxAggregateInputType = {
   total_input_power?: true
   grid_total_active_power?: true
   grid_total_reactive_power?: true
-  fault_registers?: true
-  fault_1?: true
-  fault_2?: true
-  fault_3?: true
-  fault_4?: true
-  fault_5?: true
   ac_voltage_a?: true
   ac_voltage_b?: true
   ac_voltage_c?: true
@@ -741,14 +735,20 @@ export type DeviceLogsMaxAggregateInputType = {
   ac_power_b?: true
   ac_power_c?: true
   daily_production?: true
-  grid_status?: true
-  inverter_status?: true
   ac_output_frequency?: true
-  temperature_count?: true
   temperature_1?: true
   temperature_2?: true
   temperature_3?: true
   total_production?: true
+  fault_registers?: true
+  fault_1?: true
+  fault_2?: true
+  fault_3?: true
+  fault_4?: true
+  fault_5?: true
+  grid_status?: true
+  inverter_status?: true
+  temperature_count?: true
   total_generation_time?: true
   timestamp?: true
   mac_address?: true
@@ -811,12 +811,6 @@ export type DeviceLogsCountAggregateInputType = {
   total_input_power?: true
   grid_total_active_power?: true
   grid_total_reactive_power?: true
-  fault_registers?: true
-  fault_1?: true
-  fault_2?: true
-  fault_3?: true
-  fault_4?: true
-  fault_5?: true
   ac_voltage_a?: true
   ac_voltage_b?: true
   ac_voltage_c?: true
@@ -827,14 +821,20 @@ export type DeviceLogsCountAggregateInputType = {
   ac_power_b?: true
   ac_power_c?: true
   daily_production?: true
-  grid_status?: true
-  inverter_status?: true
   ac_output_frequency?: true
-  temperature_count?: true
   temperature_1?: true
   temperature_2?: true
   temperature_3?: true
   total_production?: true
+  fault_registers?: true
+  fault_1?: true
+  fault_2?: true
+  fault_3?: true
+  fault_4?: true
+  fault_5?: true
+  grid_status?: true
+  inverter_status?: true
+  temperature_count?: true
   total_generation_time?: true
   timestamp?: true
   mac_address?: true
@@ -955,60 +955,60 @@ export type DeviceLogsGroupByOutputType = {
   comm_software_version_1: number | null
   comm_software_version_2: number | null
   control_software_version: number | null
-  dc_voltage_1: number | null
-  dc_voltage_2: number | null
-  dc_voltage_3: number | null
-  dc_voltage_4: number | null
-  dc_voltage_5: number | null
-  dc_voltage_6: number | null
-  dc_voltage_7: number | null
-  dc_voltage_8: number | null
-  dc_voltage_9: number | null
-  dc_current_1: number | null
-  dc_current_2: number | null
-  dc_current_3: number | null
-  dc_current_4: number | null
-  dc_current_5: number | null
-  dc_current_6: number | null
-  dc_current_7: number | null
-  dc_current_8: number | null
-  dc_current_9: number | null
-  dc_power_1: bigint | null
-  dc_power_2: bigint | null
-  dc_power_3: bigint | null
-  dc_power_4: bigint | null
-  dc_power_5: bigint | null
-  dc_power_6: bigint | null
-  dc_power_7: bigint | null
-  dc_power_8: bigint | null
-  dc_power_9: bigint | null
-  total_input_power: bigint | null
-  grid_total_active_power: bigint | null
-  grid_total_reactive_power: bigint | null
+  dc_voltage_1: runtime.Decimal | null
+  dc_voltage_2: runtime.Decimal | null
+  dc_voltage_3: runtime.Decimal | null
+  dc_voltage_4: runtime.Decimal | null
+  dc_voltage_5: runtime.Decimal | null
+  dc_voltage_6: runtime.Decimal | null
+  dc_voltage_7: runtime.Decimal | null
+  dc_voltage_8: runtime.Decimal | null
+  dc_voltage_9: runtime.Decimal | null
+  dc_current_1: runtime.Decimal | null
+  dc_current_2: runtime.Decimal | null
+  dc_current_3: runtime.Decimal | null
+  dc_current_4: runtime.Decimal | null
+  dc_current_5: runtime.Decimal | null
+  dc_current_6: runtime.Decimal | null
+  dc_current_7: runtime.Decimal | null
+  dc_current_8: runtime.Decimal | null
+  dc_current_9: runtime.Decimal | null
+  dc_power_1: runtime.Decimal | null
+  dc_power_2: runtime.Decimal | null
+  dc_power_3: runtime.Decimal | null
+  dc_power_4: runtime.Decimal | null
+  dc_power_5: runtime.Decimal | null
+  dc_power_6: runtime.Decimal | null
+  dc_power_7: runtime.Decimal | null
+  dc_power_8: runtime.Decimal | null
+  dc_power_9: runtime.Decimal | null
+  total_input_power: runtime.Decimal | null
+  grid_total_active_power: runtime.Decimal | null
+  grid_total_reactive_power: runtime.Decimal | null
+  ac_voltage_a: runtime.Decimal | null
+  ac_voltage_b: runtime.Decimal | null
+  ac_voltage_c: runtime.Decimal | null
+  ac_current_a: runtime.Decimal | null
+  ac_current_b: runtime.Decimal | null
+  ac_current_c: runtime.Decimal | null
+  ac_power_a: runtime.Decimal | null
+  ac_power_b: runtime.Decimal | null
+  ac_power_c: runtime.Decimal | null
+  daily_production: runtime.Decimal | null
+  ac_output_frequency: runtime.Decimal | null
+  temperature_1: runtime.Decimal | null
+  temperature_2: runtime.Decimal | null
+  temperature_3: runtime.Decimal | null
+  total_production: runtime.Decimal | null
   fault_registers: number | null
   fault_1: number | null
   fault_2: number | null
   fault_3: number | null
   fault_4: number | null
   fault_5: number | null
-  ac_voltage_a: number | null
-  ac_voltage_b: number | null
-  ac_voltage_c: number | null
-  ac_current_a: number | null
-  ac_current_b: number | null
-  ac_current_c: number | null
-  ac_power_a: bigint | null
-  ac_power_b: bigint | null
-  ac_power_c: bigint | null
-  daily_production: number | null
   grid_status: number | null
   inverter_status: number | null
-  ac_output_frequency: number | null
   temperature_count: number | null
-  temperature_1: number | null
-  temperature_2: number | null
-  temperature_3: number | null
-  total_production: number | null
   total_generation_time: number | null
   timestamp: Date
   mac_address: string | null
@@ -1065,60 +1065,60 @@ export type DeviceLogsWhereInput = {
   comm_software_version_1?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   comm_software_version_2?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   control_software_version?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_1?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_2?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_3?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_4?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_5?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_6?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_7?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_8?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_9?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_1?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_2?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_3?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_4?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_5?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_6?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_7?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_8?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_9?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_power_1?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_2?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_3?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_4?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_5?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_6?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_7?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_8?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_9?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  total_input_power?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  grid_total_active_power?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  grid_total_reactive_power?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
+  dc_voltage_1?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   fault_1?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   fault_2?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   fault_3?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   fault_4?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   fault_5?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_voltage_a?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_voltage_b?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_voltage_c?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_current_a?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_current_b?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_current_c?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_power_a?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  ac_power_b?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  ac_power_c?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  daily_production?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   grid_status?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   inverter_status?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_output_frequency?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   temperature_count?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  temperature_1?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  temperature_2?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  temperature_3?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  total_production?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   total_generation_time?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   timestamp?: Prisma.DateTimeFilter<"DeviceLogs"> | Date | string
   mac_address?: Prisma.StringNullableFilter<"DeviceLogs"> | string | null
@@ -1184,12 +1184,6 @@ export type DeviceLogsOrderByWithRelationInput = {
   total_input_power?: Prisma.SortOrderInput | Prisma.SortOrder
   grid_total_active_power?: Prisma.SortOrderInput | Prisma.SortOrder
   grid_total_reactive_power?: Prisma.SortOrderInput | Prisma.SortOrder
-  fault_registers?: Prisma.SortOrderInput | Prisma.SortOrder
-  fault_1?: Prisma.SortOrderInput | Prisma.SortOrder
-  fault_2?: Prisma.SortOrderInput | Prisma.SortOrder
-  fault_3?: Prisma.SortOrderInput | Prisma.SortOrder
-  fault_4?: Prisma.SortOrderInput | Prisma.SortOrder
-  fault_5?: Prisma.SortOrderInput | Prisma.SortOrder
   ac_voltage_a?: Prisma.SortOrderInput | Prisma.SortOrder
   ac_voltage_b?: Prisma.SortOrderInput | Prisma.SortOrder
   ac_voltage_c?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -1200,14 +1194,20 @@ export type DeviceLogsOrderByWithRelationInput = {
   ac_power_b?: Prisma.SortOrderInput | Prisma.SortOrder
   ac_power_c?: Prisma.SortOrderInput | Prisma.SortOrder
   daily_production?: Prisma.SortOrderInput | Prisma.SortOrder
-  grid_status?: Prisma.SortOrderInput | Prisma.SortOrder
-  inverter_status?: Prisma.SortOrderInput | Prisma.SortOrder
   ac_output_frequency?: Prisma.SortOrderInput | Prisma.SortOrder
-  temperature_count?: Prisma.SortOrderInput | Prisma.SortOrder
   temperature_1?: Prisma.SortOrderInput | Prisma.SortOrder
   temperature_2?: Prisma.SortOrderInput | Prisma.SortOrder
   temperature_3?: Prisma.SortOrderInput | Prisma.SortOrder
   total_production?: Prisma.SortOrderInput | Prisma.SortOrder
+  fault_registers?: Prisma.SortOrderInput | Prisma.SortOrder
+  fault_1?: Prisma.SortOrderInput | Prisma.SortOrder
+  fault_2?: Prisma.SortOrderInput | Prisma.SortOrder
+  fault_3?: Prisma.SortOrderInput | Prisma.SortOrder
+  fault_4?: Prisma.SortOrderInput | Prisma.SortOrder
+  fault_5?: Prisma.SortOrderInput | Prisma.SortOrder
+  grid_status?: Prisma.SortOrderInput | Prisma.SortOrder
+  inverter_status?: Prisma.SortOrderInput | Prisma.SortOrder
+  temperature_count?: Prisma.SortOrderInput | Prisma.SortOrder
   total_generation_time?: Prisma.SortOrderInput | Prisma.SortOrder
   timestamp?: Prisma.SortOrder
   mac_address?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -1246,60 +1246,60 @@ export type DeviceLogsWhereUniqueInput = Prisma.AtLeast<{
   comm_software_version_1?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   comm_software_version_2?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   control_software_version?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_1?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_2?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_3?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_4?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_5?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_6?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_7?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_8?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_voltage_9?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_1?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_2?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_3?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_4?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_5?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_6?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_7?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_8?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_current_9?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  dc_power_1?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_2?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_3?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_4?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_5?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_6?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_7?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_8?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_9?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  total_input_power?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  grid_total_active_power?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  grid_total_reactive_power?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
+  dc_voltage_1?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: Prisma.DecimalNullableFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   fault_1?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   fault_2?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   fault_3?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   fault_4?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   fault_5?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_voltage_a?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_voltage_b?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_voltage_c?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_current_a?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_current_b?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_current_c?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_power_a?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  ac_power_b?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  ac_power_c?: Prisma.BigIntNullableFilter<"DeviceLogs"> | bigint | number | null
-  daily_production?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   grid_status?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   inverter_status?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  ac_output_frequency?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   temperature_count?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  temperature_1?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  temperature_2?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  temperature_3?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
-  total_production?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   total_generation_time?: Prisma.IntNullableFilter<"DeviceLogs"> | number | null
   timestamp?: Prisma.DateTimeFilter<"DeviceLogs"> | Date | string
   mac_address?: Prisma.StringNullableFilter<"DeviceLogs"> | string | null
@@ -1365,12 +1365,6 @@ export type DeviceLogsOrderByWithAggregationInput = {
   total_input_power?: Prisma.SortOrderInput | Prisma.SortOrder
   grid_total_active_power?: Prisma.SortOrderInput | Prisma.SortOrder
   grid_total_reactive_power?: Prisma.SortOrderInput | Prisma.SortOrder
-  fault_registers?: Prisma.SortOrderInput | Prisma.SortOrder
-  fault_1?: Prisma.SortOrderInput | Prisma.SortOrder
-  fault_2?: Prisma.SortOrderInput | Prisma.SortOrder
-  fault_3?: Prisma.SortOrderInput | Prisma.SortOrder
-  fault_4?: Prisma.SortOrderInput | Prisma.SortOrder
-  fault_5?: Prisma.SortOrderInput | Prisma.SortOrder
   ac_voltage_a?: Prisma.SortOrderInput | Prisma.SortOrder
   ac_voltage_b?: Prisma.SortOrderInput | Prisma.SortOrder
   ac_voltage_c?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -1381,14 +1375,20 @@ export type DeviceLogsOrderByWithAggregationInput = {
   ac_power_b?: Prisma.SortOrderInput | Prisma.SortOrder
   ac_power_c?: Prisma.SortOrderInput | Prisma.SortOrder
   daily_production?: Prisma.SortOrderInput | Prisma.SortOrder
-  grid_status?: Prisma.SortOrderInput | Prisma.SortOrder
-  inverter_status?: Prisma.SortOrderInput | Prisma.SortOrder
   ac_output_frequency?: Prisma.SortOrderInput | Prisma.SortOrder
-  temperature_count?: Prisma.SortOrderInput | Prisma.SortOrder
   temperature_1?: Prisma.SortOrderInput | Prisma.SortOrder
   temperature_2?: Prisma.SortOrderInput | Prisma.SortOrder
   temperature_3?: Prisma.SortOrderInput | Prisma.SortOrder
   total_production?: Prisma.SortOrderInput | Prisma.SortOrder
+  fault_registers?: Prisma.SortOrderInput | Prisma.SortOrder
+  fault_1?: Prisma.SortOrderInput | Prisma.SortOrder
+  fault_2?: Prisma.SortOrderInput | Prisma.SortOrder
+  fault_3?: Prisma.SortOrderInput | Prisma.SortOrder
+  fault_4?: Prisma.SortOrderInput | Prisma.SortOrder
+  fault_5?: Prisma.SortOrderInput | Prisma.SortOrder
+  grid_status?: Prisma.SortOrderInput | Prisma.SortOrder
+  inverter_status?: Prisma.SortOrderInput | Prisma.SortOrder
+  temperature_count?: Prisma.SortOrderInput | Prisma.SortOrder
   total_generation_time?: Prisma.SortOrderInput | Prisma.SortOrder
   timestamp?: Prisma.SortOrder
   mac_address?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -1430,60 +1430,60 @@ export type DeviceLogsScalarWhereWithAggregatesInput = {
   comm_software_version_1?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
   comm_software_version_2?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
   control_software_version?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_voltage_1?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_voltage_2?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_voltage_3?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_voltage_4?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_voltage_5?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_voltage_6?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_voltage_7?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_voltage_8?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_voltage_9?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_current_1?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_current_2?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_current_3?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_current_4?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_current_5?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_current_6?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_current_7?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_current_8?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_current_9?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  dc_power_1?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_2?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_3?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_4?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_5?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_6?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_7?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_8?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  dc_power_9?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  total_input_power?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  grid_total_active_power?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  grid_total_reactive_power?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
+  dc_voltage_1?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogs"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
   fault_1?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
   fault_2?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
   fault_3?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
   fault_4?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
   fault_5?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  ac_voltage_a?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  ac_voltage_b?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  ac_voltage_c?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  ac_current_a?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  ac_current_b?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  ac_current_c?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  ac_power_a?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  ac_power_b?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  ac_power_c?: Prisma.BigIntNullableWithAggregatesFilter<"DeviceLogs"> | bigint | number | null
-  daily_production?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
   grid_status?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
   inverter_status?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  ac_output_frequency?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
   temperature_count?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  temperature_1?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  temperature_2?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  temperature_3?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
-  total_production?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
   total_generation_time?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogs"> | number | null
   timestamp?: Prisma.DateTimeWithAggregatesFilter<"DeviceLogs"> | Date | string
   mac_address?: Prisma.StringNullableWithAggregatesFilter<"DeviceLogs"> | string | null
@@ -1517,60 +1517,60 @@ export type DeviceLogsCreateInput = {
   comm_software_version_1?: number | null
   comm_software_version_2?: number | null
   control_software_version?: number | null
-  dc_voltage_1?: number | null
-  dc_voltage_2?: number | null
-  dc_voltage_3?: number | null
-  dc_voltage_4?: number | null
-  dc_voltage_5?: number | null
-  dc_voltage_6?: number | null
-  dc_voltage_7?: number | null
-  dc_voltage_8?: number | null
-  dc_voltage_9?: number | null
-  dc_current_1?: number | null
-  dc_current_2?: number | null
-  dc_current_3?: number | null
-  dc_current_4?: number | null
-  dc_current_5?: number | null
-  dc_current_6?: number | null
-  dc_current_7?: number | null
-  dc_current_8?: number | null
-  dc_current_9?: number | null
-  dc_power_1?: bigint | number | null
-  dc_power_2?: bigint | number | null
-  dc_power_3?: bigint | number | null
-  dc_power_4?: bigint | number | null
-  dc_power_5?: bigint | number | null
-  dc_power_6?: bigint | number | null
-  dc_power_7?: bigint | number | null
-  dc_power_8?: bigint | number | null
-  dc_power_9?: bigint | number | null
-  total_input_power?: bigint | number | null
-  grid_total_active_power?: bigint | number | null
-  grid_total_reactive_power?: bigint | number | null
+  dc_voltage_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: number | null
   fault_1?: number | null
   fault_2?: number | null
   fault_3?: number | null
   fault_4?: number | null
   fault_5?: number | null
-  ac_voltage_a?: number | null
-  ac_voltage_b?: number | null
-  ac_voltage_c?: number | null
-  ac_current_a?: number | null
-  ac_current_b?: number | null
-  ac_current_c?: number | null
-  ac_power_a?: bigint | number | null
-  ac_power_b?: bigint | number | null
-  ac_power_c?: bigint | number | null
-  daily_production?: number | null
   grid_status?: number | null
   inverter_status?: number | null
-  ac_output_frequency?: number | null
   temperature_count?: number | null
-  temperature_1?: number | null
-  temperature_2?: number | null
-  temperature_3?: number | null
-  total_production?: number | null
   total_generation_time?: number | null
   timestamp: Date | string
   mac_address?: string | null
@@ -1606,60 +1606,60 @@ export type DeviceLogsUncheckedCreateInput = {
   comm_software_version_1?: number | null
   comm_software_version_2?: number | null
   control_software_version?: number | null
-  dc_voltage_1?: number | null
-  dc_voltage_2?: number | null
-  dc_voltage_3?: number | null
-  dc_voltage_4?: number | null
-  dc_voltage_5?: number | null
-  dc_voltage_6?: number | null
-  dc_voltage_7?: number | null
-  dc_voltage_8?: number | null
-  dc_voltage_9?: number | null
-  dc_current_1?: number | null
-  dc_current_2?: number | null
-  dc_current_3?: number | null
-  dc_current_4?: number | null
-  dc_current_5?: number | null
-  dc_current_6?: number | null
-  dc_current_7?: number | null
-  dc_current_8?: number | null
-  dc_current_9?: number | null
-  dc_power_1?: bigint | number | null
-  dc_power_2?: bigint | number | null
-  dc_power_3?: bigint | number | null
-  dc_power_4?: bigint | number | null
-  dc_power_5?: bigint | number | null
-  dc_power_6?: bigint | number | null
-  dc_power_7?: bigint | number | null
-  dc_power_8?: bigint | number | null
-  dc_power_9?: bigint | number | null
-  total_input_power?: bigint | number | null
-  grid_total_active_power?: bigint | number | null
-  grid_total_reactive_power?: bigint | number | null
+  dc_voltage_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: number | null
   fault_1?: number | null
   fault_2?: number | null
   fault_3?: number | null
   fault_4?: number | null
   fault_5?: number | null
-  ac_voltage_a?: number | null
-  ac_voltage_b?: number | null
-  ac_voltage_c?: number | null
-  ac_current_a?: number | null
-  ac_current_b?: number | null
-  ac_current_c?: number | null
-  ac_power_a?: bigint | number | null
-  ac_power_b?: bigint | number | null
-  ac_power_c?: bigint | number | null
-  daily_production?: number | null
   grid_status?: number | null
   inverter_status?: number | null
-  ac_output_frequency?: number | null
   temperature_count?: number | null
-  temperature_1?: number | null
-  temperature_2?: number | null
-  temperature_3?: number | null
-  total_production?: number | null
   total_generation_time?: number | null
   timestamp: Date | string
   mac_address?: string | null
@@ -1695,60 +1695,60 @@ export type DeviceLogsUpdateInput = {
   comm_software_version_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   comm_software_version_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   control_software_version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_power_1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_3?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_4?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_5?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_6?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_7?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_8?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_9?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  total_input_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_active_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_reactive_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  dc_voltage_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_power_a?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_b?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_c?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  daily_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grid_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   inverter_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_output_frequency?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   temperature_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total_generation_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mac_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1784,60 +1784,60 @@ export type DeviceLogsUncheckedUpdateInput = {
   comm_software_version_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   comm_software_version_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   control_software_version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_power_1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_3?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_4?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_5?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_6?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_7?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_8?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_9?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  total_input_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_active_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_reactive_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  dc_voltage_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_power_a?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_b?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_c?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  daily_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grid_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   inverter_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_output_frequency?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   temperature_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total_generation_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mac_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1873,60 +1873,60 @@ export type DeviceLogsCreateManyInput = {
   comm_software_version_1?: number | null
   comm_software_version_2?: number | null
   control_software_version?: number | null
-  dc_voltage_1?: number | null
-  dc_voltage_2?: number | null
-  dc_voltage_3?: number | null
-  dc_voltage_4?: number | null
-  dc_voltage_5?: number | null
-  dc_voltage_6?: number | null
-  dc_voltage_7?: number | null
-  dc_voltage_8?: number | null
-  dc_voltage_9?: number | null
-  dc_current_1?: number | null
-  dc_current_2?: number | null
-  dc_current_3?: number | null
-  dc_current_4?: number | null
-  dc_current_5?: number | null
-  dc_current_6?: number | null
-  dc_current_7?: number | null
-  dc_current_8?: number | null
-  dc_current_9?: number | null
-  dc_power_1?: bigint | number | null
-  dc_power_2?: bigint | number | null
-  dc_power_3?: bigint | number | null
-  dc_power_4?: bigint | number | null
-  dc_power_5?: bigint | number | null
-  dc_power_6?: bigint | number | null
-  dc_power_7?: bigint | number | null
-  dc_power_8?: bigint | number | null
-  dc_power_9?: bigint | number | null
-  total_input_power?: bigint | number | null
-  grid_total_active_power?: bigint | number | null
-  grid_total_reactive_power?: bigint | number | null
+  dc_voltage_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: number | null
   fault_1?: number | null
   fault_2?: number | null
   fault_3?: number | null
   fault_4?: number | null
   fault_5?: number | null
-  ac_voltage_a?: number | null
-  ac_voltage_b?: number | null
-  ac_voltage_c?: number | null
-  ac_current_a?: number | null
-  ac_current_b?: number | null
-  ac_current_c?: number | null
-  ac_power_a?: bigint | number | null
-  ac_power_b?: bigint | number | null
-  ac_power_c?: bigint | number | null
-  daily_production?: number | null
   grid_status?: number | null
   inverter_status?: number | null
-  ac_output_frequency?: number | null
   temperature_count?: number | null
-  temperature_1?: number | null
-  temperature_2?: number | null
-  temperature_3?: number | null
-  total_production?: number | null
   total_generation_time?: number | null
   timestamp: Date | string
   mac_address?: string | null
@@ -1960,60 +1960,60 @@ export type DeviceLogsUpdateManyMutationInput = {
   comm_software_version_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   comm_software_version_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   control_software_version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_power_1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_3?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_4?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_5?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_6?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_7?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_8?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_9?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  total_input_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_active_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_reactive_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  dc_voltage_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_power_a?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_b?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_c?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  daily_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grid_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   inverter_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_output_frequency?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   temperature_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total_generation_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mac_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2047,60 +2047,60 @@ export type DeviceLogsUncheckedUpdateManyInput = {
   comm_software_version_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   comm_software_version_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   control_software_version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_power_1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_3?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_4?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_5?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_6?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_7?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_8?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_9?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  total_input_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_active_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_reactive_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  dc_voltage_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_power_a?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_b?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_c?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  daily_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grid_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   inverter_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_output_frequency?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   temperature_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total_generation_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mac_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2164,12 +2164,6 @@ export type DeviceLogsCountOrderByAggregateInput = {
   total_input_power?: Prisma.SortOrder
   grid_total_active_power?: Prisma.SortOrder
   grid_total_reactive_power?: Prisma.SortOrder
-  fault_registers?: Prisma.SortOrder
-  fault_1?: Prisma.SortOrder
-  fault_2?: Prisma.SortOrder
-  fault_3?: Prisma.SortOrder
-  fault_4?: Prisma.SortOrder
-  fault_5?: Prisma.SortOrder
   ac_voltage_a?: Prisma.SortOrder
   ac_voltage_b?: Prisma.SortOrder
   ac_voltage_c?: Prisma.SortOrder
@@ -2180,14 +2174,20 @@ export type DeviceLogsCountOrderByAggregateInput = {
   ac_power_b?: Prisma.SortOrder
   ac_power_c?: Prisma.SortOrder
   daily_production?: Prisma.SortOrder
-  grid_status?: Prisma.SortOrder
-  inverter_status?: Prisma.SortOrder
   ac_output_frequency?: Prisma.SortOrder
-  temperature_count?: Prisma.SortOrder
   temperature_1?: Prisma.SortOrder
   temperature_2?: Prisma.SortOrder
   temperature_3?: Prisma.SortOrder
   total_production?: Prisma.SortOrder
+  fault_registers?: Prisma.SortOrder
+  fault_1?: Prisma.SortOrder
+  fault_2?: Prisma.SortOrder
+  fault_3?: Prisma.SortOrder
+  fault_4?: Prisma.SortOrder
+  fault_5?: Prisma.SortOrder
+  grid_status?: Prisma.SortOrder
+  inverter_status?: Prisma.SortOrder
+  temperature_count?: Prisma.SortOrder
   total_generation_time?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
   mac_address?: Prisma.SortOrder
@@ -2241,12 +2241,6 @@ export type DeviceLogsAvgOrderByAggregateInput = {
   total_input_power?: Prisma.SortOrder
   grid_total_active_power?: Prisma.SortOrder
   grid_total_reactive_power?: Prisma.SortOrder
-  fault_registers?: Prisma.SortOrder
-  fault_1?: Prisma.SortOrder
-  fault_2?: Prisma.SortOrder
-  fault_3?: Prisma.SortOrder
-  fault_4?: Prisma.SortOrder
-  fault_5?: Prisma.SortOrder
   ac_voltage_a?: Prisma.SortOrder
   ac_voltage_b?: Prisma.SortOrder
   ac_voltage_c?: Prisma.SortOrder
@@ -2257,14 +2251,20 @@ export type DeviceLogsAvgOrderByAggregateInput = {
   ac_power_b?: Prisma.SortOrder
   ac_power_c?: Prisma.SortOrder
   daily_production?: Prisma.SortOrder
-  grid_status?: Prisma.SortOrder
-  inverter_status?: Prisma.SortOrder
   ac_output_frequency?: Prisma.SortOrder
-  temperature_count?: Prisma.SortOrder
   temperature_1?: Prisma.SortOrder
   temperature_2?: Prisma.SortOrder
   temperature_3?: Prisma.SortOrder
   total_production?: Prisma.SortOrder
+  fault_registers?: Prisma.SortOrder
+  fault_1?: Prisma.SortOrder
+  fault_2?: Prisma.SortOrder
+  fault_3?: Prisma.SortOrder
+  fault_4?: Prisma.SortOrder
+  fault_5?: Prisma.SortOrder
+  grid_status?: Prisma.SortOrder
+  inverter_status?: Prisma.SortOrder
+  temperature_count?: Prisma.SortOrder
   total_generation_time?: Prisma.SortOrder
   message_type?: Prisma.SortOrder
 }
@@ -2325,12 +2325,6 @@ export type DeviceLogsMaxOrderByAggregateInput = {
   total_input_power?: Prisma.SortOrder
   grid_total_active_power?: Prisma.SortOrder
   grid_total_reactive_power?: Prisma.SortOrder
-  fault_registers?: Prisma.SortOrder
-  fault_1?: Prisma.SortOrder
-  fault_2?: Prisma.SortOrder
-  fault_3?: Prisma.SortOrder
-  fault_4?: Prisma.SortOrder
-  fault_5?: Prisma.SortOrder
   ac_voltage_a?: Prisma.SortOrder
   ac_voltage_b?: Prisma.SortOrder
   ac_voltage_c?: Prisma.SortOrder
@@ -2341,14 +2335,20 @@ export type DeviceLogsMaxOrderByAggregateInput = {
   ac_power_b?: Prisma.SortOrder
   ac_power_c?: Prisma.SortOrder
   daily_production?: Prisma.SortOrder
-  grid_status?: Prisma.SortOrder
-  inverter_status?: Prisma.SortOrder
   ac_output_frequency?: Prisma.SortOrder
-  temperature_count?: Prisma.SortOrder
   temperature_1?: Prisma.SortOrder
   temperature_2?: Prisma.SortOrder
   temperature_3?: Prisma.SortOrder
   total_production?: Prisma.SortOrder
+  fault_registers?: Prisma.SortOrder
+  fault_1?: Prisma.SortOrder
+  fault_2?: Prisma.SortOrder
+  fault_3?: Prisma.SortOrder
+  fault_4?: Prisma.SortOrder
+  fault_5?: Prisma.SortOrder
+  grid_status?: Prisma.SortOrder
+  inverter_status?: Prisma.SortOrder
+  temperature_count?: Prisma.SortOrder
   total_generation_time?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
   mac_address?: Prisma.SortOrder
@@ -2411,12 +2411,6 @@ export type DeviceLogsMinOrderByAggregateInput = {
   total_input_power?: Prisma.SortOrder
   grid_total_active_power?: Prisma.SortOrder
   grid_total_reactive_power?: Prisma.SortOrder
-  fault_registers?: Prisma.SortOrder
-  fault_1?: Prisma.SortOrder
-  fault_2?: Prisma.SortOrder
-  fault_3?: Prisma.SortOrder
-  fault_4?: Prisma.SortOrder
-  fault_5?: Prisma.SortOrder
   ac_voltage_a?: Prisma.SortOrder
   ac_voltage_b?: Prisma.SortOrder
   ac_voltage_c?: Prisma.SortOrder
@@ -2427,14 +2421,20 @@ export type DeviceLogsMinOrderByAggregateInput = {
   ac_power_b?: Prisma.SortOrder
   ac_power_c?: Prisma.SortOrder
   daily_production?: Prisma.SortOrder
-  grid_status?: Prisma.SortOrder
-  inverter_status?: Prisma.SortOrder
   ac_output_frequency?: Prisma.SortOrder
-  temperature_count?: Prisma.SortOrder
   temperature_1?: Prisma.SortOrder
   temperature_2?: Prisma.SortOrder
   temperature_3?: Prisma.SortOrder
   total_production?: Prisma.SortOrder
+  fault_registers?: Prisma.SortOrder
+  fault_1?: Prisma.SortOrder
+  fault_2?: Prisma.SortOrder
+  fault_3?: Prisma.SortOrder
+  fault_4?: Prisma.SortOrder
+  fault_5?: Prisma.SortOrder
+  grid_status?: Prisma.SortOrder
+  inverter_status?: Prisma.SortOrder
+  temperature_count?: Prisma.SortOrder
   total_generation_time?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
   mac_address?: Prisma.SortOrder
@@ -2487,12 +2487,6 @@ export type DeviceLogsSumOrderByAggregateInput = {
   total_input_power?: Prisma.SortOrder
   grid_total_active_power?: Prisma.SortOrder
   grid_total_reactive_power?: Prisma.SortOrder
-  fault_registers?: Prisma.SortOrder
-  fault_1?: Prisma.SortOrder
-  fault_2?: Prisma.SortOrder
-  fault_3?: Prisma.SortOrder
-  fault_4?: Prisma.SortOrder
-  fault_5?: Prisma.SortOrder
   ac_voltage_a?: Prisma.SortOrder
   ac_voltage_b?: Prisma.SortOrder
   ac_voltage_c?: Prisma.SortOrder
@@ -2503,14 +2497,20 @@ export type DeviceLogsSumOrderByAggregateInput = {
   ac_power_b?: Prisma.SortOrder
   ac_power_c?: Prisma.SortOrder
   daily_production?: Prisma.SortOrder
-  grid_status?: Prisma.SortOrder
-  inverter_status?: Prisma.SortOrder
   ac_output_frequency?: Prisma.SortOrder
-  temperature_count?: Prisma.SortOrder
   temperature_1?: Prisma.SortOrder
   temperature_2?: Prisma.SortOrder
   temperature_3?: Prisma.SortOrder
   total_production?: Prisma.SortOrder
+  fault_registers?: Prisma.SortOrder
+  fault_1?: Prisma.SortOrder
+  fault_2?: Prisma.SortOrder
+  fault_3?: Prisma.SortOrder
+  fault_4?: Prisma.SortOrder
+  fault_5?: Prisma.SortOrder
+  grid_status?: Prisma.SortOrder
+  inverter_status?: Prisma.SortOrder
+  temperature_count?: Prisma.SortOrder
   total_generation_time?: Prisma.SortOrder
   message_type?: Prisma.SortOrder
 }
@@ -2526,6 +2526,14 @@ export type NullableIntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type DeviceLogsCreateNestedOneWithoutLatestSnapshotsInput = {
@@ -2582,60 +2590,60 @@ export type DeviceLogsCreateWithoutLatestSnapshotsInput = {
   comm_software_version_1?: number | null
   comm_software_version_2?: number | null
   control_software_version?: number | null
-  dc_voltage_1?: number | null
-  dc_voltage_2?: number | null
-  dc_voltage_3?: number | null
-  dc_voltage_4?: number | null
-  dc_voltage_5?: number | null
-  dc_voltage_6?: number | null
-  dc_voltage_7?: number | null
-  dc_voltage_8?: number | null
-  dc_voltage_9?: number | null
-  dc_current_1?: number | null
-  dc_current_2?: number | null
-  dc_current_3?: number | null
-  dc_current_4?: number | null
-  dc_current_5?: number | null
-  dc_current_6?: number | null
-  dc_current_7?: number | null
-  dc_current_8?: number | null
-  dc_current_9?: number | null
-  dc_power_1?: bigint | number | null
-  dc_power_2?: bigint | number | null
-  dc_power_3?: bigint | number | null
-  dc_power_4?: bigint | number | null
-  dc_power_5?: bigint | number | null
-  dc_power_6?: bigint | number | null
-  dc_power_7?: bigint | number | null
-  dc_power_8?: bigint | number | null
-  dc_power_9?: bigint | number | null
-  total_input_power?: bigint | number | null
-  grid_total_active_power?: bigint | number | null
-  grid_total_reactive_power?: bigint | number | null
+  dc_voltage_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: number | null
   fault_1?: number | null
   fault_2?: number | null
   fault_3?: number | null
   fault_4?: number | null
   fault_5?: number | null
-  ac_voltage_a?: number | null
-  ac_voltage_b?: number | null
-  ac_voltage_c?: number | null
-  ac_current_a?: number | null
-  ac_current_b?: number | null
-  ac_current_c?: number | null
-  ac_power_a?: bigint | number | null
-  ac_power_b?: bigint | number | null
-  ac_power_c?: bigint | number | null
-  daily_production?: number | null
   grid_status?: number | null
   inverter_status?: number | null
-  ac_output_frequency?: number | null
   temperature_count?: number | null
-  temperature_1?: number | null
-  temperature_2?: number | null
-  temperature_3?: number | null
-  total_production?: number | null
   total_generation_time?: number | null
   timestamp: Date | string
   mac_address?: string | null
@@ -2670,60 +2678,60 @@ export type DeviceLogsUncheckedCreateWithoutLatestSnapshotsInput = {
   comm_software_version_1?: number | null
   comm_software_version_2?: number | null
   control_software_version?: number | null
-  dc_voltage_1?: number | null
-  dc_voltage_2?: number | null
-  dc_voltage_3?: number | null
-  dc_voltage_4?: number | null
-  dc_voltage_5?: number | null
-  dc_voltage_6?: number | null
-  dc_voltage_7?: number | null
-  dc_voltage_8?: number | null
-  dc_voltage_9?: number | null
-  dc_current_1?: number | null
-  dc_current_2?: number | null
-  dc_current_3?: number | null
-  dc_current_4?: number | null
-  dc_current_5?: number | null
-  dc_current_6?: number | null
-  dc_current_7?: number | null
-  dc_current_8?: number | null
-  dc_current_9?: number | null
-  dc_power_1?: bigint | number | null
-  dc_power_2?: bigint | number | null
-  dc_power_3?: bigint | number | null
-  dc_power_4?: bigint | number | null
-  dc_power_5?: bigint | number | null
-  dc_power_6?: bigint | number | null
-  dc_power_7?: bigint | number | null
-  dc_power_8?: bigint | number | null
-  dc_power_9?: bigint | number | null
-  total_input_power?: bigint | number | null
-  grid_total_active_power?: bigint | number | null
-  grid_total_reactive_power?: bigint | number | null
+  dc_voltage_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: number | null
   fault_1?: number | null
   fault_2?: number | null
   fault_3?: number | null
   fault_4?: number | null
   fault_5?: number | null
-  ac_voltage_a?: number | null
-  ac_voltage_b?: number | null
-  ac_voltage_c?: number | null
-  ac_current_a?: number | null
-  ac_current_b?: number | null
-  ac_current_c?: number | null
-  ac_power_a?: bigint | number | null
-  ac_power_b?: bigint | number | null
-  ac_power_c?: bigint | number | null
-  daily_production?: number | null
   grid_status?: number | null
   inverter_status?: number | null
-  ac_output_frequency?: number | null
   temperature_count?: number | null
-  temperature_1?: number | null
-  temperature_2?: number | null
-  temperature_3?: number | null
-  total_production?: number | null
   total_generation_time?: number | null
   timestamp: Date | string
   mac_address?: string | null
@@ -2774,60 +2782,60 @@ export type DeviceLogsUpdateWithoutLatestSnapshotsInput = {
   comm_software_version_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   comm_software_version_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   control_software_version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_power_1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_3?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_4?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_5?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_6?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_7?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_8?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_9?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  total_input_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_active_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_reactive_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  dc_voltage_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_power_a?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_b?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_c?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  daily_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grid_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   inverter_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_output_frequency?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   temperature_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total_generation_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mac_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2862,60 +2870,60 @@ export type DeviceLogsUncheckedUpdateWithoutLatestSnapshotsInput = {
   comm_software_version_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   comm_software_version_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   control_software_version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_power_1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_3?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_4?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_5?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_6?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_7?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_8?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_9?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  total_input_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_active_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_reactive_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  dc_voltage_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_power_a?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_b?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_c?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  daily_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grid_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   inverter_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_output_frequency?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   temperature_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total_generation_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mac_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2950,60 +2958,60 @@ export type DeviceLogsCreateWithoutLineChartSnapshotsInput = {
   comm_software_version_1?: number | null
   comm_software_version_2?: number | null
   control_software_version?: number | null
-  dc_voltage_1?: number | null
-  dc_voltage_2?: number | null
-  dc_voltage_3?: number | null
-  dc_voltage_4?: number | null
-  dc_voltage_5?: number | null
-  dc_voltage_6?: number | null
-  dc_voltage_7?: number | null
-  dc_voltage_8?: number | null
-  dc_voltage_9?: number | null
-  dc_current_1?: number | null
-  dc_current_2?: number | null
-  dc_current_3?: number | null
-  dc_current_4?: number | null
-  dc_current_5?: number | null
-  dc_current_6?: number | null
-  dc_current_7?: number | null
-  dc_current_8?: number | null
-  dc_current_9?: number | null
-  dc_power_1?: bigint | number | null
-  dc_power_2?: bigint | number | null
-  dc_power_3?: bigint | number | null
-  dc_power_4?: bigint | number | null
-  dc_power_5?: bigint | number | null
-  dc_power_6?: bigint | number | null
-  dc_power_7?: bigint | number | null
-  dc_power_8?: bigint | number | null
-  dc_power_9?: bigint | number | null
-  total_input_power?: bigint | number | null
-  grid_total_active_power?: bigint | number | null
-  grid_total_reactive_power?: bigint | number | null
+  dc_voltage_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: number | null
   fault_1?: number | null
   fault_2?: number | null
   fault_3?: number | null
   fault_4?: number | null
   fault_5?: number | null
-  ac_voltage_a?: number | null
-  ac_voltage_b?: number | null
-  ac_voltage_c?: number | null
-  ac_current_a?: number | null
-  ac_current_b?: number | null
-  ac_current_c?: number | null
-  ac_power_a?: bigint | number | null
-  ac_power_b?: bigint | number | null
-  ac_power_c?: bigint | number | null
-  daily_production?: number | null
   grid_status?: number | null
   inverter_status?: number | null
-  ac_output_frequency?: number | null
   temperature_count?: number | null
-  temperature_1?: number | null
-  temperature_2?: number | null
-  temperature_3?: number | null
-  total_production?: number | null
   total_generation_time?: number | null
   timestamp: Date | string
   mac_address?: string | null
@@ -3038,60 +3046,60 @@ export type DeviceLogsUncheckedCreateWithoutLineChartSnapshotsInput = {
   comm_software_version_1?: number | null
   comm_software_version_2?: number | null
   control_software_version?: number | null
-  dc_voltage_1?: number | null
-  dc_voltage_2?: number | null
-  dc_voltage_3?: number | null
-  dc_voltage_4?: number | null
-  dc_voltage_5?: number | null
-  dc_voltage_6?: number | null
-  dc_voltage_7?: number | null
-  dc_voltage_8?: number | null
-  dc_voltage_9?: number | null
-  dc_current_1?: number | null
-  dc_current_2?: number | null
-  dc_current_3?: number | null
-  dc_current_4?: number | null
-  dc_current_5?: number | null
-  dc_current_6?: number | null
-  dc_current_7?: number | null
-  dc_current_8?: number | null
-  dc_current_9?: number | null
-  dc_power_1?: bigint | number | null
-  dc_power_2?: bigint | number | null
-  dc_power_3?: bigint | number | null
-  dc_power_4?: bigint | number | null
-  dc_power_5?: bigint | number | null
-  dc_power_6?: bigint | number | null
-  dc_power_7?: bigint | number | null
-  dc_power_8?: bigint | number | null
-  dc_power_9?: bigint | number | null
-  total_input_power?: bigint | number | null
-  grid_total_active_power?: bigint | number | null
-  grid_total_reactive_power?: bigint | number | null
+  dc_voltage_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: number | null
   fault_1?: number | null
   fault_2?: number | null
   fault_3?: number | null
   fault_4?: number | null
   fault_5?: number | null
-  ac_voltage_a?: number | null
-  ac_voltage_b?: number | null
-  ac_voltage_c?: number | null
-  ac_current_a?: number | null
-  ac_current_b?: number | null
-  ac_current_c?: number | null
-  ac_power_a?: bigint | number | null
-  ac_power_b?: bigint | number | null
-  ac_power_c?: bigint | number | null
-  daily_production?: number | null
   grid_status?: number | null
   inverter_status?: number | null
-  ac_output_frequency?: number | null
   temperature_count?: number | null
-  temperature_1?: number | null
-  temperature_2?: number | null
-  temperature_3?: number | null
-  total_production?: number | null
   total_generation_time?: number | null
   timestamp: Date | string
   mac_address?: string | null
@@ -3142,60 +3150,60 @@ export type DeviceLogsUpdateWithoutLineChartSnapshotsInput = {
   comm_software_version_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   comm_software_version_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   control_software_version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_power_1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_3?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_4?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_5?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_6?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_7?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_8?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_9?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  total_input_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_active_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_reactive_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  dc_voltage_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_power_a?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_b?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_c?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  daily_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grid_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   inverter_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_output_frequency?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   temperature_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total_generation_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mac_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3230,60 +3238,60 @@ export type DeviceLogsUncheckedUpdateWithoutLineChartSnapshotsInput = {
   comm_software_version_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   comm_software_version_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   control_software_version?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_voltage_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_6?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_7?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_8?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_current_9?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  dc_power_1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_3?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_4?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_5?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_6?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_7?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_8?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  dc_power_9?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  total_input_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_active_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grid_total_reactive_power?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  dc_voltage_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_voltage_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_current_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_5?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_6?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_7?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_8?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  dc_power_9?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_input_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_active_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  grid_total_reactive_power?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_voltage_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_current_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_a?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_b?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_power_c?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  daily_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  ac_output_frequency?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_1?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  temperature_3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  total_production?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fault_registers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_4?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fault_5?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_voltage_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_a?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_b?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_current_c?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_power_a?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_b?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  ac_power_c?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  daily_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grid_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   inverter_status?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ac_output_frequency?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   temperature_count?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  temperature_3?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_production?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total_generation_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mac_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3350,12 +3358,6 @@ export type DeviceLogsSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   total_input_power?: boolean
   grid_total_active_power?: boolean
   grid_total_reactive_power?: boolean
-  fault_registers?: boolean
-  fault_1?: boolean
-  fault_2?: boolean
-  fault_3?: boolean
-  fault_4?: boolean
-  fault_5?: boolean
   ac_voltage_a?: boolean
   ac_voltage_b?: boolean
   ac_voltage_c?: boolean
@@ -3366,14 +3368,20 @@ export type DeviceLogsSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   ac_power_b?: boolean
   ac_power_c?: boolean
   daily_production?: boolean
-  grid_status?: boolean
-  inverter_status?: boolean
   ac_output_frequency?: boolean
-  temperature_count?: boolean
   temperature_1?: boolean
   temperature_2?: boolean
   temperature_3?: boolean
   total_production?: boolean
+  fault_registers?: boolean
+  fault_1?: boolean
+  fault_2?: boolean
+  fault_3?: boolean
+  fault_4?: boolean
+  fault_5?: boolean
+  grid_status?: boolean
+  inverter_status?: boolean
+  temperature_count?: boolean
   total_generation_time?: boolean
   timestamp?: boolean
   mac_address?: boolean
@@ -3439,12 +3447,6 @@ export type DeviceLogsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   total_input_power?: boolean
   grid_total_active_power?: boolean
   grid_total_reactive_power?: boolean
-  fault_registers?: boolean
-  fault_1?: boolean
-  fault_2?: boolean
-  fault_3?: boolean
-  fault_4?: boolean
-  fault_5?: boolean
   ac_voltage_a?: boolean
   ac_voltage_b?: boolean
   ac_voltage_c?: boolean
@@ -3455,14 +3457,20 @@ export type DeviceLogsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   ac_power_b?: boolean
   ac_power_c?: boolean
   daily_production?: boolean
-  grid_status?: boolean
-  inverter_status?: boolean
   ac_output_frequency?: boolean
-  temperature_count?: boolean
   temperature_1?: boolean
   temperature_2?: boolean
   temperature_3?: boolean
   total_production?: boolean
+  fault_registers?: boolean
+  fault_1?: boolean
+  fault_2?: boolean
+  fault_3?: boolean
+  fault_4?: boolean
+  fault_5?: boolean
+  grid_status?: boolean
+  inverter_status?: boolean
+  temperature_count?: boolean
   total_generation_time?: boolean
   timestamp?: boolean
   mac_address?: boolean
@@ -3526,12 +3534,6 @@ export type DeviceLogsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   total_input_power?: boolean
   grid_total_active_power?: boolean
   grid_total_reactive_power?: boolean
-  fault_registers?: boolean
-  fault_1?: boolean
-  fault_2?: boolean
-  fault_3?: boolean
-  fault_4?: boolean
-  fault_5?: boolean
   ac_voltage_a?: boolean
   ac_voltage_b?: boolean
   ac_voltage_c?: boolean
@@ -3542,14 +3544,20 @@ export type DeviceLogsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   ac_power_b?: boolean
   ac_power_c?: boolean
   daily_production?: boolean
-  grid_status?: boolean
-  inverter_status?: boolean
   ac_output_frequency?: boolean
-  temperature_count?: boolean
   temperature_1?: boolean
   temperature_2?: boolean
   temperature_3?: boolean
   total_production?: boolean
+  fault_registers?: boolean
+  fault_1?: boolean
+  fault_2?: boolean
+  fault_3?: boolean
+  fault_4?: boolean
+  fault_5?: boolean
+  grid_status?: boolean
+  inverter_status?: boolean
+  temperature_count?: boolean
   total_generation_time?: boolean
   timestamp?: boolean
   mac_address?: boolean
@@ -3613,12 +3621,6 @@ export type DeviceLogsSelectScalar = {
   total_input_power?: boolean
   grid_total_active_power?: boolean
   grid_total_reactive_power?: boolean
-  fault_registers?: boolean
-  fault_1?: boolean
-  fault_2?: boolean
-  fault_3?: boolean
-  fault_4?: boolean
-  fault_5?: boolean
   ac_voltage_a?: boolean
   ac_voltage_b?: boolean
   ac_voltage_c?: boolean
@@ -3629,14 +3631,20 @@ export type DeviceLogsSelectScalar = {
   ac_power_b?: boolean
   ac_power_c?: boolean
   daily_production?: boolean
-  grid_status?: boolean
-  inverter_status?: boolean
   ac_output_frequency?: boolean
-  temperature_count?: boolean
   temperature_1?: boolean
   temperature_2?: boolean
   temperature_3?: boolean
   total_production?: boolean
+  fault_registers?: boolean
+  fault_1?: boolean
+  fault_2?: boolean
+  fault_3?: boolean
+  fault_4?: boolean
+  fault_5?: boolean
+  grid_status?: boolean
+  inverter_status?: boolean
+  temperature_count?: boolean
   total_generation_time?: boolean
   timestamp?: boolean
   mac_address?: boolean
@@ -3644,7 +3652,7 @@ export type DeviceLogsSelectScalar = {
   hybrid_json?: boolean
 }
 
-export type DeviceLogsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sno" | "logger_status" | "connected_plant" | "module_version_no" | "extended_system_version" | "data_acquisition_period" | "max_connected_devices" | "signal_strength" | "module_mac_address" | "router_ssid" | "inverter_type" | "production_compliance_country" | "device_model" | "firmware_version" | "production_type" | "rated_power" | "phases" | "mppt_no" | "inverter_parameter_count" | "logger_parameter_count" | "protocol_version" | "comm_software_version_1" | "comm_software_version_2" | "control_software_version" | "dc_voltage_1" | "dc_voltage_2" | "dc_voltage_3" | "dc_voltage_4" | "dc_voltage_5" | "dc_voltage_6" | "dc_voltage_7" | "dc_voltage_8" | "dc_voltage_9" | "dc_current_1" | "dc_current_2" | "dc_current_3" | "dc_current_4" | "dc_current_5" | "dc_current_6" | "dc_current_7" | "dc_current_8" | "dc_current_9" | "dc_power_1" | "dc_power_2" | "dc_power_3" | "dc_power_4" | "dc_power_5" | "dc_power_6" | "dc_power_7" | "dc_power_8" | "dc_power_9" | "total_input_power" | "grid_total_active_power" | "grid_total_reactive_power" | "fault_registers" | "fault_1" | "fault_2" | "fault_3" | "fault_4" | "fault_5" | "ac_voltage_a" | "ac_voltage_b" | "ac_voltage_c" | "ac_current_a" | "ac_current_b" | "ac_current_c" | "ac_power_a" | "ac_power_b" | "ac_power_c" | "daily_production" | "grid_status" | "inverter_status" | "ac_output_frequency" | "temperature_count" | "temperature_1" | "temperature_2" | "temperature_3" | "total_production" | "total_generation_time" | "timestamp" | "mac_address" | "message_type" | "hybrid_json", ExtArgs["result"]["deviceLogs"]>
+export type DeviceLogsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sno" | "logger_status" | "connected_plant" | "module_version_no" | "extended_system_version" | "data_acquisition_period" | "max_connected_devices" | "signal_strength" | "module_mac_address" | "router_ssid" | "inverter_type" | "production_compliance_country" | "device_model" | "firmware_version" | "production_type" | "rated_power" | "phases" | "mppt_no" | "inverter_parameter_count" | "logger_parameter_count" | "protocol_version" | "comm_software_version_1" | "comm_software_version_2" | "control_software_version" | "dc_voltage_1" | "dc_voltage_2" | "dc_voltage_3" | "dc_voltage_4" | "dc_voltage_5" | "dc_voltage_6" | "dc_voltage_7" | "dc_voltage_8" | "dc_voltage_9" | "dc_current_1" | "dc_current_2" | "dc_current_3" | "dc_current_4" | "dc_current_5" | "dc_current_6" | "dc_current_7" | "dc_current_8" | "dc_current_9" | "dc_power_1" | "dc_power_2" | "dc_power_3" | "dc_power_4" | "dc_power_5" | "dc_power_6" | "dc_power_7" | "dc_power_8" | "dc_power_9" | "total_input_power" | "grid_total_active_power" | "grid_total_reactive_power" | "ac_voltage_a" | "ac_voltage_b" | "ac_voltage_c" | "ac_current_a" | "ac_current_b" | "ac_current_c" | "ac_power_a" | "ac_power_b" | "ac_power_c" | "daily_production" | "ac_output_frequency" | "temperature_1" | "temperature_2" | "temperature_3" | "total_production" | "fault_registers" | "fault_1" | "fault_2" | "fault_3" | "fault_4" | "fault_5" | "grid_status" | "inverter_status" | "temperature_count" | "total_generation_time" | "timestamp" | "mac_address" | "message_type" | "hybrid_json", ExtArgs["result"]["deviceLogs"]>
 export type DeviceLogsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   lineChartSnapshots?: boolean | Prisma.DeviceLogs$lineChartSnapshotsArgs<ExtArgs>
   latestSnapshots?: boolean | Prisma.DeviceLogs$latestSnapshotsArgs<ExtArgs>
@@ -3684,60 +3692,60 @@ export type $DeviceLogsPayload<ExtArgs extends runtime.Types.Extensions.Internal
     comm_software_version_1: number | null
     comm_software_version_2: number | null
     control_software_version: number | null
-    dc_voltage_1: number | null
-    dc_voltage_2: number | null
-    dc_voltage_3: number | null
-    dc_voltage_4: number | null
-    dc_voltage_5: number | null
-    dc_voltage_6: number | null
-    dc_voltage_7: number | null
-    dc_voltage_8: number | null
-    dc_voltage_9: number | null
-    dc_current_1: number | null
-    dc_current_2: number | null
-    dc_current_3: number | null
-    dc_current_4: number | null
-    dc_current_5: number | null
-    dc_current_6: number | null
-    dc_current_7: number | null
-    dc_current_8: number | null
-    dc_current_9: number | null
-    dc_power_1: bigint | null
-    dc_power_2: bigint | null
-    dc_power_3: bigint | null
-    dc_power_4: bigint | null
-    dc_power_5: bigint | null
-    dc_power_6: bigint | null
-    dc_power_7: bigint | null
-    dc_power_8: bigint | null
-    dc_power_9: bigint | null
-    total_input_power: bigint | null
-    grid_total_active_power: bigint | null
-    grid_total_reactive_power: bigint | null
+    dc_voltage_1: runtime.Decimal | null
+    dc_voltage_2: runtime.Decimal | null
+    dc_voltage_3: runtime.Decimal | null
+    dc_voltage_4: runtime.Decimal | null
+    dc_voltage_5: runtime.Decimal | null
+    dc_voltage_6: runtime.Decimal | null
+    dc_voltage_7: runtime.Decimal | null
+    dc_voltage_8: runtime.Decimal | null
+    dc_voltage_9: runtime.Decimal | null
+    dc_current_1: runtime.Decimal | null
+    dc_current_2: runtime.Decimal | null
+    dc_current_3: runtime.Decimal | null
+    dc_current_4: runtime.Decimal | null
+    dc_current_5: runtime.Decimal | null
+    dc_current_6: runtime.Decimal | null
+    dc_current_7: runtime.Decimal | null
+    dc_current_8: runtime.Decimal | null
+    dc_current_9: runtime.Decimal | null
+    dc_power_1: runtime.Decimal | null
+    dc_power_2: runtime.Decimal | null
+    dc_power_3: runtime.Decimal | null
+    dc_power_4: runtime.Decimal | null
+    dc_power_5: runtime.Decimal | null
+    dc_power_6: runtime.Decimal | null
+    dc_power_7: runtime.Decimal | null
+    dc_power_8: runtime.Decimal | null
+    dc_power_9: runtime.Decimal | null
+    total_input_power: runtime.Decimal | null
+    grid_total_active_power: runtime.Decimal | null
+    grid_total_reactive_power: runtime.Decimal | null
+    ac_voltage_a: runtime.Decimal | null
+    ac_voltage_b: runtime.Decimal | null
+    ac_voltage_c: runtime.Decimal | null
+    ac_current_a: runtime.Decimal | null
+    ac_current_b: runtime.Decimal | null
+    ac_current_c: runtime.Decimal | null
+    ac_power_a: runtime.Decimal | null
+    ac_power_b: runtime.Decimal | null
+    ac_power_c: runtime.Decimal | null
+    daily_production: runtime.Decimal | null
+    ac_output_frequency: runtime.Decimal | null
+    temperature_1: runtime.Decimal | null
+    temperature_2: runtime.Decimal | null
+    temperature_3: runtime.Decimal | null
+    total_production: runtime.Decimal | null
     fault_registers: number | null
     fault_1: number | null
     fault_2: number | null
     fault_3: number | null
     fault_4: number | null
     fault_5: number | null
-    ac_voltage_a: number | null
-    ac_voltage_b: number | null
-    ac_voltage_c: number | null
-    ac_current_a: number | null
-    ac_current_b: number | null
-    ac_current_c: number | null
-    ac_power_a: bigint | null
-    ac_power_b: bigint | null
-    ac_power_c: bigint | null
-    daily_production: number | null
     grid_status: number | null
     inverter_status: number | null
-    ac_output_frequency: number | null
     temperature_count: number | null
-    temperature_1: number | null
-    temperature_2: number | null
-    temperature_3: number | null
-    total_production: number | null
     total_generation_time: number | null
     timestamp: Date
     mac_address: string | null
@@ -4193,60 +4201,60 @@ export interface DeviceLogsFieldRefs {
   readonly comm_software_version_1: Prisma.FieldRef<"DeviceLogs", 'Int'>
   readonly comm_software_version_2: Prisma.FieldRef<"DeviceLogs", 'Int'>
   readonly control_software_version: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_voltage_1: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_voltage_2: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_voltage_3: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_voltage_4: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_voltage_5: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_voltage_6: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_voltage_7: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_voltage_8: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_voltage_9: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_current_1: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_current_2: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_current_3: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_current_4: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_current_5: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_current_6: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_current_7: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_current_8: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_current_9: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly dc_power_1: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly dc_power_2: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly dc_power_3: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly dc_power_4: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly dc_power_5: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly dc_power_6: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly dc_power_7: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly dc_power_8: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly dc_power_9: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly total_input_power: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly grid_total_active_power: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly grid_total_reactive_power: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
+  readonly dc_voltage_1: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_voltage_2: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_voltage_3: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_voltage_4: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_voltage_5: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_voltage_6: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_voltage_7: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_voltage_8: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_voltage_9: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_current_1: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_current_2: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_current_3: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_current_4: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_current_5: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_current_6: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_current_7: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_current_8: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_current_9: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_power_1: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_power_2: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_power_3: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_power_4: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_power_5: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_power_6: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_power_7: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_power_8: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly dc_power_9: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly total_input_power: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly grid_total_active_power: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly grid_total_reactive_power: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly ac_voltage_a: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly ac_voltage_b: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly ac_voltage_c: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly ac_current_a: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly ac_current_b: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly ac_current_c: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly ac_power_a: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly ac_power_b: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly ac_power_c: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly daily_production: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly ac_output_frequency: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly temperature_1: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly temperature_2: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly temperature_3: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
+  readonly total_production: Prisma.FieldRef<"DeviceLogs", 'Decimal'>
   readonly fault_registers: Prisma.FieldRef<"DeviceLogs", 'Int'>
   readonly fault_1: Prisma.FieldRef<"DeviceLogs", 'Int'>
   readonly fault_2: Prisma.FieldRef<"DeviceLogs", 'Int'>
   readonly fault_3: Prisma.FieldRef<"DeviceLogs", 'Int'>
   readonly fault_4: Prisma.FieldRef<"DeviceLogs", 'Int'>
   readonly fault_5: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly ac_voltage_a: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly ac_voltage_b: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly ac_voltage_c: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly ac_current_a: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly ac_current_b: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly ac_current_c: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly ac_power_a: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly ac_power_b: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly ac_power_c: Prisma.FieldRef<"DeviceLogs", 'BigInt'>
-  readonly daily_production: Prisma.FieldRef<"DeviceLogs", 'Int'>
   readonly grid_status: Prisma.FieldRef<"DeviceLogs", 'Int'>
   readonly inverter_status: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly ac_output_frequency: Prisma.FieldRef<"DeviceLogs", 'Int'>
   readonly temperature_count: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly temperature_1: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly temperature_2: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly temperature_3: Prisma.FieldRef<"DeviceLogs", 'Int'>
-  readonly total_production: Prisma.FieldRef<"DeviceLogs", 'Int'>
   readonly total_generation_time: Prisma.FieldRef<"DeviceLogs", 'Int'>
   readonly timestamp: Prisma.FieldRef<"DeviceLogs", 'DateTime'>
   readonly mac_address: Prisma.FieldRef<"DeviceLogs", 'String'>

@@ -29,19 +29,19 @@ export type AggregateDeviceLogsLatest = {
 export type DeviceLogsLatestAvgAggregateOutputType = {
   id: number | null
   sourceLogId: number | null
-  dailyProduction: number | null
-  totalEnergy: number | null
+  dailyProduction: runtime.Decimal | null
+  totalEnergy: runtime.Decimal | null
   totalHours: number | null
-  currentPower: number | null
+  currentPower: runtime.Decimal | null
 }
 
 export type DeviceLogsLatestSumAggregateOutputType = {
   id: bigint | null
   sourceLogId: bigint | null
-  dailyProduction: number | null
-  totalEnergy: number | null
+  dailyProduction: runtime.Decimal | null
+  totalEnergy: runtime.Decimal | null
   totalHours: number | null
-  currentPower: number | null
+  currentPower: runtime.Decimal | null
 }
 
 export type DeviceLogsLatestMinAggregateOutputType = {
@@ -52,10 +52,10 @@ export type DeviceLogsLatestMinAggregateOutputType = {
   latestTimestamp: Date | null
   sourceLogId: bigint | null
   batchKey: string | null
-  dailyProduction: number | null
-  totalEnergy: number | null
+  dailyProduction: runtime.Decimal | null
+  totalEnergy: runtime.Decimal | null
   totalHours: number | null
-  currentPower: number | null
+  currentPower: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -68,10 +68,10 @@ export type DeviceLogsLatestMaxAggregateOutputType = {
   latestTimestamp: Date | null
   sourceLogId: bigint | null
   batchKey: string | null
-  dailyProduction: number | null
-  totalEnergy: number | null
+  dailyProduction: runtime.Decimal | null
+  totalEnergy: runtime.Decimal | null
   totalHours: number | null
-  currentPower: number | null
+  currentPower: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -255,10 +255,10 @@ export type DeviceLogsLatestGroupByOutputType = {
   latestTimestamp: Date
   sourceLogId: bigint
   batchKey: string
-  dailyProduction: number | null
-  totalEnergy: number | null
+  dailyProduction: runtime.Decimal | null
+  totalEnergy: runtime.Decimal | null
   totalHours: number | null
-  currentPower: number | null
+  currentPower: runtime.Decimal | null
   createdAt: Date
   updatedAt: Date
   _count: DeviceLogsLatestCountAggregateOutputType | null
@@ -294,10 +294,10 @@ export type DeviceLogsLatestWhereInput = {
   latestTimestamp?: Prisma.DateTimeFilter<"DeviceLogsLatest"> | Date | string
   sourceLogId?: Prisma.BigIntFilter<"DeviceLogsLatest"> | bigint | number
   batchKey?: Prisma.StringFilter<"DeviceLogsLatest"> | string
-  dailyProduction?: Prisma.IntNullableFilter<"DeviceLogsLatest"> | number | null
-  totalEnergy?: Prisma.IntNullableFilter<"DeviceLogsLatest"> | number | null
+  dailyProduction?: Prisma.DecimalNullableFilter<"DeviceLogsLatest"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: Prisma.DecimalNullableFilter<"DeviceLogsLatest"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: Prisma.IntNullableFilter<"DeviceLogsLatest"> | number | null
-  currentPower?: Prisma.IntNullableFilter<"DeviceLogsLatest"> | number | null
+  currentPower?: Prisma.DecimalNullableFilter<"DeviceLogsLatest"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"DeviceLogsLatest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceLogsLatest"> | Date | string
   sourceLog?: Prisma.XOR<Prisma.DeviceLogsScalarRelationFilter, Prisma.DeviceLogsWhereInput>
@@ -332,10 +332,10 @@ export type DeviceLogsLatestWhereUniqueInput = Prisma.AtLeast<{
   inverterName?: Prisma.StringNullableFilter<"DeviceLogsLatest"> | string | null
   dayDate?: Prisma.DateTimeFilter<"DeviceLogsLatest"> | Date | string
   latestTimestamp?: Prisma.DateTimeFilter<"DeviceLogsLatest"> | Date | string
-  dailyProduction?: Prisma.IntNullableFilter<"DeviceLogsLatest"> | number | null
-  totalEnergy?: Prisma.IntNullableFilter<"DeviceLogsLatest"> | number | null
+  dailyProduction?: Prisma.DecimalNullableFilter<"DeviceLogsLatest"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: Prisma.DecimalNullableFilter<"DeviceLogsLatest"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: Prisma.IntNullableFilter<"DeviceLogsLatest"> | number | null
-  currentPower?: Prisma.IntNullableFilter<"DeviceLogsLatest"> | number | null
+  currentPower?: Prisma.DecimalNullableFilter<"DeviceLogsLatest"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"DeviceLogsLatest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceLogsLatest"> | Date | string
   sourceLog?: Prisma.XOR<Prisma.DeviceLogsScalarRelationFilter, Prisma.DeviceLogsWhereInput>
@@ -373,10 +373,10 @@ export type DeviceLogsLatestScalarWhereWithAggregatesInput = {
   latestTimestamp?: Prisma.DateTimeWithAggregatesFilter<"DeviceLogsLatest"> | Date | string
   sourceLogId?: Prisma.BigIntWithAggregatesFilter<"DeviceLogsLatest"> | bigint | number
   batchKey?: Prisma.StringWithAggregatesFilter<"DeviceLogsLatest"> | string
-  dailyProduction?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogsLatest"> | number | null
-  totalEnergy?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogsLatest"> | number | null
+  dailyProduction?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogsLatest"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogsLatest"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogsLatest"> | number | null
-  currentPower?: Prisma.IntNullableWithAggregatesFilter<"DeviceLogsLatest"> | number | null
+  currentPower?: Prisma.DecimalNullableWithAggregatesFilter<"DeviceLogsLatest"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"DeviceLogsLatest"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"DeviceLogsLatest"> | Date | string
 }
@@ -388,10 +388,10 @@ export type DeviceLogsLatestCreateInput = {
   dayDate: Date | string
   latestTimestamp: Date | string
   batchKey: string
-  dailyProduction?: number | null
-  totalEnergy?: number | null
+  dailyProduction?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: number | null
-  currentPower?: number | null
+  currentPower?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   sourceLog: Prisma.DeviceLogsCreateNestedOneWithoutLatestSnapshotsInput
@@ -405,10 +405,10 @@ export type DeviceLogsLatestUncheckedCreateInput = {
   latestTimestamp: Date | string
   sourceLogId: bigint | number
   batchKey: string
-  dailyProduction?: number | null
-  totalEnergy?: number | null
+  dailyProduction?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: number | null
-  currentPower?: number | null
+  currentPower?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -420,10 +420,10 @@ export type DeviceLogsLatestUpdateInput = {
   dayDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   latestTimestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   batchKey?: Prisma.StringFieldUpdateOperationsInput | string
-  dailyProduction?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  totalEnergy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dailyProduction?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sourceLog?: Prisma.DeviceLogsUpdateOneRequiredWithoutLatestSnapshotsNestedInput
@@ -437,10 +437,10 @@ export type DeviceLogsLatestUncheckedUpdateInput = {
   latestTimestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sourceLogId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   batchKey?: Prisma.StringFieldUpdateOperationsInput | string
-  dailyProduction?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  totalEnergy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dailyProduction?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -453,10 +453,10 @@ export type DeviceLogsLatestCreateManyInput = {
   latestTimestamp: Date | string
   sourceLogId: bigint | number
   batchKey: string
-  dailyProduction?: number | null
-  totalEnergy?: number | null
+  dailyProduction?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: number | null
-  currentPower?: number | null
+  currentPower?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -468,10 +468,10 @@ export type DeviceLogsLatestUpdateManyMutationInput = {
   dayDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   latestTimestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   batchKey?: Prisma.StringFieldUpdateOperationsInput | string
-  dailyProduction?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  totalEnergy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dailyProduction?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -484,10 +484,10 @@ export type DeviceLogsLatestUncheckedUpdateManyInput = {
   latestTimestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sourceLogId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   batchKey?: Prisma.StringFieldUpdateOperationsInput | string
-  dailyProduction?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  totalEnergy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dailyProduction?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -607,10 +607,10 @@ export type DeviceLogsLatestCreateWithoutSourceLogInput = {
   dayDate: Date | string
   latestTimestamp: Date | string
   batchKey: string
-  dailyProduction?: number | null
-  totalEnergy?: number | null
+  dailyProduction?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: number | null
-  currentPower?: number | null
+  currentPower?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -622,10 +622,10 @@ export type DeviceLogsLatestUncheckedCreateWithoutSourceLogInput = {
   dayDate: Date | string
   latestTimestamp: Date | string
   batchKey: string
-  dailyProduction?: number | null
-  totalEnergy?: number | null
+  dailyProduction?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: number | null
-  currentPower?: number | null
+  currentPower?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -653,10 +653,10 @@ export type DeviceLogsLatestUpdateWithoutSourceLogInput = {
   dayDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   latestTimestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   batchKey?: Prisma.StringFieldUpdateOperationsInput | string
-  dailyProduction?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  totalEnergy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dailyProduction?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -668,10 +668,10 @@ export type DeviceLogsLatestUncheckedUpdateWithoutSourceLogInput = {
   dayDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   latestTimestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   batchKey?: Prisma.StringFieldUpdateOperationsInput | string
-  dailyProduction?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  totalEnergy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dailyProduction?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalEnergy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  currentPower?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currentPower?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -769,10 +769,10 @@ export type $DeviceLogsLatestPayload<ExtArgs extends runtime.Types.Extensions.In
     latestTimestamp: Date
     sourceLogId: bigint
     batchKey: string
-    dailyProduction: number | null
-    totalEnergy: number | null
+    dailyProduction: runtime.Decimal | null
+    totalEnergy: runtime.Decimal | null
     totalHours: number | null
-    currentPower: number | null
+    currentPower: runtime.Decimal | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["deviceLogsLatest"]>
@@ -1206,10 +1206,10 @@ export interface DeviceLogsLatestFieldRefs {
   readonly latestTimestamp: Prisma.FieldRef<"DeviceLogsLatest", 'DateTime'>
   readonly sourceLogId: Prisma.FieldRef<"DeviceLogsLatest", 'BigInt'>
   readonly batchKey: Prisma.FieldRef<"DeviceLogsLatest", 'String'>
-  readonly dailyProduction: Prisma.FieldRef<"DeviceLogsLatest", 'Int'>
-  readonly totalEnergy: Prisma.FieldRef<"DeviceLogsLatest", 'Int'>
+  readonly dailyProduction: Prisma.FieldRef<"DeviceLogsLatest", 'Decimal'>
+  readonly totalEnergy: Prisma.FieldRef<"DeviceLogsLatest", 'Decimal'>
   readonly totalHours: Prisma.FieldRef<"DeviceLogsLatest", 'Int'>
-  readonly currentPower: Prisma.FieldRef<"DeviceLogsLatest", 'Int'>
+  readonly currentPower: Prisma.FieldRef<"DeviceLogsLatest", 'Decimal'>
   readonly createdAt: Prisma.FieldRef<"DeviceLogsLatest", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"DeviceLogsLatest", 'DateTime'>
 }

@@ -1,7 +1,8 @@
 import { prisma } from "@/server/db/prisma";
 import { ApiError } from "@/server/utils/api-error";
 import type { User } from "@/server/utils/auth-helper";
-import { PlantStatus } from "../db/generated/prisma/client";
+import { PlantStatus, Prisma } from "../db/generated/prisma/client";
+import { Decimal } from "@prisma/client/runtime/client";
 
 export interface UserLogsParams {
   scope: string[];
@@ -175,6 +176,16 @@ export class PlantRepository {
     const date = value ?? new Date();
     const iso = date.toISOString();
     return iso.replace("T", " ").slice(0, 19);
+  }
+
+  private decimalToNumber(
+    value: Prisma.Decimal | number | null | undefined,
+  ): number {
+    if (value == null) return 0;
+
+    return value instanceof Prisma.Decimal
+      ? value.toNumber()
+      : value;
   }
 
   private toMode(status: string): string {
@@ -574,18 +585,18 @@ export class PlantRepository {
 
       const latestLogs = latestConditions.length
         ? await prisma.deviceLogsLatest.findMany({
-            where: {
-              OR: latestConditions,
-            },
+          where: {
+            OR: latestConditions,
+          },
 
-            select: {
-              currentPower: true,
-              dailyProduction: true,
-              totalEnergy: true,
-              totalHours: true,
-              latestTimestamp: true,
-            },
-          })
+          select: {
+            currentPower: true,
+            dailyProduction: true,
+            totalEnergy: true,
+            totalHours: true,
+            latestTimestamp: true,
+          },
+        })
         : [];
 
       aggregates = latestLogs.reduce<{
@@ -596,14 +607,13 @@ export class PlantRepository {
         latestTimestamp: Date | null;
       }>(
         (acc, row) => {
-          acc.currentPower += row.currentPower ?? 0;
+          acc.currentPower += this.decimalToNumber(row.currentPower);
 
-          acc.dailyProduction += row.dailyProduction ?? 0;
+          acc.dailyProduction += this.decimalToNumber(row.dailyProduction);
 
-          acc.totalEnergy += row.totalEnergy ?? 0;
+          acc.totalEnergy += this.decimalToNumber(row.totalEnergy);
 
-          acc.totalHours += row.totalHours ?? 0;
-
+          acc.totalHours += this.decimalToNumber(row.totalHours);
           if (
             !acc.latestTimestamp ||
             (row.latestTimestamp && row.latestTimestamp > acc.latestTimestamp)
@@ -1138,7 +1148,7 @@ export class PlantRepository {
 
           if (params.mode === "total") {
             point.total = dayLogs.reduce(
-              (sum, log) => sum + (log.dailyProduction ?? 0),
+              (sum, log) => sum + this.decimalToNumber(log.dailyProduction),
               0,
             );
 
@@ -1148,7 +1158,7 @@ export class PlantRepository {
           devices.forEach((device, index) => {
             const row = dayLogs.find((log) => log.sno === device.serialNumber);
 
-            point[`inverter${index + 1}`] = row?.dailyProduction ?? 0;
+            point[`inverter${index + 1}`] = this.decimalToNumber(row?.dailyProduction);
           });
 
           return point;
@@ -1200,7 +1210,7 @@ export class PlantRepository {
 
         if (params.mode === "total") {
           point.total = monthLogs.reduce(
-            (sum, log) => sum + (log.dailyProduction ?? 0),
+            (sum, log) => sum + this.decimalToNumber(log.dailyProduction ?? 0),
             0,
           );
 
@@ -1210,7 +1220,7 @@ export class PlantRepository {
         devices.forEach((device, index) => {
           point[`inverter${index + 1}`] = monthLogs
             .filter((log) => log.sno === device.serialNumber)
-            .reduce((sum, log) => sum + (log.dailyProduction ?? 0), 0);
+            .reduce((sum, log) => sum + this.decimalToNumber(log.dailyProduction ?? 0), 0);
         });
 
         return point;
@@ -1457,11 +1467,11 @@ export class PlantRepository {
           status: "active",
           startedAt: this.formatDateTime(
             (device as { updatedAt?: Date | null }).updatedAt ??
-              plant.lastUpdatedAt,
+            plant.lastUpdatedAt,
           ),
           lastUpdatedAt: this.formatDateTime(
             (device as { updatedAt?: Date | null }).updatedAt ??
-              plant.lastUpdatedAt,
+            plant.lastUpdatedAt,
           ),
         };
       })
@@ -2114,9 +2124,8 @@ export class PlantRepository {
     return {
       fileName: "plant-list.csv",
 
-      downloadUrl: `/api/v1/monitor/plants/list/export/files/plant-list.csv${
-        query.toString() ? `?${query.toString()}` : ""
-      }`,
+      downloadUrl: `/api/v1/monitor/plants/list/export/files/plant-list.csv${query.toString() ? `?${query.toString()}` : ""
+        }`,
 
       expiresAt: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
 
@@ -2360,9 +2369,9 @@ export class PlantRepository {
         }));
 
       let latestLogs: Array<{
-        currentPower: number | null;
-        dailyProduction: number | null;
-        totalEnergy: number | null;
+        currentPower: Decimal | null;
+        dailyProduction: Decimal | null;
+        totalEnergy: Decimal | null;
         totalHours: number | null;
         latestTimestamp: Date | null;
       }> = [];
@@ -2392,13 +2401,13 @@ export class PlantRepository {
         latestTimestamp: Date | null;
       }>(
         (acc, row) => {
-          acc.currentPower += row.currentPower ?? 0;
+          acc.currentPower += this.decimalToNumber(row.currentPower);
 
-          acc.dailyProduction += row.dailyProduction ?? 0;
+          acc.dailyProduction += this.decimalToNumber(row.dailyProduction);
 
-          acc.totalEnergy += row.totalEnergy ?? 0;
+          acc.totalEnergy += this.decimalToNumber(row.totalEnergy);
 
-          acc.totalHours += row.totalHours ?? 0;
+          acc.totalHours += this.decimalToNumber(row.totalHours);
 
           if (
             !acc.latestTimestamp ||

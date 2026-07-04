@@ -515,11 +515,11 @@ export class MonitorUserService {
           const latestLog = logsBySerial.get(inverter.serialNumber);
 
           if (latestLog) {
-            power += latestLog.currentPower ?? 0;
+            power += Number(latestLog.currentPower ?? 0);
 
-            today += latestLog.dailyProduction ?? 0;
+            today += Number(latestLog.dailyProduction ?? 0);
 
-            total += latestLog.totalEnergy ?? 0;
+            total += Number(latestLog.totalEnergy ?? 0);
           }
         }
       }
