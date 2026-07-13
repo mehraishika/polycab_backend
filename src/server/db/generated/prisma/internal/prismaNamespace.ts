@@ -399,7 +399,10 @@ export const ModelName = {
   fota: 'fota',
   DeviceCurrentStatus: 'DeviceCurrentStatus',
   DeviceStatusHistory: 'DeviceStatusHistory',
-  PlantCurrentStatus: 'PlantCurrentStatus'
+  PlantCurrentStatus: 'PlantCurrentStatus',
+  DeviceAlertState: 'DeviceAlertState',
+  AlertEvent: 'AlertEvent',
+  FaultDictionary: 'FaultDictionary'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -415,7 +418,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "plant" | "deviceInverter" | "userPlantInverterMap" | "deviceInvertorStatus" | "deviceDatalogger" | "deviceLogs" | "deviceLogsLatest" | "deviceDailySummary" | "deviceDailySummaryPerLineChart" | "information_data" | "deviceConnectionStatus" | "fota" | "deviceCurrentStatus" | "deviceStatusHistory" | "plantCurrentStatus"
+    modelProps: "user" | "plant" | "deviceInverter" | "userPlantInverterMap" | "deviceInvertorStatus" | "deviceDatalogger" | "deviceLogs" | "deviceLogsLatest" | "deviceDailySummary" | "deviceDailySummaryPerLineChart" | "information_data" | "deviceConnectionStatus" | "fota" | "deviceCurrentStatus" | "deviceStatusHistory" | "plantCurrentStatus" | "deviceAlertState" | "alertEvent" | "faultDictionary"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1603,6 +1606,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DeviceAlertState: {
+      payload: Prisma.$DeviceAlertStatePayload<ExtArgs>
+      fields: Prisma.DeviceAlertStateFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeviceAlertStateFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeviceAlertStateFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>
+        }
+        findFirst: {
+          args: Prisma.DeviceAlertStateFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeviceAlertStateFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>
+        }
+        findMany: {
+          args: Prisma.DeviceAlertStateFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>[]
+        }
+        create: {
+          args: Prisma.DeviceAlertStateCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>
+        }
+        createMany: {
+          args: Prisma.DeviceAlertStateCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeviceAlertStateCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>[]
+        }
+        delete: {
+          args: Prisma.DeviceAlertStateDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>
+        }
+        update: {
+          args: Prisma.DeviceAlertStateUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>
+        }
+        deleteMany: {
+          args: Prisma.DeviceAlertStateDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeviceAlertStateUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeviceAlertStateUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>[]
+        }
+        upsert: {
+          args: Prisma.DeviceAlertStateUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>
+        }
+        aggregate: {
+          args: Prisma.DeviceAlertStateAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeviceAlertState>
+        }
+        groupBy: {
+          args: Prisma.DeviceAlertStateGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceAlertStateGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeviceAlertStateCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceAlertStateCountAggregateOutputType> | number
+        }
+      }
+    }
+    AlertEvent: {
+      payload: Prisma.$AlertEventPayload<ExtArgs>
+      fields: Prisma.AlertEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AlertEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AlertEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>
+        }
+        findFirst: {
+          args: Prisma.AlertEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AlertEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>
+        }
+        findMany: {
+          args: Prisma.AlertEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>[]
+        }
+        create: {
+          args: Prisma.AlertEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>
+        }
+        createMany: {
+          args: Prisma.AlertEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AlertEventCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>[]
+        }
+        delete: {
+          args: Prisma.AlertEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>
+        }
+        update: {
+          args: Prisma.AlertEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.AlertEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AlertEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AlertEventUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>[]
+        }
+        upsert: {
+          args: Prisma.AlertEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>
+        }
+        aggregate: {
+          args: Prisma.AlertEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAlertEvent>
+        }
+        groupBy: {
+          args: Prisma.AlertEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AlertEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AlertEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AlertEventCountAggregateOutputType> | number
+        }
+      }
+    }
+    FaultDictionary: {
+      payload: Prisma.$FaultDictionaryPayload<ExtArgs>
+      fields: Prisma.FaultDictionaryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FaultDictionaryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FaultDictionaryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>
+        }
+        findFirst: {
+          args: Prisma.FaultDictionaryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FaultDictionaryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>
+        }
+        findMany: {
+          args: Prisma.FaultDictionaryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>[]
+        }
+        create: {
+          args: Prisma.FaultDictionaryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>
+        }
+        createMany: {
+          args: Prisma.FaultDictionaryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FaultDictionaryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>[]
+        }
+        delete: {
+          args: Prisma.FaultDictionaryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>
+        }
+        update: {
+          args: Prisma.FaultDictionaryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>
+        }
+        deleteMany: {
+          args: Prisma.FaultDictionaryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FaultDictionaryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FaultDictionaryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>[]
+        }
+        upsert: {
+          args: Prisma.FaultDictionaryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>
+        }
+        aggregate: {
+          args: Prisma.FaultDictionaryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFaultDictionary>
+        }
+        groupBy: {
+          args: Prisma.FaultDictionaryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FaultDictionaryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FaultDictionaryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FaultDictionaryCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2034,6 +2259,51 @@ export const PlantCurrentStatusScalarFieldEnum = {
 export type PlantCurrentStatusScalarFieldEnum = (typeof PlantCurrentStatusScalarFieldEnum)[keyof typeof PlantCurrentStatusScalarFieldEnum]
 
 
+export const DeviceAlertStateScalarFieldEnum = {
+  id: 'id',
+  serialNumber: 'serialNumber',
+  plantId: 'plantId',
+  alertMatrix: 'alertMatrix',
+  activeAlertCount: 'activeAlertCount',
+  lastTelemetryAt: 'lastTelemetryAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceAlertStateScalarFieldEnum = (typeof DeviceAlertStateScalarFieldEnum)[keyof typeof DeviceAlertStateScalarFieldEnum]
+
+
+export const AlertEventScalarFieldEnum = {
+  id: 'id',
+  serialNumber: 'serialNumber',
+  plantId: 'plantId',
+  registerNo: 'registerNo',
+  bitPosition: 'bitPosition',
+  faultCode: 'faultCode',
+  faultMessage: 'faultMessage',
+  status: 'status',
+  raisedAt: 'raisedAt',
+  clearedAt: 'clearedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type AlertEventScalarFieldEnum = (typeof AlertEventScalarFieldEnum)[keyof typeof AlertEventScalarFieldEnum]
+
+
+export const FaultDictionaryScalarFieldEnum = {
+  id: 'id',
+  registerName: 'registerName',
+  registerAddr: 'registerAddr',
+  registerNo: 'registerNo',
+  bitPosition: 'bitPosition',
+  faultCode: 'faultCode',
+  faultMessage: 'faultMessage',
+  createdAt: 'createdAt'
+} as const
+
+export type FaultDictionaryScalarFieldEnum = (typeof FaultDictionaryScalarFieldEnum)[keyof typeof FaultDictionaryScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2048,6 +2318,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -2241,6 +2518,20 @@ export type EnumPlantStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
 export type ListEnumPlantStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlantStatus[]'>
     
 
+
+/**
+ * Reference to a field of type 'AlertStatus'
+ */
+export type EnumAlertStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AlertStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AlertStatus[]'
+ */
+export type ListEnumAlertStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AlertStatus[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -2367,6 +2658,9 @@ export type GlobalOmitConfig = {
   deviceCurrentStatus?: Prisma.DeviceCurrentStatusOmit
   deviceStatusHistory?: Prisma.DeviceStatusHistoryOmit
   plantCurrentStatus?: Prisma.PlantCurrentStatusOmit
+  deviceAlertState?: Prisma.DeviceAlertStateOmit
+  alertEvent?: Prisma.AlertEventOmit
+  faultDictionary?: Prisma.FaultDictionaryOmit
 }
 
 /* Types for Logging */

@@ -59,6 +59,8 @@ model Plant {
   information_data information_data[]
   user             User                   @relation(fields: [userAccount], references: [account])
   currentStatus    PlantCurrentStatus?
+  alertStates      DeviceAlertState[]
+  alertEvents      AlertEvent[]
 
   @@index([type])
   @@index([name])
@@ -478,6 +480,62 @@ model PlantCurrentStatus {
 
   @@index([status])
   @@map("plant_current_status")
+}
+
+model DeviceAlertState {
+
+  id                BigInt      @id @default(autoincrement())
+  serialNumber      String      @unique @map("serial_number")
+  plantId           BigInt?     @map("plant_id")
+  plant             Plant?      @relation(fields: [plantId], references: [id])
+  alertMatrix       Json        @map("alert_matrix")
+  activeAlertCount  Int         @default(0) @map("active_alert_count")
+  lastTelemetryAt   DateTime    @map("last_telemetry_at")
+  createdAt         DateTime    @default(now()) @map("created_at")
+  updatedAt         DateTime    @updatedAt @map("updated_at")
+  @@index([serialNumber])
+  @@index([plantId])
+  @@map("device_alert_state")
+}
+
+model AlertEvent {
+
+  id               BigInt       @id @default(autoincrement())
+  serialNumber     String       @map("serial_number")
+  plantId          BigInt?      @map("plant_id")
+  plant            Plant?       @relation(fields: [plantId], references: [id])
+  registerNo       Int          @map("register_no")
+  bitPosition      Int          @map("bit_position")
+  faultCode        String       @map("fault_code")
+  faultMessage     String       @map("fault_message")
+  status           AlertStatus
+  raisedAt         DateTime?     @map("raised_at")
+  clearedAt        DateTime?    @map("cleared_at")
+  createdAt        DateTime     @default(now()) @map("created_at")
+  @@index([serialNumber])
+  @@index([plantId])
+  @@index([status])
+  @@map("alert_events")
+}
+
+model FaultDictionary {
+
+  id             BigInt   @id @default(autoincrement())
+  registerName   String   @map("register_name")      // ErrorCode1
+  registerAddr   String   @map("register_addr")      // 0x101E
+  registerNo     Int      @map("register_no")        // 1..6 (your matrix index)
+  bitPosition    Int      @map("bit_position")
+  faultCode      String   @map("fault_code")
+  faultMessage   String   @map("fault_message")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@unique([registerNo, bitPosition])
+  @@map("fault_dictionary")
+}
+
+enum AlertStatus {
+  ACTIVE
+  INACTIVE
 }
 
 enum UserPortal {

@@ -9,6 +9,14 @@
 * 🟢 You can import this file directly.
 */
 
+export const AlertStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type AlertStatus = (typeof AlertStatus)[keyof typeof AlertStatus]
+
+
 export const UserPortal = {
   monitoring: 'monitoring',
   service: 'service'

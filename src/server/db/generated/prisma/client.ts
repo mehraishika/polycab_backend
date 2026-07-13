@@ -121,3 +121,18 @@ export type DeviceStatusHistory = Prisma.DeviceStatusHistoryModel
  * 
  */
 export type PlantCurrentStatus = Prisma.PlantCurrentStatusModel
+/**
+ * Model DeviceAlertState
+ * 
+ */
+export type DeviceAlertState = Prisma.DeviceAlertStateModel
+/**
+ * Model AlertEvent
+ * 
+ */
+export type AlertEvent = Prisma.AlertEventModel
+/**
+ * Model FaultDictionary
+ * 
+ */
+export type FaultDictionary = Prisma.FaultDictionaryModel

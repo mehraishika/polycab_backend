@@ -194,36 +194,37 @@ export class DeviceService {
 		return value.toISOString().replace('T', ' ').slice(0, 19);
 	}
 
-	// private toCurrentAlertItems(snapshot: DeviceCurrentAlertsSnapshot) {
-	// 	const statusLabel = this.normalizeStatusLabel(snapshot.device.status, snapshot.device.online);
+	private getCurrentActiveAlerts(alerts: DeviceCurrentAlertsSnapshot["alerts"]) {
+		return alerts.filter((alert) => {
+			if (alert.status !== "ACTIVE") {
+				return false;
+			}
 
-	// 	if (statusLabel === 'online' || statusLabel === 'active') {
-	// 		return [] as Array<{
-	// 			id: string;
-	// 			name: string;
-	// 			sn: string;
-	// 			event: string;
-	// 			severity: 'critical' | 'warning';
-	// 			status: 'active';
-	// 			startedAt: string;
-	// 			lastUpdatedAt: string;
-	// 		}>;
-	// 	}
+			const hasInactive = alerts.some(
+				(other) =>
+					other.status === "INACTIVE" &&
+					other.registerNo === alert.registerNo &&
+					other.bitPosition === alert.bitPosition &&
+					other.createdAt > alert.createdAt
+			);
 
-	// 	const updatedAt = this.toAlertDateTime(snapshot.device.updatedAt);
-	// 	return [
-	// 		{
-	// 			id: `alert-${String(snapshot.device.id)}`,
-	// 			name: snapshot.device.name,
-	// 			sn: snapshot.device.sn,
-	// 			event: this.buildAlertEvent(statusLabel),
-	// 			severity: this.buildAlertSeverity(statusLabel),
-	// 			status: 'active' as const,
-	// 			startedAt: updatedAt,
-	// 			lastUpdatedAt: updatedAt,
-	// 		},
-	// 	];
-	// }
+			return !hasInactive;
+		});
+	}
+
+	private toCurrentAlertItems(snapshot: DeviceCurrentAlertsSnapshot) {
+		const activeAlerts = this.getCurrentActiveAlerts(snapshot.alerts);
+
+		return activeAlerts.map((alert) => ({
+			id: alert.id.toString(),
+			name: snapshot.device.name,
+			sn: snapshot.device.sn,
+			event: alert.faultMessage,
+			status: "active" as const,
+			startedAt: this.toAlertDateTime(alert.raisedAt ?? alert.createdAt),
+			lastUpdatedAt: this.toAlertDateTime(alert.createdAt),
+		}));
+	}
 
 	private filterLiveRefreshItems<T extends { lastUpdatedAt: string }>(
 		items: T[],
@@ -242,7 +243,13 @@ export class DeviceService {
 	}
 
 	private sortCurrentAlertItems(
-		items: Array<{ name: string; sn: string; event: string; severity: string; startedAt: string; lastUpdatedAt: string }>,
+		items: Array<{
+			name: string;
+			sn: string;
+			event: string;
+			startedAt: string;
+			lastUpdatedAt: string;
+		}>,
 		sortBy: DeviceCurrentAlertsServiceParams['sortBy'],
 		sortOrder: DeviceCurrentAlertsServiceParams['sortOrder'],
 	) {
@@ -251,7 +258,6 @@ export class DeviceService {
 			if (sortBy === 'name') return left.name.localeCompare(right.name) * multiplier;
 			if (sortBy === 'sn') return left.sn.localeCompare(right.sn) * multiplier;
 			if (sortBy === 'event') return left.event.localeCompare(right.event) * multiplier;
-			if (sortBy === 'severity') return left.severity.localeCompare(right.severity) * multiplier;
 			if (sortBy === 'startedAt') return (new Date(left.startedAt).getTime() - new Date(right.startedAt).getTime()) * multiplier;
 			return (new Date(left.lastUpdatedAt).getTime() - new Date(right.lastUpdatedAt).getTime()) * multiplier;
 		});
@@ -725,13 +731,23 @@ export class DeviceService {
 		// 	targetEndUserId: params.targetEndUserId,
 		// 	scope,
 		// });
-		const snapshot = await this.deviceRepository.getDeviceInformationSnapshot({
+		const snapshot = await this.deviceRepository.getDeviceLogsSnapshot({
 			plantId: params.plantId,
 			deviceId: params.deviceId,
+			dateFrom: params.dateFrom,
+			dateTo: params.dateTo,
 		});
 		this.assertPlantAccess(scope, snapshot.plantAccount);
 
-		const allRows = this.generateDeviceLogs(snapshot, params.dateFrom, params.dateTo);
+		const allRows = snapshot.alerts.map((alert) => ({
+			id: alert.id.toString(),
+			name: snapshot.device.name,
+			type: snapshot.device.type,
+			sn: snapshot.device.sn,
+			time: this.toAlertDateTime(alert.raisedAt ?? alert.createdAt),
+			status: alert.status === "ACTIVE" ? "Active" : "Inactive",
+			event: alert.faultMessage,
+		}));
 		const filtered = this.applyDeviceLogFilters(allRows, params.search, params.event);
 		const sorted = this.sortDeviceLogs(filtered, params.sortBy, params.sortOrder);
 
@@ -1057,43 +1073,37 @@ export class DeviceService {
 		};
 	}
 
-	// async getDeviceCurrentAlerts(params: DeviceCurrentAlertsServiceParams) {
-	// 	const scope = await this.resolveScope(params.user, params.fromService, params.targetEndUserId);
-	// 	const repoParams: DeviceCurrentAlertsSnapshotParams = {
-	// 		plantId: params.plantId,
-	// 		deviceId: params.deviceId,
-	// 	};
+	async getDeviceCurrentAlerts(params: DeviceCurrentAlertsServiceParams) {
+		const scope = await this.resolveScope(params.user, params.fromService, params.targetEndUserId);
+		const repoParams: DeviceCurrentAlertsSnapshotParams = {
+			plantId: params.plantId,
+			deviceId: params.deviceId,
+		};
 
-	// 	const snapshot = await this.deviceRepository.getDeviceCurrentAlertsSnapshot(repoParams);
-	// 	this.assertPlantAccess(scope, snapshot.plantAccount);
+		const snapshot = await this.deviceRepository.getDeviceCurrentAlertsSnapshot(repoParams);
+		this.assertPlantAccess(scope, snapshot.plantAccount);
 
-	// 	const allItems = this.toCurrentAlertItems(snapshot);
-	// 	const summary = {
-	// 		active: allItems.length,
-	// 		critical: allItems.filter((item) => item.severity === 'critical').length,
-	// 		warning: allItems.filter((item) => item.severity === 'warning').length,
-	// 	};
+		const allItems = this.toCurrentAlertItems(snapshot);
 
-	// 	const liveItems = this.filterLiveRefreshItems(allItems, params.since);
-	// 	const sortedItems = this.sortCurrentAlertItems(liveItems, params.sortBy, params.sortOrder);
+		const liveItems = this.filterLiveRefreshItems(allItems, params.since);
+		const sortedItems = this.sortCurrentAlertItems(liveItems, params.sortBy, params.sortOrder);
 
-	// 	const totalItems = sortedItems.length;
-	// 	const totalPages = totalItems > 0 ? Math.ceil(totalItems / params.pageSize) : 0;
-	// 	const safePage = totalPages > 0 ? Math.min(params.page, totalPages) : 1;
-	// 	const start = (safePage - 1) * params.pageSize;
-	// 	const items = sortedItems.slice(start, start + params.pageSize);
+		const totalItems = sortedItems.length;
+		const totalPages = totalItems > 0 ? Math.ceil(totalItems / params.pageSize) : 0;
+		const safePage = totalPages > 0 ? Math.min(params.page, totalPages) : 1;
+		const start = (safePage - 1) * params.pageSize;
+		const items = sortedItems.slice(start, start + params.pageSize);
 
-	// 	return {
-	// 		items,
-	// 		pagination: {
-	// 			page: totalItems > 0 ? safePage : 1,
-	// 			pageSize: params.pageSize,
-	// 			totalItems,
-	// 			totalPages,
-	// 		},
-	// 		summary,
-	// 	};
-	// }
+		return {
+			items,
+			pagination: {
+				page: totalItems > 0 ? safePage : 1,
+				pageSize: params.pageSize,
+				totalItems,
+				totalPages,
+			},
+		};
+	}
 
 	// async getDeviceInformation(params: DeviceInformationServiceParams) {
 	// 	this.validateDateRange(params.dateFrom, params.dateTo);
@@ -1305,9 +1315,9 @@ export async function exportDeviceChart(params: DeviceChartExportServiceParams) 
 	return deviceService.exportDeviceChart(params);
 }
 
-// export async function getDeviceCurrentAlerts(params: DeviceCurrentAlertsServiceParams) {
-// 	return deviceService.getDeviceCurrentAlerts(params);
-// }
+export async function getDeviceCurrentAlerts(params: DeviceCurrentAlertsServiceParams) {
+	return deviceService.getDeviceCurrentAlerts(params);
+}
 
 export async function getDeviceInformation(params: DeviceInformationServiceParams) {
 	return deviceService.getDeviceInformation(params);

@@ -66,7 +66,10 @@ export const ModelName = {
   fota: 'fota',
   DeviceCurrentStatus: 'DeviceCurrentStatus',
   DeviceStatusHistory: 'DeviceStatusHistory',
-  PlantCurrentStatus: 'PlantCurrentStatus'
+  PlantCurrentStatus: 'PlantCurrentStatus',
+  DeviceAlertState: 'DeviceAlertState',
+  AlertEvent: 'AlertEvent',
+  FaultDictionary: 'FaultDictionary'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -477,6 +480,51 @@ export const PlantCurrentStatusScalarFieldEnum = {
 export type PlantCurrentStatusScalarFieldEnum = (typeof PlantCurrentStatusScalarFieldEnum)[keyof typeof PlantCurrentStatusScalarFieldEnum]
 
 
+export const DeviceAlertStateScalarFieldEnum = {
+  id: 'id',
+  serialNumber: 'serialNumber',
+  plantId: 'plantId',
+  alertMatrix: 'alertMatrix',
+  activeAlertCount: 'activeAlertCount',
+  lastTelemetryAt: 'lastTelemetryAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceAlertStateScalarFieldEnum = (typeof DeviceAlertStateScalarFieldEnum)[keyof typeof DeviceAlertStateScalarFieldEnum]
+
+
+export const AlertEventScalarFieldEnum = {
+  id: 'id',
+  serialNumber: 'serialNumber',
+  plantId: 'plantId',
+  registerNo: 'registerNo',
+  bitPosition: 'bitPosition',
+  faultCode: 'faultCode',
+  faultMessage: 'faultMessage',
+  status: 'status',
+  raisedAt: 'raisedAt',
+  clearedAt: 'clearedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type AlertEventScalarFieldEnum = (typeof AlertEventScalarFieldEnum)[keyof typeof AlertEventScalarFieldEnum]
+
+
+export const FaultDictionaryScalarFieldEnum = {
+  id: 'id',
+  registerName: 'registerName',
+  registerAddr: 'registerAddr',
+  registerNo: 'registerNo',
+  bitPosition: 'bitPosition',
+  faultCode: 'faultCode',
+  faultMessage: 'faultMessage',
+  createdAt: 'createdAt'
+} as const
+
+export type FaultDictionaryScalarFieldEnum = (typeof FaultDictionaryScalarFieldEnum)[keyof typeof FaultDictionaryScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -491,6 +539,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {

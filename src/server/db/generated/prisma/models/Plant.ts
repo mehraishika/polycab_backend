@@ -317,6 +317,8 @@ export type PlantWhereInput = {
   information_data?: Prisma.Information_dataListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   currentStatus?: Prisma.XOR<Prisma.PlantCurrentStatusNullableScalarRelationFilter, Prisma.PlantCurrentStatusWhereInput> | null
+  alertStates?: Prisma.DeviceAlertStateListRelationFilter
+  alertEvents?: Prisma.AlertEventListRelationFilter
 }
 
 export type PlantOrderByWithRelationInput = {
@@ -341,6 +343,8 @@ export type PlantOrderByWithRelationInput = {
   information_data?: Prisma.information_dataOrderByRelationAggregateInput
   user?: Prisma.UserOrderByWithRelationInput
   currentStatus?: Prisma.PlantCurrentStatusOrderByWithRelationInput
+  alertStates?: Prisma.DeviceAlertStateOrderByRelationAggregateInput
+  alertEvents?: Prisma.AlertEventOrderByRelationAggregateInput
 }
 
 export type PlantWhereUniqueInput = Prisma.AtLeast<{
@@ -368,6 +372,8 @@ export type PlantWhereUniqueInput = Prisma.AtLeast<{
   information_data?: Prisma.Information_dataListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   currentStatus?: Prisma.XOR<Prisma.PlantCurrentStatusNullableScalarRelationFilter, Prisma.PlantCurrentStatusWhereInput> | null
+  alertStates?: Prisma.DeviceAlertStateListRelationFilter
+  alertEvents?: Prisma.AlertEventListRelationFilter
 }, "id">
 
 export type PlantOrderByWithAggregationInput = {
@@ -437,6 +443,8 @@ export type PlantCreateInput = {
   information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
   user: Prisma.UserCreateNestedOneWithoutPlantsInput
   currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateInput = {
@@ -460,6 +468,8 @@ export type PlantUncheckedCreateInput = {
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUpdateInput = {
@@ -483,6 +493,8 @@ export type PlantUpdateInput = {
   information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateInput = {
@@ -506,6 +518,8 @@ export type PlantUncheckedUpdateInput = {
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateManyInput = {
@@ -648,6 +662,11 @@ export type PlantScalarRelationFilter = {
   isNot?: Prisma.PlantWhereInput
 }
 
+export type PlantNullableScalarRelationFilter = {
+  is?: Prisma.PlantWhereInput | null
+  isNot?: Prisma.PlantWhereInput | null
+}
+
 export type PlantCreateNestedManyWithoutUserInput = {
   create?: Prisma.XOR<Prisma.PlantCreateWithoutUserInput, Prisma.PlantUncheckedCreateWithoutUserInput> | Prisma.PlantCreateWithoutUserInput[] | Prisma.PlantUncheckedCreateWithoutUserInput[]
   connectOrCreate?: Prisma.PlantCreateOrConnectWithoutUserInput | Prisma.PlantCreateOrConnectWithoutUserInput[]
@@ -754,6 +773,38 @@ export type PlantUpdateOneRequiredWithoutCurrentStatusNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlantUpdateToOneWithWhereWithoutCurrentStatusInput, Prisma.PlantUpdateWithoutCurrentStatusInput>, Prisma.PlantUncheckedUpdateWithoutCurrentStatusInput>
 }
 
+export type PlantCreateNestedOneWithoutAlertStatesInput = {
+  create?: Prisma.XOR<Prisma.PlantCreateWithoutAlertStatesInput, Prisma.PlantUncheckedCreateWithoutAlertStatesInput>
+  connectOrCreate?: Prisma.PlantCreateOrConnectWithoutAlertStatesInput
+  connect?: Prisma.PlantWhereUniqueInput
+}
+
+export type PlantUpdateOneWithoutAlertStatesNestedInput = {
+  create?: Prisma.XOR<Prisma.PlantCreateWithoutAlertStatesInput, Prisma.PlantUncheckedCreateWithoutAlertStatesInput>
+  connectOrCreate?: Prisma.PlantCreateOrConnectWithoutAlertStatesInput
+  upsert?: Prisma.PlantUpsertWithoutAlertStatesInput
+  disconnect?: Prisma.PlantWhereInput | boolean
+  delete?: Prisma.PlantWhereInput | boolean
+  connect?: Prisma.PlantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PlantUpdateToOneWithWhereWithoutAlertStatesInput, Prisma.PlantUpdateWithoutAlertStatesInput>, Prisma.PlantUncheckedUpdateWithoutAlertStatesInput>
+}
+
+export type PlantCreateNestedOneWithoutAlertEventsInput = {
+  create?: Prisma.XOR<Prisma.PlantCreateWithoutAlertEventsInput, Prisma.PlantUncheckedCreateWithoutAlertEventsInput>
+  connectOrCreate?: Prisma.PlantCreateOrConnectWithoutAlertEventsInput
+  connect?: Prisma.PlantWhereUniqueInput
+}
+
+export type PlantUpdateOneWithoutAlertEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.PlantCreateWithoutAlertEventsInput, Prisma.PlantUncheckedCreateWithoutAlertEventsInput>
+  connectOrCreate?: Prisma.PlantCreateOrConnectWithoutAlertEventsInput
+  upsert?: Prisma.PlantUpsertWithoutAlertEventsInput
+  disconnect?: Prisma.PlantWhereInput | boolean
+  delete?: Prisma.PlantWhereInput | boolean
+  connect?: Prisma.PlantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PlantUpdateToOneWithWhereWithoutAlertEventsInput, Prisma.PlantUpdateWithoutAlertEventsInput>, Prisma.PlantUncheckedUpdateWithoutAlertEventsInput>
+}
+
 export type PlantCreateWithoutUserInput = {
   id?: bigint | number
   name: string
@@ -774,6 +825,8 @@ export type PlantCreateWithoutUserInput = {
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateWithoutUserInput = {
@@ -796,6 +849,8 @@ export type PlantUncheckedCreateWithoutUserInput = {
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutUserInput = {
@@ -866,6 +921,8 @@ export type PlantCreateWithoutInvertersInput = {
   information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
   user: Prisma.UserCreateNestedOneWithoutPlantsInput
   currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateWithoutInvertersInput = {
@@ -888,6 +945,8 @@ export type PlantUncheckedCreateWithoutInvertersInput = {
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutInvertersInput = {
@@ -926,6 +985,8 @@ export type PlantUpdateWithoutInvertersInput = {
   information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutInvertersInput = {
@@ -948,6 +1009,8 @@ export type PlantUncheckedUpdateWithoutInvertersInput = {
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateWithoutDataloggersInput = {
@@ -970,6 +1033,8 @@ export type PlantCreateWithoutDataloggersInput = {
   information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
   user: Prisma.UserCreateNestedOneWithoutPlantsInput
   currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateWithoutDataloggersInput = {
@@ -992,6 +1057,8 @@ export type PlantUncheckedCreateWithoutDataloggersInput = {
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutDataloggersInput = {
@@ -1030,6 +1097,8 @@ export type PlantUpdateWithoutDataloggersInput = {
   information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutDataloggersInput = {
@@ -1052,6 +1121,8 @@ export type PlantUncheckedUpdateWithoutDataloggersInput = {
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateWithoutInformation_dataInput = {
@@ -1074,6 +1145,8 @@ export type PlantCreateWithoutInformation_dataInput = {
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
   user: Prisma.UserCreateNestedOneWithoutPlantsInput
   currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateWithoutInformation_dataInput = {
@@ -1096,6 +1169,8 @@ export type PlantUncheckedCreateWithoutInformation_dataInput = {
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutInformation_dataInput = {
@@ -1134,6 +1209,8 @@ export type PlantUpdateWithoutInformation_dataInput = {
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutInformation_dataInput = {
@@ -1156,6 +1233,8 @@ export type PlantUncheckedUpdateWithoutInformation_dataInput = {
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateWithoutCurrentStatusInput = {
@@ -1178,6 +1257,8 @@ export type PlantCreateWithoutCurrentStatusInput = {
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
   user: Prisma.UserCreateNestedOneWithoutPlantsInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateWithoutCurrentStatusInput = {
@@ -1200,6 +1281,8 @@ export type PlantUncheckedCreateWithoutCurrentStatusInput = {
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutCurrentStatusInput = {
@@ -1238,6 +1321,8 @@ export type PlantUpdateWithoutCurrentStatusInput = {
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutCurrentStatusInput = {
@@ -1260,6 +1345,232 @@ export type PlantUncheckedUpdateWithoutCurrentStatusInput = {
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
+}
+
+export type PlantCreateWithoutAlertStatesInput = {
+  id?: bigint | number
+  name: string
+  type: string
+  installed?: Date | string | null
+  lastUpdatedAt?: Date | string | null
+  kwp?: number | null
+  price?: number | null
+  priceUnit?: string | null
+  longitude?: string | null
+  latitude?: string | null
+  address?: string | null
+  pictureFileId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
+  inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
+  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
+  user: Prisma.UserCreateNestedOneWithoutPlantsInput
+  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
+}
+
+export type PlantUncheckedCreateWithoutAlertStatesInput = {
+  id?: bigint | number
+  name: string
+  type: string
+  installed?: Date | string | null
+  lastUpdatedAt?: Date | string | null
+  kwp?: number | null
+  price?: number | null
+  priceUnit?: string | null
+  longitude?: string | null
+  latitude?: string | null
+  address?: string | null
+  pictureFileId?: string | null
+  userAccount: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
+  inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
+  information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
+  currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
+}
+
+export type PlantCreateOrConnectWithoutAlertStatesInput = {
+  where: Prisma.PlantWhereUniqueInput
+  create: Prisma.XOR<Prisma.PlantCreateWithoutAlertStatesInput, Prisma.PlantUncheckedCreateWithoutAlertStatesInput>
+}
+
+export type PlantUpsertWithoutAlertStatesInput = {
+  update: Prisma.XOR<Prisma.PlantUpdateWithoutAlertStatesInput, Prisma.PlantUncheckedUpdateWithoutAlertStatesInput>
+  create: Prisma.XOR<Prisma.PlantCreateWithoutAlertStatesInput, Prisma.PlantUncheckedCreateWithoutAlertStatesInput>
+  where?: Prisma.PlantWhereInput
+}
+
+export type PlantUpdateToOneWithWhereWithoutAlertStatesInput = {
+  where?: Prisma.PlantWhereInput
+  data: Prisma.XOR<Prisma.PlantUpdateWithoutAlertStatesInput, Prisma.PlantUncheckedUpdateWithoutAlertStatesInput>
+}
+
+export type PlantUpdateWithoutAlertStatesInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  installed?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kwp?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priceUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  longitude?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pictureFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
+  inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
+  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
+  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
+}
+
+export type PlantUncheckedUpdateWithoutAlertStatesInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  installed?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kwp?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priceUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  longitude?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pictureFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userAccount?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
+  inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
+  information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
+  currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
+}
+
+export type PlantCreateWithoutAlertEventsInput = {
+  id?: bigint | number
+  name: string
+  type: string
+  installed?: Date | string | null
+  lastUpdatedAt?: Date | string | null
+  kwp?: number | null
+  price?: number | null
+  priceUnit?: string | null
+  longitude?: string | null
+  latitude?: string | null
+  address?: string | null
+  pictureFileId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
+  inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
+  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
+  user: Prisma.UserCreateNestedOneWithoutPlantsInput
+  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
+}
+
+export type PlantUncheckedCreateWithoutAlertEventsInput = {
+  id?: bigint | number
+  name: string
+  type: string
+  installed?: Date | string | null
+  lastUpdatedAt?: Date | string | null
+  kwp?: number | null
+  price?: number | null
+  priceUnit?: string | null
+  longitude?: string | null
+  latitude?: string | null
+  address?: string | null
+  pictureFileId?: string | null
+  userAccount: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
+  inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
+  information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
+  currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
+}
+
+export type PlantCreateOrConnectWithoutAlertEventsInput = {
+  where: Prisma.PlantWhereUniqueInput
+  create: Prisma.XOR<Prisma.PlantCreateWithoutAlertEventsInput, Prisma.PlantUncheckedCreateWithoutAlertEventsInput>
+}
+
+export type PlantUpsertWithoutAlertEventsInput = {
+  update: Prisma.XOR<Prisma.PlantUpdateWithoutAlertEventsInput, Prisma.PlantUncheckedUpdateWithoutAlertEventsInput>
+  create: Prisma.XOR<Prisma.PlantCreateWithoutAlertEventsInput, Prisma.PlantUncheckedCreateWithoutAlertEventsInput>
+  where?: Prisma.PlantWhereInput
+}
+
+export type PlantUpdateToOneWithWhereWithoutAlertEventsInput = {
+  where?: Prisma.PlantWhereInput
+  data: Prisma.XOR<Prisma.PlantUpdateWithoutAlertEventsInput, Prisma.PlantUncheckedUpdateWithoutAlertEventsInput>
+}
+
+export type PlantUpdateWithoutAlertEventsInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  installed?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kwp?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priceUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  longitude?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pictureFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
+  inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
+  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
+  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
+}
+
+export type PlantUncheckedUpdateWithoutAlertEventsInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  installed?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kwp?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priceUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  longitude?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pictureFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userAccount?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
+  inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
+  information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
+  currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateManyUserInput = {
@@ -1300,6 +1611,8 @@ export type PlantUpdateWithoutUserInput = {
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutUserInput = {
@@ -1322,6 +1635,8 @@ export type PlantUncheckedUpdateWithoutUserInput = {
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateManyWithoutUserInput = {
@@ -1351,12 +1666,16 @@ export type PlantCountOutputType = {
   dataloggers: number
   inverters: number
   information_data: number
+  alertStates: number
+  alertEvents: number
 }
 
 export type PlantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   dataloggers?: boolean | PlantCountOutputTypeCountDataloggersArgs
   inverters?: boolean | PlantCountOutputTypeCountInvertersArgs
   information_data?: boolean | PlantCountOutputTypeCountInformation_dataArgs
+  alertStates?: boolean | PlantCountOutputTypeCountAlertStatesArgs
+  alertEvents?: boolean | PlantCountOutputTypeCountAlertEventsArgs
 }
 
 /**
@@ -1390,6 +1709,20 @@ export type PlantCountOutputTypeCountInformation_dataArgs<ExtArgs extends runtim
   where?: Prisma.information_dataWhereInput
 }
 
+/**
+ * PlantCountOutputType without action
+ */
+export type PlantCountOutputTypeCountAlertStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DeviceAlertStateWhereInput
+}
+
+/**
+ * PlantCountOutputType without action
+ */
+export type PlantCountOutputTypeCountAlertEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AlertEventWhereInput
+}
+
 
 export type PlantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1413,6 +1746,8 @@ export type PlantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   information_data?: boolean | Prisma.Plant$information_dataArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   currentStatus?: boolean | Prisma.Plant$currentStatusArgs<ExtArgs>
+  alertStates?: boolean | Prisma.Plant$alertStatesArgs<ExtArgs>
+  alertEvents?: boolean | Prisma.Plant$alertEventsArgs<ExtArgs>
   _count?: boolean | Prisma.PlantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["plant"]>
 
@@ -1482,6 +1817,8 @@ export type PlantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   information_data?: boolean | Prisma.Plant$information_dataArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   currentStatus?: boolean | Prisma.Plant$currentStatusArgs<ExtArgs>
+  alertStates?: boolean | Prisma.Plant$alertStatesArgs<ExtArgs>
+  alertEvents?: boolean | Prisma.Plant$alertEventsArgs<ExtArgs>
   _count?: boolean | Prisma.PlantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PlantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1499,6 +1836,8 @@ export type $PlantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     information_data: Prisma.$information_dataPayload<ExtArgs>[]
     user: Prisma.$UserPayload<ExtArgs>
     currentStatus: Prisma.$PlantCurrentStatusPayload<ExtArgs> | null
+    alertStates: Prisma.$DeviceAlertStatePayload<ExtArgs>[]
+    alertEvents: Prisma.$AlertEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -1916,6 +2255,8 @@ export interface Prisma__PlantClient<T, Null = never, ExtArgs extends runtime.Ty
   information_data<T extends Prisma.Plant$information_dataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$information_dataArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$information_dataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   currentStatus<T extends Prisma.Plant$currentStatusArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$currentStatusArgs<ExtArgs>>): Prisma.Prisma__PlantCurrentStatusClient<runtime.Types.Result.GetResult<Prisma.$PlantCurrentStatusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  alertStates<T extends Prisma.Plant$alertStatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$alertStatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceAlertStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  alertEvents<T extends Prisma.Plant$alertEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$alertEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AlertEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2450,6 +2791,54 @@ export type Plant$currentStatusArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   include?: Prisma.PlantCurrentStatusInclude<ExtArgs> | null
   where?: Prisma.PlantCurrentStatusWhereInput
+}
+
+/**
+ * Plant.alertStates
+ */
+export type Plant$alertStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DeviceAlertState
+   */
+  select?: Prisma.DeviceAlertStateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DeviceAlertState
+   */
+  omit?: Prisma.DeviceAlertStateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DeviceAlertStateInclude<ExtArgs> | null
+  where?: Prisma.DeviceAlertStateWhereInput
+  orderBy?: Prisma.DeviceAlertStateOrderByWithRelationInput | Prisma.DeviceAlertStateOrderByWithRelationInput[]
+  cursor?: Prisma.DeviceAlertStateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DeviceAlertStateScalarFieldEnum | Prisma.DeviceAlertStateScalarFieldEnum[]
+}
+
+/**
+ * Plant.alertEvents
+ */
+export type Plant$alertEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AlertEvent
+   */
+  select?: Prisma.AlertEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AlertEvent
+   */
+  omit?: Prisma.AlertEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AlertEventInclude<ExtArgs> | null
+  where?: Prisma.AlertEventWhereInput
+  orderBy?: Prisma.AlertEventOrderByWithRelationInput | Prisma.AlertEventOrderByWithRelationInput[]
+  cursor?: Prisma.AlertEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AlertEventScalarFieldEnum | Prisma.AlertEventScalarFieldEnum[]
 }
 
 /**

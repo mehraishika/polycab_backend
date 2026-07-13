@@ -223,16 +223,16 @@ export class PlantRepository {
     }));
 
     const current = Array.from({ length: 9 }, (_, i) => ({
-      key: `current${i + 1}`,
-      label: `current${i + 1}`,
+      key: `Current${i + 1}`,
+      label: `Current${i + 1}`,
       unit: "A",
       axis: "A",
       group: "Current",
     }));
 
     const power = Array.from({ length: 9 }, (_, i) => ({
-      key: `power${i + 1}`,
-      label: `power${i + 1}`,
+      key: `Power${i + 1}`,
+      label: `Power${i + 1}`,
       unit: "kW",
       axis: "kW",
       group: "Power",

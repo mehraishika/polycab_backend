@@ -77,10 +77,46 @@ export interface DeviceCurrentAlertsSnapshot {
     name: string;
     type: string;
     sn: string;
-    // online: boolean;
-    // status: string | null;
     updatedAt: Date;
   };
+
+  alerts: {
+    id: bigint;
+    registerNo: number;
+    bitPosition: number;
+    faultMessage: string;
+    status: string;
+    raisedAt: Date | null;
+    createdAt: Date;
+  }[];
+}
+
+export interface DeviceLogsSnapshotParams {
+  plantId: string;
+  deviceId: string;
+  dateFrom?: string;
+  dateTo?: string;
+}
+
+export interface DeviceLogsSnapshot {
+  plantId: bigint;
+  plantAccount: string;
+
+  device: {
+    id: bigint;
+    name: string;
+    type: string;
+    sn: string;
+  };
+
+  alerts: {
+    id: bigint;
+    faultMessage: string;
+    status: string;
+    raisedAt: Date | null;
+    clearedAt: Date | null;
+    createdAt: Date;
+  }[];
 }
 
 export interface DeviceInformationSnapshotParams {
@@ -121,7 +157,7 @@ type DeviceRow = {
 };
 
 export class DeviceRepository {
-  constructor(private readonly dbClient: PrismaClient = prisma) {}
+  constructor(private readonly dbClient: PrismaClient = prisma) { }
 
   private formatDateTime(value: Date | null | undefined): string {
     const date = value ?? new Date();
@@ -1101,6 +1137,135 @@ export class DeviceRepository {
     };
   }
 
+  async getDeviceLogsSnapshot(
+    params: DeviceLogsSnapshotParams,
+  ): Promise<DeviceLogsSnapshot> {
+
+    const plantId = this.parsePlantId(params.plantId);
+    const deviceId = this.parseDeviceId(params.deviceId);
+
+    const plant = await this.dbClient.plant.findFirst({
+      where: {
+        id: plantId,
+        deletedAt: null,
+      },
+      select: {
+        id: true,
+        userAccount: true,
+      },
+    });
+
+    if (!plant) {
+      throw new ApiError(404, "Plant not found.");
+    }
+
+    const inverter = await this.dbClient.deviceInverter.findFirst({
+      where: {
+        id: deviceId,
+        plantId,
+        deletedAt: null,
+      },
+      select: {
+        id: true,
+        name: true,
+        type: true,
+        serialNumber: true,
+      },
+    });
+
+    if (inverter) {
+      const alerts = await this.dbClient.alertEvent.findMany({
+        where: {
+          serialNumber: inverter.serialNumber,
+          createdAt: {
+            gte: params.dateFrom ? new Date(params.dateFrom) : undefined,
+            lte: params.dateTo
+              ? new Date(`${params.dateTo}T23:59:59.999Z`)
+              : undefined,
+          },
+        },
+        orderBy: {
+          raisedAt: "desc",
+        },
+        select: {
+          id: true,
+          faultMessage: true,
+          status: true,
+          raisedAt: true,
+          clearedAt: true,
+          createdAt: true,
+        },
+      });
+
+      return {
+        plantId: plant.id,
+        plantAccount: plant.userAccount,
+        device: {
+          id: inverter.id,
+          name: inverter.name ?? `${inverter.type} ${inverter.serialNumber}`,
+          type: inverter.type,
+          sn: inverter.serialNumber,
+        },
+        alerts,
+      };
+    }
+
+    // Continue here for datalogger
+    const datalogger = await this.dbClient.deviceDatalogger.findFirst({
+      where: {
+        id: deviceId,
+        plantId,
+        deletedAt: null,
+      },
+      select: {
+        id: true,
+        name: true,
+        type: true,
+        serialNumber: true,
+      },
+    });
+
+    if (!datalogger) {
+      throw new ApiError(404, "Device not found for this plant.");
+    }
+
+    const alerts = await this.dbClient.alertEvent.findMany({
+      where: {
+        serialNumber: datalogger.serialNumber,
+        createdAt: {
+          gte: params.dateFrom ? new Date(params.dateFrom) : undefined,
+          lte: params.dateTo
+            ? new Date(`${params.dateTo}T23:59:59.999Z`)
+            : undefined,
+        },
+      },
+      orderBy: {
+        raisedAt: "desc",
+      },
+      select: {
+        id: true,
+        faultMessage: true,
+        status: true,
+        raisedAt: true,
+        clearedAt: true,
+        createdAt: true,
+      },
+    });
+
+    return {
+      plantId: plant.id,
+      plantAccount: plant.userAccount,
+      device: {
+        id: datalogger.id,
+        name: datalogger.name ?? `${datalogger.type} ${datalogger.serialNumber}`,
+        type: datalogger.type,
+        sn: datalogger.serialNumber,
+      },
+      alerts,
+    };
+
+  }
+
   async getDeviceCurrentAlertsSnapshot(
     params: DeviceCurrentAlertsSnapshotParams,
   ): Promise<DeviceCurrentAlertsSnapshot> {
@@ -1140,7 +1305,26 @@ export class DeviceRepository {
       },
     });
 
+
+
     if (inverter) {
+      const alerts = await this.dbClient.alertEvent.findMany({
+        where: {
+          serialNumber: inverter.serialNumber,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        select: {
+          id: true,
+          registerNo: true,
+          bitPosition: true,
+          faultMessage: true,
+          status: true,
+          raisedAt: true,
+          createdAt: true,
+        }
+      });
       return {
         plantId: plant.id,
         plantAccount: plant.userAccount,
@@ -1149,10 +1333,9 @@ export class DeviceRepository {
           name: inverter.name ?? `${inverter.type} ${inverter.serialNumber}`,
           type: inverter.type,
           sn: inverter.serialNumber,
-          // online: inverter.online,
-          // status: inverter.status,
           updatedAt: inverter.updateTime ?? inverter.updatedAt,
         },
+        alerts,
       };
     }
 
@@ -1178,19 +1361,35 @@ export class DeviceRepository {
       throw new ApiError(404, "Device not found for this plant.");
     }
 
+    const alerts = await this.dbClient.alertEvent.findMany({
+      where: {
+        serialNumber: datalogger.serialNumber,
+      },
+      orderBy: {
+        raisedAt: "desc",
+      },
+      select: {
+        id: true,
+        registerNo: true,
+        bitPosition: true,
+        faultMessage: true,
+        status: true,
+        raisedAt: true,
+        createdAt: true,
+      }
+    });
+
     return {
       plantId: plant.id,
       plantAccount: plant.userAccount,
       device: {
         id: datalogger.id,
-        name:
-          datalogger.name ?? `${datalogger.type} ${datalogger.serialNumber}`,
+        name: datalogger.name ?? `${datalogger.type} ${datalogger.serialNumber}`,
         type: datalogger.type,
         sn: datalogger.serialNumber,
-        // online: datalogger.online,
-        // status: datalogger.status,
         updatedAt: datalogger.updateTime ?? datalogger.updatedAt,
       },
+      alerts,
     };
   }
 
@@ -1290,20 +1489,20 @@ export class DeviceRepository {
     if (inverter) {
       const latestLog = inverter.serialNumber
         ? await this.dbClient.deviceLogsLatest.findFirst({
-            where: {
-              sno: inverter.serialNumber,
-            },
-            orderBy: {
-              latestTimestamp: "desc",
-            },
-            select: {
-              currentPower: true,
-              dailyProduction: true,
-              totalEnergy: true,
-              totalHours: true,
-              latestTimestamp: true,
-            },
-          })
+          where: {
+            sno: inverter.serialNumber,
+          },
+          orderBy: {
+            latestTimestamp: "desc",
+          },
+          select: {
+            currentPower: true,
+            dailyProduction: true,
+            totalEnergy: true,
+            totalHours: true,
+            latestTimestamp: true,
+          },
+        })
         : null;
 
       return {
