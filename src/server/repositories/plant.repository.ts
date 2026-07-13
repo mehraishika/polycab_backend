@@ -183,9 +183,7 @@ export class PlantRepository {
   ): number {
     if (value == null) return 0;
 
-    return value instanceof Prisma.Decimal
-      ? value.toNumber()
-      : value;
+    return value instanceof Prisma.Decimal ? value.toNumber() : value;
   }
 
   private toMode(status: string): string {
@@ -530,6 +528,20 @@ export class PlantRepository {
       params.plantId,
     );
 
+    const plantStatus = await prisma.plantCurrentStatus.findUnique({
+      where: {
+        plantId: plant.id,
+      },
+      select: {
+        status: true,
+        totalDevices: true,
+        normalCount: true,
+        abnormalCount: true,
+        standbyCount: true,
+        offlineCount: true,
+        updatedAt: true,
+      },
+    });
     // Get inverter serial numbers
     const inverters = await prisma.deviceInverter.findMany({
       where: {
@@ -585,18 +597,18 @@ export class PlantRepository {
 
       const latestLogs = latestConditions.length
         ? await prisma.deviceLogsLatest.findMany({
-          where: {
-            OR: latestConditions,
-          },
+            where: {
+              OR: latestConditions,
+            },
 
-          select: {
-            currentPower: true,
-            dailyProduction: true,
-            totalEnergy: true,
-            totalHours: true,
-            latestTimestamp: true,
-          },
-        })
+            select: {
+              currentPower: true,
+              dailyProduction: true,
+              totalEnergy: true,
+              totalHours: true,
+              latestTimestamp: true,
+            },
+          })
         : [];
 
       aggregates = latestLogs.reduce<{
@@ -651,6 +663,26 @@ export class PlantRepository {
         type: plant.type ?? null,
 
         kwp: plant.kwp ?? 0,
+
+        currentStatus: plantStatus
+          ? {
+              status: plantStatus.status,
+              totalDevices: plantStatus.totalDevices,
+              normalCount: plantStatus.normalCount,
+              abnormalCount: plantStatus.abnormalCount,
+              standbyCount: plantStatus.standbyCount,
+              offlineCount: plantStatus.offlineCount,
+              updatedAt: plantStatus.updatedAt,
+            }
+          : {
+              status: PlantStatus.Offline,
+              totalDevices: 0,
+              normalCount: 0,
+              abnormalCount: 0,
+              standbyCount: 0,
+              offlineCount: 0,
+              updatedAt: null,
+            },
 
         installationDate: plant.installed
           ? plant.installed.toISOString().slice(0, 10)
@@ -1158,7 +1190,9 @@ export class PlantRepository {
           devices.forEach((device, index) => {
             const row = dayLogs.find((log) => log.sno === device.serialNumber);
 
-            point[`inverter${index + 1}`] = this.decimalToNumber(row?.dailyProduction);
+            point[`inverter${index + 1}`] = this.decimalToNumber(
+              row?.dailyProduction,
+            );
           });
 
           return point;
@@ -1220,7 +1254,11 @@ export class PlantRepository {
         devices.forEach((device, index) => {
           point[`inverter${index + 1}`] = monthLogs
             .filter((log) => log.sno === device.serialNumber)
-            .reduce((sum, log) => sum + this.decimalToNumber(log.dailyProduction ?? 0), 0);
+            .reduce(
+              (sum, log) =>
+                sum + this.decimalToNumber(log.dailyProduction ?? 0),
+              0,
+            );
         });
 
         return point;
@@ -1467,11 +1505,11 @@ export class PlantRepository {
           status: "active",
           startedAt: this.formatDateTime(
             (device as { updatedAt?: Date | null }).updatedAt ??
-            plant.lastUpdatedAt,
+              plant.lastUpdatedAt,
           ),
           lastUpdatedAt: this.formatDateTime(
             (device as { updatedAt?: Date | null }).updatedAt ??
-            plant.lastUpdatedAt,
+              plant.lastUpdatedAt,
           ),
         };
       })
@@ -2124,8 +2162,9 @@ export class PlantRepository {
     return {
       fileName: "plant-list.csv",
 
-      downloadUrl: `/api/v1/monitor/plants/list/export/files/plant-list.csv${query.toString() ? `?${query.toString()}` : ""
-        }`,
+      downloadUrl: `/api/v1/monitor/plants/list/export/files/plant-list.csv${
+        query.toString() ? `?${query.toString()}` : ""
+      }`,
 
       expiresAt: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
 

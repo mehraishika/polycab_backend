@@ -112,6 +112,7 @@ export class DeviceService {
 		user: User,
 		fromService?: boolean,
 		targetEndUserId?: string,
+		plantAccount?: string,
 	): Promise<string[]> {
 		const baseScope = await resolveUserScope(user);
 
@@ -119,11 +120,7 @@ export class DeviceService {
 			user.role === 'service_admin' ||
 			user.role === 'service_super_admin';
 
-		if (
-			fromService &&
-			hasServiceRole &&
-			targetEndUserId
-		) {
+		if (fromService && hasServiceRole && targetEndUserId) {
 			const userRepository = new UserRepository();
 
 			const accountScope =
@@ -139,6 +136,10 @@ export class DeviceService {
 			}
 
 			return accountScope;
+		}
+
+		if (hasServiceRole && plantAccount) {
+			return [plantAccount];
 		}
 
 		return baseScope;
@@ -717,18 +718,16 @@ export class DeviceService {
 		targetEndUserId?: string;
 	}) {
 		this.validateDateRange(params.dateFrom, params.dateTo);
-
-		const scope = await this.resolveScope(params.user, params.fromService, params.targetEndUserId);
-		// console.log({
-		// 	role: params.user.role,
-		// 	fromService: params.fromService,
-		// 	targetEndUserId: params.targetEndUserId,
-		// 	scope,
-		// });
 		const snapshot = await this.deviceRepository.getDeviceInformationSnapshot({
 			plantId: params.plantId,
 			deviceId: params.deviceId,
 		});
+		const scope = await this.resolveScope(
+			params.user,
+			params.fromService,
+			params.targetEndUserId,
+			snapshot.plantAccount,
+		);
 		this.assertPlantAccess(scope, snapshot.plantAccount);
 
 		const allRows = this.generateDeviceLogs(snapshot, params.dateFrom, params.dateTo);
@@ -995,22 +994,18 @@ export class DeviceService {
 	}
 
 	async getDeviceChart(params: DeviceChartServiceParams) {
-		const scope = await this.resolveScope(params.user, params.fromService, params.targetEndUserId);
-		// console.log("CHART_SCOPE", {
-		// 	role: params.user.role,
-		// 	fromService: params.fromService,
-		// 	targetEndUserId: params.targetEndUserId,
-		// 	scope,
-		// });
 		const repoParams: DeviceChartContextParams = {
 			plantId: params.plantId,
 			deviceId: params.deviceId,
 		};
 
 		const snapshot = await this.deviceRepository.getDeviceChartSnapshot(repoParams);
-		// console.log("CHART_ACCOUNT", {
-		// 	plantAccount: snapshot.plantAccount,
-		// });
+		const scope = await this.resolveScope(
+			params.user,
+			params.fromService,
+			params.targetEndUserId,
+			snapshot.plantAccount,
+		);
 		this.assertPlantAccess(scope, snapshot.plantAccount);
 
 		return this.toChartResponse(snapshot, {
@@ -1135,7 +1130,6 @@ export class DeviceService {
 	async getDeviceInformation(params: DeviceInformationServiceParams) {
 		this.validateDateRange(params.dateFrom, params.dateTo);
 
-		const scope = await this.resolveScope(params.user, params.fromService, params.targetEndUserId);
 		const repoParams: DeviceInformationSnapshotParams = {
 			plantId: params.plantId,
 			deviceId: params.deviceId,
@@ -1150,11 +1144,13 @@ export class DeviceService {
 			throw new Error('Device not found');
 		}
 
-		// console.log("SNAPSHOT =", snapshot);
+		const scope = await this.resolveScope(
+			params.user,
+			params.fromService,
+			params.targetEndUserId,
+			snapshot.plantAccount,
+		);
 		this.assertPlantAccess(scope, snapshot.plantAccount);
-
-		// console.log("scope =", scope);
-		// console.log("plantAccount =", snapshot?.plantAccount);
 
 		const payload = this.toDeviceInformationData(snapshot, params.dateFrom, params.dateTo);
 		if (params.dateFrom && params.dateTo) {

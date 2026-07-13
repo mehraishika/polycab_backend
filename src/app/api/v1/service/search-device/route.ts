@@ -7,8 +7,9 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
 
   const payload = searchDeviceRequestSchema.parse(body);
-
-  const result = await service.searchDeviceBySN(payload.sno);
+  console.log("Search SN payload:", payload);
+  const result = await service.searchDeviceBySN(payload.sno, payload.plantId);
+  console.log("Search SN result:", result);
 
   return NextResponse.json(result, {
     status: result.status,

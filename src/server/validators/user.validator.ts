@@ -188,6 +188,7 @@ export type ServiceAdminDeleteInput = z.infer<
 
 export const searchDeviceRequestSchema = z.object({
   sno: z.string().trim().min(1, "Serial Number is required"),
+  plantId: z.string().trim().optional(),
 });
 
 export type SearchDeviceRequest = z.infer<typeof searchDeviceRequestSchema>;

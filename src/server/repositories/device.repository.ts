@@ -1197,10 +1197,13 @@ export class DeviceRepository {
   async getDeviceInformationRealtimeSnapshot(
     params: DeviceInformationSnapshotParams,
   ) {
+    const plantId = this.parsePlantId(params.plantId);
+    const deviceId = this.parseDeviceId(params.deviceId);
+
     const inverter = await this.dbClient.deviceInverter.findFirst({
       where: {
-        id: BigInt(params.deviceId),
-        plantId: BigInt(params.plantId),
+        id: deviceId,
+        plantId,
         deletedAt: null,
       },
       include: {
