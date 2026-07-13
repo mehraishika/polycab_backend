@@ -54,6 +54,7 @@ export interface DeviceLatestRecord {
   currentPower: Decimal | null;
   createdAt: Date | string;
   updatedAt: Date | string;
+  plantId: string | null;
 
   status: string;
   userId: string | null;
@@ -258,7 +259,7 @@ export class UserService {
   }
   constructor(
     private readonly userRepository: UserRepository = new UserRepository(),
-  ) { }
+  ) {}
 
   private isRoleAllowedForSubAccountManagement(
     role: string | undefined,
@@ -516,8 +517,11 @@ export class UserService {
     };
   }
 
-  async searchDeviceBySN(sno: string): Promise<SearchDeviceResult> {
-    const device = await this.userRepository.findLatestDeviceBySN(sno);
+  async searchDeviceBySN(
+    sno: string,
+    plantId?: string | bigint,
+  ): Promise<SearchDeviceResult> {
+    const device = await this.userRepository.findLatestDeviceBySN(sno, plantId);
 
     if (!device) {
       return {
@@ -540,6 +544,7 @@ export class UserService {
           totalEnergy: device.totalEnergy,
           totalHours: device.totalHours,
           currentPower: device.currentPower,
+          plantId: device.plantId,
           status: device.status,
           userId: device.userId?.toString() ?? null,
           account: device.account,

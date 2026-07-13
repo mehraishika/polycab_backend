@@ -78,15 +78,12 @@ async function getDeviceInformationRoute(
 			: 'Device information fetched successfully.';
 		return successResponse(message, data);
 		// return successResponse('success', []);
-	} catch (error) {
-		console.error(error);
+	} catch (error: unknown) {
+		if (error instanceof ApiError) {
+			return errorResponse(error.message, error.statusCode);
+		}
 
-		return errorResponse(
-			error instanceof Error
-				? error.message
-				: 'Failed to fetch device information',
-			500
-		);
+		return errorResponse('Failed to fetch device information', 500);
 	}
 }
 

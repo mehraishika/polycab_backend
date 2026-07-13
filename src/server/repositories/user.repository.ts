@@ -51,7 +51,7 @@ export interface ActorAccessRecord {
 }
 
 export class UserRepository {
-  constructor(private readonly dbClient: PrismaClient = prisma) { }
+  constructor(private readonly dbClient: PrismaClient = prisma) {}
 
   private buildWhere(roleType: UserRoleType, filters: UserListQueryInput) {
     const where: Record<string, unknown> = {};
@@ -186,7 +186,36 @@ export class UserRepository {
     return user ? this.mapDetailRecord(user) : null;
   }
 
-  async findLatestDeviceBySN(sno: string): Promise<DeviceLatestRecord | null> {
+  async findLatestDeviceBySN(
+    sno: string,
+    plantId?: string | bigint,
+  ): Promise<DeviceLatestRecord | null> {
+    const mappingWhere: Record<string, unknown> = {
+      serialNumber: sno,
+      isDeleted: false,
+    };
+
+    if (plantId !== undefined) {
+      mappingWhere.plantId = BigInt(plantId);
+    }
+
+    const mapping = await this.dbClient.userPlantInverterMap.findFirst({
+      where: mappingWhere,
+      select: {
+        plantId: true,
+        userId: true,
+        user: {
+          select: {
+            account: true,
+          },
+        },
+      },
+    });
+
+    if (!mapping) {
+      return null;
+    }
+
     const device = await this.dbClient.deviceLogsLatest.findFirst({
       where: {
         sno,
@@ -239,12 +268,12 @@ export class UserRepository {
 
     return {
       ...device,
+      plantId: mapping.plantId?.toString() ?? null,
       status: currentStatus?.status ?? "Offline",
       userId: userMapping?.userId?.toString() ?? null,
       account: userMapping?.user.account ?? null,
     };
   }
-
 
   async updateProfile(
     userId: bigint,
