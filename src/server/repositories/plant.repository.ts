@@ -153,8 +153,8 @@ export interface PlantLogRecord {
   type: string;
   sn: string;
   time: string;
-  // status: string;
-  // event: string;
+  status: string;
+  event: string;
 }
 
 export interface PlantDeviceOverviewSnapshot {
@@ -390,6 +390,7 @@ export class PlantRepository {
 
   private async getCurrentAlertsContext(scope: string[], plantId: string) {
     const { plant, devices } = await this.getChartContext(scope, plantId);
+
     const dataloggers = await prisma.deviceDatalogger.findMany({
       where: {
         plantId: plant.id,
@@ -400,14 +401,61 @@ export class PlantRepository {
         name: true,
         serialNumber: true,
         type: true,
-        online: true,
-        status: true,
-        updatedAt: true,
       },
-      orderBy: { id: "asc" },
+      orderBy: {
+        id: "asc",
+      },
     });
 
-    return { plant, devices: [...devices, ...dataloggers] };
+    const allDevices = [...devices, ...dataloggers];
+
+    const serialNumbers = allDevices.map((device) => device.serialNumber);
+
+
+    const alerts = await prisma.alertEvent.findMany({
+      where: {
+        serialNumber: {
+          in: serialNumbers,
+        },
+        status: "ACTIVE",
+      },
+      select: {
+        id: true,
+        serialNumber: true,
+        registerNo: true,
+        bitPosition: true,
+        faultMessage: true,
+        status: true,
+        raisedAt: true,
+        createdAt: true,
+      },
+      orderBy: {
+        raisedAt: "desc",
+      },
+    });
+
+    const activeAlerts = alerts.filter((alert) => {
+      if (alert.status !== "ACTIVE") {
+        return false;
+      }
+
+      const cleared = alerts.some(
+        (other) =>
+          other.status === "INACTIVE" &&
+          other.serialNumber === alert.serialNumber &&
+          other.registerNo === alert.registerNo &&
+          other.bitPosition === alert.bitPosition &&
+          other.createdAt > alert.createdAt
+      );
+
+      return !cleared;
+    });
+
+    return {
+      plant,
+      devices: allDevices,
+      activeAlerts,
+    };
   }
 
   private async getScopedPlantOrThrow(scope: string[], plantId: string) {
@@ -597,18 +645,18 @@ export class PlantRepository {
 
       const latestLogs = latestConditions.length
         ? await prisma.deviceLogsLatest.findMany({
-            where: {
-              OR: latestConditions,
-            },
+          where: {
+            OR: latestConditions,
+          },
 
-            select: {
-              currentPower: true,
-              dailyProduction: true,
-              totalEnergy: true,
-              totalHours: true,
-              latestTimestamp: true,
-            },
-          })
+          select: {
+            currentPower: true,
+            dailyProduction: true,
+            totalEnergy: true,
+            totalHours: true,
+            latestTimestamp: true,
+          },
+        })
         : [];
 
       aggregates = latestLogs.reduce<{
@@ -666,23 +714,23 @@ export class PlantRepository {
 
         currentStatus: plantStatus
           ? {
-              status: plantStatus.status,
-              totalDevices: plantStatus.totalDevices,
-              normalCount: plantStatus.normalCount,
-              abnormalCount: plantStatus.abnormalCount,
-              standbyCount: plantStatus.standbyCount,
-              offlineCount: plantStatus.offlineCount,
-              updatedAt: plantStatus.updatedAt,
-            }
+            status: plantStatus.status,
+            totalDevices: plantStatus.totalDevices,
+            normalCount: plantStatus.normalCount,
+            abnormalCount: plantStatus.abnormalCount,
+            standbyCount: plantStatus.standbyCount,
+            offlineCount: plantStatus.offlineCount,
+            updatedAt: plantStatus.updatedAt,
+          }
           : {
-              status: PlantStatus.Offline,
-              totalDevices: 0,
-              normalCount: 0,
-              abnormalCount: 0,
-              standbyCount: 0,
-              offlineCount: 0,
-              updatedAt: null,
-            },
+            status: PlantStatus.Offline,
+            totalDevices: 0,
+            normalCount: 0,
+            abnormalCount: 0,
+            standbyCount: 0,
+            offlineCount: 0,
+            updatedAt: null,
+          },
 
         installationDate: plant.installed
           ? plant.installed.toISOString().slice(0, 10)
@@ -1480,63 +1528,67 @@ export class PlantRepository {
   // }
 
   async getPlantCurrentAlerts(params: PlantCurrentAlertsParams) {
-    const { plant, devices } = await this.getCurrentAlertsContext(
+    const { devices, activeAlerts } = await this.getCurrentAlertsContext(
       params.scope,
       params.plantId,
     );
 
-    const alerts = devices
-      .map((device) => {
-        const statusLabel = this.normalizeStatusLabel(
-          (device as { status?: string | null }).status ?? null,
-          (device as { online?: boolean }).online ?? false,
+    const items = activeAlerts
+      .map((alert) => {
+        const device = devices.find(
+          (d) => d.serialNumber === alert.serialNumber,
         );
 
-        if (statusLabel === "online" || statusLabel === "active") {
+        if (!device) {
           return null;
         }
 
         return {
-          id: `alert-${String(device.id)}`,
+          id: alert.id.toString(),
           name: device.name ?? device.type,
           sn: device.serialNumber,
-          event: this.buildAlertEvent(statusLabel),
-          severity: this.buildAlertSeverity(statusLabel),
-          status: "active",
+          event: alert.faultMessage,
+          status: "active" as const,
           startedAt: this.formatDateTime(
-            (device as { updatedAt?: Date | null }).updatedAt ??
-              plant.lastUpdatedAt,
+            alert.raisedAt ?? alert.createdAt,
           ),
           lastUpdatedAt: this.formatDateTime(
-            (device as { updatedAt?: Date | null }).updatedAt ??
-              plant.lastUpdatedAt,
+            alert.raisedAt ?? alert.createdAt,
           ),
         };
       })
-      .filter((item): item is NonNullable<typeof item> => Boolean(item));
+      .filter(
+        (
+          item,
+        ): item is {
+          id: string;
+          name: string;
+          sn: string;
+          event: string;
+          status: "active";
+          startedAt: string;
+          lastUpdatedAt: string;
+        } => item !== null,
+      );
 
-    const totalItems = alerts.length;
+    const totalItems = items.length;
+
     const totalPages =
       totalItems > 0 ? Math.ceil(totalItems / params.pageSize) : 0;
-    const safePage = totalPages > 0 ? Math.min(params.page, totalPages) : 1;
-    const start = (safePage - 1) * params.pageSize;
-    const items = alerts.slice(start, start + params.pageSize);
 
-    const summary = {
-      active: alerts.length,
-      critical: alerts.filter((item) => item.severity === "critical").length,
-      warning: alerts.filter((item) => item.severity === "warning").length,
-    };
+    const safePage =
+      totalPages > 0 ? Math.min(params.page, totalPages) : 1;
+
+    const start = (safePage - 1) * params.pageSize;
 
     return {
-      items,
+      items: items.slice(start, start + params.pageSize),
       pagination: {
         page: totalItems > 0 ? safePage : 1,
         pageSize: params.pageSize,
         totalItems,
         totalPages,
       },
-      summary: params.since ? summary : undefined,
     };
   }
 
@@ -2162,9 +2214,8 @@ export class PlantRepository {
     return {
       fileName: "plant-list.csv",
 
-      downloadUrl: `/api/v1/monitor/plants/list/export/files/plant-list.csv${
-        query.toString() ? `?${query.toString()}` : ""
-      }`,
+      downloadUrl: `/api/v1/monitor/plants/list/export/files/plant-list.csv${query.toString() ? `?${query.toString()}` : ""
+        }`,
 
       expiresAt: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
 
@@ -3017,9 +3068,11 @@ export class PlantRepository {
       params.scope,
       params.plantId,
     );
+
     const dateFromObj = params.dateFrom
       ? new Date(`${params.dateFrom}T00:00:00.000Z`)
       : new Date("2025-01-01T00:00:00.000Z");
+
     const dateToObj = params.dateTo
       ? new Date(`${params.dateTo}T23:59:59.999Z`)
       : new Date();
@@ -3035,12 +3088,12 @@ export class PlantRepository {
           name: true,
           type: true,
           serialNumber: true,
-          // online: true,
-          // status: true,
-          updatedAt: true,
         },
-        orderBy: { id: "asc" },
+        orderBy: {
+          id: "asc",
+        },
       }),
+
       prisma.deviceDatalogger.findMany({
         where: {
           plantId: plant.id,
@@ -3051,11 +3104,10 @@ export class PlantRepository {
           name: true,
           type: true,
           serialNumber: true,
-          online: true,
-          status: true,
-          updatedAt: true,
         },
-        orderBy: { id: "asc" },
+        orderBy: {
+          id: "asc",
+        },
       }),
     ]);
 
@@ -3065,52 +3117,95 @@ export class PlantRepository {
         name: inv.name ?? `${inv.type} ${inv.serialNumber}`,
         type: inv.type,
         sn: inv.serialNumber,
-        online: null,
-        status: null,
-        updatedAt: inv.updatedAt,
       })),
+
       ...dataloggers.map((log) => ({
         id: String(log.id),
         name: log.name ?? `${log.type} ${log.serialNumber}`,
         type: log.type,
         sn: log.serialNumber,
-        online: log.online,
-        status: log.status,
-        updatedAt: log.updatedAt,
       })),
     ];
 
-    let logs: PlantLogRecord[] = allDevices
-      .filter((device) => {
-        if (params.search && params.search.trim()) {
-          const searchLower = params.search.toLowerCase();
-          return (
-            device.name.toLowerCase().includes(searchLower) ||
-            device.sn.toLowerCase().includes(searchLower)
-          );
+    const serialNumbers = allDevices.map((d) => d.sn);
+
+    const alerts = await prisma.alertEvent.findMany({
+      where: {
+        serialNumber: {
+          in: serialNumbers,
+        },
+        createdAt: {
+          gte: dateFromObj,
+          lte: dateToObj,
+        },
+      },
+      select: {
+        id: true,
+        serialNumber: true,
+        faultMessage: true,
+        status: true,
+        raisedAt: true,
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    let logs: PlantLogRecord[] = alerts
+      .map((alert) => {
+        const device = allDevices.find(
+          (d) => d.sn === alert.serialNumber,
+        );
+
+        if (!device) {
+          return null;
         }
-        return true;
+
+        return {
+          id: alert.id.toString(),
+          name: device.name,
+          type: device.type,
+          sn: device.sn,
+          time: this.formatDateTime(
+            alert.raisedAt ?? alert.createdAt,
+          ),
+          status: alert.status === "ACTIVE" ? "Active" : "Inactive",
+          event: alert.faultMessage,
+        };
       })
-      .map((device) => ({
-        id: `log-${device.id}`,
-        name: device.name,
-        type: device.type,
-        sn: device.sn,
-        time: this.formatDateTime(device.updatedAt),
-        // status: this.buildLogStatus(device.online, device.status ?? ''),
-        // event: this.buildLogEvent(device.status, device.online, device.type),
-      }));
-    // .filter((log) => {
-    // 	if (params.event && params.event !== 'All') {
-    // 		return log.event === params.event || log.event.startsWith(`${params.event}-`);
-    // 	}
-    // 	return true;
-    // });
+      .filter((log): log is PlantLogRecord => log !== null);
+
+    // Search filter
+    if (params.search?.trim()) {
+      const search = params.search.toLowerCase();
+
+      logs = logs.filter(
+        (log) =>
+          log.name.toLowerCase().includes(search) ||
+          log.sn.toLowerCase().includes(search),
+      );
+    }
+
+    // Event filter
+    if (params.event && params.event !== "All") {
+      logs = logs.filter((log) => log.event === params.event);
+    }
+
+    // Latest first
+    logs.sort(
+      (a, b) =>
+        new Date(b.time).getTime() -
+        new Date(a.time).getTime(),
+    );
 
     const totalItems = logs.length;
     const totalPages =
       totalItems > 0 ? Math.ceil(totalItems / params.pageSize) : 0;
-    const safePage = totalPages > 0 ? Math.min(params.page, totalPages) : 1;
+
+    const safePage =
+      totalPages > 0 ? Math.min(params.page, totalPages) : 1;
+
     const start = (safePage - 1) * params.pageSize;
 
     return {
@@ -3130,6 +3225,14 @@ export class PlantRepository {
       params.plantId,
     );
 
+    const dateFromObj = params.dateFrom
+      ? new Date(`${params.dateFrom}T00:00:00.000Z`)
+      : new Date("2025-01-01T00:00:00.000Z");
+
+    const dateToObj = params.dateTo
+      ? new Date(`${params.dateTo}T23:59:59.999Z`)
+      : new Date();
+
     const [inverters, dataloggers] = await Promise.all([
       prisma.deviceInverter.findMany({
         where: {
@@ -3141,11 +3244,9 @@ export class PlantRepository {
           name: true,
           type: true,
           serialNumber: true,
-          // online: true,
-          // status: true,
-          updatedAt: true,
         },
       }),
+
       prisma.deviceDatalogger.findMany({
         where: {
           plantId: plant.id,
@@ -3156,9 +3257,6 @@ export class PlantRepository {
           name: true,
           type: true,
           serialNumber: true,
-          online: true,
-          status: true,
-          updatedAt: true,
         },
       }),
     ]);
@@ -3169,52 +3267,94 @@ export class PlantRepository {
         name: inv.name ?? `${inv.type} ${inv.serialNumber}`,
         type: inv.type,
         sn: inv.serialNumber,
-        // online: inv.online,
-        // status: inv.status,
-        updatedAt: inv.updatedAt,
       })),
+
       ...dataloggers.map((log) => ({
         id: String(log.id),
         name: log.name ?? `${log.type} ${log.serialNumber}`,
         type: log.type,
         sn: log.serialNumber,
-        online: log.online,
-        status: log.status,
-        updatedAt: log.updatedAt,
       })),
     ];
 
-    const logs = allDevices
-      .filter((device) => {
-        if (params.search && params.search.trim()) {
-          const searchLower = params.search.toLowerCase();
-          return (
-            device.name.toLowerCase().includes(searchLower) ||
-            device.sn.toLowerCase().includes(searchLower)
-          );
+    const serialNumbers = allDevices.map((d) => d.sn);
+
+    const alerts = await prisma.alertEvent.findMany({
+      where: {
+        serialNumber: {
+          in: serialNumbers,
+        },
+        createdAt: {
+          gte: dateFromObj,
+          lte: dateToObj,
+        },
+      },
+      select: {
+        id: true,
+        serialNumber: true,
+        faultMessage: true,
+        status: true,
+        raisedAt: true,
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    let logs = alerts
+      .map((alert) => {
+        const device = allDevices.find(
+          (d) => d.sn === alert.serialNumber,
+        );
+
+        if (!device) {
+          return null;
         }
-        return true;
+
+        return {
+          id: alert.id.toString(),
+          name: device.name,
+          type: device.type,
+          sn: device.sn,
+          time: this.formatDateTime(
+            alert.raisedAt ?? alert.createdAt,
+          ),
+          status: alert.status === "ACTIVE" ? "Active" : "Inactive",
+          event: alert.faultMessage,
+        };
       })
-      .map((device) => ({
-        id: `log-${device.id}`,
-        name: device.name,
-        type: device.type,
-        sn: device.sn,
-        time: this.formatDateTime(device.updatedAt),
-        // status: this.buildLogStatus(device.online, device.status ?? ''),
-        // event: this.buildLogEvent(device.status, device.online, device.type),
-        // event: this.buildLogEvent(device.status, device.online, device.type),
-      }));
-    // .filter((log) => {
-    // 	if (params.event && params.event !== 'All') {
-    // 		return log.event === params.event || log.event.startsWith(`${params.event}-`);
-    // 	}
-    // 	return true;
-    // });
+      .filter((log): log is NonNullable<typeof log> => log !== null);
+
+    // Search filter
+    if (params.search?.trim()) {
+      const search = params.search.toLowerCase();
+
+      logs = logs.filter(
+        (log) =>
+          log.name.toLowerCase().includes(search) ||
+          log.sn.toLowerCase().includes(search),
+      );
+    }
+
+    // Event filter
+    if (params.event && params.event !== "All") {
+      logs = logs.filter((log) => log.event === params.event);
+    }
 
     if (params.format === "csv") {
-      const headers = ["ID", "Name", "Type", "S/N", "Time", "Status", "Event"];
+      const headers = [
+        "ID",
+        "Name",
+        "Type",
+        "S/N",
+        "Time",
+        "Status",
+        "Event",
+      ];
+
       const rows = [headers.join(",")];
+
       for (const log of logs) {
         rows.push(
           [
@@ -3223,22 +3363,28 @@ export class PlantRepository {
             log.type,
             log.sn,
             log.time,
-            // log.status,
-            // log.event,
+            log.status,
+            `"${log.event.replace(/"/g, '""')}"`,
           ].join(","),
         );
       }
 
       const fileName = "plant-logs.csv";
+
       return {
         fileName,
         csv: rows.join("\n"),
         downloadUrl: `/api/v1/monitor/plants/${params.plantId}/logs/export/files/${fileName}`,
-        expiresAt: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
+        expiresAt: new Date(
+          Date.now() + 15 * 60 * 1000,
+        ).toISOString(),
       };
     }
 
-    throw new ApiError(400, `Unsupported export format: ${params.format}`);
+    throw new ApiError(
+      400,
+      `Unsupported export format: ${params.format}`,
+    );
   }
 
   async getUserLogs(params: UserLogsParams) {
@@ -3280,48 +3426,103 @@ export class PlantRepository {
 
     const plantIds = plants.map((plant) => plant.id);
 
-    console.log("plants =>", plants.length);
-    console.log(plants);
-
     const inverters = await prisma.deviceInverter.findMany({
       where: {
         plantId: {
           in: plantIds,
         },
         deletedAt: null,
-        updatedAt: {
+      },
+      select: {
+        id: true,
+        plantId: true,
+        serialNumber: true,
+        type: true,
+        name: true,
+      },
+    });
+
+    const inverterMap = new Map(
+      inverters.map((inv) => [
+        inv.serialNumber,
+        {
+          plantId: inv.plantId,
+          type: inv.type,
+          name: inv.name ?? `${inv.type} ${inv.serialNumber}`,
+        },
+      ]),
+    );
+
+    const serialNumbers = inverters.map((inv) => inv.serialNumber);
+
+    const alerts = await prisma.alertEvent.findMany({
+      where: {
+        serialNumber: {
+          in: serialNumbers,
+        },
+        createdAt: {
           gte: dateFromObj,
           lte: dateToObj,
         },
       },
       select: {
         id: true,
-        plantId: true,
         serialNumber: true,
-        updatedAt: true,
-        type: true,
+        faultMessage: true,
+        status: true,
+        raisedAt: true,
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
 
-    console.log("inverters =>", inverters.length);
-    console.log(inverters.slice(0, 5));
+    let logs = alerts
+      .map((alert) => {
+        const inverter = inverterMap.get(alert.serialNumber);
 
-    let logs = inverters.map((inv) => {
-      const plantInfo = plantMap.get(inv.plantId.toString());
+        if (!inverter) {
+          return null;
+        }
 
-      return {
-        id: `inv-${inv.id}`,
-        name: plantInfo?.plantName ?? "",
-        account: plantInfo?.account ?? "",
-        type: inv.type,
-        sn: inv.serialNumber,
-        time: this.formatDateTime(inv.updatedAt),
-        status: "Active",
-        event: "",
-        updatedAt: inv.updatedAt,
-      };
-    });
+        const plantInfo = plantMap.get(inverter.plantId.toString());
 
+        if (!plantInfo) {
+          return null;
+        }
+
+        return {
+          id: alert.id.toString(),
+          name: plantInfo.plantName,
+          account: plantInfo.account,
+          type: inverter.type,
+          sn: alert.serialNumber,
+          time: this.formatDateTime(
+            alert.raisedAt ?? alert.createdAt,
+          ),
+          status: alert.status === "ACTIVE" ? "Active" : "Inactive",
+          event: alert.faultMessage,
+          updatedAt: alert.raisedAt ?? alert.createdAt,
+        };
+      })
+      .filter(
+        (
+          log,
+        ): log is {
+          id: string;
+          name: string;
+          account: string;
+          type: string;
+          sn: string;
+          time: string;
+          status: string;
+          event: string;
+          updatedAt: Date;
+        } => log !== null,
+      );
+
+    // Search
     if (params.search?.trim()) {
       const search = params.search.toLowerCase();
 
@@ -3333,11 +3534,22 @@ export class PlantRepository {
       );
     }
 
+    // Event filter
+    if (params.event && params.event !== "All") {
+      logs = logs.filter((log) => log.event === params.event);
+    }
+
+    // Latest first
+    logs.sort(
+      (a, b) => b.updatedAt.getTime() - a.updatedAt.getTime(),
+    );
+
     const totalItems = logs.length;
     const totalPages =
       totalItems > 0 ? Math.ceil(totalItems / params.pageSize) : 0;
 
-    const safePage = totalPages > 0 ? Math.min(params.page, totalPages) : 1;
+    const safePage =
+      totalPages > 0 ? Math.min(params.page, totalPages) : 1;
 
     const start = (safePage - 1) * params.pageSize;
 
