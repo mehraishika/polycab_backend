@@ -9,6 +9,35 @@
 * 🟢 You can import this file directly.
 */
 
+export const RemoteSettingsTab = {
+  gridParameters: 'gridParameters',
+  featureParameters: 'featureParameters',
+  reactivePowerControl: 'reactivePowerControl',
+  powerLimit: 'powerLimit',
+  otherSetting: 'otherSetting',
+  maskingFaultDetection: 'maskingFaultDetection'
+} as const
+
+export type RemoteSettingsTab = (typeof RemoteSettingsTab)[keyof typeof RemoteSettingsTab]
+
+
+export const RemoteSettingsTaskKind = {
+  settings: 'settings',
+  command: 'command'
+} as const
+
+export type RemoteSettingsTaskKind = (typeof RemoteSettingsTaskKind)[keyof typeof RemoteSettingsTaskKind]
+
+
+export const RemoteSettingsTaskStatus = {
+  pending: 'pending',
+  completed: 'completed',
+  failed: 'failed'
+} as const
+
+export type RemoteSettingsTaskStatus = (typeof RemoteSettingsTaskStatus)[keyof typeof RemoteSettingsTaskStatus]
+
+
 export const AlertStatus = {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE'

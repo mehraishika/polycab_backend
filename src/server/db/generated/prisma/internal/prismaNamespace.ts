@@ -402,7 +402,11 @@ export const ModelName = {
   PlantCurrentStatus: 'PlantCurrentStatus',
   DeviceAlertState: 'DeviceAlertState',
   AlertEvent: 'AlertEvent',
-  FaultDictionary: 'FaultDictionary'
+  FaultDictionary: 'FaultDictionary',
+  RemoteSettingParameterMaster: 'RemoteSettingParameterMaster',
+  RemoteSettingCommandMaster: 'RemoteSettingCommandMaster',
+  DeviceRemoteSetting: 'DeviceRemoteSetting',
+  DeviceRemoteSettingTask: 'DeviceRemoteSettingTask'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -418,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "plant" | "deviceInverter" | "userPlantInverterMap" | "deviceInvertorStatus" | "deviceDatalogger" | "deviceLogs" | "deviceLogsLatest" | "deviceDailySummary" | "deviceDailySummaryPerLineChart" | "information_data" | "deviceConnectionStatus" | "fota" | "deviceCurrentStatus" | "deviceStatusHistory" | "plantCurrentStatus" | "deviceAlertState" | "alertEvent" | "faultDictionary"
+    modelProps: "user" | "plant" | "deviceInverter" | "userPlantInverterMap" | "deviceInvertorStatus" | "deviceDatalogger" | "deviceLogs" | "deviceLogsLatest" | "deviceDailySummary" | "deviceDailySummaryPerLineChart" | "information_data" | "deviceConnectionStatus" | "fota" | "deviceCurrentStatus" | "deviceStatusHistory" | "plantCurrentStatus" | "deviceAlertState" | "alertEvent" | "faultDictionary" | "remoteSettingParameterMaster" | "remoteSettingCommandMaster" | "deviceRemoteSetting" | "deviceRemoteSettingTask"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1828,6 +1832,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    RemoteSettingParameterMaster: {
+      payload: Prisma.$RemoteSettingParameterMasterPayload<ExtArgs>
+      fields: Prisma.RemoteSettingParameterMasterFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RemoteSettingParameterMasterFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RemoteSettingParameterMasterFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>
+        }
+        findFirst: {
+          args: Prisma.RemoteSettingParameterMasterFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RemoteSettingParameterMasterFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>
+        }
+        findMany: {
+          args: Prisma.RemoteSettingParameterMasterFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>[]
+        }
+        create: {
+          args: Prisma.RemoteSettingParameterMasterCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>
+        }
+        createMany: {
+          args: Prisma.RemoteSettingParameterMasterCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RemoteSettingParameterMasterCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>[]
+        }
+        delete: {
+          args: Prisma.RemoteSettingParameterMasterDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>
+        }
+        update: {
+          args: Prisma.RemoteSettingParameterMasterUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>
+        }
+        deleteMany: {
+          args: Prisma.RemoteSettingParameterMasterDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RemoteSettingParameterMasterUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RemoteSettingParameterMasterUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>[]
+        }
+        upsert: {
+          args: Prisma.RemoteSettingParameterMasterUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>
+        }
+        aggregate: {
+          args: Prisma.RemoteSettingParameterMasterAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRemoteSettingParameterMaster>
+        }
+        groupBy: {
+          args: Prisma.RemoteSettingParameterMasterGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RemoteSettingParameterMasterGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RemoteSettingParameterMasterCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RemoteSettingParameterMasterCountAggregateOutputType> | number
+        }
+      }
+    }
+    RemoteSettingCommandMaster: {
+      payload: Prisma.$RemoteSettingCommandMasterPayload<ExtArgs>
+      fields: Prisma.RemoteSettingCommandMasterFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RemoteSettingCommandMasterFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RemoteSettingCommandMasterFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>
+        }
+        findFirst: {
+          args: Prisma.RemoteSettingCommandMasterFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RemoteSettingCommandMasterFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>
+        }
+        findMany: {
+          args: Prisma.RemoteSettingCommandMasterFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>[]
+        }
+        create: {
+          args: Prisma.RemoteSettingCommandMasterCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>
+        }
+        createMany: {
+          args: Prisma.RemoteSettingCommandMasterCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RemoteSettingCommandMasterCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>[]
+        }
+        delete: {
+          args: Prisma.RemoteSettingCommandMasterDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>
+        }
+        update: {
+          args: Prisma.RemoteSettingCommandMasterUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>
+        }
+        deleteMany: {
+          args: Prisma.RemoteSettingCommandMasterDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RemoteSettingCommandMasterUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RemoteSettingCommandMasterUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>[]
+        }
+        upsert: {
+          args: Prisma.RemoteSettingCommandMasterUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>
+        }
+        aggregate: {
+          args: Prisma.RemoteSettingCommandMasterAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRemoteSettingCommandMaster>
+        }
+        groupBy: {
+          args: Prisma.RemoteSettingCommandMasterGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RemoteSettingCommandMasterGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RemoteSettingCommandMasterCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RemoteSettingCommandMasterCountAggregateOutputType> | number
+        }
+      }
+    }
+    DeviceRemoteSetting: {
+      payload: Prisma.$DeviceRemoteSettingPayload<ExtArgs>
+      fields: Prisma.DeviceRemoteSettingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeviceRemoteSettingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeviceRemoteSettingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>
+        }
+        findFirst: {
+          args: Prisma.DeviceRemoteSettingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeviceRemoteSettingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>
+        }
+        findMany: {
+          args: Prisma.DeviceRemoteSettingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>[]
+        }
+        create: {
+          args: Prisma.DeviceRemoteSettingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>
+        }
+        createMany: {
+          args: Prisma.DeviceRemoteSettingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeviceRemoteSettingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>[]
+        }
+        delete: {
+          args: Prisma.DeviceRemoteSettingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>
+        }
+        update: {
+          args: Prisma.DeviceRemoteSettingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>
+        }
+        deleteMany: {
+          args: Prisma.DeviceRemoteSettingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeviceRemoteSettingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeviceRemoteSettingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>[]
+        }
+        upsert: {
+          args: Prisma.DeviceRemoteSettingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>
+        }
+        aggregate: {
+          args: Prisma.DeviceRemoteSettingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeviceRemoteSetting>
+        }
+        groupBy: {
+          args: Prisma.DeviceRemoteSettingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceRemoteSettingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeviceRemoteSettingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceRemoteSettingCountAggregateOutputType> | number
+        }
+      }
+    }
+    DeviceRemoteSettingTask: {
+      payload: Prisma.$DeviceRemoteSettingTaskPayload<ExtArgs>
+      fields: Prisma.DeviceRemoteSettingTaskFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeviceRemoteSettingTaskFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeviceRemoteSettingTaskFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>
+        }
+        findFirst: {
+          args: Prisma.DeviceRemoteSettingTaskFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeviceRemoteSettingTaskFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>
+        }
+        findMany: {
+          args: Prisma.DeviceRemoteSettingTaskFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>[]
+        }
+        create: {
+          args: Prisma.DeviceRemoteSettingTaskCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>
+        }
+        createMany: {
+          args: Prisma.DeviceRemoteSettingTaskCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeviceRemoteSettingTaskCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>[]
+        }
+        delete: {
+          args: Prisma.DeviceRemoteSettingTaskDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>
+        }
+        update: {
+          args: Prisma.DeviceRemoteSettingTaskUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>
+        }
+        deleteMany: {
+          args: Prisma.DeviceRemoteSettingTaskDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeviceRemoteSettingTaskUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeviceRemoteSettingTaskUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>[]
+        }
+        upsert: {
+          args: Prisma.DeviceRemoteSettingTaskUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>
+        }
+        aggregate: {
+          args: Prisma.DeviceRemoteSettingTaskAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeviceRemoteSettingTask>
+        }
+        groupBy: {
+          args: Prisma.DeviceRemoteSettingTaskGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceRemoteSettingTaskGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeviceRemoteSettingTaskCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceRemoteSettingTaskCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2304,6 +2604,69 @@ export const FaultDictionaryScalarFieldEnum = {
 export type FaultDictionaryScalarFieldEnum = (typeof FaultDictionaryScalarFieldEnum)[keyof typeof FaultDictionaryScalarFieldEnum]
 
 
+export const RemoteSettingParameterMasterScalarFieldEnum = {
+  id: 'id',
+  tab: 'tab',
+  tabLabel: 'tabLabel',
+  fieldKey: 'fieldKey',
+  label: 'label',
+  dataType: 'dataType',
+  unitOrOptions: 'unitOrOptions',
+  endpointPath: 'endpointPath',
+  displayOrder: 'displayOrder',
+  count: 'count',
+  registerAddress: 'registerAddress',
+  registerType: 'registerType',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RemoteSettingParameterMasterScalarFieldEnum = (typeof RemoteSettingParameterMasterScalarFieldEnum)[keyof typeof RemoteSettingParameterMasterScalarFieldEnum]
+
+
+export const RemoteSettingCommandMasterScalarFieldEnum = {
+  id: 'id',
+  commandKey: 'commandKey',
+  label: 'label',
+  endpointPath: 'endpointPath',
+  displayOrder: 'displayOrder',
+  count: 'count',
+  registerAddress: 'registerAddress',
+  registerType: 'registerType',
+  createdAt: 'createdAt'
+} as const
+
+export type RemoteSettingCommandMasterScalarFieldEnum = (typeof RemoteSettingCommandMasterScalarFieldEnum)[keyof typeof RemoteSettingCommandMasterScalarFieldEnum]
+
+
+export const DeviceRemoteSettingScalarFieldEnum = {
+  id: 'id',
+  deviceInverterId: 'deviceInverterId',
+  tab: 'tab',
+  settings: 'settings',
+  updatedById: 'updatedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceRemoteSettingScalarFieldEnum = (typeof DeviceRemoteSettingScalarFieldEnum)[keyof typeof DeviceRemoteSettingScalarFieldEnum]
+
+
+export const DeviceRemoteSettingTaskScalarFieldEnum = {
+  id: 'id',
+  deviceInverterId: 'deviceInverterId',
+  kind: 'kind',
+  tab: 'tab',
+  payload: 'payload',
+  status: 'status',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceRemoteSettingTaskScalarFieldEnum = (typeof DeviceRemoteSettingTaskScalarFieldEnum)[keyof typeof DeviceRemoteSettingTaskScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2532,6 +2895,48 @@ export type EnumAlertStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
 export type ListEnumAlertStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AlertStatus[]'>
     
 
+
+/**
+ * Reference to a field of type 'RemoteSettingsTab'
+ */
+export type EnumRemoteSettingsTabFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RemoteSettingsTab'>
+    
+
+
+/**
+ * Reference to a field of type 'RemoteSettingsTab[]'
+ */
+export type ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RemoteSettingsTab[]'>
+    
+
+
+/**
+ * Reference to a field of type 'RemoteSettingsTaskKind'
+ */
+export type EnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RemoteSettingsTaskKind'>
+    
+
+
+/**
+ * Reference to a field of type 'RemoteSettingsTaskKind[]'
+ */
+export type ListEnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RemoteSettingsTaskKind[]'>
+    
+
+
+/**
+ * Reference to a field of type 'RemoteSettingsTaskStatus'
+ */
+export type EnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RemoteSettingsTaskStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'RemoteSettingsTaskStatus[]'
+ */
+export type ListEnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RemoteSettingsTaskStatus[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -2661,6 +3066,10 @@ export type GlobalOmitConfig = {
   deviceAlertState?: Prisma.DeviceAlertStateOmit
   alertEvent?: Prisma.AlertEventOmit
   faultDictionary?: Prisma.FaultDictionaryOmit
+  remoteSettingParameterMaster?: Prisma.RemoteSettingParameterMasterOmit
+  remoteSettingCommandMaster?: Prisma.RemoteSettingCommandMasterOmit
+  deviceRemoteSetting?: Prisma.DeviceRemoteSettingOmit
+  deviceRemoteSettingTask?: Prisma.DeviceRemoteSettingTaskOmit
 }
 
 /* Types for Logging */

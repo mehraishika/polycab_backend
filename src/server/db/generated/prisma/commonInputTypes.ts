@@ -497,6 +497,74 @@ export type EnumAlertStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumAlertStatusFilter<$PrismaModel>
 }
 
+export type EnumRemoteSettingsTabFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTab | Prisma.EnumRemoteSettingsTabFieldRefInput<$PrismaModel>
+  in?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRemoteSettingsTabFilter<$PrismaModel> | $Enums.RemoteSettingsTab
+}
+
+export type EnumRemoteSettingsTabWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTab | Prisma.EnumRemoteSettingsTabFieldRefInput<$PrismaModel>
+  in?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRemoteSettingsTabWithAggregatesFilter<$PrismaModel> | $Enums.RemoteSettingsTab
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRemoteSettingsTabFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRemoteSettingsTabFilter<$PrismaModel>
+}
+
+export type EnumRemoteSettingsTaskKindFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTaskKind | Prisma.EnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel>
+  in?: $Enums.RemoteSettingsTaskKind[] | Prisma.ListEnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RemoteSettingsTaskKind[] | Prisma.ListEnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRemoteSettingsTaskKindFilter<$PrismaModel> | $Enums.RemoteSettingsTaskKind
+}
+
+export type EnumRemoteSettingsTabNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTab | Prisma.EnumRemoteSettingsTabFieldRefInput<$PrismaModel> | null
+  in?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumRemoteSettingsTabNullableFilter<$PrismaModel> | $Enums.RemoteSettingsTab | null
+}
+
+export type EnumRemoteSettingsTaskStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTaskStatus | Prisma.EnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.RemoteSettingsTaskStatus[] | Prisma.ListEnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RemoteSettingsTaskStatus[] | Prisma.ListEnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRemoteSettingsTaskStatusFilter<$PrismaModel> | $Enums.RemoteSettingsTaskStatus
+}
+
+export type EnumRemoteSettingsTaskKindWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTaskKind | Prisma.EnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel>
+  in?: $Enums.RemoteSettingsTaskKind[] | Prisma.ListEnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RemoteSettingsTaskKind[] | Prisma.ListEnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRemoteSettingsTaskKindWithAggregatesFilter<$PrismaModel> | $Enums.RemoteSettingsTaskKind
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRemoteSettingsTaskKindFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRemoteSettingsTaskKindFilter<$PrismaModel>
+}
+
+export type EnumRemoteSettingsTabNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTab | Prisma.EnumRemoteSettingsTabFieldRefInput<$PrismaModel> | null
+  in?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumRemoteSettingsTabNullableWithAggregatesFilter<$PrismaModel> | $Enums.RemoteSettingsTab | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRemoteSettingsTabNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRemoteSettingsTabNullableFilter<$PrismaModel>
+}
+
+export type EnumRemoteSettingsTaskStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTaskStatus | Prisma.EnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.RemoteSettingsTaskStatus[] | Prisma.ListEnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RemoteSettingsTaskStatus[] | Prisma.ListEnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRemoteSettingsTaskStatusWithAggregatesFilter<$PrismaModel> | $Enums.RemoteSettingsTaskStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRemoteSettingsTaskStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRemoteSettingsTaskStatusFilter<$PrismaModel>
+}
+
 export type NestedBigIntFilter<$PrismaModel = never> = {
   equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
   in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
@@ -926,6 +994,74 @@ export type NestedEnumAlertStatusWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumAlertStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumAlertStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumRemoteSettingsTabFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTab | Prisma.EnumRemoteSettingsTabFieldRefInput<$PrismaModel>
+  in?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRemoteSettingsTabFilter<$PrismaModel> | $Enums.RemoteSettingsTab
+}
+
+export type NestedEnumRemoteSettingsTabWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTab | Prisma.EnumRemoteSettingsTabFieldRefInput<$PrismaModel>
+  in?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRemoteSettingsTabWithAggregatesFilter<$PrismaModel> | $Enums.RemoteSettingsTab
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRemoteSettingsTabFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRemoteSettingsTabFilter<$PrismaModel>
+}
+
+export type NestedEnumRemoteSettingsTaskKindFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTaskKind | Prisma.EnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel>
+  in?: $Enums.RemoteSettingsTaskKind[] | Prisma.ListEnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RemoteSettingsTaskKind[] | Prisma.ListEnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRemoteSettingsTaskKindFilter<$PrismaModel> | $Enums.RemoteSettingsTaskKind
+}
+
+export type NestedEnumRemoteSettingsTabNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTab | Prisma.EnumRemoteSettingsTabFieldRefInput<$PrismaModel> | null
+  in?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumRemoteSettingsTabNullableFilter<$PrismaModel> | $Enums.RemoteSettingsTab | null
+}
+
+export type NestedEnumRemoteSettingsTaskStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTaskStatus | Prisma.EnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.RemoteSettingsTaskStatus[] | Prisma.ListEnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RemoteSettingsTaskStatus[] | Prisma.ListEnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRemoteSettingsTaskStatusFilter<$PrismaModel> | $Enums.RemoteSettingsTaskStatus
+}
+
+export type NestedEnumRemoteSettingsTaskKindWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTaskKind | Prisma.EnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel>
+  in?: $Enums.RemoteSettingsTaskKind[] | Prisma.ListEnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RemoteSettingsTaskKind[] | Prisma.ListEnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRemoteSettingsTaskKindWithAggregatesFilter<$PrismaModel> | $Enums.RemoteSettingsTaskKind
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRemoteSettingsTaskKindFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRemoteSettingsTaskKindFilter<$PrismaModel>
+}
+
+export type NestedEnumRemoteSettingsTabNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTab | Prisma.EnumRemoteSettingsTabFieldRefInput<$PrismaModel> | null
+  in?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.RemoteSettingsTab[] | Prisma.ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumRemoteSettingsTabNullableWithAggregatesFilter<$PrismaModel> | $Enums.RemoteSettingsTab | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRemoteSettingsTabNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRemoteSettingsTabNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumRemoteSettingsTaskStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RemoteSettingsTaskStatus | Prisma.EnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.RemoteSettingsTaskStatus[] | Prisma.ListEnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RemoteSettingsTaskStatus[] | Prisma.ListEnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRemoteSettingsTaskStatusWithAggregatesFilter<$PrismaModel> | $Enums.RemoteSettingsTaskStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRemoteSettingsTaskStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRemoteSettingsTaskStatusFilter<$PrismaModel>
 }
 
 

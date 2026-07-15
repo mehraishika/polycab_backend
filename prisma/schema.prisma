@@ -80,6 +80,8 @@ model DeviceInverter {
   updatedAt     DateTime              @updatedAt @map("updated_at")
   deletedAt     DateTime?             @map("deleted_at")
   dataloggers   DeviceDatalogger[]
+  remoteSettings        DeviceRemoteSetting[]
+  remoteSettingTasks    DeviceRemoteSettingTask[]
   plant         Plant                 @relation(fields: [plantId], references: [id])
 
   @@index([plantId])
@@ -427,8 +429,8 @@ model DeviceConnectionStatus {
 }
 
 model fota {
-  id          Int     @id @default(autoincrement())
-  mac_address String  @unique @db.VarChar(50)
+  id          Int     @unique @default(autoincrement())
+  mac_address String  @id @db.VarChar(50)
   firmware    String? @db.VarChar(50)
   link        String? @db.VarChar(255)
 
@@ -531,6 +533,95 @@ model FaultDictionary {
 
   @@unique([registerNo, bitPosition])
   @@map("fault_dictionary")
+}
+
+model RemoteSettingParameterMaster {
+  id                BigInt   @id @default(autoincrement())
+  tab               String   @db.VarChar(40)
+  tabLabel          String   @map("tab_label") @db.VarChar(60)
+  fieldKey          String   @map("field_key") @db.VarChar(60)
+  label             String   @db.VarChar(150)
+  dataType          String   @map("data_type") @db.VarChar(20)
+  unitOrOptions     String?  @map("unit_or_options") @db.VarChar(200)
+  endpointPath      String   @map("endpoint_path") @db.VarChar(120)
+  displayOrder      Int      @map("display_order")
+  count             Int      @default(1)
+  registerAddress   String?  @map("register_address") @db.VarChar(20)
+  registerType      String?  @map("register_type") @db.VarChar(20)
+  createdAt         DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@unique([tab, fieldKey], map: "remote_setting_parameter_master_tab_field_key_key")
+  @@index([tab], map: "remote_setting_parameter_master_tab_idx")
+  @@map("remote_setting_parameter_master")
+}
+
+model RemoteSettingCommandMaster {
+  id               BigInt   @id @default(autoincrement())
+  commandKey       String   @unique @map("command_key") @db.VarChar(60)
+  label            String   @db.VarChar(150)
+  endpointPath     String   @default("/remote-settings/command") @map("endpoint_path") @db.VarChar(120)
+  displayOrder     Int      @map("display_order")
+  count            Int      @default(1)
+  registerAddress  String?  @map("register_address") @db.VarChar(20)
+  registerType     String?  @default("coil") @map("register_type") @db.VarChar(20)
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@map("remote_setting_command_master")
+}
+
+model DeviceRemoteSetting {
+  id               BigInt             @id @default(autoincrement())
+  deviceInverterId BigInt             @map("device_inverter_id")
+  tab              RemoteSettingsTab
+  settings         Json
+  updatedById      BigInt?            @map("updated_by_id")
+  createdAt        DateTime           @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt        DateTime           @updatedAt @map("updated_at") @db.Timestamp(6)
+
+  deviceInverter   DeviceInverter     @relation(fields: [deviceInverterId], references: [id], onUpdate: Cascade, onDelete: Restrict)
+
+  @@unique([deviceInverterId, tab], map: "device_remote_settings_device_inverter_id_tab_key")
+  @@index([deviceInverterId], map: "device_remote_settings_device_inverter_id_idx")
+  @@map("device_remote_settings")
+}
+
+model DeviceRemoteSettingTask {
+  id               BigInt                   @id @default(autoincrement())
+  deviceInverterId BigInt                   @map("device_inverter_id")
+  kind             RemoteSettingsTaskKind
+  tab              RemoteSettingsTab?
+  payload          Json
+  status           RemoteSettingsTaskStatus @default(pending)
+  createdById      BigInt?                  @map("created_by_id")
+  createdAt        DateTime                 @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt        DateTime                 @updatedAt @map("updated_at") @db.Timestamp(6)
+
+  deviceInverter   DeviceInverter           @relation(fields: [deviceInverterId], references: [id], onUpdate: Cascade, onDelete: Restrict)
+
+  @@index([deviceInverterId], map: "device_remote_setting_tasks_device_inverter_id_idx")
+  @@index([status], map: "device_remote_setting_tasks_status_idx")
+  @@map("device_remote_setting_tasks")
+}
+
+enum RemoteSettingsTab {
+  gridParameters
+  featureParameters
+  reactivePowerControl
+  powerLimit
+  otherSetting
+  maskingFaultDetection
+}
+
+enum RemoteSettingsTaskKind {
+  settings
+  command
+}
+
+enum RemoteSettingsTaskStatus {
+  pending
+  completed
+  failed
 }
 
 enum AlertStatus {

@@ -69,7 +69,11 @@ export const ModelName = {
   PlantCurrentStatus: 'PlantCurrentStatus',
   DeviceAlertState: 'DeviceAlertState',
   AlertEvent: 'AlertEvent',
-  FaultDictionary: 'FaultDictionary'
+  FaultDictionary: 'FaultDictionary',
+  RemoteSettingParameterMaster: 'RemoteSettingParameterMaster',
+  RemoteSettingCommandMaster: 'RemoteSettingCommandMaster',
+  DeviceRemoteSetting: 'DeviceRemoteSetting',
+  DeviceRemoteSettingTask: 'DeviceRemoteSettingTask'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -523,6 +527,69 @@ export const FaultDictionaryScalarFieldEnum = {
 } as const
 
 export type FaultDictionaryScalarFieldEnum = (typeof FaultDictionaryScalarFieldEnum)[keyof typeof FaultDictionaryScalarFieldEnum]
+
+
+export const RemoteSettingParameterMasterScalarFieldEnum = {
+  id: 'id',
+  tab: 'tab',
+  tabLabel: 'tabLabel',
+  fieldKey: 'fieldKey',
+  label: 'label',
+  dataType: 'dataType',
+  unitOrOptions: 'unitOrOptions',
+  endpointPath: 'endpointPath',
+  displayOrder: 'displayOrder',
+  count: 'count',
+  registerAddress: 'registerAddress',
+  registerType: 'registerType',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RemoteSettingParameterMasterScalarFieldEnum = (typeof RemoteSettingParameterMasterScalarFieldEnum)[keyof typeof RemoteSettingParameterMasterScalarFieldEnum]
+
+
+export const RemoteSettingCommandMasterScalarFieldEnum = {
+  id: 'id',
+  commandKey: 'commandKey',
+  label: 'label',
+  endpointPath: 'endpointPath',
+  displayOrder: 'displayOrder',
+  count: 'count',
+  registerAddress: 'registerAddress',
+  registerType: 'registerType',
+  createdAt: 'createdAt'
+} as const
+
+export type RemoteSettingCommandMasterScalarFieldEnum = (typeof RemoteSettingCommandMasterScalarFieldEnum)[keyof typeof RemoteSettingCommandMasterScalarFieldEnum]
+
+
+export const DeviceRemoteSettingScalarFieldEnum = {
+  id: 'id',
+  deviceInverterId: 'deviceInverterId',
+  tab: 'tab',
+  settings: 'settings',
+  updatedById: 'updatedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceRemoteSettingScalarFieldEnum = (typeof DeviceRemoteSettingScalarFieldEnum)[keyof typeof DeviceRemoteSettingScalarFieldEnum]
+
+
+export const DeviceRemoteSettingTaskScalarFieldEnum = {
+  id: 'id',
+  deviceInverterId: 'deviceInverterId',
+  kind: 'kind',
+  tab: 'tab',
+  payload: 'payload',
+  status: 'status',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceRemoteSettingTaskScalarFieldEnum = (typeof DeviceRemoteSettingTaskScalarFieldEnum)[keyof typeof DeviceRemoteSettingTaskScalarFieldEnum]
 
 
 export const SortOrder = {

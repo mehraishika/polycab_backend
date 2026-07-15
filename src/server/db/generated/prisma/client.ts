@@ -136,3 +136,23 @@ export type AlertEvent = Prisma.AlertEventModel
  * 
  */
 export type FaultDictionary = Prisma.FaultDictionaryModel
+/**
+ * Model RemoteSettingParameterMaster
+ * 
+ */
+export type RemoteSettingParameterMaster = Prisma.RemoteSettingParameterMasterModel
+/**
+ * Model RemoteSettingCommandMaster
+ * 
+ */
+export type RemoteSettingCommandMaster = Prisma.RemoteSettingCommandMasterModel
+/**
+ * Model DeviceRemoteSetting
+ * 
+ */
+export type DeviceRemoteSetting = Prisma.DeviceRemoteSettingModel
+/**
+ * Model DeviceRemoteSettingTask
+ * 
+ */
+export type DeviceRemoteSettingTask = Prisma.DeviceRemoteSettingTaskModel
