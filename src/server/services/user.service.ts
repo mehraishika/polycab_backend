@@ -43,6 +43,8 @@ export type SearchMonitoringUserResult =
 export type CreateSubUserResult = CreateSubUserSuccess | CreateSubUserError;
 
 export interface DeviceLatestRecord {
+  logger_status: any;
+  module_version_no: any;
   id: bigint | string;
   sno: string;
   inverterName: string | null;
@@ -59,6 +61,9 @@ export interface DeviceLatestRecord {
   status: string;
   userId: string | null;
   account: string | null;
+  communicationStatus: any;
+  communicationModuleVersion: any;
+  communicationModuleSn: string;
 }
 
 export interface SearchDeviceResult {
@@ -548,6 +553,11 @@ export class UserService {
           status: device.status,
           userId: device.userId?.toString() ?? null,
           account: device.account,
+          logger_status: device.logger_status,
+          module_version_no: device.module_version_no,
+          communicationStatus: device.logger_status,
+          communicationModuleVersion: device.module_version_no,
+          communicationModuleSn: device.sno,
           createdAt: device.createdAt.toString(),
           updatedAt: device.updatedAt.toString(),
         },

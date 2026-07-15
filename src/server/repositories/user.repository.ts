@@ -233,6 +233,12 @@ export class UserRepository {
         totalEnergy: true,
         totalHours: true,
         currentPower: true,
+        sourceLog: {
+          select: {
+            logger_status: true,
+            module_version_no: true,
+          },
+        },
         createdAt: true,
         updatedAt: true,
       },
@@ -267,7 +273,22 @@ export class UserRepository {
     });
 
     return {
-      ...device,
+      id: device.id,
+      sno: device.sno,
+      inverterName: device.inverterName,
+      dayDate: device.dayDate,
+      latestTimestamp: device.latestTimestamp,
+      dailyProduction: device.dailyProduction,
+      totalEnergy: device.totalEnergy,
+      totalHours: device.totalHours,
+      currentPower: device.currentPower,
+      logger_status: device.sourceLog?.logger_status ?? null,
+      module_version_no: device.sourceLog?.module_version_no ?? null,
+      communicationStatus: device.sourceLog?.logger_status ?? null,
+      communicationModuleVersion: device.sourceLog?.module_version_no ?? null,
+      communicationModuleSn: device.sno,
+      createdAt: device.createdAt,
+      updatedAt: device.updatedAt,
       plantId: mapping.plantId?.toString() ?? null,
       status: currentStatus?.status ?? "Offline",
       userId: userMapping?.userId?.toString() ?? null,
