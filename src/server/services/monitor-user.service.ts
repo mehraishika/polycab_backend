@@ -902,28 +902,35 @@ export class MonitorUserService {
   }
 
   private async validateTargetServiceUser(
-    targetUserId: bigint,
-    actorId: bigint,
-  ): Promise<ServiceError | null> {
-    const target =
-      await this.monitorUserRepository.findTargetServiceUser(targetUserId);
+  targetUserId: bigint,
+  actorId: bigint,
+  actorRole: string | undefined,
+): Promise<ServiceError | null> {
+  const target =
+    await this.monitorUserRepository.findTargetServiceUser(targetUserId);
 
-    if (!target) {
-      return {
-        status: 404,
-        message: "Target service user not found",
-      };
-    }
+  if (!target) {
+    return {
+      status: 404,
+      message: "Target service user not found",
+    };
+  }
 
-    if (target.id !== actorId && target.assignedById !== actorId) {
-      return {
-        status: 403,
-        message: "Target service user is outside your scope",
-      };
-    }
-
+  // Service Super Admin can assign to any service admin
+  if (actorRole === "service_super_admin") {
     return null;
   }
+
+  // Service Admin can assign only to themselves
+  if (actorRole === "service_admin" && target.id !== actorId) {
+    return {
+      status: 403,
+      message: "You can only assign monitor users to your own account",
+    };
+  }
+
+  return null;
+}
 
   private async updateMonitorUsersOwnership(
     monitorUserIdentifiers: string[],
@@ -1101,9 +1108,10 @@ export class MonitorUserService {
     }
 
     const targetError = await this.validateTargetServiceUser(
-      input.assignedToUserId,
-      actorId,
-    );
+  input.assignedToUserId,
+  actorId,
+  actorRole,
+);
     if (targetError) {
       return targetError;
     }

@@ -813,7 +813,7 @@ export class UserService {
       return accessError;
     }
 
-    const records = await this.userRepository.findScopedServiceAdmins(actorId);
+    const records = await this.userRepository.findScopedServiceAdmins(actorId, actorRole);
     console.log("records", records);
 
     const deviceCountMap = await this.userRepository.getDeviceCountsByAccounts(
