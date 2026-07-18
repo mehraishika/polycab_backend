@@ -80,7 +80,6 @@ model DeviceInverter {
   updatedAt     DateTime              @updatedAt @map("updated_at")
   deletedAt     DateTime?             @map("deleted_at")
   dataloggers   DeviceDatalogger[]
-  remoteSettings        DeviceRemoteSetting[]
   remoteSettingTasks    DeviceRemoteSettingTask[]
   plant         Plant                 @relation(fields: [plantId], references: [id])
 
@@ -476,7 +475,7 @@ model PlantCurrentStatus {
   standbyCount    Int         @default(0) @map("standby_count")
   offlineCount    Int         @default(0) @map("offline_count")
 
-  updatedAt       DateTime    @updatedAt @map("updated_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
   plant           Plant       @relation(fields: [plantId], references: [id])
 
@@ -578,8 +577,6 @@ model DeviceRemoteSetting {
   updatedById      BigInt?            @map("updated_by_id")
   createdAt        DateTime           @default(now()) @map("created_at") @db.Timestamp(6)
   updatedAt        DateTime           @updatedAt @map("updated_at") @db.Timestamp(6)
-
-  deviceInverter   DeviceInverter     @relation(fields: [deviceInverterId], references: [id], onUpdate: Cascade, onDelete: Restrict)
 
   @@unique([deviceInverterId, tab], map: "device_remote_settings_device_inverter_id_tab_key")
   @@index([deviceInverterId], map: "device_remote_settings_device_inverter_id_idx")

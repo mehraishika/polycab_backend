@@ -253,7 +253,6 @@ export type DeviceInverterWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"DeviceInverter"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"DeviceInverter"> | Date | string | null
   dataloggers?: Prisma.DeviceDataloggerListRelationFilter
-  remoteSettings?: Prisma.DeviceRemoteSettingListRelationFilter
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskListRelationFilter
   plant?: Prisma.XOR<Prisma.PlantScalarRelationFilter, Prisma.PlantWhereInput>
 }
@@ -269,7 +268,6 @@ export type DeviceInverterOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   dataloggers?: Prisma.DeviceDataloggerOrderByRelationAggregateInput
-  remoteSettings?: Prisma.DeviceRemoteSettingOrderByRelationAggregateInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskOrderByRelationAggregateInput
   plant?: Prisma.PlantOrderByWithRelationInput
 }
@@ -288,7 +286,6 @@ export type DeviceInverterWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"DeviceInverter"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"DeviceInverter"> | Date | string | null
   dataloggers?: Prisma.DeviceDataloggerListRelationFilter
-  remoteSettings?: Prisma.DeviceRemoteSettingListRelationFilter
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskListRelationFilter
   plant?: Prisma.XOR<Prisma.PlantScalarRelationFilter, Prisma.PlantWhereInput>
 }, "id" | "serialNumber">
@@ -335,7 +332,6 @@ export type DeviceInverterCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutInverterInput
-  remoteSettings?: Prisma.DeviceRemoteSettingCreateNestedManyWithoutDeviceInverterInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskCreateNestedManyWithoutDeviceInverterInput
   plant: Prisma.PlantCreateNestedOneWithoutInvertersInput
 }
@@ -351,7 +347,6 @@ export type DeviceInverterUncheckedCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutInverterInput
-  remoteSettings?: Prisma.DeviceRemoteSettingUncheckedCreateNestedManyWithoutDeviceInverterInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskUncheckedCreateNestedManyWithoutDeviceInverterInput
 }
 
@@ -365,7 +360,6 @@ export type DeviceInverterUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutInverterNestedInput
-  remoteSettings?: Prisma.DeviceRemoteSettingUpdateManyWithoutDeviceInverterNestedInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskUpdateManyWithoutDeviceInverterNestedInput
   plant?: Prisma.PlantUpdateOneRequiredWithoutInvertersNestedInput
 }
@@ -381,7 +375,6 @@ export type DeviceInverterUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutInverterNestedInput
-  remoteSettings?: Prisma.DeviceRemoteSettingUncheckedUpdateManyWithoutDeviceInverterNestedInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskUncheckedUpdateManyWithoutDeviceInverterNestedInput
 }
 
@@ -544,20 +537,6 @@ export type DeviceInverterUpdateOneWithoutDataloggersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DeviceInverterUpdateToOneWithWhereWithoutDataloggersInput, Prisma.DeviceInverterUpdateWithoutDataloggersInput>, Prisma.DeviceInverterUncheckedUpdateWithoutDataloggersInput>
 }
 
-export type DeviceInverterCreateNestedOneWithoutRemoteSettingsInput = {
-  create?: Prisma.XOR<Prisma.DeviceInverterCreateWithoutRemoteSettingsInput, Prisma.DeviceInverterUncheckedCreateWithoutRemoteSettingsInput>
-  connectOrCreate?: Prisma.DeviceInverterCreateOrConnectWithoutRemoteSettingsInput
-  connect?: Prisma.DeviceInverterWhereUniqueInput
-}
-
-export type DeviceInverterUpdateOneRequiredWithoutRemoteSettingsNestedInput = {
-  create?: Prisma.XOR<Prisma.DeviceInverterCreateWithoutRemoteSettingsInput, Prisma.DeviceInverterUncheckedCreateWithoutRemoteSettingsInput>
-  connectOrCreate?: Prisma.DeviceInverterCreateOrConnectWithoutRemoteSettingsInput
-  upsert?: Prisma.DeviceInverterUpsertWithoutRemoteSettingsInput
-  connect?: Prisma.DeviceInverterWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.DeviceInverterUpdateToOneWithWhereWithoutRemoteSettingsInput, Prisma.DeviceInverterUpdateWithoutRemoteSettingsInput>, Prisma.DeviceInverterUncheckedUpdateWithoutRemoteSettingsInput>
-}
-
 export type DeviceInverterCreateNestedOneWithoutRemoteSettingTasksInput = {
   create?: Prisma.XOR<Prisma.DeviceInverterCreateWithoutRemoteSettingTasksInput, Prisma.DeviceInverterUncheckedCreateWithoutRemoteSettingTasksInput>
   connectOrCreate?: Prisma.DeviceInverterCreateOrConnectWithoutRemoteSettingTasksInput
@@ -582,7 +561,6 @@ export type DeviceInverterCreateWithoutPlantInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutInverterInput
-  remoteSettings?: Prisma.DeviceRemoteSettingCreateNestedManyWithoutDeviceInverterInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskCreateNestedManyWithoutDeviceInverterInput
 }
 
@@ -596,7 +574,6 @@ export type DeviceInverterUncheckedCreateWithoutPlantInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutInverterInput
-  remoteSettings?: Prisma.DeviceRemoteSettingUncheckedCreateNestedManyWithoutDeviceInverterInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskUncheckedCreateNestedManyWithoutDeviceInverterInput
 }
 
@@ -650,7 +627,6 @@ export type DeviceInverterCreateWithoutDataloggersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  remoteSettings?: Prisma.DeviceRemoteSettingCreateNestedManyWithoutDeviceInverterInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskCreateNestedManyWithoutDeviceInverterInput
   plant: Prisma.PlantCreateNestedOneWithoutInvertersInput
 }
@@ -665,7 +641,6 @@ export type DeviceInverterUncheckedCreateWithoutDataloggersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  remoteSettings?: Prisma.DeviceRemoteSettingUncheckedCreateNestedManyWithoutDeviceInverterInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskUncheckedCreateNestedManyWithoutDeviceInverterInput
 }
 
@@ -694,7 +669,6 @@ export type DeviceInverterUpdateWithoutDataloggersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  remoteSettings?: Prisma.DeviceRemoteSettingUpdateManyWithoutDeviceInverterNestedInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskUpdateManyWithoutDeviceInverterNestedInput
   plant?: Prisma.PlantUpdateOneRequiredWithoutInvertersNestedInput
 }
@@ -709,79 +683,6 @@ export type DeviceInverterUncheckedUpdateWithoutDataloggersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  remoteSettings?: Prisma.DeviceRemoteSettingUncheckedUpdateManyWithoutDeviceInverterNestedInput
-  remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskUncheckedUpdateManyWithoutDeviceInverterNestedInput
-}
-
-export type DeviceInverterCreateWithoutRemoteSettingsInput = {
-  id?: bigint | number
-  name?: string | null
-  type?: string
-  serialNumber: string
-  updateTime?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutInverterInput
-  remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskCreateNestedManyWithoutDeviceInverterInput
-  plant: Prisma.PlantCreateNestedOneWithoutInvertersInput
-}
-
-export type DeviceInverterUncheckedCreateWithoutRemoteSettingsInput = {
-  id?: bigint | number
-  name?: string | null
-  type?: string
-  serialNumber: string
-  updateTime?: Date | string | null
-  plantId: bigint | number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutInverterInput
-  remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskUncheckedCreateNestedManyWithoutDeviceInverterInput
-}
-
-export type DeviceInverterCreateOrConnectWithoutRemoteSettingsInput = {
-  where: Prisma.DeviceInverterWhereUniqueInput
-  create: Prisma.XOR<Prisma.DeviceInverterCreateWithoutRemoteSettingsInput, Prisma.DeviceInverterUncheckedCreateWithoutRemoteSettingsInput>
-}
-
-export type DeviceInverterUpsertWithoutRemoteSettingsInput = {
-  update: Prisma.XOR<Prisma.DeviceInverterUpdateWithoutRemoteSettingsInput, Prisma.DeviceInverterUncheckedUpdateWithoutRemoteSettingsInput>
-  create: Prisma.XOR<Prisma.DeviceInverterCreateWithoutRemoteSettingsInput, Prisma.DeviceInverterUncheckedCreateWithoutRemoteSettingsInput>
-  where?: Prisma.DeviceInverterWhereInput
-}
-
-export type DeviceInverterUpdateToOneWithWhereWithoutRemoteSettingsInput = {
-  where?: Prisma.DeviceInverterWhereInput
-  data: Prisma.XOR<Prisma.DeviceInverterUpdateWithoutRemoteSettingsInput, Prisma.DeviceInverterUncheckedUpdateWithoutRemoteSettingsInput>
-}
-
-export type DeviceInverterUpdateWithoutRemoteSettingsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  updateTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutInverterNestedInput
-  remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskUpdateManyWithoutDeviceInverterNestedInput
-  plant?: Prisma.PlantUpdateOneRequiredWithoutInvertersNestedInput
-}
-
-export type DeviceInverterUncheckedUpdateWithoutRemoteSettingsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  updateTime?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  plantId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutInverterNestedInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskUncheckedUpdateManyWithoutDeviceInverterNestedInput
 }
 
@@ -795,7 +696,6 @@ export type DeviceInverterCreateWithoutRemoteSettingTasksInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutInverterInput
-  remoteSettings?: Prisma.DeviceRemoteSettingCreateNestedManyWithoutDeviceInverterInput
   plant: Prisma.PlantCreateNestedOneWithoutInvertersInput
 }
 
@@ -810,7 +710,6 @@ export type DeviceInverterUncheckedCreateWithoutRemoteSettingTasksInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutInverterInput
-  remoteSettings?: Prisma.DeviceRemoteSettingUncheckedCreateNestedManyWithoutDeviceInverterInput
 }
 
 export type DeviceInverterCreateOrConnectWithoutRemoteSettingTasksInput = {
@@ -839,7 +738,6 @@ export type DeviceInverterUpdateWithoutRemoteSettingTasksInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutInverterNestedInput
-  remoteSettings?: Prisma.DeviceRemoteSettingUpdateManyWithoutDeviceInverterNestedInput
   plant?: Prisma.PlantUpdateOneRequiredWithoutInvertersNestedInput
 }
 
@@ -854,7 +752,6 @@ export type DeviceInverterUncheckedUpdateWithoutRemoteSettingTasksInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutInverterNestedInput
-  remoteSettings?: Prisma.DeviceRemoteSettingUncheckedUpdateManyWithoutDeviceInverterNestedInput
 }
 
 export type DeviceInverterCreateManyPlantInput = {
@@ -878,7 +775,6 @@ export type DeviceInverterUpdateWithoutPlantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutInverterNestedInput
-  remoteSettings?: Prisma.DeviceRemoteSettingUpdateManyWithoutDeviceInverterNestedInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskUpdateManyWithoutDeviceInverterNestedInput
 }
 
@@ -892,7 +788,6 @@ export type DeviceInverterUncheckedUpdateWithoutPlantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutInverterNestedInput
-  remoteSettings?: Prisma.DeviceRemoteSettingUncheckedUpdateManyWithoutDeviceInverterNestedInput
   remoteSettingTasks?: Prisma.DeviceRemoteSettingTaskUncheckedUpdateManyWithoutDeviceInverterNestedInput
 }
 
@@ -914,13 +809,11 @@ export type DeviceInverterUncheckedUpdateManyWithoutPlantInput = {
 
 export type DeviceInverterCountOutputType = {
   dataloggers: number
-  remoteSettings: number
   remoteSettingTasks: number
 }
 
 export type DeviceInverterCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   dataloggers?: boolean | DeviceInverterCountOutputTypeCountDataloggersArgs
-  remoteSettings?: boolean | DeviceInverterCountOutputTypeCountRemoteSettingsArgs
   remoteSettingTasks?: boolean | DeviceInverterCountOutputTypeCountRemoteSettingTasksArgs
 }
 
@@ -944,13 +837,6 @@ export type DeviceInverterCountOutputTypeCountDataloggersArgs<ExtArgs extends ru
 /**
  * DeviceInverterCountOutputType without action
  */
-export type DeviceInverterCountOutputTypeCountRemoteSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DeviceRemoteSettingWhereInput
-}
-
-/**
- * DeviceInverterCountOutputType without action
- */
 export type DeviceInverterCountOutputTypeCountRemoteSettingTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.DeviceRemoteSettingTaskWhereInput
 }
@@ -967,7 +853,6 @@ export type DeviceInverterSelect<ExtArgs extends runtime.Types.Extensions.Intern
   updatedAt?: boolean
   deletedAt?: boolean
   dataloggers?: boolean | Prisma.DeviceInverter$dataloggersArgs<ExtArgs>
-  remoteSettings?: boolean | Prisma.DeviceInverter$remoteSettingsArgs<ExtArgs>
   remoteSettingTasks?: boolean | Prisma.DeviceInverter$remoteSettingTasksArgs<ExtArgs>
   plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.DeviceInverterCountOutputTypeDefaultArgs<ExtArgs>
@@ -1014,7 +899,6 @@ export type DeviceInverterSelectScalar = {
 export type DeviceInverterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "serialNumber" | "updateTime" | "plantId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["deviceInverter"]>
 export type DeviceInverterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   dataloggers?: boolean | Prisma.DeviceInverter$dataloggersArgs<ExtArgs>
-  remoteSettings?: boolean | Prisma.DeviceInverter$remoteSettingsArgs<ExtArgs>
   remoteSettingTasks?: boolean | Prisma.DeviceInverter$remoteSettingTasksArgs<ExtArgs>
   plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.DeviceInverterCountOutputTypeDefaultArgs<ExtArgs>
@@ -1030,7 +914,6 @@ export type $DeviceInverterPayload<ExtArgs extends runtime.Types.Extensions.Inte
   name: "DeviceInverter"
   objects: {
     dataloggers: Prisma.$DeviceDataloggerPayload<ExtArgs>[]
-    remoteSettings: Prisma.$DeviceRemoteSettingPayload<ExtArgs>[]
     remoteSettingTasks: Prisma.$DeviceRemoteSettingTaskPayload<ExtArgs>[]
     plant: Prisma.$PlantPayload<ExtArgs>
   }
@@ -1439,7 +1322,6 @@ readonly fields: DeviceInverterFieldRefs;
 export interface Prisma__DeviceInverterClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   dataloggers<T extends Prisma.DeviceInverter$dataloggersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeviceInverter$dataloggersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceDataloggerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  remoteSettings<T extends Prisma.DeviceInverter$remoteSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeviceInverter$remoteSettingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceRemoteSettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   remoteSettingTasks<T extends Prisma.DeviceInverter$remoteSettingTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeviceInverter$remoteSettingTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceRemoteSettingTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   plant<T extends Prisma.PlantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlantDefaultArgs<ExtArgs>>): Prisma.Prisma__PlantClient<runtime.Types.Result.GetResult<Prisma.$PlantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1902,30 +1784,6 @@ export type DeviceInverter$dataloggersArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.DeviceDataloggerScalarFieldEnum | Prisma.DeviceDataloggerScalarFieldEnum[]
-}
-
-/**
- * DeviceInverter.remoteSettings
- */
-export type DeviceInverter$remoteSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the DeviceRemoteSetting
-   */
-  select?: Prisma.DeviceRemoteSettingSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the DeviceRemoteSetting
-   */
-  omit?: Prisma.DeviceRemoteSettingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingInclude<ExtArgs> | null
-  where?: Prisma.DeviceRemoteSettingWhereInput
-  orderBy?: Prisma.DeviceRemoteSettingOrderByWithRelationInput | Prisma.DeviceRemoteSettingOrderByWithRelationInput[]
-  cursor?: Prisma.DeviceRemoteSettingWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.DeviceRemoteSettingScalarFieldEnum | Prisma.DeviceRemoteSettingScalarFieldEnum[]
 }
 
 /**

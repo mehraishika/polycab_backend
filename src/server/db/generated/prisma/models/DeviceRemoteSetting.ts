@@ -236,7 +236,6 @@ export type DeviceRemoteSettingWhereInput = {
   updatedById?: Prisma.BigIntNullableFilter<"DeviceRemoteSetting"> | bigint | number | null
   createdAt?: Prisma.DateTimeFilter<"DeviceRemoteSetting"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceRemoteSetting"> | Date | string
-  deviceInverter?: Prisma.XOR<Prisma.DeviceInverterScalarRelationFilter, Prisma.DeviceInverterWhereInput>
 }
 
 export type DeviceRemoteSettingOrderByWithRelationInput = {
@@ -247,7 +246,6 @@ export type DeviceRemoteSettingOrderByWithRelationInput = {
   updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deviceInverter?: Prisma.DeviceInverterOrderByWithRelationInput
 }
 
 export type DeviceRemoteSettingWhereUniqueInput = Prisma.AtLeast<{
@@ -262,7 +260,6 @@ export type DeviceRemoteSettingWhereUniqueInput = Prisma.AtLeast<{
   updatedById?: Prisma.BigIntNullableFilter<"DeviceRemoteSetting"> | bigint | number | null
   createdAt?: Prisma.DateTimeFilter<"DeviceRemoteSetting"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceRemoteSetting"> | Date | string
-  deviceInverter?: Prisma.XOR<Prisma.DeviceInverterScalarRelationFilter, Prisma.DeviceInverterWhereInput>
 }, "id" | "deviceInverterId_tab">
 
 export type DeviceRemoteSettingOrderByWithAggregationInput = {
@@ -295,12 +292,12 @@ export type DeviceRemoteSettingScalarWhereWithAggregatesInput = {
 
 export type DeviceRemoteSettingCreateInput = {
   id?: bigint | number
+  deviceInverterId: bigint | number
   tab: $Enums.RemoteSettingsTab
   settings: Prisma.JsonNullValueInput | runtime.InputJsonValue
   updatedById?: bigint | number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deviceInverter: Prisma.DeviceInverterCreateNestedOneWithoutRemoteSettingsInput
 }
 
 export type DeviceRemoteSettingUncheckedCreateInput = {
@@ -315,12 +312,12 @@ export type DeviceRemoteSettingUncheckedCreateInput = {
 
 export type DeviceRemoteSettingUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  deviceInverterId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   tab?: Prisma.EnumRemoteSettingsTabFieldUpdateOperationsInput | $Enums.RemoteSettingsTab
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   updatedById?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deviceInverter?: Prisma.DeviceInverterUpdateOneRequiredWithoutRemoteSettingsNestedInput
 }
 
 export type DeviceRemoteSettingUncheckedUpdateInput = {
@@ -345,6 +342,7 @@ export type DeviceRemoteSettingCreateManyInput = {
 
 export type DeviceRemoteSettingUpdateManyMutationInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  deviceInverterId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   tab?: Prisma.EnumRemoteSettingsTabFieldUpdateOperationsInput | $Enums.RemoteSettingsTab
   settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   updatedById?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -360,16 +358,6 @@ export type DeviceRemoteSettingUncheckedUpdateManyInput = {
   updatedById?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type DeviceRemoteSettingListRelationFilter = {
-  every?: Prisma.DeviceRemoteSettingWhereInput
-  some?: Prisma.DeviceRemoteSettingWhereInput
-  none?: Prisma.DeviceRemoteSettingWhereInput
-}
-
-export type DeviceRemoteSettingOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type DeviceRemoteSettingDeviceInverterIdTabCompoundUniqueInput = {
@@ -417,143 +405,8 @@ export type DeviceRemoteSettingSumOrderByAggregateInput = {
   updatedById?: Prisma.SortOrder
 }
 
-export type DeviceRemoteSettingCreateNestedManyWithoutDeviceInverterInput = {
-  create?: Prisma.XOR<Prisma.DeviceRemoteSettingCreateWithoutDeviceInverterInput, Prisma.DeviceRemoteSettingUncheckedCreateWithoutDeviceInverterInput> | Prisma.DeviceRemoteSettingCreateWithoutDeviceInverterInput[] | Prisma.DeviceRemoteSettingUncheckedCreateWithoutDeviceInverterInput[]
-  connectOrCreate?: Prisma.DeviceRemoteSettingCreateOrConnectWithoutDeviceInverterInput | Prisma.DeviceRemoteSettingCreateOrConnectWithoutDeviceInverterInput[]
-  createMany?: Prisma.DeviceRemoteSettingCreateManyDeviceInverterInputEnvelope
-  connect?: Prisma.DeviceRemoteSettingWhereUniqueInput | Prisma.DeviceRemoteSettingWhereUniqueInput[]
-}
-
-export type DeviceRemoteSettingUncheckedCreateNestedManyWithoutDeviceInverterInput = {
-  create?: Prisma.XOR<Prisma.DeviceRemoteSettingCreateWithoutDeviceInverterInput, Prisma.DeviceRemoteSettingUncheckedCreateWithoutDeviceInverterInput> | Prisma.DeviceRemoteSettingCreateWithoutDeviceInverterInput[] | Prisma.DeviceRemoteSettingUncheckedCreateWithoutDeviceInverterInput[]
-  connectOrCreate?: Prisma.DeviceRemoteSettingCreateOrConnectWithoutDeviceInverterInput | Prisma.DeviceRemoteSettingCreateOrConnectWithoutDeviceInverterInput[]
-  createMany?: Prisma.DeviceRemoteSettingCreateManyDeviceInverterInputEnvelope
-  connect?: Prisma.DeviceRemoteSettingWhereUniqueInput | Prisma.DeviceRemoteSettingWhereUniqueInput[]
-}
-
-export type DeviceRemoteSettingUpdateManyWithoutDeviceInverterNestedInput = {
-  create?: Prisma.XOR<Prisma.DeviceRemoteSettingCreateWithoutDeviceInverterInput, Prisma.DeviceRemoteSettingUncheckedCreateWithoutDeviceInverterInput> | Prisma.DeviceRemoteSettingCreateWithoutDeviceInverterInput[] | Prisma.DeviceRemoteSettingUncheckedCreateWithoutDeviceInverterInput[]
-  connectOrCreate?: Prisma.DeviceRemoteSettingCreateOrConnectWithoutDeviceInverterInput | Prisma.DeviceRemoteSettingCreateOrConnectWithoutDeviceInverterInput[]
-  upsert?: Prisma.DeviceRemoteSettingUpsertWithWhereUniqueWithoutDeviceInverterInput | Prisma.DeviceRemoteSettingUpsertWithWhereUniqueWithoutDeviceInverterInput[]
-  createMany?: Prisma.DeviceRemoteSettingCreateManyDeviceInverterInputEnvelope
-  set?: Prisma.DeviceRemoteSettingWhereUniqueInput | Prisma.DeviceRemoteSettingWhereUniqueInput[]
-  disconnect?: Prisma.DeviceRemoteSettingWhereUniqueInput | Prisma.DeviceRemoteSettingWhereUniqueInput[]
-  delete?: Prisma.DeviceRemoteSettingWhereUniqueInput | Prisma.DeviceRemoteSettingWhereUniqueInput[]
-  connect?: Prisma.DeviceRemoteSettingWhereUniqueInput | Prisma.DeviceRemoteSettingWhereUniqueInput[]
-  update?: Prisma.DeviceRemoteSettingUpdateWithWhereUniqueWithoutDeviceInverterInput | Prisma.DeviceRemoteSettingUpdateWithWhereUniqueWithoutDeviceInverterInput[]
-  updateMany?: Prisma.DeviceRemoteSettingUpdateManyWithWhereWithoutDeviceInverterInput | Prisma.DeviceRemoteSettingUpdateManyWithWhereWithoutDeviceInverterInput[]
-  deleteMany?: Prisma.DeviceRemoteSettingScalarWhereInput | Prisma.DeviceRemoteSettingScalarWhereInput[]
-}
-
-export type DeviceRemoteSettingUncheckedUpdateManyWithoutDeviceInverterNestedInput = {
-  create?: Prisma.XOR<Prisma.DeviceRemoteSettingCreateWithoutDeviceInverterInput, Prisma.DeviceRemoteSettingUncheckedCreateWithoutDeviceInverterInput> | Prisma.DeviceRemoteSettingCreateWithoutDeviceInverterInput[] | Prisma.DeviceRemoteSettingUncheckedCreateWithoutDeviceInverterInput[]
-  connectOrCreate?: Prisma.DeviceRemoteSettingCreateOrConnectWithoutDeviceInverterInput | Prisma.DeviceRemoteSettingCreateOrConnectWithoutDeviceInverterInput[]
-  upsert?: Prisma.DeviceRemoteSettingUpsertWithWhereUniqueWithoutDeviceInverterInput | Prisma.DeviceRemoteSettingUpsertWithWhereUniqueWithoutDeviceInverterInput[]
-  createMany?: Prisma.DeviceRemoteSettingCreateManyDeviceInverterInputEnvelope
-  set?: Prisma.DeviceRemoteSettingWhereUniqueInput | Prisma.DeviceRemoteSettingWhereUniqueInput[]
-  disconnect?: Prisma.DeviceRemoteSettingWhereUniqueInput | Prisma.DeviceRemoteSettingWhereUniqueInput[]
-  delete?: Prisma.DeviceRemoteSettingWhereUniqueInput | Prisma.DeviceRemoteSettingWhereUniqueInput[]
-  connect?: Prisma.DeviceRemoteSettingWhereUniqueInput | Prisma.DeviceRemoteSettingWhereUniqueInput[]
-  update?: Prisma.DeviceRemoteSettingUpdateWithWhereUniqueWithoutDeviceInverterInput | Prisma.DeviceRemoteSettingUpdateWithWhereUniqueWithoutDeviceInverterInput[]
-  updateMany?: Prisma.DeviceRemoteSettingUpdateManyWithWhereWithoutDeviceInverterInput | Prisma.DeviceRemoteSettingUpdateManyWithWhereWithoutDeviceInverterInput[]
-  deleteMany?: Prisma.DeviceRemoteSettingScalarWhereInput | Prisma.DeviceRemoteSettingScalarWhereInput[]
-}
-
 export type EnumRemoteSettingsTabFieldUpdateOperationsInput = {
   set?: $Enums.RemoteSettingsTab
-}
-
-export type DeviceRemoteSettingCreateWithoutDeviceInverterInput = {
-  id?: bigint | number
-  tab: $Enums.RemoteSettingsTab
-  settings: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  updatedById?: bigint | number | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type DeviceRemoteSettingUncheckedCreateWithoutDeviceInverterInput = {
-  id?: bigint | number
-  tab: $Enums.RemoteSettingsTab
-  settings: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  updatedById?: bigint | number | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type DeviceRemoteSettingCreateOrConnectWithoutDeviceInverterInput = {
-  where: Prisma.DeviceRemoteSettingWhereUniqueInput
-  create: Prisma.XOR<Prisma.DeviceRemoteSettingCreateWithoutDeviceInverterInput, Prisma.DeviceRemoteSettingUncheckedCreateWithoutDeviceInverterInput>
-}
-
-export type DeviceRemoteSettingCreateManyDeviceInverterInputEnvelope = {
-  data: Prisma.DeviceRemoteSettingCreateManyDeviceInverterInput | Prisma.DeviceRemoteSettingCreateManyDeviceInverterInput[]
-  skipDuplicates?: boolean
-}
-
-export type DeviceRemoteSettingUpsertWithWhereUniqueWithoutDeviceInverterInput = {
-  where: Prisma.DeviceRemoteSettingWhereUniqueInput
-  update: Prisma.XOR<Prisma.DeviceRemoteSettingUpdateWithoutDeviceInverterInput, Prisma.DeviceRemoteSettingUncheckedUpdateWithoutDeviceInverterInput>
-  create: Prisma.XOR<Prisma.DeviceRemoteSettingCreateWithoutDeviceInverterInput, Prisma.DeviceRemoteSettingUncheckedCreateWithoutDeviceInverterInput>
-}
-
-export type DeviceRemoteSettingUpdateWithWhereUniqueWithoutDeviceInverterInput = {
-  where: Prisma.DeviceRemoteSettingWhereUniqueInput
-  data: Prisma.XOR<Prisma.DeviceRemoteSettingUpdateWithoutDeviceInverterInput, Prisma.DeviceRemoteSettingUncheckedUpdateWithoutDeviceInverterInput>
-}
-
-export type DeviceRemoteSettingUpdateManyWithWhereWithoutDeviceInverterInput = {
-  where: Prisma.DeviceRemoteSettingScalarWhereInput
-  data: Prisma.XOR<Prisma.DeviceRemoteSettingUpdateManyMutationInput, Prisma.DeviceRemoteSettingUncheckedUpdateManyWithoutDeviceInverterInput>
-}
-
-export type DeviceRemoteSettingScalarWhereInput = {
-  AND?: Prisma.DeviceRemoteSettingScalarWhereInput | Prisma.DeviceRemoteSettingScalarWhereInput[]
-  OR?: Prisma.DeviceRemoteSettingScalarWhereInput[]
-  NOT?: Prisma.DeviceRemoteSettingScalarWhereInput | Prisma.DeviceRemoteSettingScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"DeviceRemoteSetting"> | bigint | number
-  deviceInverterId?: Prisma.BigIntFilter<"DeviceRemoteSetting"> | bigint | number
-  tab?: Prisma.EnumRemoteSettingsTabFilter<"DeviceRemoteSetting"> | $Enums.RemoteSettingsTab
-  settings?: Prisma.JsonFilter<"DeviceRemoteSetting">
-  updatedById?: Prisma.BigIntNullableFilter<"DeviceRemoteSetting"> | bigint | number | null
-  createdAt?: Prisma.DateTimeFilter<"DeviceRemoteSetting"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"DeviceRemoteSetting"> | Date | string
-}
-
-export type DeviceRemoteSettingCreateManyDeviceInverterInput = {
-  id?: bigint | number
-  tab: $Enums.RemoteSettingsTab
-  settings: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  updatedById?: bigint | number | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type DeviceRemoteSettingUpdateWithoutDeviceInverterInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  tab?: Prisma.EnumRemoteSettingsTabFieldUpdateOperationsInput | $Enums.RemoteSettingsTab
-  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  updatedById?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type DeviceRemoteSettingUncheckedUpdateWithoutDeviceInverterInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  tab?: Prisma.EnumRemoteSettingsTabFieldUpdateOperationsInput | $Enums.RemoteSettingsTab
-  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  updatedById?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type DeviceRemoteSettingUncheckedUpdateManyWithoutDeviceInverterInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  tab?: Prisma.EnumRemoteSettingsTabFieldUpdateOperationsInput | $Enums.RemoteSettingsTab
-  settings?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  updatedById?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -566,7 +419,6 @@ export type DeviceRemoteSettingSelect<ExtArgs extends runtime.Types.Extensions.I
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deviceInverter?: boolean | Prisma.DeviceInverterDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["deviceRemoteSetting"]>
 
 export type DeviceRemoteSettingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -577,7 +429,6 @@ export type DeviceRemoteSettingSelectCreateManyAndReturn<ExtArgs extends runtime
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deviceInverter?: boolean | Prisma.DeviceInverterDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["deviceRemoteSetting"]>
 
 export type DeviceRemoteSettingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -588,7 +439,6 @@ export type DeviceRemoteSettingSelectUpdateManyAndReturn<ExtArgs extends runtime
   updatedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deviceInverter?: boolean | Prisma.DeviceInverterDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["deviceRemoteSetting"]>
 
 export type DeviceRemoteSettingSelectScalar = {
@@ -602,21 +452,10 @@ export type DeviceRemoteSettingSelectScalar = {
 }
 
 export type DeviceRemoteSettingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "deviceInverterId" | "tab" | "settings" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["deviceRemoteSetting"]>
-export type DeviceRemoteSettingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  deviceInverter?: boolean | Prisma.DeviceInverterDefaultArgs<ExtArgs>
-}
-export type DeviceRemoteSettingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  deviceInverter?: boolean | Prisma.DeviceInverterDefaultArgs<ExtArgs>
-}
-export type DeviceRemoteSettingIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  deviceInverter?: boolean | Prisma.DeviceInverterDefaultArgs<ExtArgs>
-}
 
 export type $DeviceRemoteSettingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "DeviceRemoteSetting"
-  objects: {
-    deviceInverter: Prisma.$DeviceInverterPayload<ExtArgs>
-  }
+  objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
     deviceInverterId: bigint
@@ -1019,7 +858,6 @@ readonly fields: DeviceRemoteSettingFieldRefs;
  */
 export interface Prisma__DeviceRemoteSettingClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  deviceInverter<T extends Prisma.DeviceInverterDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeviceInverterDefaultArgs<ExtArgs>>): Prisma.Prisma__DeviceInverterClient<runtime.Types.Result.GetResult<Prisma.$DeviceInverterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1073,10 +911,6 @@ export type DeviceRemoteSettingFindUniqueArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.DeviceRemoteSettingOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingInclude<ExtArgs> | null
-  /**
    * Filter, which DeviceRemoteSetting to fetch.
    */
   where: Prisma.DeviceRemoteSettingWhereUniqueInput
@@ -1095,10 +929,6 @@ export type DeviceRemoteSettingFindUniqueOrThrowArgs<ExtArgs extends runtime.Typ
    */
   omit?: Prisma.DeviceRemoteSettingOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingInclude<ExtArgs> | null
-  /**
    * Filter, which DeviceRemoteSetting to fetch.
    */
   where: Prisma.DeviceRemoteSettingWhereUniqueInput
@@ -1116,10 +946,6 @@ export type DeviceRemoteSettingFindFirstArgs<ExtArgs extends runtime.Types.Exten
    * Omit specific fields from the DeviceRemoteSetting
    */
   omit?: Prisma.DeviceRemoteSettingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingInclude<ExtArgs> | null
   /**
    * Filter, which DeviceRemoteSetting to fetch.
    */
@@ -1169,10 +995,6 @@ export type DeviceRemoteSettingFindFirstOrThrowArgs<ExtArgs extends runtime.Type
    */
   omit?: Prisma.DeviceRemoteSettingOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingInclude<ExtArgs> | null
-  /**
    * Filter, which DeviceRemoteSetting to fetch.
    */
   where?: Prisma.DeviceRemoteSettingWhereInput
@@ -1220,10 +1042,6 @@ export type DeviceRemoteSettingFindManyArgs<ExtArgs extends runtime.Types.Extens
    * Omit specific fields from the DeviceRemoteSetting
    */
   omit?: Prisma.DeviceRemoteSettingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingInclude<ExtArgs> | null
   /**
    * Filter, which DeviceRemoteSettings to fetch.
    */
@@ -1273,10 +1091,6 @@ export type DeviceRemoteSettingCreateArgs<ExtArgs extends runtime.Types.Extensio
    */
   omit?: Prisma.DeviceRemoteSettingOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingInclude<ExtArgs> | null
-  /**
    * The data needed to create a DeviceRemoteSetting.
    */
   data: Prisma.XOR<Prisma.DeviceRemoteSettingCreateInput, Prisma.DeviceRemoteSettingUncheckedCreateInput>
@@ -1310,10 +1124,6 @@ export type DeviceRemoteSettingCreateManyAndReturnArgs<ExtArgs extends runtime.T
    */
   data: Prisma.DeviceRemoteSettingCreateManyInput | Prisma.DeviceRemoteSettingCreateManyInput[]
   skipDuplicates?: boolean
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1328,10 +1138,6 @@ export type DeviceRemoteSettingUpdateArgs<ExtArgs extends runtime.Types.Extensio
    * Omit specific fields from the DeviceRemoteSetting
    */
   omit?: Prisma.DeviceRemoteSettingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingInclude<ExtArgs> | null
   /**
    * The data needed to update a DeviceRemoteSetting.
    */
@@ -1384,10 +1190,6 @@ export type DeviceRemoteSettingUpdateManyAndReturnArgs<ExtArgs extends runtime.T
    * Limit how many DeviceRemoteSettings to update.
    */
   limit?: number
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1402,10 +1204,6 @@ export type DeviceRemoteSettingUpsertArgs<ExtArgs extends runtime.Types.Extensio
    * Omit specific fields from the DeviceRemoteSetting
    */
   omit?: Prisma.DeviceRemoteSettingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingInclude<ExtArgs> | null
   /**
    * The filter to search for the DeviceRemoteSetting to update in case it exists.
    */
@@ -1432,10 +1230,6 @@ export type DeviceRemoteSettingDeleteArgs<ExtArgs extends runtime.Types.Extensio
    * Omit specific fields from the DeviceRemoteSetting
    */
   omit?: Prisma.DeviceRemoteSettingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingInclude<ExtArgs> | null
   /**
    * Filter which DeviceRemoteSetting to delete.
    */
@@ -1468,8 +1262,4 @@ export type DeviceRemoteSettingDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Omit specific fields from the DeviceRemoteSetting
    */
   omit?: Prisma.DeviceRemoteSettingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceRemoteSettingInclude<ExtArgs> | null
 }

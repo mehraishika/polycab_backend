@@ -418,6 +418,7 @@ export class PlantRepository {
           in: serialNumbers,
         },
         status: "ACTIVE",
+        clearedAt: null,
       },
       select: {
         id: true,
