@@ -63,7 +63,17 @@ export const ModelName = {
   DeviceDailySummaryPerLineChart: 'DeviceDailySummaryPerLineChart',
   information_data: 'information_data',
   DeviceConnectionStatus: 'DeviceConnectionStatus',
-  fota: 'fota'
+  fota: 'fota',
+  DeviceCurrentStatus: 'DeviceCurrentStatus',
+  DeviceStatusHistory: 'DeviceStatusHistory',
+  PlantCurrentStatus: 'PlantCurrentStatus',
+  DeviceAlertState: 'DeviceAlertState',
+  AlertEvent: 'AlertEvent',
+  FaultDictionary: 'FaultDictionary',
+  RemoteSettingParameterMaster: 'RemoteSettingParameterMaster',
+  RemoteSettingCommandMaster: 'RemoteSettingCommandMaster',
+  DeviceRemoteSetting: 'DeviceRemoteSetting',
+  DeviceRemoteSettingTask: 'DeviceRemoteSettingTask'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -242,12 +252,6 @@ export const DeviceLogsScalarFieldEnum = {
   total_input_power: 'total_input_power',
   grid_total_active_power: 'grid_total_active_power',
   grid_total_reactive_power: 'grid_total_reactive_power',
-  fault_registers: 'fault_registers',
-  fault_1: 'fault_1',
-  fault_2: 'fault_2',
-  fault_3: 'fault_3',
-  fault_4: 'fault_4',
-  fault_5: 'fault_5',
   ac_voltage_a: 'ac_voltage_a',
   ac_voltage_b: 'ac_voltage_b',
   ac_voltage_c: 'ac_voltage_c',
@@ -258,14 +262,20 @@ export const DeviceLogsScalarFieldEnum = {
   ac_power_b: 'ac_power_b',
   ac_power_c: 'ac_power_c',
   daily_production: 'daily_production',
-  grid_status: 'grid_status',
-  inverter_status: 'inverter_status',
   ac_output_frequency: 'ac_output_frequency',
-  temperature_count: 'temperature_count',
   temperature_1: 'temperature_1',
   temperature_2: 'temperature_2',
   temperature_3: 'temperature_3',
   total_production: 'total_production',
+  fault_registers: 'fault_registers',
+  fault_1: 'fault_1',
+  fault_2: 'fault_2',
+  fault_3: 'fault_3',
+  fault_4: 'fault_4',
+  fault_5: 'fault_5',
+  grid_status: 'grid_status',
+  inverter_status: 'inverter_status',
+  temperature_count: 'temperature_count',
   total_generation_time: 'total_generation_time',
   timestamp: 'timestamp',
   mac_address: 'mac_address',
@@ -419,8 +429,9 @@ export type Information_dataScalarFieldEnum = (typeof Information_dataScalarFiel
 export const DeviceConnectionStatusScalarFieldEnum = {
   id: 'id',
   serialNumber: 'serialNumber',
+  macAddress: 'macAddress',
   status: 'status',
-  lastseentime: 'lastseentime'
+  lastSeenTime: 'lastSeenTime'
 } as const
 
 export type DeviceConnectionStatusScalarFieldEnum = (typeof DeviceConnectionStatusScalarFieldEnum)[keyof typeof DeviceConnectionStatusScalarFieldEnum]
@@ -434,6 +445,151 @@ export const FotaScalarFieldEnum = {
 } as const
 
 export type FotaScalarFieldEnum = (typeof FotaScalarFieldEnum)[keyof typeof FotaScalarFieldEnum]
+
+
+export const DeviceCurrentStatusScalarFieldEnum = {
+  id: 'id',
+  sno: 'sno',
+  status: 'status',
+  lastTelemetryAt: 'lastTelemetryAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceCurrentStatusScalarFieldEnum = (typeof DeviceCurrentStatusScalarFieldEnum)[keyof typeof DeviceCurrentStatusScalarFieldEnum]
+
+
+export const DeviceStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  sno: 'sno',
+  plantId: 'plantId',
+  status: 'status',
+  createdAt: 'createdAt'
+} as const
+
+export type DeviceStatusHistoryScalarFieldEnum = (typeof DeviceStatusHistoryScalarFieldEnum)[keyof typeof DeviceStatusHistoryScalarFieldEnum]
+
+
+export const PlantCurrentStatusScalarFieldEnum = {
+  id: 'id',
+  plantId: 'plantId',
+  status: 'status',
+  totalDevices: 'totalDevices',
+  normalCount: 'normalCount',
+  abnormalCount: 'abnormalCount',
+  standbyCount: 'standbyCount',
+  offlineCount: 'offlineCount',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlantCurrentStatusScalarFieldEnum = (typeof PlantCurrentStatusScalarFieldEnum)[keyof typeof PlantCurrentStatusScalarFieldEnum]
+
+
+export const DeviceAlertStateScalarFieldEnum = {
+  id: 'id',
+  serialNumber: 'serialNumber',
+  plantId: 'plantId',
+  alertMatrix: 'alertMatrix',
+  activeAlertCount: 'activeAlertCount',
+  lastTelemetryAt: 'lastTelemetryAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceAlertStateScalarFieldEnum = (typeof DeviceAlertStateScalarFieldEnum)[keyof typeof DeviceAlertStateScalarFieldEnum]
+
+
+export const AlertEventScalarFieldEnum = {
+  id: 'id',
+  serialNumber: 'serialNumber',
+  plantId: 'plantId',
+  registerNo: 'registerNo',
+  bitPosition: 'bitPosition',
+  faultCode: 'faultCode',
+  faultMessage: 'faultMessage',
+  status: 'status',
+  raisedAt: 'raisedAt',
+  clearedAt: 'clearedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type AlertEventScalarFieldEnum = (typeof AlertEventScalarFieldEnum)[keyof typeof AlertEventScalarFieldEnum]
+
+
+export const FaultDictionaryScalarFieldEnum = {
+  id: 'id',
+  registerName: 'registerName',
+  registerAddr: 'registerAddr',
+  registerNo: 'registerNo',
+  bitPosition: 'bitPosition',
+  faultCode: 'faultCode',
+  faultMessage: 'faultMessage',
+  createdAt: 'createdAt'
+} as const
+
+export type FaultDictionaryScalarFieldEnum = (typeof FaultDictionaryScalarFieldEnum)[keyof typeof FaultDictionaryScalarFieldEnum]
+
+
+export const RemoteSettingParameterMasterScalarFieldEnum = {
+  id: 'id',
+  tab: 'tab',
+  tabLabel: 'tabLabel',
+  fieldKey: 'fieldKey',
+  label: 'label',
+  dataType: 'dataType',
+  unitOrOptions: 'unitOrOptions',
+  endpointPath: 'endpointPath',
+  displayOrder: 'displayOrder',
+  count: 'count',
+  registerAddress: 'registerAddress',
+  registerType: 'registerType',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RemoteSettingParameterMasterScalarFieldEnum = (typeof RemoteSettingParameterMasterScalarFieldEnum)[keyof typeof RemoteSettingParameterMasterScalarFieldEnum]
+
+
+export const RemoteSettingCommandMasterScalarFieldEnum = {
+  id: 'id',
+  commandKey: 'commandKey',
+  label: 'label',
+  endpointPath: 'endpointPath',
+  displayOrder: 'displayOrder',
+  count: 'count',
+  registerAddress: 'registerAddress',
+  registerType: 'registerType',
+  createdAt: 'createdAt'
+} as const
+
+export type RemoteSettingCommandMasterScalarFieldEnum = (typeof RemoteSettingCommandMasterScalarFieldEnum)[keyof typeof RemoteSettingCommandMasterScalarFieldEnum]
+
+
+export const DeviceRemoteSettingScalarFieldEnum = {
+  id: 'id',
+  deviceInverterId: 'deviceInverterId',
+  tab: 'tab',
+  settings: 'settings',
+  updatedById: 'updatedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceRemoteSettingScalarFieldEnum = (typeof DeviceRemoteSettingScalarFieldEnum)[keyof typeof DeviceRemoteSettingScalarFieldEnum]
+
+
+export const DeviceRemoteSettingTaskScalarFieldEnum = {
+  id: 'id',
+  deviceInverterId: 'deviceInverterId',
+  kind: 'kind',
+  tab: 'tab',
+  payload: 'payload',
+  status: 'status',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceRemoteSettingTaskScalarFieldEnum = (typeof DeviceRemoteSettingTaskScalarFieldEnum)[keyof typeof DeviceRemoteSettingTaskScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -450,6 +606,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {

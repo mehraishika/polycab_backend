@@ -9,6 +9,9 @@ import { errorResponse, successResponse } from '@/server/utils/api-response';
 import type { User } from '@/server/utils/auth-helper';
 import { resolveUserScope } from '@/server/utils/scope-resolver';
 import { PlantCurrentAlertsQueryValidator } from '@/server/validators/plant.validator';
+import { UserRepository } from "@/server/repositories/user.repository";
+
+const userRepository = new UserRepository();
 
 type PlantCurrentAlertsContext = {
 	params: Promise<{
@@ -55,11 +58,33 @@ async function getPlantCurrentAlertsRoute(
 	}
 
 	const baseScope = await resolveUserScope(user);
-	const hasServiceRole = user.role === 'service_admin' || user.role === 'service_super_admin';
-	const scope =
-		parsedQuery.data.fromService && hasServiceRole && parsedQuery.data.targetEndUserId
-			? [parsedQuery.data.targetEndUserId]
-			: baseScope;
+
+	const hasServiceRole =
+		user.role === "service_admin" ||
+		user.role === "service_super_admin";
+
+	let scope = baseScope;
+
+	if (
+		parsedQuery.data.fromService &&
+		hasServiceRole &&
+		parsedQuery.data.targetEndUserId
+	) {
+		const accountScope =
+			await userRepository.getAccountScopeByUserId(
+				parsedQuery.data.targetEndUserId,
+			);
+
+		if (!accountScope) {
+			return errorResponse(
+				"Selected end user not found.",
+				404,
+			);
+		}
+
+		scope = accountScope;
+	}
+
 
 	if (scope.length === 0) {
 		return errorResponse('Unauthorized access to plants', 403);

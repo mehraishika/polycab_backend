@@ -6,6 +6,8 @@ import type {
   ServiceAdminEditInput,
   ServiceAdminUserListInput,
 } from "@/server/validators/user.validator";
+import { UserRole } from "../db/generated/prisma/client";
+import { DeviceLatestRecord } from "../services/user.service";
 
 export interface UserDeleteRecord {
   id: bigint;
@@ -49,7 +51,7 @@ export interface ActorAccessRecord {
 }
 
 export class UserRepository {
-  constructor(private readonly dbClient: PrismaClient = prisma) {}
+  constructor(private readonly dbClient: PrismaClient = prisma) { }
 
   private buildWhere(roleType: UserRoleType, filters: UserListQueryInput) {
     const where: Record<string, unknown> = {};
@@ -152,10 +154,152 @@ export class UserRepository {
       deletedAt: record.deletedAt,
     };
   }
+  async findMonitoringUserByAccount(
+    account: string,
+  ): Promise<UserDetailRecord | null> {
+    const user = await this.dbClient.user.findFirst({
+      where: {
+        account,
+        role: UserRole.monitoring_user,
+        isDeleted: false,
+      },
+      select: {
+        id: true,
+        account: true,
+        email: true,
+        portal: true,
+        role: true,
+        status: true,
+        timezone: true,
+        phone: true,
+        address: true,
+        assignedById: true,
+        isDeleted: true,
+        emailVerifiedAt: true,
+        lastLoginAt: true,
+        createdAt: true,
+        updatedAt: true,
+        deletedAt: true,
+      },
+    });
+
+    return user ? this.mapDetailRecord(user) : null;
+  }
+
+  async findLatestDeviceBySN(
+    sno: string,
+    plantId?: string | bigint,
+  ): Promise<DeviceLatestRecord | null> {
+    const mappingWhere: Record<string, unknown> = {
+      serialNumber: sno,
+      isDeleted: false,
+    };
+
+    if (plantId !== undefined) {
+      mappingWhere.plantId = BigInt(plantId);
+    }
+
+    const mapping = await this.dbClient.userPlantInverterMap.findFirst({
+      where: mappingWhere,
+      select: {
+        plantId: true,
+        userId: true,
+        user: {
+          select: {
+            account: true,
+          },
+        },
+      },
+    });
+
+    if (!mapping) {
+      return null;
+    }
+
+    const device = await this.dbClient.deviceLogsLatest.findFirst({
+      where: {
+        sno,
+      },
+      orderBy: {
+        latestTimestamp: "desc",
+      },
+      select: {
+        id: true,
+        sno: true,
+        inverterName: true,
+        dayDate: true,
+        latestTimestamp: true,
+        dailyProduction: true,
+        totalEnergy: true,
+        totalHours: true,
+        currentPower: true,
+        sourceLog: {
+          select: {
+            logger_status: true,
+            module_version_no: true,
+          },
+        },
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+
+    if (!device) {
+      return null;
+    }
+
+    const currentStatus = await this.dbClient.deviceCurrentStatus.findUnique({
+      where: {
+        sno,
+      },
+      select: {
+        status: true,
+      },
+    });
+
+    const userMapping = await this.dbClient.userPlantInverterMap.findFirst({
+      where: {
+        serialNumber: sno,
+        isDeleted: false,
+      },
+      select: {
+        userId: true,
+        user: {
+          select: {
+            account: true,
+          },
+        },
+      },
+    });
+
+    return {
+      id: device.id,
+      sno: device.sno,
+      inverterName: device.inverterName,
+      dayDate: device.dayDate,
+      latestTimestamp: device.latestTimestamp,
+      dailyProduction: device.dailyProduction,
+      totalEnergy: device.totalEnergy,
+      totalHours: device.totalHours,
+      currentPower: device.currentPower,
+      logger_status: device.sourceLog?.logger_status ?? null,
+      module_version_no: device.sourceLog?.module_version_no ?? null,
+      communicationStatus: device.sourceLog?.logger_status ?? null,
+      communicationModuleVersion: device.sourceLog?.module_version_no ?? null,
+      communicationModuleSn: device.sno,
+      createdAt: device.createdAt,
+      updatedAt: device.updatedAt,
+      plantId: mapping.plantId?.toString() ?? null,
+      status: currentStatus?.status ?? "Offline",
+      userId: userMapping?.userId?.toString() ?? null,
+      account: userMapping?.user.account ?? null,
+    };
+  }
 
   async updateProfile(
     userId: bigint,
     payload: {
+      email?: string;
       phone?: string | null;
       address?: string | null;
       timezone?: string | null;
@@ -166,6 +310,7 @@ export class UserRepository {
         id: userId,
       },
       data: {
+        email: payload.email,
         phone: payload.phone ?? null,
         address: payload.address ?? null,
         timezone: payload.timezone ?? null,
@@ -177,6 +322,21 @@ export class UserRepository {
         address: true,
         timezone: true,
         updatedAt: true,
+      },
+    });
+  }
+
+  async getProfile(userId: bigint) {
+    return this.dbClient.user.findUnique({
+      where: {
+        id: userId,
+      },
+      select: {
+        account: true,
+        email: true,
+        phone: true,
+        address: true,
+        timezone: true,
       },
     });
   }
@@ -530,13 +690,22 @@ export class UserRepository {
     return this.mapDetailRecord(record);
   }
 
-  async findScopedServiceAdmins(actorId: bigint) {
+  async findScopedServiceAdmins(
+    actorId: bigint,
+    actorRole: string | undefined,
+  ) {
+    const where: any = {
+      role: "service_admin",
+      isDeleted: false,
+    };
+
+    // Service Admin should only see themselves
+    if (actorRole === "service_admin") {
+      where.id = actorId;
+    }
+
     return this.dbClient.user.findMany({
-      where: {
-        // id: actorId,
-        role: "service_admin",
-        isDeleted: false,
-      },
+      where,
       orderBy: {
         createdAt: "desc",
       },
@@ -667,10 +836,79 @@ export class UserRepository {
       return new Map<string, number>();
     }
 
+    // Initialize result map
+    const deviceCountByAccount = new Map<string, number>();
+    for (const account of accounts) {
+      deviceCountByAccount.set(account, 0);
+    }
+
+    // Step 1: Get service admins
+    const serviceAdmins = await this.dbClient.user.findMany({
+      where: {
+        account: {
+          in: accounts,
+        },
+        isDeleted: false,
+      },
+      select: {
+        id: true,
+        account: true,
+      },
+    });
+
+    if (serviceAdmins.length === 0) {
+      return deviceCountByAccount;
+    }
+
+    const adminIds = serviceAdmins.map((a) => a.id);
+
+    const adminAccountById = new Map<string, string>();
+    for (const admin of serviceAdmins) {
+      adminAccountById.set(String(admin.id), admin.account);
+    }
+
+    // Step 2: Get end users assigned to those admins
+    const endUsers = await this.dbClient.user.findMany({
+      where: {
+        assignedById: {
+          in: adminIds,
+        },
+        isDeleted: false,
+      },
+      select: {
+        account: true,
+        assignedById: true,
+      },
+    });
+
+    if (endUsers.length === 0) {
+      return deviceCountByAccount;
+    }
+
+    // admin account -> end user accounts
+    const endUsersByAdmin = new Map<string, string[]>();
+
+    for (const endUser of endUsers) {
+      if (!endUser.assignedById) continue;
+
+      const adminAccount = adminAccountById.get(
+        String(endUser.assignedById),
+      );
+
+      if (!adminAccount) continue;
+
+      const users = endUsersByAdmin.get(adminAccount) ?? [];
+      users.push(endUser.account);
+      endUsersByAdmin.set(adminAccount, users);
+    }
+
+    const endUserAccounts = endUsers.map((u) => u.account);
+
+    // Step 3: Get plants of end users
     const plants = await this.dbClient.plant.findMany({
       where: {
         userAccount: {
-          in: accounts,
+          in: endUserAccounts,
         },
         deletedAt: null,
       },
@@ -680,21 +918,25 @@ export class UserRepository {
       },
     });
 
-    const deviceCountByAccount = new Map<string, number>();
-    for (const account of accounts) {
-      deviceCountByAccount.set(account, 0);
-    }
-
     if (plants.length === 0) {
       return deviceCountByAccount;
     }
 
-    const plantIds = plants.map((plant) => plant.id);
-    const accountByPlantId = new Map<string, string>();
+    const plantIds = plants.map((p) => p.id);
+
+    // plantId -> service admin account
+    const adminByPlantId = new Map<string, string>();
+
     for (const plant of plants) {
-      accountByPlantId.set(String(plant.id), plant.userAccount);
+      for (const [adminAccount, users] of endUsersByAdmin) {
+        if (users.includes(plant.userAccount)) {
+          adminByPlantId.set(String(plant.id), adminAccount);
+          break;
+        }
+      }
     }
 
+    // Step 4: Count devices
     const [inverterCounts, dataloggerCounts] = await Promise.all([
       this.dbClient.deviceInverter.groupBy({
         by: ["plantId"],
@@ -708,6 +950,7 @@ export class UserRepository {
           _all: true,
         },
       }),
+
       this.dbClient.deviceDatalogger.groupBy({
         by: ["plantId"],
         where: {
@@ -722,24 +965,30 @@ export class UserRepository {
       }),
     ]);
 
+    // Add inverter count
     for (const item of inverterCounts) {
-      const account = accountByPlantId.get(String(item.plantId));
-      if (!account) {
-        continue;
-      }
+      const adminAccount = adminByPlantId.get(String(item.plantId));
 
-      const current = deviceCountByAccount.get(account) ?? 0;
-      deviceCountByAccount.set(account, current + item._count._all);
+      if (!adminAccount) continue;
+
+      const current = deviceCountByAccount.get(adminAccount) ?? 0;
+      deviceCountByAccount.set(
+        adminAccount,
+        current + item._count._all,
+      );
     }
 
+    // Add datalogger count
     for (const item of dataloggerCounts) {
-      const account = accountByPlantId.get(String(item.plantId));
-      if (!account) {
-        continue;
-      }
+      const adminAccount = adminByPlantId.get(String(item.plantId));
 
-      const current = deviceCountByAccount.get(account) ?? 0;
-      deviceCountByAccount.set(account, current + item._count._all);
+      if (!adminAccount) continue;
+
+      const current = deviceCountByAccount.get(adminAccount) ?? 0;
+      deviceCountByAccount.set(
+        adminAccount,
+        current + item._count._all,
+      );
     }
 
     return deviceCountByAccount;

@@ -82,3 +82,53 @@ export type DeviceConnectionStatus = Prisma.DeviceConnectionStatusModel
  * 
  */
 export type fota = Prisma.fotaModel
+/**
+ * Model DeviceCurrentStatus
+ * 
+ */
+export type DeviceCurrentStatus = Prisma.DeviceCurrentStatusModel
+/**
+ * Model DeviceStatusHistory
+ * 
+ */
+export type DeviceStatusHistory = Prisma.DeviceStatusHistoryModel
+/**
+ * Model PlantCurrentStatus
+ * 
+ */
+export type PlantCurrentStatus = Prisma.PlantCurrentStatusModel
+/**
+ * Model DeviceAlertState
+ * 
+ */
+export type DeviceAlertState = Prisma.DeviceAlertStateModel
+/**
+ * Model AlertEvent
+ * 
+ */
+export type AlertEvent = Prisma.AlertEventModel
+/**
+ * Model FaultDictionary
+ * 
+ */
+export type FaultDictionary = Prisma.FaultDictionaryModel
+/**
+ * Model RemoteSettingParameterMaster
+ * 
+ */
+export type RemoteSettingParameterMaster = Prisma.RemoteSettingParameterMasterModel
+/**
+ * Model RemoteSettingCommandMaster
+ * 
+ */
+export type RemoteSettingCommandMaster = Prisma.RemoteSettingCommandMasterModel
+/**
+ * Model DeviceRemoteSetting
+ * 
+ */
+export type DeviceRemoteSetting = Prisma.DeviceRemoteSettingModel
+/**
+ * Model DeviceRemoteSettingTask
+ * 
+ */
+export type DeviceRemoteSettingTask = Prisma.DeviceRemoteSettingTaskModel

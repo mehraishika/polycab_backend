@@ -161,20 +161,37 @@ export const ForgotPasswordValidator = z
   });
 
 export const UpdateProfileValidator = z.object({
+  email: z.string().trim().email().optional(),
   phone: z.string().trim().nullable().optional(),
   address: z.string().trim().nullable().optional(),
   timezone: z.string().trim().nullable().optional(),
 });
+
+export const searchMonitoringUserSchema = z.object({
+  account: z.string().trim().min(1, "Account is required"),
+});
+
+export type SearchMonitoringUserInput = z.infer<
+  typeof searchMonitoringUserSchema
+>;
+
 export type ForgotPasswordInput = z.infer<typeof ForgotPasswordValidator>;
 export type CreateSubUserInput = z.infer<typeof createSubUserSchema>;
 export type ServiceAdminUserListInput = z.infer<
   typeof serviceAdminUserListBodySchema
 >;
+
 export type ServiceAdminEditInput = z.infer<typeof serviceAdminEditBodySchema>;
 export type ServiceAdminDeleteInput = z.infer<
   typeof serviceAdminDeleteBodySchema
 >;
 
+export const searchDeviceRequestSchema = z.object({
+  sno: z.string().trim().min(1, "Serial Number is required"),
+  plantId: z.string().trim().optional(),
+});
+
+export type SearchDeviceRequest = z.infer<typeof searchDeviceRequestSchema>;
 export type ChangePasswordValidator = z.infer<typeof ChangePasswordValidator>;
 
 export type UserIdParamInput = z.infer<typeof userIdParamSchema>;

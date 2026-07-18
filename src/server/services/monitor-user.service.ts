@@ -2,12 +2,12 @@ import { MonitorUserRepository } from "@/server/repositories/monitor-user.reposi
 import { toErrorMessage } from "@/server/utils/api-error";
 import { hashPassword } from "@/server/utils/password";
 import type {
-	AssignMonitorUsersBodyInput,
-	CreateMonitorUserBodyInput,
-	MonitorUserListQueryInput,
-	MonitorUserPlantsQueryInput,
-	MonitorUserStatusCountsQueryInput,
-	RelateUserBodyInput,
+  AssignMonitorUsersBodyInput,
+  CreateMonitorUserBodyInput,
+  MonitorUserListQueryInput,
+  MonitorUserPlantsQueryInput,
+  MonitorUserStatusCountsQueryInput,
+  RelateUserBodyInput,
 } from '@/server/validators/monitor-user.validator';
 
 interface ServiceError {
@@ -28,10 +28,10 @@ interface NumericMetric {
 }
 
 interface RowStatus {
-  normal: number;
-  fault: number;
+  online: number;
   standby: number;
   offline: number;
+  abnormal: number;
 }
 
 interface MonitorUserItem {
@@ -51,8 +51,8 @@ interface MonitorUserItem {
 
 interface StatusCounts {
   all: number;
-  normal: number;
-  fault: number;
+  online: number;
+  abnormal: number;
   standby: number;
   offline: number;
 }
@@ -203,8 +203,8 @@ function computeRowStatus(
   entries: Array<{ online: boolean; status: string | null }>,
 ): RowStatus {
   const rowStatus: RowStatus = {
-    normal: 0,
-    fault: 0,
+    online: 0,
+    abnormal: 0,
     standby: 0,
     offline: 0,
   };
@@ -213,7 +213,7 @@ function computeRowStatus(
     const statusLabel = normalizeStatusLabel(entry.status);
 
     if (statusLabel.includes("fault") || statusLabel.includes("abnormal")) {
-      rowStatus.fault += 1;
+      rowStatus.abnormal += 1;
       continue;
     }
 
@@ -227,7 +227,7 @@ function computeRowStatus(
       continue;
     }
 
-    rowStatus.normal += 1;
+    rowStatus.online += 1;
   }
 
   return rowStatus;
@@ -241,12 +241,12 @@ function hasStatusMatch(
     return true;
   }
 
-  if (statusFilter === "normal") {
-    return status.normal > 0;
+  if (statusFilter === "online") {
+    return status.online > 0;
   }
 
-  if (statusFilter === "fault") {
-    return status.fault > 0;
+  if (statusFilter === "abnormal") {
+    return status.abnormal > 0;
   }
 
   if (statusFilter === "standby") {
@@ -257,17 +257,17 @@ function hasStatusMatch(
 }
 
 function toStatusCounts(items: MonitorUserSummary[]): StatusCounts {
-  let normal = 0;
-  let fault = 0;
+  let online = 0;
+  let abnormal = 0;
   let standby = 0;
   let offline = 0;
 
   for (const item of items) {
-    if (item.status.normal > 0) {
-      normal += 1;
+    if (item.status.online > 0) {
+      online += 1;
     }
-    if (item.status.fault > 0) {
-      fault += 1;
+    if (item.status.abnormal > 0) {
+      abnormal += 1;
     }
     if (item.status.standby > 0) {
       standby += 1;
@@ -279,8 +279,8 @@ function toStatusCounts(items: MonitorUserSummary[]): StatusCounts {
 
   return {
     all: items.length,
-    normal,
-    fault,
+    online,
+    abnormal,
     standby,
     offline,
   };
@@ -315,7 +315,7 @@ function toRow(item: MonitorUserSummary): MonitorUserItem {
 export class MonitorUserService {
   constructor(
     private readonly monitorUserRepository: MonitorUserRepository = new MonitorUserRepository(),
-  ) {}
+  ) { }
 
   private async getActor(actorId: bigint) {
     return this.monitorUserRepository.findActorById(actorId);
@@ -391,6 +391,11 @@ export class MonitorUserService {
 
     const plantIds = plants.map((plant) => plant.id);
 
+    const plantStatuses =
+      plantIds.length > 0
+        ? await this.monitorUserRepository.findPlantStatusesByPlantIds(plantIds)
+        : [];
+
     const inverters =
       plantIds.length > 0
         ? await this.monitorUserRepository.findInvertersByPlantIds(plantIds)
@@ -401,8 +406,8 @@ export class MonitorUserService {
     const latestLogs =
       serialNumbers.length > 0
         ? await this.monitorUserRepository.findLatestLogsBySerialNumbers(
-            serialNumbers,
-          )
+          serialNumbers,
+        )
         : [];
 
     const affiliationById = new Map(
@@ -441,6 +446,10 @@ export class MonitorUserService {
 
     const searchAffiliation = filters.searchAffiliation.trim().toLowerCase();
 
+    const statusByPlantId = new Map(
+      plantStatuses.map((status) => [String(status.plantId), status]),
+    );
+
     const summaries: MonitorUserSummary[] = [];
     const deviceEntries: Array<{
       online: boolean;
@@ -454,6 +463,11 @@ export class MonitorUserService {
         "";
 
       const userPlants = plantsByAccount.get(user.account) ?? [];
+      let totalDevices = 0;
+      let normalCount = 0;
+      let abnormalCount = 0;
+      let standbyCount = 0;
+      let offlineCount = 0;
 
       let power = 0;
       let today = 0;
@@ -471,6 +485,16 @@ export class MonitorUserService {
       const serialNumbers: string[] = [];
 
       for (const plant of userPlants) {
+
+        const plantStatus = statusByPlantId.get(String(plant.id));
+
+        if (plantStatus) {
+          totalDevices += plantStatus.totalDevices;
+          normalCount += plantStatus.normalCount;
+          abnormalCount += plantStatus.abnormalCount;
+          standbyCount += plantStatus.standbyCount;
+          offlineCount += plantStatus.offlineCount;
+        }
         capacity += plant.kwp ?? 0;
         if (plant.updatedAt > latestUpdatedAt) {
           latestUpdatedAt = plant.updatedAt;
@@ -491,11 +515,11 @@ export class MonitorUserService {
           const latestLog = logsBySerial.get(inverter.serialNumber);
 
           if (latestLog) {
-            power += latestLog.currentPower ?? 0;
+            power += Number(latestLog.currentPower ?? 0);
 
-            today += latestLog.dailyProduction ?? 0;
+            today += Number(latestLog.dailyProduction ?? 0);
 
-            total += latestLog.totalEnergy ?? 0;
+            total += Number(latestLog.totalEnergy ?? 0);
           }
         }
       }
@@ -540,10 +564,10 @@ export class MonitorUserService {
         total: total,
 
         status: {
-          normal: 0,
-          fault: 0,
-          standby: 0,
-          offline: 0,
+          online: normalCount,
+          abnormal: abnormalCount,
+          standby: standbyCount,
+          offline: offlineCount,
         },
 
         matchedSerialNumber: serialNumbers.join(", "),
@@ -554,50 +578,50 @@ export class MonitorUserService {
       });
     }
 
-		return summaries;
-	}
+    return summaries;
+  }
 
-	private buildMonitorUserCsv(items: MonitorUserItem[]): string {
-		const headers = [
-			'Account',
-			'Serial Number',
-			'Installation Date',
-			'Affiliation',
-			'Capacity (kWp)',
-			'Power',
-			'Power Unit',
-			'E-Today',
-			'E-Today Unit',
-			'E-Total',
-			'E-Total Unit',
-			'Status',
-		];
+  private buildMonitorUserCsv(items: MonitorUserItem[]): string {
+    const headers = [
+      'Account',
+      'Serial Number',
+      'Installation Date',
+      'Affiliation',
+      'Capacity (kWp)',
+      'Power',
+      'Power Unit',
+      'E-Today',
+      'E-Today Unit',
+      'E-Total',
+      'E-Total Unit',
+      'Status',
+    ];
 
-		const escape = (value: unknown): string =>
-			`"${String(value ?? '').replace(/"/g, '""')}"`;
+    const escape = (value: unknown): string =>
+      `"${String(value ?? '').replace(/"/g, '""')}"`;
 
-		const rows = items.map((item) => [
-			escape(item.account),
-			escape(item.matched.serialNumber),
-			escape(item.matched.installationDate),
-			escape(item.affiliation),
-			escape(item.capacity),
-			escape(item.power.value),
-			escape(item.power.unit),
-			escape(item.today.value),
-			escape(item.today.unit),
-			escape(item.total.value),
-			escape(item.total.unit),
-			escape(
-				`Normal:${item.status.normal}, Fault:${item.status.fault}, Standby:${item.status.standby}, Offline:${item.status.offline},`
-			),
-		]);
+    const rows = items.map((item) => [
+      escape(item.account),
+      escape(item.matched.serialNumber),
+      escape(item.matched.installationDate),
+      escape(item.affiliation),
+      escape(item.capacity),
+      escape(item.power.value),
+      escape(item.power.unit),
+      escape(item.today.value),
+      escape(item.today.unit),
+      escape(item.total.value),
+      escape(item.total.unit),
+      escape(
+        `online:${item.status.online}, abnormal:${item.status.abnormal}, Standby:${item.status.standby}, Offline:${item.status.offline},`
+      ),
+    ]);
 
-		return [
-			headers.join(','),
-			...rows.map((row) => row.join(',')),
-		].join('\n');
-	}
+    return [
+      headers.join(','),
+      ...rows.map((row) => row.join(',')),
+    ].join('\n');
+  }
 
 
 
@@ -669,50 +693,54 @@ export class MonitorUserService {
     };
   }
 
-	async exportMonitorUsers(
-		actorId: bigint,
-		actorRole: string | undefined,
-		query: MonitorUserListQueryInput,
-	): Promise<{
-		status: number;
-		message: string;
-		csv: string;
-	}> {
-		const result = await this.getMonitorUserList(
-			actorId,
-			actorRole,
-			query,
-		);
+  async exportMonitorUsers(
+    actorId: bigint,
+    actorRole: string | undefined,
+    query: MonitorUserListQueryInput,
+  ): Promise<{
+    status: number;
+    message: string;
+    csv: string;
+  }> {
+    const result = await this.getMonitorUserList(
+      actorId,
+      actorRole,
+      query,
+    );
 
-		if (result.status !== 200) {
-			return {
-				status: result.status,
-				message: result.message,
-				csv: '',
-			};
-		}
+    if (result.status !== 200) {
+      return {
+        status: result.status,
+        message: result.message,
+        csv: '',
+      };
+    }
 
-		const csv = this.buildMonitorUserCsv(result.data.items);
+    const csv = this.buildMonitorUserCsv(result.data.items);
 
-		return {
-			status: 200,
-			message: 'Monitor users exported successfully.',
-			csv,
-		};
-	}
-	async getMonitorUserStatusCounts(
-		actorId: bigint,
-		actorRole: string | undefined,
-		query: MonitorUserStatusCountsQueryInput,
-	): Promise<MonitorUserStatusCountsResult> {
-		const actor = await this.validateActor(actorId, actorRole);
-		if ('status' in actor) {
-			return actor;
-		}
-		const loginUser: LoginUserData = actor;
+    return {
+      status: 200,
+      message: 'Monitor users exported successfully.',
+      csv,
+    };
+  }
+  async getMonitorUserStatusCounts(
+    actorId: bigint,
+    actorRole: string | undefined,
+    query: MonitorUserStatusCountsQueryInput,
+  ): Promise<MonitorUserStatusCountsResult> {
+    const actor = await this.validateActor(actorId, actorRole);
+    if ('status' in actor) {
+      return actor;
+    }
+    const loginUser: LoginUserData = actor;
 
-    const monitorUsers = await this.fetchScopedMonitorUsers(actorId);
-    const summaries = await this.buildSummaries(monitorUsers, query);
+    const monitorUsers = await this.fetchScopedMonitorUsers(actorId, actorRole);
+
+    const accounts = monitorUsers.map((u) => u.account);
+
+    const counts =
+      await this.monitorUserRepository.getPlantStatusCountsForUsers(accounts);
 
     return {
       status: 200,
@@ -723,7 +751,13 @@ export class MonitorUserService {
           account: loginUser.account,
           role: loginUser.role,
         },
-        statusCounts: toStatusCounts(summaries),
+        statusCounts: {
+          all: counts.totalDevices ?? 0,
+          online: counts.normalCount ?? 0,
+          abnormal: counts.abnormalCount ?? 0,
+          standby: counts.standbyCount ?? 0,
+          offline: counts.offlineCount ?? 0,
+        },
         updatedAt: new Date().toISOString(),
       },
     };
@@ -813,9 +847,9 @@ export class MonitorUserService {
     const [inverters, dataloggers] =
       plantIds.length > 0
         ? await Promise.all([
-            this.monitorUserRepository.findInvertersByPlantIds(plantIds),
-            this.monitorUserRepository.findDataloggersByPlantIds(plantIds),
-          ])
+          this.monitorUserRepository.findInvertersByPlantIds(plantIds),
+          this.monitorUserRepository.findDataloggersByPlantIds(plantIds),
+        ])
         : [[], []];
 
     const deviceEntriesByPlant = new Map<
@@ -868,240 +902,248 @@ export class MonitorUserService {
   }
 
   private async validateTargetServiceUser(
-    targetUserId: bigint,
-    actorId: bigint,
-  ): Promise<ServiceError | null> {
-    const target =
-      await this.monitorUserRepository.findTargetServiceUser(targetUserId);
+  targetUserId: bigint,
+  actorId: bigint,
+  actorRole: string | undefined,
+): Promise<ServiceError | null> {
+  const target =
+    await this.monitorUserRepository.findTargetServiceUser(targetUserId);
 
-    if (!target) {
-      return {
-        status: 404,
-        message: "Target service user not found",
-      };
-    }
+  if (!target) {
+    return {
+      status: 404,
+      message: "Target service user not found",
+    };
+  }
 
-    if (target.id !== actorId && target.assignedById !== actorId) {
-      return {
-        status: 403,
-        message: "Target service user is outside your scope",
-      };
-    }
-
+  // Service Super Admin can assign to any service admin
+  if (actorRole === "service_super_admin") {
     return null;
   }
 
-	private async updateMonitorUsersOwnership(
-		monitorUserIdentifiers: string[],
-		actorId: bigint,
-		actorRole: string | undefined,
-		targetUserId: bigint,
-	) {
-		const exactIds: bigint[] = [];
-		const accounts: string[] = [];
+  // Service Admin can assign only to themselves
+  if (actorRole === "service_admin" && target.id !== actorId) {
+    return {
+      status: 403,
+      message: "You can only assign monitor users to your own account",
+    };
+  }
 
-		// Separate numeric string IDs from account names
-		for (const identifier of monitorUserIdentifiers) {
-			if (/^\d+$/.test(identifier)) {
-				exactIds.push(BigInt(identifier));
-			} else {
-				accounts.push(identifier);
-			}
-		}
+  return null;
+}
 
-		// Fetch BigInt IDs for any provided account names
-		if (accounts.length > 0) {
-			const usersByAccount =
-				await this.monitorUserRepository.findUserIdsByAccounts(accounts);
-			for (const user of usersByAccount) {
-				exactIds.push(user.id);
-			}
-		}
+  private async updateMonitorUsersOwnership(
+    monitorUserIdentifiers: string[],
+    actorId: bigint,
+    actorRole: string | undefined,
+    targetUserId: bigint,
+  ) {
+    const exactIds: bigint[] = [];
+    const accounts: string[] = [];
 
-		// Remove any duplicate BigInt values
-		const uniqueIds = Array.from(new Set(exactIds));
+    // Separate numeric string IDs from account names
+    for (const identifier of monitorUserIdentifiers) {
+      if (/^\d+$/.test(identifier)) {
+        exactIds.push(BigInt(identifier));
+      } else {
+        accounts.push(identifier);
+      }
+    }
 
-		if (uniqueIds.length === 0) {
-			return {
-				error: {
-					status: 400 as const,
-					message: "No valid monitor users found from the provided identifiers",
-				},
-				updatedCount: 0,
-			};
-		}
+    // Fetch BigInt IDs for any provided account names
+    if (accounts.length > 0) {
+      const usersByAccount =
+        await this.monitorUserRepository.findUserIdsByAccounts(accounts);
+      for (const user of usersByAccount) {
+        exactIds.push(user.id);
+      }
+    }
 
-		// Check permissions/scope against the final BigInt array
-		const scopedUsers =
-			await this.monitorUserRepository.findScopedMonitorUserIds(
-				actorId,
-				actorRole,
-				uniqueIds,
-			);
+    // Remove any duplicate BigInt values
+    const uniqueIds = Array.from(new Set(exactIds));
 
-		if (scopedUsers.length !== uniqueIds.length) {
-			return {
-				error: {
-					status: 403 as const,
-					message: "One or more monitor users are outside your scope",
-				},
-				updatedCount: 0,
-			};
-		}
+    if (uniqueIds.length === 0) {
+      return {
+        error: {
+          status: 400 as const,
+          message: "No valid monitor users found from the provided identifiers",
+        },
+        updatedCount: 0,
+      };
+    }
 
-		const updated =
-			await this.monitorUserRepository.updateMonitorUsersAssignedBy(
-				actorId,
-				actorRole,
-				uniqueIds,
-				targetUserId,
-			);
+    // Check permissions/scope against the final BigInt array
+    const scopedUsers =
+      await this.monitorUserRepository.findScopedMonitorUserIds(
+        actorId,
+        actorRole,
+        uniqueIds,
+      );
 
-		return {
-			error: null,
-			updatedCount: updated.count,
-			resolvedIds: uniqueIds, // helpful for returning exact updated string IDs back to API response
-		};
-	}
+    if (scopedUsers.length !== uniqueIds.length) {
+      return {
+        error: {
+          status: 403 as const,
+          message: "One or more monitor users are outside your scope",
+        },
+        updatedCount: 0,
+      };
+    }
 
-	// async relateMonitorUsers(
-	// 	actorId: bigint,
-	// 	actorRole: string | undefined,
-	// 	input: RelateMonitorUsersBodyInput,
-	// ): Promise<MonitorUserBulkUpdateResult> {
-	// 	const actor = await this.validateActor(actorId, actorRole);
-	// 	if ('status' in actor && actor.status !== undefined) {
-	// 		return actor;
-	// 	}
+    const updated =
+      await this.monitorUserRepository.updateMonitorUsersAssignedBy(
+        actorId,
+        actorRole,
+        uniqueIds,
+        targetUserId,
+      );
 
-	// 	const targetError = await this.validateTargetServiceUser(input.relatedUserId, actorId);
-	// 	if (targetError) {
-	// 		return targetError;
-	// 	}
+    return {
+      error: null,
+      updatedCount: updated.count,
+      resolvedIds: uniqueIds, // helpful for returning exact updated string IDs back to API response
+    };
+  }
 
-	// 	try {
-	// 		const updated = await this.updateMonitorUsersOwnership(
-	// 			input.monitorUserIds,
-	// 			actorId,
-	// 			actorRole,
-	// 			input.relatedUserId,
-	// 		);
-	// 		if (updated.error) {
-	// 			return updated.error;
-	// 		}
+  // async relateMonitorUsers(
+  // 	actorId: bigint,
+  // 	actorRole: string | undefined,
+  // 	input: RelateMonitorUsersBodyInput,
+  // ): Promise<MonitorUserBulkUpdateResult> {
+  // 	const actor = await this.validateActor(actorId, actorRole);
+  // 	if ('status' in actor && actor.status !== undefined) {
+  // 		return actor;
+  // 	}
 
-	// 		return {
-	// 			status: 200,
-	// 			message: 'Monitor users related successfully.',
-	// 			data: {
-	// 				relatedUserId: String(input.relatedUserId),
-	// 				monitorUserIds: input.monitorUserIds.map((id) => String(id)),
-	// 				relatedCount: updated.updatedCount,
-	// 				updatedAt: new Date().toISOString(),
-	// 			},
-	// 		};
-	// 	} catch (error: unknown) {
-	// 		return {
-	// 			status: 500,
-	// 			message: toErrorMessage(error),
-	// 		};
-	// 	}
-	// }
+  // 	const targetError = await this.validateTargetServiceUser(input.relatedUserId, actorId);
+  // 	if (targetError) {
+  // 		return targetError;
+  // 	}
 
-	async relateMonitorUsers(
-		actorId: bigint,
-		actorRole: string | undefined,
-		input: RelateUserBodyInput,
-	) {
-		const actor = await this.validateActor(actorId, actorRole);
-		if ('status' in actor) {
-			return actor;
-		}
+  // 	try {
+  // 		const updated = await this.updateMonitorUsersOwnership(
+  // 			input.monitorUserIds,
+  // 			actorId,
+  // 			actorRole,
+  // 			input.relatedUserId,
+  // 		);
+  // 		if (updated.error) {
+  // 			return updated.error;
+  // 		}
 
-		const user = await this.monitorUserRepository.findMonitorUserByAccount(
-			input.account,
-		);
+  // 		return {
+  // 			status: 200,
+  // 			message: 'Monitor users related successfully.',
+  // 			data: {
+  // 				relatedUserId: String(input.relatedUserId),
+  // 				monitorUserIds: input.monitorUserIds.map((id) => String(id)),
+  // 				relatedCount: updated.updatedCount,
+  // 				updatedAt: new Date().toISOString(),
+  // 			},
+  // 		};
+  // 	} catch (error: unknown) {
+  // 		return {
+  // 			status: 500,
+  // 			message: toErrorMessage(error),
+  // 		};
+  // 	}
+  // }
 
-		if (!user) {
-			return {
-				status: 404,
-				message: 'Monitor user not found.',
-			};
-		}
+  async relateMonitorUsers(
+    actorId: bigint,
+    actorRole: string | undefined,
+    input: RelateUserBodyInput,
+  ) {
+    const actor = await this.validateActor(actorId, actorRole);
+    if ('status' in actor) {
+      return actor;
+    }
 
-		const existing =
-			await this.monitorUserRepository.findMappingBySerialNumber(
-				input.serialNumber,
-			);
+    const user = await this.monitorUserRepository.findMonitorUserByAccount(
+      input.account,
+    );
 
-		if (existing) {
-			return {
-				status: 409,
-				message: 'Serial number is already assigned.',
-			};
-		}
+    if (!user) {
+      return {
+        status: 404,
+        message: 'Monitor user not found.',
+      };
+    }
 
-		await this.monitorUserRepository.createUserPlantMapping(
-			user.id,
-			input.serialNumber,
-		);
+    const existing =
+      await this.monitorUserRepository.findMappingBySerialNumber(
+        input.serialNumber,
+      );
 
-		return {
-			status: 200,
-			message: 'User related successfully.',
-			data: {
-				account: user.account,
-				serialNumber: input.serialNumber,
-			},
-		};
-	}
+    if (existing) {
+      return {
+        status: 409,
+        message: 'Serial number is already assigned.',
+      };
+    }
 
-	async assignMonitorUsers(
-		actorId: bigint,
-		actorRole: string | undefined,
-		input: AssignMonitorUsersBodyInput,
-	): Promise<MonitorUserBulkUpdateResult> {
-		const actor = await this.validateActor(actorId, actorRole);
-		if ("status" in actor && actor.status !== undefined) {
-			return actor;
-		}
+    await this.monitorUserRepository.createUserPlantMapping(
+      user.id,
+      input.serialNumber,
+    );
 
-		const targetError = await this.validateTargetServiceUser(
-			input.assignedToUserId,
-			actorId,
-		);
-		if (targetError) {
-			return targetError;
-		}
+    return {
+      status: 200,
+      message: 'User related successfully.',
+      data: {
+        account: user.account,
+        serialNumber: input.serialNumber,
+      },
+    };
+  }
 
-		try {
-			const updated = await this.updateMonitorUsersOwnership(
-				input.monitorUserIds.map(String),
-				actorId,
-				actorRole,
-				input.assignedToUserId,
-			);
-			if (updated.error) {
-				return updated.error;
-			}
+  async assignMonitorUsers(
+    actorId: bigint,
+    actorRole: string | undefined,
+    input: AssignMonitorUsersBodyInput,
+  ): Promise<MonitorUserBulkUpdateResult> {
+    const actor = await this.validateActor(actorId, actorRole);
+    if ("status" in actor && actor.status !== undefined) {
+      return actor;
+    }
 
-			return {
-				status: 200,
-				message: "Monitor users assigned successfully.",
-				data: {
-					assignedToUserId: String(input.assignedToUserId),
-					monitorUserIds: updated.resolvedIds.map((id) => String(id)),
-					assignedCount: updated.updatedCount,
-					updatedAt: new Date().toISOString(),
-				},
-			};
-		} catch (error: unknown) {
-			return {
-				status: 500,
-				message: toErrorMessage(error),
-			};
-		}
-	}
+    const targetError = await this.validateTargetServiceUser(
+  input.assignedToUserId,
+  actorId,
+  actorRole,
+);
+    if (targetError) {
+      return targetError;
+    }
+
+    try {
+      const updated = await this.updateMonitorUsersOwnership(
+        input.monitorUserIds.map(String),
+        actorId,
+        actorRole,
+        input.assignedToUserId,
+      );
+      if (updated.error) {
+        return updated.error;
+      }
+
+      return {
+        status: 200,
+        message: "Monitor users assigned successfully.",
+        data: {
+          assignedToUserId: String(input.assignedToUserId),
+          monitorUserIds: updated.resolvedIds.map((id) => String(id)),
+          assignedCount: updated.updatedCount,
+          updatedAt: new Date().toISOString(),
+        },
+      };
+    } catch (error: unknown) {
+      return {
+        status: 500,
+        message: toErrorMessage(error),
+      };
+    }
+  }
 
   async createMonitorUser(
     actorId: bigint,

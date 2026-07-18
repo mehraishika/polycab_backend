@@ -9,6 +9,7 @@ import type {
   ServiceAdminUserListInput,
   UpdateProfileInput,
 } from "@/server/validators/user.validator";
+import { Decimal } from "@prisma/client/runtime/client";
 
 export interface CreateSubUserSuccess {
   status: 201;
@@ -23,7 +24,55 @@ export interface CreateSubUserError {
   message: string;
 }
 
+export interface SearchMonitoringUserSuccess {
+  status: 200;
+  message: string;
+  data: {
+    user: UserDetailData;
+  };
+}
+
+export interface SearchMonitoringUserError {
+  status: 404;
+  message: string;
+}
+
+export type SearchMonitoringUserResult =
+  | SearchMonitoringUserSuccess
+  | SearchMonitoringUserError;
 export type CreateSubUserResult = CreateSubUserSuccess | CreateSubUserError;
+
+export interface DeviceLatestRecord {
+  logger_status: any;
+  module_version_no: any;
+  id: bigint | string;
+  sno: string;
+  inverterName: string | null;
+  dayDate: Date | string;
+  latestTimestamp: Date | string;
+  dailyProduction: Decimal | null;
+  totalEnergy: Decimal | null;
+  totalHours: number | null;
+  currentPower: Decimal | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  plantId: string | null;
+
+  status: string;
+  userId: string | null;
+  account: string | null;
+  communicationStatus: any;
+  communicationModuleVersion: any;
+  communicationModuleSn: string;
+}
+
+export interface SearchDeviceResult {
+  status: 200 | 404;
+  message: string;
+  data?: {
+    device: DeviceLatestRecord;
+  };
+}
 
 export interface DeleteUserServiceSuccess {
   status: 200;
@@ -210,6 +259,9 @@ type ForgotPasswordInput = {
 };
 
 export class UserService {
+  static searchDeviceBySN(sno: string) {
+    throw new Error("Method not implemented.");
+  }
   constructor(
     private readonly userRepository: UserRepository = new UserRepository(),
   ) {}
@@ -423,6 +475,95 @@ export class UserService {
     };
   }
 
+  async getProfile(userId: string) {
+    const profile = await this.userRepository.getProfile(BigInt(userId));
+
+    return {
+      status: 200,
+      message: "Profile fetched successfully.",
+      data: profile,
+    };
+  }
+  async searchMonitoringUser(
+    account: string,
+  ): Promise<SearchMonitoringUserResult> {
+    const user = await this.userRepository.findMonitoringUserByAccount(account);
+
+    if (!user) {
+      return {
+        status: 404,
+        message: "Monitoring user not found.",
+      };
+    }
+
+    return {
+      status: 200,
+      message: "User found successfully.",
+      data: {
+        user: {
+          id: user.id.toString(),
+          account: user.account,
+          email: user.email,
+          portal: user.portal,
+          role: user.role,
+          status: user.status,
+          timezone: user.timezone,
+          phone: user.phone,
+          address: user.address,
+          assignedById: user.assignedById?.toString() ?? null,
+          isDeleted: user.isDeleted,
+          emailVerifiedAt: user.emailVerifiedAt?.toISOString() ?? null,
+          lastLoginAt: user.lastLoginAt?.toISOString() ?? null,
+          createdAt: user.createdAt.toISOString(),
+          updatedAt: user.updatedAt.toISOString(),
+          deletedAt: user.deletedAt?.toISOString() ?? null,
+        },
+      },
+    };
+  }
+
+  async searchDeviceBySN(
+    sno: string,
+    plantId?: string | bigint,
+  ): Promise<SearchDeviceResult> {
+    const device = await this.userRepository.findLatestDeviceBySN(sno, plantId);
+
+    if (!device) {
+      return {
+        status: 404,
+        message: "Device not found.",
+      };
+    }
+
+    return {
+      status: 200,
+      message: "Device found successfully.",
+      data: {
+        device: {
+          id: device.id.toString(),
+          sno: device.sno,
+          inverterName: device.inverterName,
+          dayDate: device.dayDate.toString(),
+          latestTimestamp: device.latestTimestamp.toString(),
+          dailyProduction: device.dailyProduction,
+          totalEnergy: device.totalEnergy,
+          totalHours: device.totalHours,
+          currentPower: device.currentPower,
+          plantId: device.plantId,
+          status: device.status,
+          userId: device.userId?.toString() ?? null,
+          account: device.account,
+          logger_status: device.logger_status,
+          module_version_no: device.module_version_no,
+          communicationStatus: device.logger_status,
+          communicationModuleVersion: device.module_version_no,
+          communicationModuleSn: device.sno,
+          createdAt: device.createdAt.toString(),
+          updatedAt: device.updatedAt.toString(),
+        },
+      },
+    };
+  }
   async getEditById(id: bigint): Promise<GetUserDetailResult> {
     const record = await this.userRepository.findDetailById(id);
 
@@ -672,7 +813,7 @@ export class UserService {
       return accessError;
     }
 
-    const records = await this.userRepository.findScopedServiceAdmins(actorId);
+    const records = await this.userRepository.findScopedServiceAdmins(actorId, actorRole);
     console.log("records", records);
 
     const deviceCountMap = await this.userRepository.getDeviceCountsByAccounts(

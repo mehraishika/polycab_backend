@@ -396,7 +396,17 @@ export const ModelName = {
   DeviceDailySummaryPerLineChart: 'DeviceDailySummaryPerLineChart',
   information_data: 'information_data',
   DeviceConnectionStatus: 'DeviceConnectionStatus',
-  fota: 'fota'
+  fota: 'fota',
+  DeviceCurrentStatus: 'DeviceCurrentStatus',
+  DeviceStatusHistory: 'DeviceStatusHistory',
+  PlantCurrentStatus: 'PlantCurrentStatus',
+  DeviceAlertState: 'DeviceAlertState',
+  AlertEvent: 'AlertEvent',
+  FaultDictionary: 'FaultDictionary',
+  RemoteSettingParameterMaster: 'RemoteSettingParameterMaster',
+  RemoteSettingCommandMaster: 'RemoteSettingCommandMaster',
+  DeviceRemoteSetting: 'DeviceRemoteSetting',
+  DeviceRemoteSettingTask: 'DeviceRemoteSettingTask'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -412,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "plant" | "deviceInverter" | "userPlantInverterMap" | "deviceInvertorStatus" | "deviceDatalogger" | "deviceLogs" | "deviceLogsLatest" | "deviceDailySummary" | "deviceDailySummaryPerLineChart" | "information_data" | "deviceConnectionStatus" | "fota"
+    modelProps: "user" | "plant" | "deviceInverter" | "userPlantInverterMap" | "deviceInvertorStatus" | "deviceDatalogger" | "deviceLogs" | "deviceLogsLatest" | "deviceDailySummary" | "deviceDailySummaryPerLineChart" | "information_data" | "deviceConnectionStatus" | "fota" | "deviceCurrentStatus" | "deviceStatusHistory" | "plantCurrentStatus" | "deviceAlertState" | "alertEvent" | "faultDictionary" | "remoteSettingParameterMaster" | "remoteSettingCommandMaster" | "deviceRemoteSetting" | "deviceRemoteSettingTask"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1378,6 +1388,746 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DeviceCurrentStatus: {
+      payload: Prisma.$DeviceCurrentStatusPayload<ExtArgs>
+      fields: Prisma.DeviceCurrentStatusFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeviceCurrentStatusFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeviceCurrentStatusFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>
+        }
+        findFirst: {
+          args: Prisma.DeviceCurrentStatusFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeviceCurrentStatusFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>
+        }
+        findMany: {
+          args: Prisma.DeviceCurrentStatusFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>[]
+        }
+        create: {
+          args: Prisma.DeviceCurrentStatusCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>
+        }
+        createMany: {
+          args: Prisma.DeviceCurrentStatusCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeviceCurrentStatusCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>[]
+        }
+        delete: {
+          args: Prisma.DeviceCurrentStatusDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>
+        }
+        update: {
+          args: Prisma.DeviceCurrentStatusUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>
+        }
+        deleteMany: {
+          args: Prisma.DeviceCurrentStatusDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeviceCurrentStatusUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeviceCurrentStatusUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>[]
+        }
+        upsert: {
+          args: Prisma.DeviceCurrentStatusUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCurrentStatusPayload>
+        }
+        aggregate: {
+          args: Prisma.DeviceCurrentStatusAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeviceCurrentStatus>
+        }
+        groupBy: {
+          args: Prisma.DeviceCurrentStatusGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceCurrentStatusGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeviceCurrentStatusCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceCurrentStatusCountAggregateOutputType> | number
+        }
+      }
+    }
+    DeviceStatusHistory: {
+      payload: Prisma.$DeviceStatusHistoryPayload<ExtArgs>
+      fields: Prisma.DeviceStatusHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeviceStatusHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeviceStatusHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.DeviceStatusHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeviceStatusHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.DeviceStatusHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.DeviceStatusHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.DeviceStatusHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeviceStatusHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.DeviceStatusHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>
+        }
+        update: {
+          args: Prisma.DeviceStatusHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.DeviceStatusHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeviceStatusHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeviceStatusHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.DeviceStatusHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceStatusHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.DeviceStatusHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeviceStatusHistory>
+        }
+        groupBy: {
+          args: Prisma.DeviceStatusHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceStatusHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeviceStatusHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceStatusHistoryCountAggregateOutputType> | number
+        }
+      }
+    }
+    PlantCurrentStatus: {
+      payload: Prisma.$PlantCurrentStatusPayload<ExtArgs>
+      fields: Prisma.PlantCurrentStatusFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PlantCurrentStatusFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PlantCurrentStatusFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>
+        }
+        findFirst: {
+          args: Prisma.PlantCurrentStatusFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PlantCurrentStatusFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>
+        }
+        findMany: {
+          args: Prisma.PlantCurrentStatusFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>[]
+        }
+        create: {
+          args: Prisma.PlantCurrentStatusCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>
+        }
+        createMany: {
+          args: Prisma.PlantCurrentStatusCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PlantCurrentStatusCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>[]
+        }
+        delete: {
+          args: Prisma.PlantCurrentStatusDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>
+        }
+        update: {
+          args: Prisma.PlantCurrentStatusUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>
+        }
+        deleteMany: {
+          args: Prisma.PlantCurrentStatusDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PlantCurrentStatusUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PlantCurrentStatusUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>[]
+        }
+        upsert: {
+          args: Prisma.PlantCurrentStatusUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlantCurrentStatusPayload>
+        }
+        aggregate: {
+          args: Prisma.PlantCurrentStatusAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlantCurrentStatus>
+        }
+        groupBy: {
+          args: Prisma.PlantCurrentStatusGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlantCurrentStatusGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PlantCurrentStatusCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlantCurrentStatusCountAggregateOutputType> | number
+        }
+      }
+    }
+    DeviceAlertState: {
+      payload: Prisma.$DeviceAlertStatePayload<ExtArgs>
+      fields: Prisma.DeviceAlertStateFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeviceAlertStateFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeviceAlertStateFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>
+        }
+        findFirst: {
+          args: Prisma.DeviceAlertStateFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeviceAlertStateFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>
+        }
+        findMany: {
+          args: Prisma.DeviceAlertStateFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>[]
+        }
+        create: {
+          args: Prisma.DeviceAlertStateCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>
+        }
+        createMany: {
+          args: Prisma.DeviceAlertStateCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeviceAlertStateCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>[]
+        }
+        delete: {
+          args: Prisma.DeviceAlertStateDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>
+        }
+        update: {
+          args: Prisma.DeviceAlertStateUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>
+        }
+        deleteMany: {
+          args: Prisma.DeviceAlertStateDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeviceAlertStateUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeviceAlertStateUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>[]
+        }
+        upsert: {
+          args: Prisma.DeviceAlertStateUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceAlertStatePayload>
+        }
+        aggregate: {
+          args: Prisma.DeviceAlertStateAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeviceAlertState>
+        }
+        groupBy: {
+          args: Prisma.DeviceAlertStateGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceAlertStateGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeviceAlertStateCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceAlertStateCountAggregateOutputType> | number
+        }
+      }
+    }
+    AlertEvent: {
+      payload: Prisma.$AlertEventPayload<ExtArgs>
+      fields: Prisma.AlertEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AlertEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AlertEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>
+        }
+        findFirst: {
+          args: Prisma.AlertEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AlertEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>
+        }
+        findMany: {
+          args: Prisma.AlertEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>[]
+        }
+        create: {
+          args: Prisma.AlertEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>
+        }
+        createMany: {
+          args: Prisma.AlertEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AlertEventCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>[]
+        }
+        delete: {
+          args: Prisma.AlertEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>
+        }
+        update: {
+          args: Prisma.AlertEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.AlertEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AlertEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AlertEventUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>[]
+        }
+        upsert: {
+          args: Prisma.AlertEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlertEventPayload>
+        }
+        aggregate: {
+          args: Prisma.AlertEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAlertEvent>
+        }
+        groupBy: {
+          args: Prisma.AlertEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AlertEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AlertEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AlertEventCountAggregateOutputType> | number
+        }
+      }
+    }
+    FaultDictionary: {
+      payload: Prisma.$FaultDictionaryPayload<ExtArgs>
+      fields: Prisma.FaultDictionaryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FaultDictionaryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FaultDictionaryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>
+        }
+        findFirst: {
+          args: Prisma.FaultDictionaryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FaultDictionaryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>
+        }
+        findMany: {
+          args: Prisma.FaultDictionaryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>[]
+        }
+        create: {
+          args: Prisma.FaultDictionaryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>
+        }
+        createMany: {
+          args: Prisma.FaultDictionaryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FaultDictionaryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>[]
+        }
+        delete: {
+          args: Prisma.FaultDictionaryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>
+        }
+        update: {
+          args: Prisma.FaultDictionaryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>
+        }
+        deleteMany: {
+          args: Prisma.FaultDictionaryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FaultDictionaryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FaultDictionaryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>[]
+        }
+        upsert: {
+          args: Prisma.FaultDictionaryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FaultDictionaryPayload>
+        }
+        aggregate: {
+          args: Prisma.FaultDictionaryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFaultDictionary>
+        }
+        groupBy: {
+          args: Prisma.FaultDictionaryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FaultDictionaryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FaultDictionaryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FaultDictionaryCountAggregateOutputType> | number
+        }
+      }
+    }
+    RemoteSettingParameterMaster: {
+      payload: Prisma.$RemoteSettingParameterMasterPayload<ExtArgs>
+      fields: Prisma.RemoteSettingParameterMasterFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RemoteSettingParameterMasterFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RemoteSettingParameterMasterFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>
+        }
+        findFirst: {
+          args: Prisma.RemoteSettingParameterMasterFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RemoteSettingParameterMasterFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>
+        }
+        findMany: {
+          args: Prisma.RemoteSettingParameterMasterFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>[]
+        }
+        create: {
+          args: Prisma.RemoteSettingParameterMasterCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>
+        }
+        createMany: {
+          args: Prisma.RemoteSettingParameterMasterCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RemoteSettingParameterMasterCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>[]
+        }
+        delete: {
+          args: Prisma.RemoteSettingParameterMasterDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>
+        }
+        update: {
+          args: Prisma.RemoteSettingParameterMasterUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>
+        }
+        deleteMany: {
+          args: Prisma.RemoteSettingParameterMasterDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RemoteSettingParameterMasterUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RemoteSettingParameterMasterUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>[]
+        }
+        upsert: {
+          args: Prisma.RemoteSettingParameterMasterUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingParameterMasterPayload>
+        }
+        aggregate: {
+          args: Prisma.RemoteSettingParameterMasterAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRemoteSettingParameterMaster>
+        }
+        groupBy: {
+          args: Prisma.RemoteSettingParameterMasterGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RemoteSettingParameterMasterGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RemoteSettingParameterMasterCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RemoteSettingParameterMasterCountAggregateOutputType> | number
+        }
+      }
+    }
+    RemoteSettingCommandMaster: {
+      payload: Prisma.$RemoteSettingCommandMasterPayload<ExtArgs>
+      fields: Prisma.RemoteSettingCommandMasterFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RemoteSettingCommandMasterFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RemoteSettingCommandMasterFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>
+        }
+        findFirst: {
+          args: Prisma.RemoteSettingCommandMasterFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RemoteSettingCommandMasterFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>
+        }
+        findMany: {
+          args: Prisma.RemoteSettingCommandMasterFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>[]
+        }
+        create: {
+          args: Prisma.RemoteSettingCommandMasterCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>
+        }
+        createMany: {
+          args: Prisma.RemoteSettingCommandMasterCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RemoteSettingCommandMasterCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>[]
+        }
+        delete: {
+          args: Prisma.RemoteSettingCommandMasterDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>
+        }
+        update: {
+          args: Prisma.RemoteSettingCommandMasterUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>
+        }
+        deleteMany: {
+          args: Prisma.RemoteSettingCommandMasterDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RemoteSettingCommandMasterUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RemoteSettingCommandMasterUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>[]
+        }
+        upsert: {
+          args: Prisma.RemoteSettingCommandMasterUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RemoteSettingCommandMasterPayload>
+        }
+        aggregate: {
+          args: Prisma.RemoteSettingCommandMasterAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRemoteSettingCommandMaster>
+        }
+        groupBy: {
+          args: Prisma.RemoteSettingCommandMasterGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RemoteSettingCommandMasterGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RemoteSettingCommandMasterCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RemoteSettingCommandMasterCountAggregateOutputType> | number
+        }
+      }
+    }
+    DeviceRemoteSetting: {
+      payload: Prisma.$DeviceRemoteSettingPayload<ExtArgs>
+      fields: Prisma.DeviceRemoteSettingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeviceRemoteSettingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeviceRemoteSettingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>
+        }
+        findFirst: {
+          args: Prisma.DeviceRemoteSettingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeviceRemoteSettingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>
+        }
+        findMany: {
+          args: Prisma.DeviceRemoteSettingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>[]
+        }
+        create: {
+          args: Prisma.DeviceRemoteSettingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>
+        }
+        createMany: {
+          args: Prisma.DeviceRemoteSettingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeviceRemoteSettingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>[]
+        }
+        delete: {
+          args: Prisma.DeviceRemoteSettingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>
+        }
+        update: {
+          args: Prisma.DeviceRemoteSettingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>
+        }
+        deleteMany: {
+          args: Prisma.DeviceRemoteSettingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeviceRemoteSettingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeviceRemoteSettingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>[]
+        }
+        upsert: {
+          args: Prisma.DeviceRemoteSettingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingPayload>
+        }
+        aggregate: {
+          args: Prisma.DeviceRemoteSettingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeviceRemoteSetting>
+        }
+        groupBy: {
+          args: Prisma.DeviceRemoteSettingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceRemoteSettingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeviceRemoteSettingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceRemoteSettingCountAggregateOutputType> | number
+        }
+      }
+    }
+    DeviceRemoteSettingTask: {
+      payload: Prisma.$DeviceRemoteSettingTaskPayload<ExtArgs>
+      fields: Prisma.DeviceRemoteSettingTaskFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeviceRemoteSettingTaskFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeviceRemoteSettingTaskFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>
+        }
+        findFirst: {
+          args: Prisma.DeviceRemoteSettingTaskFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeviceRemoteSettingTaskFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>
+        }
+        findMany: {
+          args: Prisma.DeviceRemoteSettingTaskFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>[]
+        }
+        create: {
+          args: Prisma.DeviceRemoteSettingTaskCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>
+        }
+        createMany: {
+          args: Prisma.DeviceRemoteSettingTaskCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeviceRemoteSettingTaskCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>[]
+        }
+        delete: {
+          args: Prisma.DeviceRemoteSettingTaskDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>
+        }
+        update: {
+          args: Prisma.DeviceRemoteSettingTaskUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>
+        }
+        deleteMany: {
+          args: Prisma.DeviceRemoteSettingTaskDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeviceRemoteSettingTaskUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeviceRemoteSettingTaskUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>[]
+        }
+        upsert: {
+          args: Prisma.DeviceRemoteSettingTaskUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceRemoteSettingTaskPayload>
+        }
+        aggregate: {
+          args: Prisma.DeviceRemoteSettingTaskAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeviceRemoteSettingTask>
+        }
+        groupBy: {
+          args: Prisma.DeviceRemoteSettingTaskGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceRemoteSettingTaskGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeviceRemoteSettingTaskCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceRemoteSettingTaskCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1577,12 +2327,6 @@ export const DeviceLogsScalarFieldEnum = {
   total_input_power: 'total_input_power',
   grid_total_active_power: 'grid_total_active_power',
   grid_total_reactive_power: 'grid_total_reactive_power',
-  fault_registers: 'fault_registers',
-  fault_1: 'fault_1',
-  fault_2: 'fault_2',
-  fault_3: 'fault_3',
-  fault_4: 'fault_4',
-  fault_5: 'fault_5',
   ac_voltage_a: 'ac_voltage_a',
   ac_voltage_b: 'ac_voltage_b',
   ac_voltage_c: 'ac_voltage_c',
@@ -1593,14 +2337,20 @@ export const DeviceLogsScalarFieldEnum = {
   ac_power_b: 'ac_power_b',
   ac_power_c: 'ac_power_c',
   daily_production: 'daily_production',
-  grid_status: 'grid_status',
-  inverter_status: 'inverter_status',
   ac_output_frequency: 'ac_output_frequency',
-  temperature_count: 'temperature_count',
   temperature_1: 'temperature_1',
   temperature_2: 'temperature_2',
   temperature_3: 'temperature_3',
   total_production: 'total_production',
+  fault_registers: 'fault_registers',
+  fault_1: 'fault_1',
+  fault_2: 'fault_2',
+  fault_3: 'fault_3',
+  fault_4: 'fault_4',
+  fault_5: 'fault_5',
+  grid_status: 'grid_status',
+  inverter_status: 'inverter_status',
+  temperature_count: 'temperature_count',
   total_generation_time: 'total_generation_time',
   timestamp: 'timestamp',
   mac_address: 'mac_address',
@@ -1754,8 +2504,9 @@ export type Information_dataScalarFieldEnum = (typeof Information_dataScalarFiel
 export const DeviceConnectionStatusScalarFieldEnum = {
   id: 'id',
   serialNumber: 'serialNumber',
+  macAddress: 'macAddress',
   status: 'status',
-  lastseentime: 'lastseentime'
+  lastSeenTime: 'lastSeenTime'
 } as const
 
 export type DeviceConnectionStatusScalarFieldEnum = (typeof DeviceConnectionStatusScalarFieldEnum)[keyof typeof DeviceConnectionStatusScalarFieldEnum]
@@ -1769,6 +2520,151 @@ export const FotaScalarFieldEnum = {
 } as const
 
 export type FotaScalarFieldEnum = (typeof FotaScalarFieldEnum)[keyof typeof FotaScalarFieldEnum]
+
+
+export const DeviceCurrentStatusScalarFieldEnum = {
+  id: 'id',
+  sno: 'sno',
+  status: 'status',
+  lastTelemetryAt: 'lastTelemetryAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceCurrentStatusScalarFieldEnum = (typeof DeviceCurrentStatusScalarFieldEnum)[keyof typeof DeviceCurrentStatusScalarFieldEnum]
+
+
+export const DeviceStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  sno: 'sno',
+  plantId: 'plantId',
+  status: 'status',
+  createdAt: 'createdAt'
+} as const
+
+export type DeviceStatusHistoryScalarFieldEnum = (typeof DeviceStatusHistoryScalarFieldEnum)[keyof typeof DeviceStatusHistoryScalarFieldEnum]
+
+
+export const PlantCurrentStatusScalarFieldEnum = {
+  id: 'id',
+  plantId: 'plantId',
+  status: 'status',
+  totalDevices: 'totalDevices',
+  normalCount: 'normalCount',
+  abnormalCount: 'abnormalCount',
+  standbyCount: 'standbyCount',
+  offlineCount: 'offlineCount',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlantCurrentStatusScalarFieldEnum = (typeof PlantCurrentStatusScalarFieldEnum)[keyof typeof PlantCurrentStatusScalarFieldEnum]
+
+
+export const DeviceAlertStateScalarFieldEnum = {
+  id: 'id',
+  serialNumber: 'serialNumber',
+  plantId: 'plantId',
+  alertMatrix: 'alertMatrix',
+  activeAlertCount: 'activeAlertCount',
+  lastTelemetryAt: 'lastTelemetryAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceAlertStateScalarFieldEnum = (typeof DeviceAlertStateScalarFieldEnum)[keyof typeof DeviceAlertStateScalarFieldEnum]
+
+
+export const AlertEventScalarFieldEnum = {
+  id: 'id',
+  serialNumber: 'serialNumber',
+  plantId: 'plantId',
+  registerNo: 'registerNo',
+  bitPosition: 'bitPosition',
+  faultCode: 'faultCode',
+  faultMessage: 'faultMessage',
+  status: 'status',
+  raisedAt: 'raisedAt',
+  clearedAt: 'clearedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type AlertEventScalarFieldEnum = (typeof AlertEventScalarFieldEnum)[keyof typeof AlertEventScalarFieldEnum]
+
+
+export const FaultDictionaryScalarFieldEnum = {
+  id: 'id',
+  registerName: 'registerName',
+  registerAddr: 'registerAddr',
+  registerNo: 'registerNo',
+  bitPosition: 'bitPosition',
+  faultCode: 'faultCode',
+  faultMessage: 'faultMessage',
+  createdAt: 'createdAt'
+} as const
+
+export type FaultDictionaryScalarFieldEnum = (typeof FaultDictionaryScalarFieldEnum)[keyof typeof FaultDictionaryScalarFieldEnum]
+
+
+export const RemoteSettingParameterMasterScalarFieldEnum = {
+  id: 'id',
+  tab: 'tab',
+  tabLabel: 'tabLabel',
+  fieldKey: 'fieldKey',
+  label: 'label',
+  dataType: 'dataType',
+  unitOrOptions: 'unitOrOptions',
+  endpointPath: 'endpointPath',
+  displayOrder: 'displayOrder',
+  count: 'count',
+  registerAddress: 'registerAddress',
+  registerType: 'registerType',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RemoteSettingParameterMasterScalarFieldEnum = (typeof RemoteSettingParameterMasterScalarFieldEnum)[keyof typeof RemoteSettingParameterMasterScalarFieldEnum]
+
+
+export const RemoteSettingCommandMasterScalarFieldEnum = {
+  id: 'id',
+  commandKey: 'commandKey',
+  label: 'label',
+  endpointPath: 'endpointPath',
+  displayOrder: 'displayOrder',
+  count: 'count',
+  registerAddress: 'registerAddress',
+  registerType: 'registerType',
+  createdAt: 'createdAt'
+} as const
+
+export type RemoteSettingCommandMasterScalarFieldEnum = (typeof RemoteSettingCommandMasterScalarFieldEnum)[keyof typeof RemoteSettingCommandMasterScalarFieldEnum]
+
+
+export const DeviceRemoteSettingScalarFieldEnum = {
+  id: 'id',
+  deviceInverterId: 'deviceInverterId',
+  tab: 'tab',
+  settings: 'settings',
+  updatedById: 'updatedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceRemoteSettingScalarFieldEnum = (typeof DeviceRemoteSettingScalarFieldEnum)[keyof typeof DeviceRemoteSettingScalarFieldEnum]
+
+
+export const DeviceRemoteSettingTaskScalarFieldEnum = {
+  id: 'id',
+  deviceInverterId: 'deviceInverterId',
+  kind: 'kind',
+  tab: 'tab',
+  payload: 'payload',
+  status: 'status',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceRemoteSettingTaskScalarFieldEnum = (typeof DeviceRemoteSettingTaskScalarFieldEnum)[keyof typeof DeviceRemoteSettingTaskScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1785,6 +2681,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -1938,6 +2841,20 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+/**
  * Reference to a field of type 'Json'
  */
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -1948,6 +2865,76 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'PlantStatus'
+ */
+export type EnumPlantStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlantStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'PlantStatus[]'
+ */
+export type ListEnumPlantStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlantStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AlertStatus'
+ */
+export type EnumAlertStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AlertStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AlertStatus[]'
+ */
+export type ListEnumAlertStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AlertStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'RemoteSettingsTab'
+ */
+export type EnumRemoteSettingsTabFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RemoteSettingsTab'>
+    
+
+
+/**
+ * Reference to a field of type 'RemoteSettingsTab[]'
+ */
+export type ListEnumRemoteSettingsTabFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RemoteSettingsTab[]'>
+    
+
+
+/**
+ * Reference to a field of type 'RemoteSettingsTaskKind'
+ */
+export type EnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RemoteSettingsTaskKind'>
+    
+
+
+/**
+ * Reference to a field of type 'RemoteSettingsTaskKind[]'
+ */
+export type ListEnumRemoteSettingsTaskKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RemoteSettingsTaskKind[]'>
+    
+
+
+/**
+ * Reference to a field of type 'RemoteSettingsTaskStatus'
+ */
+export type EnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RemoteSettingsTaskStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'RemoteSettingsTaskStatus[]'
+ */
+export type ListEnumRemoteSettingsTaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RemoteSettingsTaskStatus[]'>
     
 
 /**
@@ -2073,6 +3060,16 @@ export type GlobalOmitConfig = {
   information_data?: Prisma.information_dataOmit
   deviceConnectionStatus?: Prisma.DeviceConnectionStatusOmit
   fota?: Prisma.fotaOmit
+  deviceCurrentStatus?: Prisma.DeviceCurrentStatusOmit
+  deviceStatusHistory?: Prisma.DeviceStatusHistoryOmit
+  plantCurrentStatus?: Prisma.PlantCurrentStatusOmit
+  deviceAlertState?: Prisma.DeviceAlertStateOmit
+  alertEvent?: Prisma.AlertEventOmit
+  faultDictionary?: Prisma.FaultDictionaryOmit
+  remoteSettingParameterMaster?: Prisma.RemoteSettingParameterMasterOmit
+  remoteSettingCommandMaster?: Prisma.RemoteSettingCommandMasterOmit
+  deviceRemoteSetting?: Prisma.DeviceRemoteSettingOmit
+  deviceRemoteSettingTask?: Prisma.DeviceRemoteSettingTaskOmit
 }
 
 /* Types for Logging */

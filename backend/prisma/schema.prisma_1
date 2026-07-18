@@ -1,0 +1,439 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/server/db/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                BigInt                 @id @default(autoincrement())
+  account           String                 @unique
+  email             String?
+  passwordHash      String                 @map("password_hash")
+  portal            UserPortal
+  role              UserRole
+  status            UserStatus             @default(active)
+  assignedById      BigInt?
+  timezone          String?
+  phone             String?
+  address           String?
+  emailVerifiedAt   DateTime?              @map("email_verified_at")
+  lastLoginAt       DateTime?              @map("last_login_at")
+  createdAt         DateTime               @default(now()) @map("created_at")
+  updatedAt         DateTime               @updatedAt @map("updated_at")
+  isDeleted         Boolean                @default(false)
+  deletedAt         DateTime?
+  plants            Plant[]
+  plantInverterMaps UserPlantInverterMap[]
+  assignedBy        User?                  @relation("UserAssignment", fields: [assignedById], references: [id])
+  assignedUsers     User[]                 @relation("UserAssignment")
+
+  @@unique([portal, email])
+  @@index([portal, role])
+  @@index([status])
+  @@index([assignedById])
+  @@map("users")
+}
+
+model Plant {
+  id               BigInt                 @id @default(autoincrement())
+  name             String
+  type             String
+  installed        DateTime?
+  lastUpdatedAt    DateTime?              @map("last_updated_at")
+  kwp              Float?
+  price            Float?
+  priceUnit        String?                @map("price_unit")
+  longitude        String?
+  latitude         String?
+  address          String?
+  pictureFileId    String?                @map("picture_file_id")
+  userAccount      String                 @map("user_account")
+  createdAt        DateTime               @default(now()) @map("created_at")
+  updatedAt        DateTime               @updatedAt @map("updated_at")
+  deletedAt        DateTime?              @map("deleted_at")
+  dataloggers      DeviceDatalogger[]
+  inverters        DeviceInverter[]
+  information_data information_data[]
+  user             User                   @relation(fields: [userAccount], references: [account])
+
+  @@index([type])
+  @@index([name])
+  @@index([userAccount])
+  @@index([deletedAt])
+  @@map("plants")
+}
+
+model DeviceInverter {
+  id            BigInt                @id @default(autoincrement())
+  name          String?
+  type          String                @default("inverter")
+  serialNumber  String                @unique @map("serial_number")
+  updateTime    DateTime?             @map("update_time")
+  plantId       BigInt                @map("plant_id")
+  createdAt     DateTime              @default(now()) @map("created_at")
+  updatedAt     DateTime              @updatedAt @map("updated_at")
+  deletedAt     DateTime?             @map("deleted_at")
+  dataloggers   DeviceDatalogger[]
+  plant         Plant                 @relation(fields: [plantId], references: [id])
+
+  @@index([plantId])
+  @@index([serialNumber])
+  @@index([type])
+  @@index([deletedAt])
+  @@map("device_inverters")
+}
+
+model UserPlantInverterMap {
+  id                 BigInt                           @id @default(autoincrement())
+  userId             BigInt                           @map("user_id")
+  plantId            BigInt?                          @map("plant_id")
+  serialNumber       String                           @unique @map("inverter_no")
+  isDeleted          Boolean                          @default(false) @map("is_deleted")
+  deletedAt          DateTime?                        @map("deleted_at")
+  createdAt          DateTime                         @default(now()) @map("created_at")
+  updatedAt          DateTime                         @updatedAt @map("updated_at")
+  dailySummaries     DeviceDailySummary[]
+  lineChartSummaries DeviceDailySummaryPerLineChart[]
+  invertorStatus     DeviceInvertorStatus?            @relation("MapToInvertorStatus")
+  user               User                             @relation(fields: [userId], references: [id])
+
+  @@index([userId, isDeleted])
+  @@index([plantId, isDeleted])
+  @@index([serialNumber])
+  @@index([serialNumber, isDeleted])
+  @@index([deletedAt])
+  @@map("user_plant_inverter_map")
+}
+
+model DeviceInvertorStatus {
+  id                   BigInt               @id @default(autoincrement())
+  deviceSno            String               @unique @map("device_sno")
+  latestTimeState      DateTime             @map("latest_time_state")
+  status               Boolean              @default(false)
+  createdAt            DateTime             @default(now()) @map("created_at")
+  updatedAt            DateTime             @updatedAt @map("updated_at")
+  userPlantInverterMap UserPlantInverterMap @relation("MapToInvertorStatus", fields: [deviceSno], references: [serialNumber], map: "device_invertor_status_device_sno_user_plant_inverter_map_fkey")
+
+  @@index([status])
+  @@index([latestTimeState])
+  @@index([deviceSno, status])
+  @@map("device_invertor_status")
+}
+
+model DeviceDatalogger {
+  id           BigInt          @id @default(autoincrement())
+  name         String?
+  type         String          @default("datalogger")
+  serialNumber String          @unique @map("serial_number")
+  online       Boolean         @default(false)
+  status       String?
+  updateTime   DateTime?       @map("update_time")
+  plantId      BigInt          @map("plant_id")
+  inverterId   BigInt?         @map("inverter_id")
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @updatedAt @map("updated_at")
+  deletedAt    DateTime?       @map("deleted_at")
+  inverter     DeviceInverter? @relation(fields: [inverterId], references: [id])
+  plant        Plant           @relation(fields: [plantId], references: [id])
+
+  @@index([plantId])
+  @@index([inverterId])
+  @@index([serialNumber])
+  @@index([online])
+  @@index([deletedAt])
+  @@map("device_dataloggers")
+}
+
+model DeviceLogs {
+  id                            BigInt                          @id @default(autoincrement())
+  sno                           String?                         @db.VarChar(255)
+  logger_status                 String?                         @db.VarChar(255)
+  connected_plant               String?                         @db.VarChar(255)
+  module_version_no             String?                         @db.VarChar(255)
+  extended_system_version       String?                         @db.VarChar(255)
+  data_acquisition_period       DateTime?
+  max_connected_devices         Int?
+  signal_strength               BigInt?
+  module_mac_address            String?                         @db.VarChar(255)
+  router_ssid                   String?                         @db.VarChar(255)
+  inverter_type                 Int?
+  production_compliance_country Int?
+  device_model                  String?
+  firmware_version              String?
+  production_type               Int?
+  rated_power                   Int?
+  phases                        Int?
+  mppt_no                       Int?
+  inverter_parameter_count      Int?
+  logger_parameter_count        Int?
+  protocol_version              Int?
+  comm_software_version_1       Int?
+  comm_software_version_2       Int?
+  control_software_version      Int?
+  dc_voltage_1                  Int?
+  dc_voltage_2                  Int?
+  dc_voltage_3                  Int?
+  dc_voltage_4                  Int?
+  dc_voltage_5                  Int?
+  dc_voltage_6                  Int?
+  dc_voltage_7                  Int?
+  dc_voltage_8                  Int?
+  dc_voltage_9                  Int?
+  dc_current_1                  Int?
+  dc_current_2                  Int?
+  dc_current_3                  Int?
+  dc_current_4                  Int?
+  dc_current_5                  Int?
+  dc_current_6                  Int?
+  dc_current_7                  Int?
+  dc_current_8                  Int?
+  dc_current_9                  Int?
+  dc_power_1                    BigInt?
+  dc_power_2                    BigInt?
+  dc_power_3                    BigInt?
+  dc_power_4                    BigInt?
+  dc_power_5                    BigInt?
+  dc_power_6                    BigInt?
+  dc_power_7                    BigInt?
+  dc_power_8                    BigInt?
+  dc_power_9                    BigInt?
+  total_input_power             BigInt?
+  grid_total_active_power       BigInt?
+  grid_total_reactive_power     BigInt?
+  fault_registers               Int?
+  fault_1                       Int?
+  fault_2                       Int?
+  fault_3                       Int?
+  fault_4                       Int?
+  fault_5                       Int?
+  ac_voltage_a                  Int?
+  ac_voltage_b                  Int?
+  ac_voltage_c                  Int?
+  ac_current_a                  Int?
+  ac_current_b                  Int?
+  ac_current_c                  Int?
+  ac_power_a                    BigInt?
+  ac_power_b                    BigInt?
+  ac_power_c                    BigInt?
+  daily_production              Int?
+  grid_status                   Int?
+  inverter_status               Int?
+  ac_output_frequency           Int?
+  temperature_count             Int?
+  temperature_1                 Int?
+  temperature_2                 Int?
+  temperature_3                 Int?
+  total_production              Int?
+  total_generation_time         Int?
+  timestamp                     DateTime
+  mac_address                   String?                         @db.VarChar(255)
+  message_type                  Int?
+  hybrid_json                   Json?
+  lineChartSnapshots            DeviceDailySummaryPerLineChart?
+  latestSnapshots               DeviceLogsLatest?
+
+  @@index([timestamp])
+  @@index([sno])
+  @@index([sno, timestamp])
+  @@map("device_logs")
+}
+
+model DeviceLogsLatest {
+  id              BigInt     @id @default(autoincrement())
+  sno             String     @db.VarChar(255)
+  inverterName String? @map("inverter_name")
+  dayDate         DateTime   @map("day_date") @db.Date
+  latestTimestamp DateTime   @map("latest_timestamp")
+  sourceLogId     BigInt     @unique @map("source_log_id")
+  batchKey        String     @unique @map("batch_key")
+  dailyProduction Int?       @map("daily_production")
+  totalEnergy     Int?       @map("total_energy")
+  totalHours      Int?       @map("total_hours")
+  currentPower    Int?       @map("current_power")
+  createdAt       DateTime   @default(now()) @map("created_at")
+  updatedAt       DateTime   @updatedAt @map("updated_at")
+  sourceLog       DeviceLogs @relation(fields: [sourceLogId], references: [id], onDelete: Cascade)
+
+  @@unique([sno, dayDate])
+  @@index([dayDate])
+  @@index([sno, dayDate])
+  @@index([batchKey])
+  @@map("device_logs_latest")
+}
+
+model DeviceDailySummary {
+  id                   BigInt               @id @default(autoincrement())
+  sno                  String               @db.VarChar(255)
+  dayDate              DateTime             @map("day_date") @db.Date
+  currentPower         Int?                 @map("current_power")
+  eToday               Int?                 @map("e_today")
+  eTotal               Int?                 @map("e_total")
+  hTotal               Int?                 @map("h_total")
+  createdAt            DateTime             @default(now()) @map("created_at")
+  updatedAt            DateTime             @updatedAt @map("updated_at")
+  userPlantInverterMap UserPlantInverterMap @relation(fields: [sno], references: [serialNumber])
+
+  @@unique([sno, dayDate])
+  @@index([dayDate])
+  @@index([sno, dayDate])
+  @@map("device_daily_summary")
+}
+
+model DeviceDailySummaryPerLineChart {
+  id                          BigInt               @id @default(autoincrement())
+  sno                         String               @db.VarChar(255)
+  dayDate                     DateTime             @map("day_date") @db.Date
+  timestamp                   DateTime
+  sourceLogId                 BigInt               @unique @map("source_log_id")
+  lineWindowMinutes           Int                  @default(5) @map("line_window_minutes")
+  maxPoints                   Int                  @default(20) @map("max_points")
+  loggerStatus                String?              @map("logger_status") @db.VarChar(255)
+  connectedPlant              String?              @map("connected_plant") @db.VarChar(255)
+  moduleVersionNo             String?              @map("module_version_no") @db.VarChar(255)
+  extendedSystemVersion       String?              @map("extended_system_version") @db.VarChar(255)
+  dataAcquisitionPeriod       DateTime?            @map("data_acquisition_period")
+  maxConnectedDevices         Int?                 @map("max_connected_devices")
+  signalStrength              Int?                 @map("signal_strength")
+  moduleMacAddress            String?              @map("module_mac_address") @db.VarChar(255)
+  routerSsid                  String?              @map("router_ssid") @db.VarChar(255)
+  inverterType                Int?                 @map("inverter_type")
+  productionComplianceCountry Int?                 @map("production_compliance_country")
+  ratedPower                  Int?                 @map("rated_power")
+  mpptNo                      Int?                 @map("mppt_no")
+  protocolVersion             Int?                 @map("protocol_version")
+  commSoftwareVersion1        Int?                 @map("comm_software_version_1")
+  commSoftwareVersion2        Int?                 @map("comm_software_version_2")
+  controlSoftwareVersion      Int?                 @map("control_software_version")
+  deviceModel                 String?              @map("device_model")
+  firmwareVersion             String?              @map("firmware_version")
+  productionType              Int?                 @map("production_type")
+  dcVoltage1                  Int?                 @map("dc_voltage_1")
+  dcVoltage2                  Int?                 @map("dc_voltage_2")
+  dcVoltage3                  Int?                 @map("dc_voltage_3")
+  dcVoltage4                  Int?                 @map("dc_voltage_4")
+  dcVoltage5                  Int?                 @map("dc_voltage_5")
+  dcVoltage6                  Int?                 @map("dc_voltage_6")
+  dcVoltage7                  Int?                 @map("dc_voltage_7")
+  dcVoltage8                  Int?                 @map("dc_voltage_8")
+  dcVoltage9                  Int?                 @map("dc_voltage_9")
+  dcCurrent1                  Int?                 @map("dc_current_1")
+  dcCurrent2                  Int?                 @map("dc_current_2")
+  dcCurrent3                  Int?                 @map("dc_current_3")
+  dcCurrent4                  Int?                 @map("dc_current_4")
+  dcCurrent5                  Int?                 @map("dc_current_5")
+  dcCurrent6                  Int?                 @map("dc_current_6")
+  dcCurrent7                  Int?                 @map("dc_current_7")
+  dcCurrent8                  Int?                 @map("dc_current_8")
+  dcPower1                    Int?                 @map("dc_power_1")
+  dcPower2                    Int?                 @map("dc_power_2")
+  dcPower3                    Int?                 @map("dc_power_3")
+  dcPower4                    Int?                 @map("dc_power_4")
+  dcPower5                    Int?                 @map("dc_power_5")
+  dcPower6                    Int?                 @map("dc_power_6")
+  dcPower7                    Int?                 @map("dc_power_7")
+  dcPower8                    Int?                 @map("dc_power_8")
+  acVoltageA                  Int?                 @map("ac_voltage_a")
+  acVoltageB                  Int?                 @map("ac_voltage_b")
+  acVoltageC                  Int?                 @map("ac_voltage_c")
+  acCurrentA                  Int?                 @map("ac_current_a")
+  acCurrentB                  Int?                 @map("ac_current_b")
+  acCurrentC                  Int?                 @map("ac_current_c")
+  acPowerA                    Int?                 @map("ac_power_a")
+  acPowerB                    Int?                 @map("ac_power_b")
+  acPowerC                    Int?                 @map("ac_power_c")
+  fault1                      Int?                 @map("fault_1")
+  fault2                      Int?                 @map("fault_2")
+  fault3                      Int?                 @map("fault_3")
+  fault4                      Int?                 @map("fault_4")
+  fault5                      Int?                 @map("fault_5")
+  totalInputPower             Int?                 @map("total_input_power")
+  gridTotalActivePower        Int?                 @map("grid_total_active_power")
+  gridTotalReactivePower      Int?                 @map("grid_total_reactive_power")
+  dailyProduction             Int?                 @map("daily_production")
+  gridStatus                  Int?                 @map("grid_status")
+  inverterStatus              Int?                 @map("inverter_status")
+  acOutputFrequency           Int?                 @map("ac_output_frequency")
+  temperature1                Int?                 @map("temperature_1")
+  temperature2                Int?                 @map("temperature_2")
+  temperature3                Int?                 @map("temperature_3")
+  totalProduction             Int?                 @map("total_production")
+  totalGenerationTime         Int?                 @map("total_generation_time")
+  macAddress                  String?              @map("mac_address") @db.VarChar(255)
+  messageType                 Int?                 @map("message_type")
+  hybridJson                  Json?                @map("hybrid_json")
+  createdAt                   DateTime             @default(now()) @map("created_at")
+  updatedAt                   DateTime             @updatedAt @map("updated_at")
+  userPlantInverterMap        UserPlantInverterMap @relation(fields: [sno], references: [serialNumber])
+  sourceLog                   DeviceLogs           @relation(fields: [sourceLogId], references: [id], onDelete: Cascade)
+
+  @@unique([sno, dayDate, timestamp])
+  @@index([dayDate])
+  @@index([sno, timestamp])
+  @@index([sno, dayDate])
+  @@map("device_daily_summary_per_line_chart")
+}
+
+model information_data {
+  id               BigInt   @id @default(autoincrement())
+  input_power      Float?   @map("Input Power")
+  co2              Float?
+  tree_planting    Float?   @map("Tree Planting")
+  efficiency       Float?
+  weather          String?
+  irradiance       Float?
+  cell_temperature Float?
+  plantid          BigInt
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+  plant            Plant    @relation(fields: [plantid], references: [id])
+
+  @@index([plantid])
+  @@map("information_data")
+}
+
+model fota {
+  id          Int     @unique @default(autoincrement())
+  mac_address String  @id @db.VarChar(50)
+  firmware    String? @db.VarChar(50)
+  link        String? @db.VarChar(255)
+
+  @@map("fota")
+}
+
+model DeviceConnectionStatus {
+  id           BigInt    @id @default(autoincrement())
+  serialNumber String    @unique @map("serial_number") @db.VarChar(255)
+  macAddress   String?   @map("mac_address") @db.VarChar(255)
+  status       String    @db.VarChar(50)
+  lastSeenTime DateTime? @map("lastSeenTime") @db.Timestamptz(6)
+
+  @@index([status], map: "idx_device_connection_status_status")
+  @@map("device_connection_status")
+}
+
+enum UserPortal {
+  monitoring
+  service
+}
+
+enum UserRole {
+  monitoring_user
+  service_admin
+  service_super_admin
+}
+
+enum UserStatus {
+  active
+  disabled
+  pending_verification
+}
+
+enum PlantStatus {
+  Offline
+  Online
+  Abnormal
+  Standby
+}

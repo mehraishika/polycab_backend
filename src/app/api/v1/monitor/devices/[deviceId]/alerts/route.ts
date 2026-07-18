@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 import type { AuthenticatedRequest } from '@/server/middleware/auth.middleware';
 import { requireAuth } from '@/server/middleware/auth.middleware';
 import { withRequestLogging } from '@/server/middleware/request-log.middleware';
-// import { getDeviceCurrentAlerts } from '@/server/services/device.service';
+import { getDeviceCurrentAlerts } from '@/server/services/device.service';
 import { ApiError } from '@/server/utils/api-error';
 import { errorResponse, successResponse } from '@/server/utils/api-response';
 import type { User } from '@/server/utils/auth-helper';
@@ -56,30 +56,30 @@ async function getDeviceCurrentAlertsRoute(
 	const { deviceId } = await context.params;
 
 	try {
-		// const data = await getDeviceCurrentAlerts({
-		// 	user: buildUser(auth),
-		// 	deviceId,
-		// 	plantId: parsedQuery.data.plantId,
-		// 	status: parsedQuery.data.status,
-		// 	page: parsedQuery.data.page,
-		// 	pageSize: parsedQuery.data.pageSize,
-		// 	since: parsedQuery.data.since,
-		// 	sortBy: parsedQuery.data.sortBy,
-		// 	sortOrder: parsedQuery.data.sortOrder,
-		// 	fromService: parsedQuery.data.fromService,
-		// 	targetEndUserId: parsedQuery.data.targetEndUserId,
-		// });
+		const data = await getDeviceCurrentAlerts({
+			user: buildUser(auth),
+			deviceId,
+			plantId: parsedQuery.data.plantId,
+			status: parsedQuery.data.status,
+			page: parsedQuery.data.page,
+			pageSize: parsedQuery.data.pageSize,
+			since: parsedQuery.data.since,
+			sortBy: parsedQuery.data.sortBy,
+			sortOrder: parsedQuery.data.sortOrder,
+			fromService: parsedQuery.data.fromService,
+			targetEndUserId: parsedQuery.data.targetEndUserId,
+		});
 
-		// if (Array.isArray(data.items) && data.items.length === 0) {
-		// 	return successResponse('No current alerts found.', data);
-		// }
+		if (Array.isArray(data.items) && data.items.length === 0) {
+			return successResponse('No current alerts found.', data);
+		}
 
-		// const message = parsedQuery.data.since
-		// 	? 'Device current alerts refreshed successfully.'
-		// 	: 'Device current alerts fetched successfully.';
+		const message = parsedQuery.data.since
+			? 'Device current alerts refreshed successfully.'
+			: 'Device current alerts fetched successfully.';
 
-		// return successResponse(message, data);
-		return successResponse('success', []);
+		return successResponse(message, data);
+		// return successResponse('success', []);
 	} catch (error: unknown) {
 		if (error instanceof ApiError) {
 			return errorResponse(error.message, error.statusCode);
