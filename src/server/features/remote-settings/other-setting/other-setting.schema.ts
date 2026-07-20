@@ -8,9 +8,10 @@ export const otherSettingQuerySchema = z.object({
 });
 
 export const otherSettingSettingsSchema = z.object({
-	afdFunction: z.boolean().optional(),
-	powerOn: z.boolean().optional(),
-	gridVoltageType: z.enum(['Single Phase', 'Three Phase']).optional(),
+	afdFunction: z.number().optional(),
+	powerOn: z.number().optional(),
+	gridVoltageType: z.number().optional(),
+	// gridVoltageType: z.enum(['Single Phase', 'Three Phase']).optional(),
 });
 
 export const otherSettingBodySchema = z.object({

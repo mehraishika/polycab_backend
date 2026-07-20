@@ -9,7 +9,7 @@ export const reactivePowerControlQuerySchema = z.object({
 
 export const reactivePowerControlSettingsSchema = z.object({
 	settingTime: z.number().optional(),
-	mode: z.string().optional(),
+	mode: z.number().optional(),
 });
 
 export const reactivePowerControlBodySchema = z.object({

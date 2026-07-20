@@ -8,25 +8,62 @@ function toInputJson(value: Record<string, unknown>): Prisma.InputJsonValue {
 	return value as Prisma.InputJsonValue;
 }
 
+export async function createReactivePowerReadTask(
+	scope: string[],
+	plantId: string,
+	deviceId: string,
+	createdById: bigint,
+): Promise<{ taskId: bigint }> {
+	await getScopedInverterOrThrow(
+		prisma,
+		scope,
+		plantId,
+		deviceId,
+	);
+
+	const task = await prisma.deviceRemoteSettingTask.create({
+		data: {
+			deviceInverterId: 866192071849342,
+			kind: "settings",
+			tab: TAB,
+			payload: {},
+			status: "pending",
+			createdById,
+		},
+		select: {
+			id: true,
+		},
+	});
+
+	return {
+		taskId: task.id,
+	};
+}
 export async function getReactivePowerControlSettings(
 	scope: string[],
 	plantId: string,
 	deviceId: string,
 ): Promise<{
-	settings: ReactivePowerControlSettings;
 	rawSettings: Prisma.JsonValue | null;
 }> {
 	// ): Promise<ReactivePowerControlSettings> {
-	const inverter = await getScopedInverterOrThrow(prisma, scope, plantId, deviceId);
+	await getScopedInverterOrThrow(prisma, scope, plantId, deviceId);
 
-	const row = await prisma.deviceRemoteSetting.findUnique({
-		where: { deviceInverterId_tab: { deviceInverterId: 866192071837544, tab: TAB } },
-		select: { settings: true },
+	const row = await prisma.deviceRemoteSetting.findFirst({
+		where: {
+			deviceInverterId: 866192071849342,
+			tab: TAB,
+		},
+		orderBy: {
+			createdAt: "desc",
+		},
+		select: {
+			settings: true,
+		},
 	});
 
 	return {
-		settings: (row?.settings as ReactivePowerControlSettings | undefined) ?? {},
-		rawSettings: row?.settings ?? null,
+		rawSettings: row?.settings ?? [],
 	};
 	// return (row?.settings as ReactivePowerControlSettings | undefined) ?? {};
 }
@@ -41,38 +78,24 @@ export async function submitReactivePowerControlSettings(
 	deviceId: string,
 	settings: ReactivePowerControlSettings,
 	updatedById: bigint,
-): Promise<{ taskId: string }> {
+): Promise<{ taskId: bigint }> {
 	const inverter = await getScopedInverterOrThrow(prisma, scope, plantId, deviceId);
 
-	const task = await prisma.$transaction(async (tx) => {
-		const existing = await tx.deviceRemoteSetting.findUnique({
-			where: { deviceInverterId_tab: { deviceInverterId: 866192071837544, tab: TAB } },
-			select: { settings: true },
-		});
-
-		const merged = {
-			...(existing?.settings as ReactivePowerControlSettings | undefined),
-			...settings,
-		};
-
-		await tx.deviceRemoteSetting.upsert({
-			where: { deviceInverterId_tab: { deviceInverterId: 866192071837544, tab: TAB } },
-			create: { deviceInverterId: 866192071837544, tab: TAB, settings: toInputJson(merged), updatedById },
-			update: { settings: toInputJson(merged), updatedById },
-		});
-
-		return tx.deviceRemoteSettingTask.create({
-			data: {
-				deviceInverterId: 866192071837544,
-				kind: 'settings',
-				tab: TAB,
-				payload: toInputJson(settings),
-				status: 'pending',
-				createdById: updatedById,
-			},
-			select: { id: true },
-		});
+	const task = await prisma.deviceRemoteSettingTask.create({
+		data: {
+			deviceInverterId: 866192071849342,
+			kind: "settings",
+			tab: TAB,
+			payload: toInputJson(settings),
+			status: "pending",
+			createdById: updatedById,
+		},
+		select: {
+			id: true,
+		},
 	});
 
-	return { taskId: `task-${String(task.id)}` };
+	return {
+		taskId: task.id,
+	};
 }

@@ -33,9 +33,9 @@ export const gridParametersSettingsSchema = z.object({
 	voltageLowLossLevel2: z.number().optional(),
 	voltageHighLossTimeLevel2: z.number().optional(),
 	voltageLowLossTimeLevel2: z.number().optional(),
-	overFrequencyDeratingFunction: z.boolean().optional(),
-	underFrequencyFunction: z.boolean().optional(),
-	overVoltageDerating: z.boolean().optional(),
+	overFrequencyDeratingFunction: z.number().optional(),
+	underFrequencyFunction: z.number().optional(),
+	overVoltageDerating: z.number().optional(),
 });
 
 export const gridParametersBodySchema = z.object({

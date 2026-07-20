@@ -8,10 +8,14 @@ export const powerLimitQuerySchema = z.object({
 });
 
 export const powerLimitSettingsSchema = z.object({
-	powerControl: z.enum(['Disable', 'Enable']).optional(),
-	meterLocation: z.enum(['Grid side', 'Load side']).optional(),
-	powerFlowDirection: z.enum(['Export', 'Import']).optional(),
-	maxFeedInGridPower: z.number().optional(),
+	powerControl: z.number().optional(),
+	meterLocation: z.number().optional(),
+	powerFlowDirection: z.number().optional(),
+	// powerControl: z.enum(['Disable', 'Enable']).optional(),
+	// meterLocation: z.enum(['Grid side', 'Load side']).optional(),
+	// powerFlowDirection: z.enum(['Export', 'Import']).optional(),
+	maxFeedInGridPower: z.array(z.number()).optional(),
+	// maxFeedInGridPower: z.number().optional(),
 	modbusAddress: z.number().optional(),
 });
 

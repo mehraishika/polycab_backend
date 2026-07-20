@@ -17,7 +17,7 @@ import mqtt from 'mqtt';
 const BROKER_URL = process.env.MQTT_BROKER_URL;
 const USERNAME = process.env.MQTT_USERNAME;
 const PASSWORD = process.env.MQTT_PASSWORD;
-const IMEI = process.env.MQTT_TEST_IMEI || '866192071837544';
+const IMEI = process.env.MQTT_TEST_IMEI || '866192071849342';
 const TOPIC = `polycabsolarwrite/new/gsm/ongrid/log/ec600u/${IMEI}`;
 
 if (!BROKER_URL) {

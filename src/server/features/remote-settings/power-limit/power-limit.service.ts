@@ -5,8 +5,9 @@ import { ApiError } from '@/server/utils/api-error';
 import type { User } from '@/server/utils/auth-helper';
 import { resolveUserScope } from '@/server/utils/scope-resolver';
 import { getReadPattern, getRegisterMap, getWritePattern, pickRegisters } from '../shared/parameter-master';
-import { getPowerLimitSettings, submitPowerLimitSettings } from './power-limit.repository';
+import { getPowerLimitSettings, submitPowerLimitSettings, createPowerLimitReadTask } from './power-limit.repository';
 import type { PowerLimitSettings } from './power-limit.schema';
+import { waitForTask } from "../shared/remote-setting-task.repository";
 
 const TAB = 'powerLimit';
 
@@ -69,13 +70,47 @@ export interface SubmitPowerLimitResult {
 export async function getPowerLimit(params: PowerLimitReadParams): Promise<PowerLimitReadResult> {
 	const scope = await resolveScope(params.user, params.fromService, params.targetEndUserId);
 	// const settings = await getPowerLimitSettings(scope, params.plantId, params.deviceId);
-	const result = await getPowerLimitSettings(scope, params.plantId, params.deviceId);
+	// const result = await getPowerLimitSettings(scope, params.plantId, params.deviceId);
 	const registers = await getRegisterMap(TAB);
 	const read_pattern = await getReadPattern(TAB);
+	const task = await createPowerLimitReadTask(
+		scope,
+		params.plantId,
+		params.deviceId,
+		toBigIntUserId(params.user.userId),
+	);
 	const mqtt_published = await publishRemoteSettingPattern(read_pattern);
 
+	if (!mqtt_published) {
+		throw new ApiError(
+			500,
+			"Failed to publish MQTT read command."
+		);
+	}
+
+	const readResult = await waitForTask(task.taskId);
+
+	if (!readResult.success) {
+		if (readResult.status === "failed") {
+			throw new ApiError(
+				400,
+				"Device rejected the read request."
+			);
+		}
+
+		throw new ApiError(
+			408,
+			"Device did not respond within 2 minutes."
+		);
+	}
+
+	const result = await getPowerLimitSettings(
+		scope,
+		params.plantId,
+		params.deviceId,
+	);
+
 	return {
-		...result.settings,
 		rawSettings: result.rawSettings,
 		registers,
 		read_pattern,
@@ -86,7 +121,7 @@ export async function getPowerLimit(params: PowerLimitReadParams): Promise<Power
 
 export async function submitPowerLimit(params: PowerLimitWriteParams): Promise<SubmitPowerLimitResult> {
 	const scope = await resolveScope(params.user, params.fromService, params.targetEndUserId);
-	const result = await submitPowerLimitSettings(
+	const task = await submitPowerLimitSettings(
 		scope,
 		params.plantId,
 		params.deviceId,
@@ -99,5 +134,30 @@ export async function submitPowerLimit(params: PowerLimitWriteParams): Promise<S
 	const read_pattern = await getReadPattern(TAB);
 	const { pattern: write_pattern, unmappedFields: unmapped_fields } = await getWritePattern(TAB, params.settings);
 	const mqtt_published = await publishRemoteSettingPattern(write_pattern);
-	return { ...result, registers, read_pattern, write_pattern, unmapped_fields, request_data: params.settings, mqtt_published };
+	if (!mqtt_published) {
+		throw new ApiError(500, "Failed to publish MQTT command.");
+	}
+
+	const writeResult = await waitForTask(task.taskId);
+
+	if (!writeResult.success) {
+		if (writeResult.status === "failed") {
+			throw new ApiError(400, "Device rejected the write request.");
+		}
+
+		throw new ApiError(
+			408,
+			"Device did not respond.",
+		);
+	}
+
+	return {
+		taskId: task.taskId.toString(),
+		registers,
+		read_pattern,
+		write_pattern,
+		unmapped_fields,
+		request_data: params.settings,
+		mqtt_published,
+	};
 }

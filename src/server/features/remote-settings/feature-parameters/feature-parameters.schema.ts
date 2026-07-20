@@ -8,9 +8,9 @@ export const featureParametersQuerySchema = z.object({
 });
 
 export const featureParametersSettingsSchema = z.object({
-	faultRideThroughFunction: z.boolean().optional(),
-	islandDetection: z.boolean().optional(),
-	terminalResistor: z.boolean().optional(),
+	faultRideThroughFunction: z.number().optional(),
+	islandDetection: z.number().optional(),
+	terminalResistor: z.number().optional(),
 	deratedPower: z.number().optional(),
 	insulationImpedance: z.number().optional(),
 	leakageCurrentPoint: z.number().optional(),

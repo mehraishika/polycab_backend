@@ -76,6 +76,9 @@ export async function getWritePattern(
 		orderBy: { displayOrder: 'asc' },
 	});
 
+	console.log("TAB:", tab);
+	console.log("Rows:", rows);
+
 	const registerByFieldKey = new Map(rows.map((row) => [row.fieldKey, row]));
 	const entries: string[] = [];
 	const counts: number[] = [];
