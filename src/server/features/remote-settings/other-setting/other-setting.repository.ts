@@ -7,6 +7,8 @@ const TAB = 'otherSetting' as const;
 function toInputJson(value: Record<string, unknown>): Prisma.InputJsonValue {
 	return value as Prisma.InputJsonValue;
 }
+
+const INVERTER_SERIAL_NUMBER = BigInt(process.env.INVERTER_SERIAL_NUMBER!);
 export async function createOtherSettingsReadTask(
 	scope: string[],
 	plantId: string,
@@ -22,7 +24,7 @@ export async function createOtherSettingsReadTask(
 
 	const task = await prisma.deviceRemoteSettingTask.create({
 		data: {
-			deviceInverterId: 866192071849342,
+			deviceInverterId: INVERTER_SERIAL_NUMBER,
 			kind: "settings",
 			tab: TAB,
 			payload: {},
@@ -51,7 +53,7 @@ export async function getOtherSettingSettings(
 
 	const row = await prisma.deviceRemoteSetting.findFirst({
 		where: {
-			deviceInverterId: 866192071849342,
+			deviceInverterId: INVERTER_SERIAL_NUMBER,
 			tab: TAB,
 		},
 		orderBy: {
@@ -83,7 +85,7 @@ export async function submitOtherSettingSettings(
 
 	const task = await prisma.deviceRemoteSettingTask.create({
 		data: {
-			deviceInverterId: 866192071849342,
+			deviceInverterId: INVERTER_SERIAL_NUMBER,
 			kind: "settings",
 			tab: TAB,
 			payload: toInputJson(settings),

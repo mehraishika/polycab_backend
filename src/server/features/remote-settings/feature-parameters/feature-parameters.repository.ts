@@ -7,6 +7,8 @@ const TAB = 'featureParameters' as const;
 function toInputJson(value: Record<string, unknown>): Prisma.InputJsonValue {
 	return value as Prisma.InputJsonValue;
 }
+
+const INVERTER_SERIAL_NUMBER = BigInt(process.env.INVERTER_SERIAL_NUMBER!);
 export async function createfeatureParametersReadTask(
 	scope: string[],
 	plantId: string,
@@ -22,7 +24,7 @@ export async function createfeatureParametersReadTask(
 
 	const task = await prisma.deviceRemoteSettingTask.create({
 		data: {
-			deviceInverterId: 866192071849342,
+			deviceInverterId: INVERTER_SERIAL_NUMBER,
 			kind: "settings",
 			tab: TAB,
 			payload: {},
@@ -50,7 +52,7 @@ export async function getFeatureParametersSettings(
 
 	const row = await prisma.deviceRemoteSetting.findFirst({
 		where: {
-			deviceInverterId: 866192071849342,
+			deviceInverterId: INVERTER_SERIAL_NUMBER,
 			tab: TAB,
 		},
 		orderBy: {
@@ -82,7 +84,7 @@ export async function submitFeatureParametersSettings(
 
 	// const task = await prisma.$transaction(async (tx) => {
 	// 	const existing = await tx.deviceRemoteSetting.findUnique({
-	// 		where: { deviceInverterId_tab: { deviceInverterId: 866192071849342, tab: TAB } },
+	// 		where: { deviceInverterId_tab: { deviceInverterId: INVERTER_SERIAL_NUMBER, tab: TAB } },
 	// 		select: { settings: true },
 	// 	});
 
@@ -92,14 +94,14 @@ export async function submitFeatureParametersSettings(
 	// 	};
 
 	// 	await tx.deviceRemoteSetting.upsert({
-	// 		where: { deviceInverterId_tab: { deviceInverterId: 866192071849342, tab: TAB } },
-	// 		create: { deviceInverterId: 866192071849342, tab: TAB, settings: toInputJson(merged), updatedById },
+	// 		where: { deviceInverterId_tab: { deviceInverterId: INVERTER_SERIAL_NUMBER, tab: TAB } },
+	// 		create: { deviceInverterId: INVERTER_SERIAL_NUMBER, tab: TAB, settings: toInputJson(merged), updatedById },
 	// 		update: { settings: toInputJson(merged), updatedById },
 	// 	});
 
 	// 	return tx.deviceRemoteSettingTask.create({
 	// 		data: {
-	// 			deviceInverterId: 866192071849342,
+	// 			deviceInverterId: INVERTER_SERIAL_NUMBER,
 	// 			kind: 'settings',
 	// 			tab: TAB,
 	// 			payload: toInputJson(settings),
@@ -114,7 +116,7 @@ export async function submitFeatureParametersSettings(
 
 	const task = await prisma.deviceRemoteSettingTask.create({
 		data: {
-			deviceInverterId: 866192071849342,
+			deviceInverterId: INVERTER_SERIAL_NUMBER,
 			kind: "settings",
 			tab: TAB,
 			payload: toInputJson(settings),

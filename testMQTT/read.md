@@ -6,7 +6,7 @@ Runs independently of the Next.js app — plain Node, no build step.
 
 Connects to `119.18.48.66:1883` and subscribes to
 `polycabsolarwrite/new/gsm/ongrid/log/ec600u/<IMEI>` (default IMEI
-`866192071849342`), printing every message received with a timestamp.
+`866192071831604`), printing every message received with a timestamp.
 
 ## Commands
 

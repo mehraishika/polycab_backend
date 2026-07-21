@@ -3,7 +3,7 @@ import { mqttClient } from './client';
 // Hardcoded for testing — every device publishes to the same topic today.
 // Replace with a per-device IMEI lookup once IMEI is tracked in the device
 // schema (DeviceInverter/DeviceConnectionStatus don't have it yet).
-const TEST_IMEI = '866192071849342';
+const TEST_IMEI = '866192071831604';
 
 function buildTopic(imei: string): string {
 	return `polycabsolarwrite/new/gsm/ongrid/log/ec600u/${imei}`;

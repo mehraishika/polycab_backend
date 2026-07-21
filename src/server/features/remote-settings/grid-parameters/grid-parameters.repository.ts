@@ -19,13 +19,13 @@ function toInputJson(value: Record<string, unknown>): Prisma.InputJsonValue {
 // 	const inverter = await getScopedInverterOrThrow(prisma, scope, plantId, deviceId);
 
 // 	// const row = await prisma.deviceRemoteSetting.findUnique({
-// 	// 	where: { deviceInverterId_tab: { deviceInverterId: 866192071849342, tab: TAB } },
+// 	// 	where: { deviceInverterId_tab: { deviceInverterId: INVERTER_SERIAL_NUMBER, tab: TAB } },
 // 	// 	select: { settings: true },
 
 // 	// });
 // 	const row = await prisma.deviceRemoteSetting.findFirst({
 // 		where: {
-// 			deviceInverterId: 866192071849342,
+// 			deviceInverterId: INVERTER_SERIAL_NUMBER,
 // 			tab: TAB,
 // 		},
 // 		orderBy: {
@@ -35,7 +35,7 @@ function toInputJson(value: Record<string, unknown>): Prisma.InputJsonValue {
 // 			settings: true,
 // 		},
 // 	});
-// 	// console.log("Inverter ID =", 866192071849342);
+// 	// console.log("Inverter ID =", INVERTER_SERIAL_NUMBER);
 // 	// console.log("GET ROW =", JSON.stringify(row, null, 2));
 // 	// return (row?.settings as GridParametersSettings | undefined) ?? {};
 // 	return {
@@ -48,6 +48,8 @@ function toInputJson(value: Record<string, unknown>): Prisma.InputJsonValue {
 // change. The stored cache is merged (existing + submitted) so untouched
 // fields survive; the task payload stays scoped to just what was submitted,
 // since that's what actually needs writing to the device this time.
+
+const INVERTER_SERIAL_NUMBER = BigInt(process.env.INVERTER_SERIAL_NUMBER!);
 export async function createGridParametersReadTask(
 	scope: string[],
 	plantId: string,
@@ -63,7 +65,7 @@ export async function createGridParametersReadTask(
 
 	const task = await prisma.deviceRemoteSettingTask.create({
 		data: {
-			deviceInverterId: 866192071849342,
+			deviceInverterId: INVERTER_SERIAL_NUMBER,
 			kind: "settings",
 			tab: TAB,
 			payload: {},
@@ -90,7 +92,7 @@ export async function getGridParametersSettings(
 
 	const row = await prisma.deviceRemoteSetting.findFirst({
 		where: {
-			deviceInverterId: 866192071849342,
+			deviceInverterId: INVERTER_SERIAL_NUMBER,
 			tab: TAB,
 		},
 		orderBy: {
@@ -122,7 +124,7 @@ export async function submitGridParametersSettings(
 
 	const task = await prisma.deviceRemoteSettingTask.create({
 		data: {
-			deviceInverterId: 866192071849342,
+			deviceInverterId: INVERTER_SERIAL_NUMBER,
 			kind: "settings",
 			tab: TAB,
 			payload: toInputJson(settings),
