@@ -8,9 +8,10 @@ import { getReadPattern, getRegisterMap, getWritePattern, pickRegisters } from '
 import {
 	getMaskingFaultDetectionSettings,
 	submitMaskingFaultDetectionSettings,
+	createMaskingFaultDetectionReadTask
 } from './masking-fault-detection.repository';
 import type { MaskingFaultDetectionSettings } from './masking-fault-detection.schema';
-
+import { waitForTask } from "../shared/remote-setting-task.repository";
 const TAB = 'maskingFaultDetection';
 
 async function resolveScope(user: User, fromService?: boolean, targetEndUserId?: string): Promise<string[]> {
@@ -73,14 +74,52 @@ export async function getMaskingFaultDetection(
 	params: MaskingFaultDetectionReadParams,
 ): Promise<MaskingFaultDetectionReadResult> {
 	const scope = await resolveScope(params.user, params.fromService, params.targetEndUserId);
-	const result = await getMaskingFaultDetectionSettings(scope, params.plantId, params.deviceId);
+	// const result = await getMaskingFaultDetectionSettings(scope, params.plantId, params.deviceId);
 	// const settings = await getMaskingFaultDetectionSettings(scope, params.plantId, params.deviceId);
 	const registers = await getRegisterMap(TAB);
 	const read_pattern = await getReadPattern(TAB);
-	const mqtt_published = await publishRemoteSettingPattern(read_pattern);
+	// const mqtt_published = await publishRemoteSettingPattern(read_pattern);
+
+	const task = await createMaskingFaultDetectionReadTask(
+		scope,
+		params.plantId,
+		params.deviceId,
+		toBigIntUserId(params.user.userId),
+	);
+
+	const mqtt_published =
+		await publishRemoteSettingPattern(read_pattern);
+
+	if (!mqtt_published) {
+		throw new ApiError(
+			500,
+			"Failed to publish MQTT read command."
+		);
+	}
+
+	const readResult = await waitForTask(task.taskId);
+
+	if (!readResult.success) {
+		if (readResult.status === "failed") {
+			throw new ApiError(
+				400,
+				"Device rejected the read request."
+			);
+		}
+
+		throw new ApiError(
+			408,
+			"Device did not respond within 2 minutes."
+		);
+	}
+
+	const result = await getMaskingFaultDetectionSettings(
+		scope,
+		params.plantId,
+		params.deviceId,
+	);
 
 	return {
-		...result.settings,
 		rawSettings: result.rawSettings,
 		registers,
 		read_pattern,
@@ -93,7 +132,7 @@ export async function submitMaskingFaultDetection(
 	params: MaskingFaultDetectionWriteParams,
 ): Promise<SubmitMaskingFaultDetectionResult> {
 	const scope = await resolveScope(params.user, params.fromService, params.targetEndUserId);
-	const result = await submitMaskingFaultDetectionSettings(
+	const task = await submitMaskingFaultDetectionSettings(
 		scope,
 		params.plantId,
 		params.deviceId,
@@ -106,5 +145,30 @@ export async function submitMaskingFaultDetection(
 	const read_pattern = await getReadPattern(TAB);
 	const { pattern: write_pattern, unmappedFields: unmapped_fields } = await getWritePattern(TAB, params.settings);
 	const mqtt_published = await publishRemoteSettingPattern(write_pattern);
-	return { ...result, registers, read_pattern, write_pattern, unmapped_fields, request_data: params.settings, mqtt_published };
+	if (!mqtt_published) {
+		throw new ApiError(500, "Failed to publish MQTT command.");
+	}
+
+	const writeResult = await waitForTask(task.taskId);
+
+	if (!writeResult.success) {
+		if (writeResult.status === "failed") {
+			throw new ApiError(400, "Device rejected the write request.");
+		}
+
+		throw new ApiError(
+			408,
+			"Device did not respond.",
+		);
+	}
+
+	return {
+		taskId: task.taskId.toString(),
+		registers,
+		read_pattern,
+		write_pattern,
+		unmapped_fields,
+		request_data: params.settings,
+		mqtt_published,
+	};
 }

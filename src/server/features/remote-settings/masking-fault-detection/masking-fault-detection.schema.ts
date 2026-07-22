@@ -8,18 +8,18 @@ export const maskingFaultDetectionQuerySchema = z.object({
 });
 
 export const maskingFaultDetectionSettingsSchema = z.object({
-	a3: z.boolean().optional(),
-	a4: z.boolean().optional(),
-	b1: z.boolean().optional(),
-	b2: z.boolean().optional(),
-	cl: z.boolean().optional(),
-	b4: z.boolean().optional(),
-	c2: z.boolean().optional(),
-	c3: z.boolean().optional(),
-	cn: z.boolean().optional(),
-	ce: z.boolean().optional(),
-	bb: z.boolean().optional(),
-	a8: z.boolean().optional(),
+	a3: z.number().optional(),
+	a4: z.number().optional(),
+	b1: z.number().optional(),
+	b2: z.number().optional(),
+	cl: z.number().optional(),
+	b4: z.number().optional(),
+	c2: z.number().optional(),
+	c3: z.number().optional(),
+	cn: z.number().optional(),
+	ce: z.number().optional(),
+	bb: z.number().optional(),
+	a8: z.number().optional(),
 });
 
 export const maskingFaultDetectionBodySchema = z.object({

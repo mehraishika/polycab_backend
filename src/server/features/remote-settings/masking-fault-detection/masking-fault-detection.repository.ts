@@ -8,25 +8,62 @@ function toInputJson(value: Record<string, unknown>): Prisma.InputJsonValue {
 	return value as Prisma.InputJsonValue;
 }
 const INVERTER_SERIAL_NUMBER = BigInt(process.env.INVERTER_SERIAL_NUMBER!);
+
+export async function createMaskingFaultDetectionReadTask(
+	scope: string[],
+	plantId: string,
+	deviceId: string,
+	createdById: bigint,
+): Promise<{ taskId: bigint }> {
+	await getScopedInverterOrThrow(
+		prisma,
+		scope,
+		plantId,
+		deviceId,
+	);
+
+	const task = await prisma.deviceRemoteSettingTask.create({
+		data: {
+			deviceInverterId: INVERTER_SERIAL_NUMBER,
+			kind: "settings",
+			tab: TAB,
+			payload: {},
+			status: "pending",
+			createdById,
+		},
+		select: {
+			id: true,
+		},
+	});
+
+	return {
+		taskId: task.id,
+	};
+}
 export async function getMaskingFaultDetectionSettings(
 	scope: string[],
 	plantId: string,
 	deviceId: string,
 ): Promise<{
-	settings: MaskingFaultDetectionSettings;
 	rawSettings: Prisma.JsonValue | null;
 }> {
-	// ): Promise<MaskingFaultDetectionSettings> {
-	const inverter = await getScopedInverterOrThrow(prisma, scope, plantId, deviceId);
+	await getScopedInverterOrThrow(prisma, scope, plantId, deviceId);
 
-	const row = await prisma.deviceRemoteSetting.findUnique({
-		where: { deviceInverterId_tab: { deviceInverterId: INVERTER_SERIAL_NUMBER, tab: TAB } },
-		select: { settings: true },
+	const row = await prisma.deviceRemoteSetting.findFirst({
+		where: {
+			deviceInverterId: INVERTER_SERIAL_NUMBER,
+			tab: TAB,
+		},
+		orderBy: {
+			createdAt: "desc",
+		},
+		select: {
+			settings: true,
+		},
 	});
 
 	return {
-		settings: (row?.settings as MaskingFaultDetectionSettings | undefined) ?? {},
-		rawSettings: row?.settings ?? null,
+		rawSettings: row?.settings ?? [],
 	};
 	// return (row?.settings as MaskingFaultDetectionSettings | undefined) ?? {};
 }
@@ -41,38 +78,24 @@ export async function submitMaskingFaultDetectionSettings(
 	deviceId: string,
 	settings: MaskingFaultDetectionSettings,
 	updatedById: bigint,
-): Promise<{ taskId: string }> {
+): Promise<{ taskId: bigint }> {
 	const inverter = await getScopedInverterOrThrow(prisma, scope, plantId, deviceId);
 
-	const task = await prisma.$transaction(async (tx) => {
-		const existing = await tx.deviceRemoteSetting.findUnique({
-			where: { deviceInverterId_tab: { deviceInverterId: INVERTER_SERIAL_NUMBER, tab: TAB } },
-			select: { settings: true },
-		});
-
-		const merged = {
-			...(existing?.settings as MaskingFaultDetectionSettings | undefined),
-			...settings,
-		};
-
-		await tx.deviceRemoteSetting.upsert({
-			where: { deviceInverterId_tab: { deviceInverterId: INVERTER_SERIAL_NUMBER, tab: TAB } },
-			create: { deviceInverterId: INVERTER_SERIAL_NUMBER, tab: TAB, settings: toInputJson(merged), updatedById },
-			update: { settings: toInputJson(merged), updatedById },
-		});
-
-		return tx.deviceRemoteSettingTask.create({
-			data: {
-				deviceInverterId: INVERTER_SERIAL_NUMBER,
-				kind: 'settings',
-				tab: TAB,
-				payload: toInputJson(settings),
-				status: 'pending',
-				createdById: updatedById,
-			},
-			select: { id: true },
-		});
+	const task = await prisma.deviceRemoteSettingTask.create({
+		data: {
+			deviceInverterId: INVERTER_SERIAL_NUMBER,
+			kind: "settings",
+			tab: TAB,
+			payload: toInputJson(settings),
+			status: "pending",
+			createdById: updatedById,
+		},
+		select: {
+			id: true,
+		},
 	});
 
-	return { taskId: `task-${String(task.id)}` };
+	return {
+		taskId: task.id,
+	};
 }
