@@ -1330,14 +1330,39 @@ export class PlantRepository {
 
   async exportPlantChart(params: PlantChartExportParams) {
     const chart = await this.getPlantChart(params);
-    const plant = await this.getScopedPlantOrThrow(params.scope, params.plantId);
+    const plant = await this.getScopedPlantOrThrow(
+      params.scope,
+      params.plantId,
+    );
+
+    // Get inverter serial numbers in the same order as chart series
+    const devices = await prisma.deviceInverter.findMany({
+      where: {
+        plantId: plant.id,
+        deletedAt: null,
+      },
+      select: {
+        serialNumber: true,
+      },
+      orderBy: {
+        id: "asc",
+      },
+    });
+
     const fileName = "plant-chart.csv";
 
-    const headers = ["time", ...chart.series.map((item) => item.key)];
     const csvEscape = (value: unknown) => {
       const text = String(value ?? "");
+
       return /[",\r\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
     };
+
+    // Use SN instead of inverter1, inverter2, inverter3
+    const headers =
+      params.mode === "total"
+        ? ["time", "total"]
+        : ["time", ...devices.map((device) => device.serialNumber)];
+
     const rows = [
       ["Account", plant.userAccount].map(csvEscape).join(","),
       ["Plant Name", plant.name].map(csvEscape).join(","),
@@ -1347,7 +1372,33 @@ export class PlantRepository {
     for (const point of chart.points as Array<
       Record<string, string | number>
     >) {
-      rows.push(headers.map((header) => csvEscape(point[header])).join(","));
+      const row = headers.map((header) => {
+        // time column
+        if (header === "time") {
+          return csvEscape(point.time);
+        }
+
+        // total mode
+        if (params.mode === "total" && header === "total") {
+          return csvEscape(point.total);
+        }
+
+        // Find inverter index from SN
+        const deviceIndex = devices.findIndex(
+          (device) => device.serialNumber === header,
+        );
+
+        if (deviceIndex === -1) {
+          return "";
+        }
+
+        // Existing chart data still uses inverter1, inverter2, inverter3
+        const inverterKey = `inverter${deviceIndex + 1}`;
+
+        return csvEscape(point[inverterKey]);
+      });
+
+      rows.push(row.join(","));
     }
 
     const query = new URLSearchParams({

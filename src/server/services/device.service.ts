@@ -1547,12 +1547,11 @@ export class DeviceService {
       [],
       ...stringInformation,
       [],
-      // [
-      //   "Time",
-      //   ...Array.from({ length: mpptCount }, (_, index) => `MPPT${index + 1}`),
-      // ],
+      [
+        "Time",
+        ...Array.from({ length: mpptCount }, (_, index) => `MPPT${index + 1}`),
+      ],
     ];
-
     for (const log of snapshot.logs) {
       const logValues = log as unknown as Record<string, unknown>;
       const values = Array.from({ length: mpptCount }, (_, index) => {
