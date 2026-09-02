@@ -172,6 +172,11 @@ export interface PlantDeviceOverviewSnapshot {
   lastUpdateAt: Date;
 }
 
+export type AllPlantsChartParams = {
+  scope: string[];
+  range: "day" | "month" | "year";
+};
+
 export class PlantRepository {
   private formatDateTime(value: Date | null | undefined): string {
     const date = value ?? new Date();
@@ -387,6 +392,49 @@ export class PlantRepository {
     });
 
     return { plant, devices };
+  }
+
+  private async getAllChartDevices(scope: string[]) {
+    const plants = await prisma.plant.findMany({
+      where: {
+        userAccount: {
+          in: scope,
+        },
+      },
+      select: {
+        id: true,
+        name: true,
+      },
+    });
+
+    const plantIds = plants.map((plant) => plant.id);
+
+    if (plantIds.length === 0) {
+      return {
+        plants,
+        devices: [],
+      };
+    }
+
+    const devices = await prisma.deviceInverter.findMany({
+      where: {
+        plantId: {
+          in: plantIds,
+        },
+      },
+      select: {
+        id: true,
+        name: true,
+        type: true,
+        serialNumber: true,
+        plantId: true,
+      },
+    });
+
+    return {
+      plants,
+      devices,
+    };
   }
 
   private async getCurrentAlertsContext(scope: string[], plantId: string) {
@@ -1114,6 +1162,250 @@ export class PlantRepository {
   // 	};
   // }
 
+  async getAllPlantsChart(params: {
+    scope: string[];
+    range: "day" | "month" | "year";
+  }) {
+    const { devices } = await this.getAllChartDevices(params.scope);
+
+    const serialNumbers = devices.map((device) => device.serialNumber);
+
+    if (serialNumbers.length === 0) {
+      return {
+        chartType: params.range === "day" ? "area" : "bar",
+        range: params.range,
+        mode: "total",
+        unit: params.range === "day" ? "W" : "kWh",
+        series: [
+          {
+            id: "total",
+            name: "All Plants",
+          },
+        ],
+        points: [],
+      };
+    }
+
+    const now = new Date();
+
+    /* =========================================================
+       DAY
+       Current date power from all plants/inverters
+       ========================================================= */
+
+    if (params.range === "day") {
+      const startDate = new Date(
+        Date.UTC(
+          now.getUTCFullYear(),
+          now.getUTCMonth(),
+          now.getUTCDate(),
+          0,
+          0,
+          0,
+          0,
+        ),
+      );
+
+      const endDate = new Date(startDate);
+      endDate.setUTCDate(endDate.getUTCDate() + 1);
+
+      const logs = await prisma.deviceLogs.findMany({
+        where: {
+          sno: {
+            in: serialNumbers,
+          },
+          timestamp: {
+            gte: startDate,
+            lt: endDate,
+          },
+        },
+        orderBy: {
+          timestamp: "asc",
+        },
+      });
+
+      /*
+       * Multiple inverters can have the same timestamp.
+       * Group them by timestamp and sum their power.
+       */
+
+      const grouped = new Map<string, number>();
+
+      for (const log of logs) {
+        const timestamp = new Date(log.timestamp).getTime();
+
+        const current = grouped.get(String(timestamp)) ?? 0;
+
+        grouped.set(
+          String(timestamp),
+          current + Number(log.total_input_power ?? 0),
+        );
+      }
+
+      const points = Array.from(grouped.entries()).map(
+        ([timestamp, power]) => ({
+          time: this.formatDateTime(new Date(Number(timestamp))),
+          total: power,
+        }),
+      );
+
+      return {
+        chartType: "area",
+        range: "day",
+        mode: "total",
+        unit: "W",
+        series: [
+          {
+            id: "total",
+            name: "All Plants",
+          },
+        ],
+        points,
+      };
+    }
+
+    /* =========================================================
+       MONTH
+       Current month daily production
+       ========================================================= */
+
+    if (params.range === "month") {
+      const year = now.getFullYear();
+      const month = now.getMonth();
+
+      const startDate = new Date(year, month, 1);
+
+      const endDate = new Date(year, month + 1, 1);
+
+      const latestLogs = await prisma.deviceLogsLatest.findMany({
+        where: {
+          sno: {
+            in: serialNumbers,
+          },
+          dayDate: {
+            gte: startDate,
+            lt: endDate,
+          },
+        },
+        orderBy: {
+          dayDate: "asc",
+        },
+      });
+
+      const today = now.getDate();
+
+      const points = Array.from({ length: today }, (_, index) => {
+        const day = index + 1;
+
+        const dayLogs = latestLogs.filter(
+          (log) => new Date(log.dayDate).getDate() === day,
+        );
+
+        const total = dayLogs.reduce(
+          (sum, log) => sum + this.decimalToNumber(log.dailyProduction ?? 0),
+          0,
+        );
+
+        const roundedTotal = Number(total.toFixed(2));
+
+        return {
+          time: `Day ${day}`,
+          total: roundedTotal,
+        };
+      });
+
+      return {
+        chartType: "bar",
+        range: "month",
+        mode: "total",
+        unit: "kWh",
+        series: [
+          {
+            id: "total",
+            name: "All Plants",
+          },
+        ],
+        points,
+      };
+    }
+
+    /* =========================================================
+       YEAR
+       Current year monthly production
+       ========================================================= */
+
+    const year = now.getFullYear();
+
+    const startDate = new Date(year, 0, 1);
+
+    const endDate = new Date(year + 1, 0, 1);
+
+    const latestLogs = await prisma.deviceLogsLatest.findMany({
+      where: {
+        sno: {
+          in: serialNumbers,
+        },
+        dayDate: {
+          gte: startDate,
+          lt: endDate,
+        },
+      },
+    });
+
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const currentMonth = now.getMonth();
+
+    const points = months
+      .slice(0, currentMonth + 1)
+      .map((monthName, monthIndex) => {
+        const monthLogs = latestLogs.filter((log) => {
+          const date = new Date(log.dayDate);
+
+          return date.getFullYear() === year && date.getMonth() === monthIndex;
+        });
+
+        const total = monthLogs.reduce(
+          (sum, log) => sum + this.decimalToNumber(log.dailyProduction ?? 0),
+          0,
+        );
+
+        const roundedTotal = Number(total.toFixed(2));
+
+        return {
+          time: monthName,
+          total: roundedTotal,
+        };
+      });
+
+    return {
+      chartType: "bar",
+      range: "year",
+      mode: "total",
+      unit: "kWh",
+      series: [
+        {
+          id: "total",
+          name: "All Plants",
+        },
+      ],
+      points,
+    };
+  }
+
   async getPlantChart(params: PlantChartParams) {
     const { devices } = await this.getChartContext(
       params.scope,
@@ -1138,6 +1430,9 @@ export class PlantRepository {
     if (isNaN(baseDate.getTime())) {
       throw new ApiError(400, "Invalid date");
     }
+    const startDate = new Date(`${params.date}T00:00:00.000Z`);
+    const endDate = new Date(`${params.date}T00:00:00.000Z`);
+    endDate.setUTCDate(endDate.getUTCDate() + 1);
 
     const series = this.buildChartSeries(params.mode, devices);
 
@@ -1159,7 +1454,7 @@ export class PlantRepository {
           },
           timestamp: {
             gte: startDate,
-            lt: endDate,
+            lte: endDate,
           },
         },
         orderBy: {
@@ -1322,7 +1617,7 @@ export class PlantRepository {
       chartType: params.range === "day" ? "area" : "bar",
       range: params.range,
       mode: params.mode,
-      unit: params.range === "day" ? "kW" : "kWh",
+      unit: params.range === "day" ? "W" : "kWh",
       series,
       points,
     };
@@ -2135,7 +2430,9 @@ export class PlantRepository {
           pictureFileId: plant.pictureFileId,
 
           pictureUrl: plant.pictureFileId
-            ? `/${plant.pictureFileId.replace(/^\/+/, "")}`
+            ? `https://api.solarlogger.in/api/v1/uploads/plants/${encodeURIComponent(
+                plant.pictureFileId.split("/").pop()!,
+              )}`
             : null,
 
           eToday: {
@@ -2288,9 +2585,7 @@ export class PlantRepository {
 
       items: data.items,
     };
-  }
-
-  // async getPlantSummary(params: PlantSummaryParams) {
+  } // async getPlantSummary(params: PlantSummaryParams) {
   // 	const { scope, search } = params;
 
   // 	if (!scope || scope.length === 0) {

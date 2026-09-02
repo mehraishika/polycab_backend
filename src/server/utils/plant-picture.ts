@@ -21,7 +21,8 @@ export async function savePlantPicture(file: File): Promise<string> {
   const extension = path.extname(file.name).toLowerCase() ||
     (file.type === "image/png" ? ".png" : file.type === "image/webp" ? ".webp" : ".jpg");
   const fileName = `${randomUUID()}${extension}`;
-  const storageDirectory = path.join(process.cwd(), "uploads", "plants");
+  const storageDirectory = path.join(process.cwd(), "public", "uploads", "plants");
+  // const storageDirectory = path.join(process.cwd(), "uploads", "plants");
   const relativePath = path.posix.join("uploads", "plants", fileName);
 
   await mkdir(storageDirectory, { recursive: true });

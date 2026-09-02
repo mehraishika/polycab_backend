@@ -12,16 +12,35 @@ export const loginSchema = z.object({
 export const registerSchema = z
 	.object({
 		account: z.string().trim().min(1, 'Account is required'),
+
 		password: z.string().min(8, 'Password must be at least 8 characters'),
+
 		confirmPassword: z
 			.string()
 			.min(8, 'Confirm password must be at least 8 characters'),
+
 		email: z.string().trim().email('Email must be valid'),
+
 		timezone: z.string().trim().min(1, 'Timezone is required'),
+
 		verificationCode: z
 			.string()
 			.trim()
 			.min(1, 'Verification code is required'),
+
+		// EPC Details
+		epcCompany: z.string().trim().min(1, 'EPC company is required'),
+
+		epcInstaller: z.string().trim().min(1, 'EPC installer is required'),
+
+		epcMobile: z
+			.string()
+			.trim()
+			.regex(/^\d{10}$/, 'EPC mobile must be exactly 10 digits'),
+
+		epcEmail: z.string().trim().email('EPC email must be valid'),
+
+		epcAddress: z.string().trim().min(1, 'EPC address is required'),
 	})
 	.refine((data) => data.password === data.confirmPassword, {
 		message: 'Password and confirm password must match',

@@ -23,10 +23,14 @@ interface LoginUserData {
   portal: string;
 }
 
-interface NumericMetric {
+// interface NumericMetric {
+//   value: number;
+//   unit: "kW" | "kWh";
+// }
+type NumericMetric = {
   value: number;
-  unit: "kW" | "kWh";
-}
+  unit: "W" | "kW" | "kWh";
+};
 
 interface RowStatus {
   online: number;

@@ -54,6 +54,11 @@ export type UserMinAggregateOutputType = {
   updatedAt: Date | null
   isDeleted: boolean | null
   deletedAt: Date | null
+  epcCompany: string | null
+  epcInstaller: string | null
+  epcMobile: string | null
+  epcEmail: string | null
+  epcAddress: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -74,6 +79,11 @@ export type UserMaxAggregateOutputType = {
   updatedAt: Date | null
   isDeleted: boolean | null
   deletedAt: Date | null
+  epcCompany: string | null
+  epcInstaller: string | null
+  epcMobile: string | null
+  epcEmail: string | null
+  epcAddress: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -94,6 +104,11 @@ export type UserCountAggregateOutputType = {
   updatedAt: number
   isDeleted: number
   deletedAt: number
+  epcCompany: number
+  epcInstaller: number
+  epcMobile: number
+  epcEmail: number
+  epcAddress: number
   _all: number
 }
 
@@ -126,6 +141,11 @@ export type UserMinAggregateInputType = {
   updatedAt?: true
   isDeleted?: true
   deletedAt?: true
+  epcCompany?: true
+  epcInstaller?: true
+  epcMobile?: true
+  epcEmail?: true
+  epcAddress?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -146,6 +166,11 @@ export type UserMaxAggregateInputType = {
   updatedAt?: true
   isDeleted?: true
   deletedAt?: true
+  epcCompany?: true
+  epcInstaller?: true
+  epcMobile?: true
+  epcEmail?: true
+  epcAddress?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -166,6 +191,11 @@ export type UserCountAggregateInputType = {
   updatedAt?: true
   isDeleted?: true
   deletedAt?: true
+  epcCompany?: true
+  epcInstaller?: true
+  epcMobile?: true
+  epcEmail?: true
+  epcAddress?: true
   _all?: true
 }
 
@@ -273,6 +303,11 @@ export type UserGroupByOutputType = {
   updatedAt: Date
   isDeleted: boolean
   deletedAt: Date | null
+  epcCompany: string | null
+  epcInstaller: string | null
+  epcMobile: string | null
+  epcEmail: string | null
+  epcAddress: string | null
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -316,6 +351,11 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isDeleted?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  epcCompany?: Prisma.StringNullableFilter<"User"> | string | null
+  epcInstaller?: Prisma.StringNullableFilter<"User"> | string | null
+  epcMobile?: Prisma.StringNullableFilter<"User"> | string | null
+  epcEmail?: Prisma.StringNullableFilter<"User"> | string | null
+  epcAddress?: Prisma.StringNullableFilter<"User"> | string | null
   plants?: Prisma.PlantListRelationFilter
   plantInverterMaps?: Prisma.UserPlantInverterMapListRelationFilter
   assignedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -343,6 +383,11 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcCompany?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcInstaller?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcMobile?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcEmail?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   plants?: Prisma.PlantOrderByRelationAggregateInput
   plantInverterMaps?: Prisma.UserPlantInverterMapOrderByRelationAggregateInput
   assignedBy?: Prisma.UserOrderByWithRelationInput
@@ -374,6 +419,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isDeleted?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  epcCompany?: Prisma.StringNullableFilter<"User"> | string | null
+  epcInstaller?: Prisma.StringNullableFilter<"User"> | string | null
+  epcMobile?: Prisma.StringNullableFilter<"User"> | string | null
+  epcEmail?: Prisma.StringNullableFilter<"User"> | string | null
+  epcAddress?: Prisma.StringNullableFilter<"User"> | string | null
   plants?: Prisma.PlantListRelationFilter
   plantInverterMaps?: Prisma.UserPlantInverterMapListRelationFilter
   assignedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -401,6 +451,11 @@ export type UserOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcCompany?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcInstaller?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcMobile?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcEmail?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -429,6 +484,11 @@ export type UserScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   isDeleted?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  epcCompany?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  epcInstaller?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  epcMobile?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  epcEmail?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  epcAddress?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
@@ -448,6 +508,11 @@ export type UserCreateInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantCreateNestedManyWithoutUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
   assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
@@ -475,6 +540,11 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
   assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
@@ -500,6 +570,11 @@ export type UserUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
   assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
@@ -527,6 +602,11 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
   assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -553,6 +633,11 @@ export type UserCreateManyInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -572,6 +657,11 @@ export type UserUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -592,6 +682,11 @@ export type UserUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserNullableScalarRelationFilter = {
@@ -632,6 +727,11 @@ export type UserCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  epcCompany?: Prisma.SortOrder
+  epcInstaller?: Prisma.SortOrder
+  epcMobile?: Prisma.SortOrder
+  epcEmail?: Prisma.SortOrder
+  epcAddress?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -657,6 +757,11 @@ export type UserMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  epcCompany?: Prisma.SortOrder
+  epcInstaller?: Prisma.SortOrder
+  epcMobile?: Prisma.SortOrder
+  epcEmail?: Prisma.SortOrder
+  epcAddress?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -677,6 +782,11 @@ export type UserMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  epcCompany?: Prisma.SortOrder
+  epcInstaller?: Prisma.SortOrder
+  epcMobile?: Prisma.SortOrder
+  epcEmail?: Prisma.SortOrder
+  epcAddress?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -886,6 +996,11 @@ export type UserCreateWithoutAssignedUsersInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantCreateNestedManyWithoutUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
   assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
@@ -912,6 +1027,11 @@ export type UserUncheckedCreateWithoutAssignedUsersInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
   firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
@@ -941,6 +1061,11 @@ export type UserCreateWithoutAssignedByInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantCreateNestedManyWithoutUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
   assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
@@ -966,6 +1091,11 @@ export type UserUncheckedCreateWithoutAssignedByInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
   assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
@@ -1012,6 +1142,11 @@ export type UserUpdateWithoutAssignedUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
   assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
@@ -1038,6 +1173,11 @@ export type UserUncheckedUpdateWithoutAssignedUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
   firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -1082,6 +1222,11 @@ export type UserScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isDeleted?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  epcCompany?: Prisma.StringNullableFilter<"User"> | string | null
+  epcInstaller?: Prisma.StringNullableFilter<"User"> | string | null
+  epcMobile?: Prisma.StringNullableFilter<"User"> | string | null
+  epcEmail?: Prisma.StringNullableFilter<"User"> | string | null
+  epcAddress?: Prisma.StringNullableFilter<"User"> | string | null
 }
 
 export type UserCreateWithoutPlantsInput = {
@@ -1101,6 +1246,11 @@ export type UserCreateWithoutPlantsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
   assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
   assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
@@ -1127,6 +1277,11 @@ export type UserUncheckedCreateWithoutPlantsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
   assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
@@ -1167,6 +1322,11 @@ export type UserUpdateWithoutPlantsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
   assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
   assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
@@ -1193,6 +1353,11 @@ export type UserUncheckedUpdateWithoutPlantsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
   assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -1217,6 +1382,11 @@ export type UserCreateWithoutPlantInverterMapsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantCreateNestedManyWithoutUserInput
   assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
   assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
@@ -1243,6 +1413,11 @@ export type UserUncheckedCreateWithoutPlantInverterMapsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
   assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
@@ -1283,6 +1458,11 @@ export type UserUpdateWithoutPlantInverterMapsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
   assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
   assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
@@ -1309,6 +1489,11 @@ export type UserUncheckedUpdateWithoutPlantInverterMapsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
   assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -1333,6 +1518,11 @@ export type UserCreateWithoutFirmwaresCreatedInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantCreateNestedManyWithoutUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
   assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
@@ -1359,6 +1549,11 @@ export type UserUncheckedCreateWithoutFirmwaresCreatedInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
   assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
@@ -1399,6 +1594,11 @@ export type UserUpdateWithoutFirmwaresCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
   assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
@@ -1425,6 +1625,11 @@ export type UserUncheckedUpdateWithoutFirmwaresCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
   assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -1449,6 +1654,11 @@ export type UserCreateWithoutUpgradeTasksInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantCreateNestedManyWithoutUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
   assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
@@ -1475,6 +1685,11 @@ export type UserUncheckedCreateWithoutUpgradeTasksInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
   assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
@@ -1515,6 +1730,11 @@ export type UserUpdateWithoutUpgradeTasksInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
   assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
@@ -1541,6 +1761,11 @@ export type UserUncheckedUpdateWithoutUpgradeTasksInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
   assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -1565,6 +1790,11 @@ export type UserCreateWithoutStartedFotaJobsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantCreateNestedManyWithoutUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
   assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
@@ -1591,6 +1821,11 @@ export type UserUncheckedCreateWithoutStartedFotaJobsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
   plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
   assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
@@ -1631,6 +1866,11 @@ export type UserUpdateWithoutStartedFotaJobsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
   assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
@@ -1657,6 +1897,11 @@ export type UserUncheckedUpdateWithoutStartedFotaJobsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
   assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -1681,6 +1926,11 @@ export type UserCreateManyAssignedByInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcCompany?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  epcEmail?: string | null
+  epcAddress?: string | null
 }
 
 export type UserUpdateWithoutAssignedByInput = {
@@ -1700,6 +1950,11 @@ export type UserUpdateWithoutAssignedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
   assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
@@ -1725,6 +1980,11 @@ export type UserUncheckedUpdateWithoutAssignedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
   assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
@@ -1750,6 +2010,11 @@ export type UserUncheckedUpdateManyWithoutAssignedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1846,6 +2111,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
+  epcCompany?: boolean
+  epcInstaller?: boolean
+  epcMobile?: boolean
+  epcEmail?: boolean
+  epcAddress?: boolean
   plants?: boolean | Prisma.User$plantsArgs<ExtArgs>
   plantInverterMaps?: boolean | Prisma.User$plantInverterMapsArgs<ExtArgs>
   assignedBy?: boolean | Prisma.User$assignedByArgs<ExtArgs>
@@ -1874,6 +2144,11 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
+  epcCompany?: boolean
+  epcInstaller?: boolean
+  epcMobile?: boolean
+  epcEmail?: boolean
+  epcAddress?: boolean
   assignedBy?: boolean | Prisma.User$assignedByArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1895,6 +2170,11 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
+  epcCompany?: boolean
+  epcInstaller?: boolean
+  epcMobile?: boolean
+  epcEmail?: boolean
+  epcAddress?: boolean
   assignedBy?: boolean | Prisma.User$assignedByArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1916,9 +2196,14 @@ export type UserSelectScalar = {
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
+  epcCompany?: boolean
+  epcInstaller?: boolean
+  epcMobile?: boolean
+  epcEmail?: boolean
+  epcAddress?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "account" | "email" | "passwordHash" | "portal" | "role" | "status" | "assignedById" | "timezone" | "phone" | "address" | "emailVerifiedAt" | "lastLoginAt" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "account" | "email" | "passwordHash" | "portal" | "role" | "status" | "assignedById" | "timezone" | "phone" | "address" | "emailVerifiedAt" | "lastLoginAt" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "epcCompany" | "epcInstaller" | "epcMobile" | "epcEmail" | "epcAddress", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   plants?: boolean | Prisma.User$plantsArgs<ExtArgs>
   plantInverterMaps?: boolean | Prisma.User$plantInverterMapsArgs<ExtArgs>
@@ -1965,6 +2250,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     updatedAt: Date
     isDeleted: boolean
     deletedAt: Date | null
+    epcCompany: string | null
+    epcInstaller: string | null
+    epcMobile: string | null
+    epcEmail: string | null
+    epcAddress: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -2412,6 +2702,11 @@ export interface UserFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly isDeleted: Prisma.FieldRef<"User", 'Boolean'>
   readonly deletedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly epcCompany: Prisma.FieldRef<"User", 'String'>
+  readonly epcInstaller: Prisma.FieldRef<"User", 'String'>
+  readonly epcMobile: Prisma.FieldRef<"User", 'String'>
+  readonly epcEmail: Prisma.FieldRef<"User", 'String'>
+  readonly epcAddress: Prisma.FieldRef<"User", 'String'>
 }
     
 

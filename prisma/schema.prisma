@@ -25,6 +25,15 @@ model User {
   updatedAt         DateTime               @updatedAt @map("updated_at")
   isDeleted         Boolean                @default(false)
   deletedAt         DateTime?
+
+  // EPC Details 
+  epcCompany String? @map("epc_company") 
+  epcInstaller String? @map("epc_installer") 
+  epcMobile String? @map("epc_mobile") 
+  epcEmail String? @map("epc_email") 
+  epcAddress String? @map("epc_address")
+
+  
   plants            Plant[]
   plantInverterMaps UserPlantInverterMap[]
   assignedBy        User?                  @relation("UserAssignment", fields: [assignedById], references: [id])

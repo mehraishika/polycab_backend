@@ -28,7 +28,7 @@ function mapRecord(record: NonNullable<AuthUserRecord>): AuthAccountRecord {
 }
 
 export class AuthRepository {
-	constructor(private readonly dbClient: PrismaClient = prisma) {}
+	constructor(private readonly dbClient: PrismaClient = prisma) { }
 
 	async findByPortalAndAccount(
 		portal: Portal,
@@ -76,6 +76,12 @@ export class AuthRepository {
 		email: string;
 		timezone: string;
 		passwordHash: string;
+
+		epcCompany: string;
+		epcInstaller: string;
+		epcMobile: string;
+		epcEmail: string;
+		epcAddress: string;
 	}): Promise<AuthAccountRecord> {
 		const record = await this.dbClient.user.create({
 			data: {
@@ -85,6 +91,13 @@ export class AuthRepository {
 				email: input.email,
 				timezone: input.timezone,
 				passwordHash: input.passwordHash,
+
+				epcCompany: input.epcCompany,
+				epcInstaller: input.epcInstaller,
+				epcMobile: input.epcMobile,
+				epcEmail: input.epcEmail,
+				epcAddress: input.epcAddress,
+
 			},
 		});
 

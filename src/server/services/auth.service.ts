@@ -97,7 +97,7 @@ function resolveRedirect(portal: AuthPortal): string {
 }
 
 export class AuthService {
-	constructor(private readonly authRepository: AuthRepository = new AuthRepository()) {}
+	constructor(private readonly authRepository: AuthRepository = new AuthRepository()) { }
 
 	async login(input: LoginInput): Promise<LoginServiceResult> {
 		const accessSecret = getAccessTokenSecret();
@@ -225,6 +225,12 @@ export class AuthService {
 				email: input.email,
 				timezone: input.timezone,
 				passwordHash,
+
+				epcCompany: input.epcCompany,
+				epcInstaller: input.epcInstaller,
+				epcMobile: input.epcMobile,
+				epcEmail: input.epcEmail,
+				epcAddress: input.epcAddress,
 			});
 
 			return {

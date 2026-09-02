@@ -594,6 +594,11 @@ export class DeviceService {
         value: String(log.signal_strength ?? 0),
       },
       {
+        key: "routerSsid",
+        label: "Router SSID",
+        value: log.router_ssid ?? "-",
+      },
+      {
         key: "communicationModuleStatus",
         label: "Communication Module Status",
         value: log.logger_status ?? "-",

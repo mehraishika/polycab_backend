@@ -16,6 +16,7 @@ import {
   type PlantSummaryParams,
   type PlantLogsParams,
   type PlantLogsExportParams,
+  AllPlantsChartParams,
   type PlantDeviceOverviewParams,
   type PlantDeviceOverviewLiveParams,
   type PlantDeviceOverviewSnapshot,
@@ -258,7 +259,7 @@ class PlantService {
       telemetryRows.reduce(
         (sum, row) => sum + Number(row.currentPower ?? 0),
         0,
-      ) / 1000;
+      );
 
     const totalEnergyKwh = telemetryRows.reduce(
       (sum, row) => sum + Number(row.totalEnergy ?? 0),
@@ -445,6 +446,10 @@ class PlantService {
 
   getPlantChart(params: PlantChartParams) {
     return this.plantRepository.getPlantChart(params);
+  }
+  
+    getAllPlantsChart(params: AllPlantsChartParams) {
+    return this.plantRepository.getAllPlantsChart(params);
   }
 
   exportPlantChart(params: PlantChartExportParams) {
@@ -890,6 +895,10 @@ export async function getPlantAnalysis(params: PlantAnalysisParams) {
  */
 export async function getPlantChart(params: PlantChartParams) {
   return plantService.getPlantChart(params);
+}
+
+export async function getAllPlantsChart(params: AllPlantsChartParams) {
+  return plantService.getAllPlantsChart(params);
 }
 
 /**

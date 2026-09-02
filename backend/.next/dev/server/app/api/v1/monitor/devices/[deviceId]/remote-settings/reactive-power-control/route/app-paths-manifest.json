@@ -1,3 +1,0 @@
-{
-  "/api/v1/monitor/devices/[deviceId]/remote-settings/reactive-power-control/route": "app/api/v1/monitor/devices/[deviceId]/remote-settings/reactive-power-control/route.js"
-}
