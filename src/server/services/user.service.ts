@@ -1010,10 +1010,9 @@ export class UserService {
     }
 
     try {
-      const passwordHash =
-        input.password?.trim().length
-          ? await hashPassword(input.password)
-          : undefined;
+      const passwordHash = input.password?.trim().length
+        ? await hashPassword(input.password)
+        : undefined;
 
       const updated = await this.userRepository.updateScopedServiceAdminById(
         id,

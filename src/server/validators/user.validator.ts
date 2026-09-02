@@ -165,6 +165,11 @@ export const UpdateProfileValidator = z.object({
   phone: z.string().trim().nullable().optional(),
   address: z.string().trim().nullable().optional(),
   timezone: z.string().trim().nullable().optional(),
+  epcCompany: z.string().trim().nullable().optional(),
+  epcInstaller: z.string().trim().nullable().optional(),
+  epcMobile: z.string().trim().nullable().optional(),
+  epcEmail: z.string().trim().nullable().optional(),
+  epcAddress: z.string().trim().nullable().optional(),
 });
 
 export const searchMonitoringUserSchema = z.object({
