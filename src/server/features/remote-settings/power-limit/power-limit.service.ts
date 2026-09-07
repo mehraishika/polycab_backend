@@ -39,15 +39,14 @@ function toBigIntUserId(userId: string): bigint {
 
 export interface PowerLimitReadParams {
 	user: User;
-	deviceId: string;
-	plantId: string;
+	sn: string;
 	fromService?: boolean;
 	targetEndUserId?: string;
 }
 
 export interface PowerLimitWriteParams extends PowerLimitReadParams {
 	settings: PowerLimitSettings;
-	sn?: string;
+	// sn?: string;
 }
 
 export type PowerLimitReadResult = PowerLimitSettings & {
@@ -75,8 +74,7 @@ export async function getPowerLimit(params: PowerLimitReadParams): Promise<Power
 	const read_pattern = await getReadPattern(TAB);
 	const task = await createPowerLimitReadTask(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		toBigIntUserId(params.user.userId),
 	);
 	const mqtt_published = await publishRemoteSettingPattern(task.macAddress,read_pattern);
@@ -106,8 +104,7 @@ export async function getPowerLimit(params: PowerLimitReadParams): Promise<Power
 
 	const result = await getPowerLimitSettings(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 	);
 
 	return {
@@ -123,8 +120,7 @@ export async function submitPowerLimit(params: PowerLimitWriteParams): Promise<S
 	const scope = await resolveScope(params.user, params.fromService, params.targetEndUserId);
 	const task = await submitPowerLimitSettings(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		params.settings,
 		toBigIntUserId(params.user.userId),
 	);

@@ -12,8 +12,7 @@ const INVERTER_SERIAL_NUMBER = BigInt(process.env.INVERTER_SERIAL_NUMBER!);
 
 export async function createPowerLimitReadTask(
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 	createdById: bigint,
 ): Promise<{
     taskId: bigint;
@@ -22,8 +21,7 @@ export async function createPowerLimitReadTask(
 	const inverter = await getScopedInverterOrThrow(
 		prisma,
 		scope,
-		plantId,
-		deviceId,
+		sn,
 	);
 
 	const task = await prisma.deviceRemoteSettingTask.create({
@@ -48,13 +46,12 @@ export async function createPowerLimitReadTask(
 
 export async function getPowerLimitSettings(
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 ): Promise<{
 	rawSettings: Prisma.JsonValue | null;
 }> {
 	// ): Promise<PowerLimitSettings> {
-	const inverter = await getScopedInverterOrThrow(prisma, scope, plantId, deviceId);
+	const inverter = await getScopedInverterOrThrow(prisma, scope, sn,);
 
 	const row = await prisma.deviceRemoteSetting.findFirst({
 		where: {
@@ -81,8 +78,7 @@ export async function getPowerLimitSettings(
 // since that's what actually needs writing to the device this time.
 export async function submitPowerLimitSettings(
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 	settings: PowerLimitSettings,
 	updatedById: bigint,
 ): Promise<{
@@ -92,8 +88,7 @@ export async function submitPowerLimitSettings(
 	const inverter = await getScopedInverterOrThrow(
 		prisma,
 		scope,
-		plantId,
-		deviceId,
+		sn,
 	);
 
 	const task = await prisma.deviceRemoteSettingTask.create({

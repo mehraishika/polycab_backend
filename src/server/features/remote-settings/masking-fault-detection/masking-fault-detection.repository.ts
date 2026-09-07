@@ -11,8 +11,7 @@ const INVERTER_SERIAL_NUMBER = BigInt(process.env.INVERTER_SERIAL_NUMBER!);
 
 export async function createMaskingFaultDetectionReadTask(
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 	createdById: bigint,
 ): Promise<{
     taskId: bigint;
@@ -21,8 +20,7 @@ export async function createMaskingFaultDetectionReadTask(
 	const inverter = await getScopedInverterOrThrow(
 		prisma,
 		scope,
-		plantId,
-		deviceId,
+		sn,
 	);
 
 	const task = await prisma.deviceRemoteSettingTask.create({
@@ -46,12 +44,11 @@ export async function createMaskingFaultDetectionReadTask(
 }
 export async function getMaskingFaultDetectionSettings(
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 ): Promise<{
 	rawSettings: Prisma.JsonValue | null;
 }> {
-	const inverter = await getScopedInverterOrThrow(prisma, scope, plantId, deviceId);
+	const inverter = await getScopedInverterOrThrow(prisma, scope, sn,);
 
 	const row = await prisma.deviceRemoteSetting.findFirst({
 		where: {
@@ -78,15 +75,14 @@ export async function getMaskingFaultDetectionSettings(
 // since that's what actually needs writing to the device this time.
 export async function submitMaskingFaultDetectionSettings(
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 	settings: MaskingFaultDetectionSettings,
 	updatedById: bigint,
 ): Promise<{
     taskId: bigint;
     macAddress: string;
 }> {
-	const inverter = await getScopedInverterOrThrow(prisma, scope, plantId, deviceId);
+	const inverter = await getScopedInverterOrThrow(prisma, scope, sn,);
 
 	const task = await prisma.deviceRemoteSettingTask.create({
 		data: {

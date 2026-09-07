@@ -4,18 +4,21 @@ import type { AuthenticatedRequest } from '@/server/middleware/auth.middleware';
 import { requireAuth } from '@/server/middleware/auth.middleware';
 import { withRequestLogging } from '@/server/middleware/request-log.middleware';
 import {
-	getGridParameters,
-	submitGridParameters,
-} from '@/server/features/remote-settings/grid-parameters/grid-parameters.service';
+	getPowerLimit,
+	submitPowerLimit,
+} from '@/server/features/remote-settings/power-limit/power-limit.service';
 import {
-	gridParametersBodySchema,
-	gridParametersQuerySchema,
-} from '@/server/features/remote-settings/grid-parameters/grid-parameters.schema';
+	powerLimitBodySchema,
+	powerLimitQuerySchema,
+} from '@/server/features/remote-settings/power-limit/power-limit.schema';
 import { ApiError } from '@/server/utils/api-error';
 import { errorResponse, successResponse } from '@/server/utils/api-response';
 import type { User } from '@/server/utils/auth-helper';
 
-type RouteContext = { params: Promise<{ deviceId: string }> };
+// type RouteContext = { params: Promise<{ deviceId: string }> };
+type RouteContext = {
+	params: Promise<Record<string, never>>;
+};
 
 function buildUser(auth: AuthenticatedRequest['auth']): User {
 	return {
@@ -28,17 +31,17 @@ function buildUser(auth: AuthenticatedRequest['auth']): User {
 function parseScopeQuery(request: NextRequest) {
 	const searchParams = new URL(request.url).searchParams;
 
-	return gridParametersQuerySchema.safeParse({
+	return powerLimitQuerySchema.safeParse({
 		role: searchParams.get('role') ?? undefined,
 		fromService: searchParams.get('fromService')
 			? searchParams.get('fromService') === 'true'
 			: undefined,
 		targetEndUserId: searchParams.get('targetEndUserId') ?? undefined,
-		plantId: searchParams.get('plantId') ?? undefined,
+		sn: searchParams.get('sn') ?? undefined,
 	});
 }
 
-async function getGridParametersRoute(request: NextRequest, context: RouteContext): Promise<Response> {
+async function getPowerLimitRoute(request: NextRequest, context: RouteContext): Promise<Response> {
 	const authenticatedRequest = request as AuthenticatedRequest;
 	const auth = authenticatedRequest.auth;
 	if (!auth?.userId) return errorResponse('Unauthorized', 401);
@@ -52,13 +55,12 @@ async function getGridParametersRoute(request: NextRequest, context: RouteContex
 		);
 	}
 
-	const { deviceId } = await context.params;
+	// const { deviceId } = await context.params;
 
 	try {
-		const settings = await getGridParameters({
+		const settings = await getPowerLimit({
 			user: buildUser(auth),
-			deviceId,
-			plantId: parsedQuery.data.plantId,
+			sn: parsedQuery.data.sn,
 			fromService: parsedQuery.data.fromService,
 			targetEndUserId: parsedQuery.data.targetEndUserId,
 		});
@@ -71,7 +73,7 @@ async function getGridParametersRoute(request: NextRequest, context: RouteContex
 	}
 }
 
-async function postGridParametersRoute(request: NextRequest, context: RouteContext): Promise<Response> {
+async function postPowerLimitRoute(request: NextRequest, context: RouteContext): Promise<Response> {
 	const authenticatedRequest = request as AuthenticatedRequest;
 	const auth = authenticatedRequest.auth;
 	if (!auth?.userId) return errorResponse('Unauthorized', 401);
@@ -92,7 +94,7 @@ async function postGridParametersRoute(request: NextRequest, context: RouteConte
 		return errorResponse('Invalid JSON payload', 400);
 	}
 
-	const parsedBody = gridParametersBodySchema.safeParse(body);
+	const parsedBody = powerLimitBodySchema.safeParse(body);
 	if (!parsedBody.success) {
 		const issue = parsedBody.error.issues[0];
 		return errorResponse(
@@ -101,13 +103,13 @@ async function postGridParametersRoute(request: NextRequest, context: RouteConte
 		);
 	}
 
-	const { deviceId } = await context.params;
+	// const { deviceId } = await context.params;
 
 	try {
-		const result = await submitGridParameters({
+		const result = await submitPowerLimit({
 			user: buildUser(auth),
-			deviceId,
-			plantId: parsedQuery.data.plantId,
+			// deviceId,
+			// plantId: parsedQuery.data.plantId,
 			settings: parsedBody.data.settings,
 			sn: parsedBody.data.sn,
 			fromService: parsedQuery.data.fromService,
@@ -122,9 +124,9 @@ async function postGridParametersRoute(request: NextRequest, context: RouteConte
 	}
 }
 
-export const GET = withRequestLogging(requireAuth(getGridParametersRoute), {
-	routeName: 'monitor.devices.remoteSettings.gridParameters.get',
+export const GET = withRequestLogging(requireAuth(getPowerLimitRoute), {
+	routeName: 'monitor.devices.remoteSettings.powerLimit.get',
 });
-export const POST = withRequestLogging(requireAuth(postGridParametersRoute), {
-	routeName: 'monitor.devices.remoteSettings.gridParameters.post',
+export const POST = withRequestLogging(requireAuth(postPowerLimitRoute), {
+	routeName: 'monitor.devices.remoteSettings.powerLimit.post',
 });

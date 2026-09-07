@@ -46,15 +46,14 @@ function toBigIntUserId(userId: string): bigint {
 
 export interface GridParametersReadParams {
 	user: User;
-	deviceId: string;
-	plantId: string;
+	sn: string;
 	fromService?: boolean;
 	targetEndUserId?: string;
 }
 
 export interface GridParametersWriteParams extends GridParametersReadParams {
 	settings: GridParametersSettings;
-	sn?: string;
+	// sn?: string;
 }
 
 export type GridParametersReadResult = GridParametersSettings & {
@@ -96,6 +95,65 @@ export interface SubmitGridParametersResult {
 // 	};
 // }
 
+// export async function getGridParameters(
+// 	params: GridParametersReadParams,
+// ): Promise<GridParametersReadResult> {
+// 	const scope = await resolveScope(
+// 		params.user,
+// 		params.fromService,
+// 		params.targetEndUserId,
+// 	);
+
+// 	const registers = await getRegisterMap(TAB);
+// 	const read_pattern = await getReadPattern(TAB);
+
+// 	const task = await createGridParametersReadTask(
+// 		scope,
+// 		params.plantId,
+// 		params.deviceId,
+// 		toBigIntUserId(params.user.userId),
+// 	);
+
+// 	const mqtt_published =
+// 		await publishRemoteSettingPattern(task.macAddress, read_pattern);
+
+// 	if (!mqtt_published) {
+// 		throw new ApiError(
+// 			500,
+// 			"Failed to publish MQTT read command."
+// 		);
+// 	}
+
+// 	const readResult = await waitForTask(task.taskId);
+
+// 	if (!readResult.success) {
+// 		if (readResult.status === "failed") {
+// 			throw new ApiError(
+// 				400,
+// 				"Device rejected the read request."
+// 			);
+// 		}
+
+// 		throw new ApiError(
+// 			408,
+// 			"Device did not respond within 2 minutes."
+// 		);
+// 	}
+
+// 	const result = await getGridParametersSettings(
+// 		scope,
+// 		params.plantId,
+// 		params.deviceId,
+// 	);
+
+// 	return {
+// 		rawSettings: result.rawSettings,
+// 		registers,
+// 		read_pattern,
+// 		mqtt_published,
+// 	};
+// }
+
 export async function getGridParameters(
 	params: GridParametersReadParams,
 ): Promise<GridParametersReadResult> {
@@ -110,8 +168,7 @@ export async function getGridParameters(
 
 	const task = await createGridParametersReadTask(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		toBigIntUserId(params.user.userId),
 	);
 
@@ -143,8 +200,7 @@ export async function getGridParameters(
 
 	const result = await getGridParametersSettings(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 	);
 
 	return {
@@ -183,8 +239,7 @@ export async function submitGridParameters(
 
 	const task = await submitGridParametersSettings(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		params.settings,
 		toBigIntUserId(params.user.userId),
 	);

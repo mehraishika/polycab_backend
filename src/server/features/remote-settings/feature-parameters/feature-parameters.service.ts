@@ -39,15 +39,14 @@ function toBigIntUserId(userId: string): bigint {
 
 export interface FeatureParametersReadParams {
 	user: User;
-	deviceId: string;
-	plantId: string;
+	sn: string;
 	fromService?: boolean;
 	targetEndUserId?: string;
 }
 
 export interface FeatureParametersWriteParams extends FeatureParametersReadParams {
 	settings: FeatureParametersSettings;
-	sn?: string;
+	// sn?: string;
 }
 
 export type FeatureParametersReadResult = FeatureParametersSettings & {
@@ -77,8 +76,7 @@ export async function getFeatureParameters(
 	const read_pattern = await getReadPattern(TAB);
 	const task = await createfeatureParametersReadTask(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		toBigIntUserId(params.user.userId),
 	);
 	const mqtt_published = await publishRemoteSettingPattern(task.macAddress, read_pattern);
@@ -108,8 +106,7 @@ export async function getFeatureParameters(
 
 	const result = await getFeatureParametersSettings(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 	);
 
 	return {
@@ -127,8 +124,7 @@ export async function submitFeatureParameters(
 	const scope = await resolveScope(params.user, params.fromService, params.targetEndUserId);
 	const task = await submitFeatureParametersSettings(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		params.settings,
 		toBigIntUserId(params.user.userId),
 	);

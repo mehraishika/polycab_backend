@@ -15,7 +15,7 @@ export const commandActionSchema = z.object({
 });
 
 export const commandBodySchema = z.object({
-	sn: z.string().optional(),
+	sn: z.string().min(1, 'sn is required'),
 	command: commandActionSchema,
 });
 

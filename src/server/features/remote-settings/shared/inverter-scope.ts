@@ -28,44 +28,27 @@ function parseDeviceId(deviceId: string): bigint {
 export async function getScopedInverterOrThrow(
 	dbClient: PrismaClient,
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 ): Promise<ScopedInverter> {
 	if (!scope || scope.length === 0) {
 		throw new ApiError(403, 'Unauthorized access to plant devices');
 	}
 
-	const plant = await dbClient.plant.findFirst({
-		where: { id: BigInt(plantId), deletedAt: null },
-		select: { id: true, userAccount: true },
-	});
-
-	if (!plant) {
-		throw new ApiError(404, 'Plant not found');
-	}
-
-	if (!scope.includes(plant.userAccount)) {
-		throw new ApiError(403, 'You do not have access to this plant');
-	}
-
-	const parsedDeviceId = parseDeviceId(deviceId);
-
-	console.log("[REMOTE SETTINGS] Looking up inverter", {
-		deviceId,
-		parsedDeviceId: parsedDeviceId.toString(),
-		plantId,
-	});
-
 	const inverter = await dbClient.deviceInverter.findFirst({
 		where: {
-			id: parsedDeviceId,
-			plantId: BigInt(plantId),
+			serialNumber: sn,
 			deletedAt: null,
 		},
 		select: {
 			id: true,
 			serialNumber: true,
+			plantId: true,
 		},
+	});
+
+	console.log('[REMOTE SETTINGS] SN lookup:', {
+		requestedSn: sn,
+		inverter,
 	});
 
 	if (!inverter) {
@@ -75,7 +58,7 @@ export async function getScopedInverterOrThrow(
 		);
 	}
 
-	console.log("[REMOTE SETTINGS] Inverter Found", {
+	console.log('[REMOTE SETTINGS] Inverter Found', {
 		id: inverter.id.toString(),
 		serialNumber: inverter.serialNumber,
 	});
@@ -85,14 +68,14 @@ export async function getScopedInverterOrThrow(
 			sno: inverter.serialNumber,
 		},
 		orderBy: {
-			latestTimestamp: "desc",
+			latestTimestamp: 'desc',
 		},
 		select: {
 			macAddress: true,
 		},
 	});
 
-	console.log("[REMOTE SETTINGS] Latest Log", {
+	console.log('[REMOTE SETTINGS] Latest Log', {
 		sno: inverter.serialNumber,
 		macAddress: latestLog?.macAddress,
 	});
@@ -100,18 +83,19 @@ export async function getScopedInverterOrThrow(
 	if (!latestLog?.macAddress) {
 		throw new ApiError(
 			404,
-			"MAC address not found for this inverter."
+			'MAC address not found for this inverter.',
 		);
 	}
 
-	console.log("[REMOTE SETTINGS] Final Device", {
+	console.log('[REMOTE SETTINGS] Final Device', {
 		id: inverter.id.toString(),
 		serialNumber: inverter.serialNumber,
 		macAddress: latestLog.macAddress,
 	});
 
 	return {
-		...inverter,
+		id: inverter.id,
+		serialNumber: inverter.serialNumber,
 		macAddress: latestLog.macAddress,
 	};
 }

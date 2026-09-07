@@ -42,15 +42,14 @@ function toBigIntUserId(userId: string): bigint {
 
 export interface MaskingFaultDetectionReadParams {
 	user: User;
-	deviceId: string;
-	plantId: string;
+	sn: string;
 	fromService?: boolean;
 	targetEndUserId?: string;
 }
 
 export interface MaskingFaultDetectionWriteParams extends MaskingFaultDetectionReadParams {
 	settings: MaskingFaultDetectionSettings;
-	sn?: string;
+	// sn?: string;
 }
 
 export type MaskingFaultDetectionReadResult = MaskingFaultDetectionSettings & {
@@ -82,8 +81,7 @@ export async function getMaskingFaultDetection(
 
 	const task = await createMaskingFaultDetectionReadTask(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		toBigIntUserId(params.user.userId),
 	);
 
@@ -115,8 +113,7 @@ export async function getMaskingFaultDetection(
 
 	const result = await getMaskingFaultDetectionSettings(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 	);
 
 	return {
@@ -134,8 +131,7 @@ export async function submitMaskingFaultDetection(
 	const scope = await resolveScope(params.user, params.fromService, params.targetEndUserId);
 	const task = await submitMaskingFaultDetectionSettings(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		params.settings,
 		toBigIntUserId(params.user.userId),
 	);

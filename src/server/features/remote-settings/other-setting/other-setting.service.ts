@@ -39,15 +39,14 @@ function toBigIntUserId(userId: string): bigint {
 
 export interface OtherSettingReadParams {
 	user: User;
-	deviceId: string;
-	plantId: string;
+	sn: string;
 	fromService?: boolean;
 	targetEndUserId?: string;
 }
 
 export interface OtherSettingWriteParams extends OtherSettingReadParams {
 	settings: OtherSettingSettings;
-	sn?: string;
+	// sn?: string;
 }
 
 export type OtherSettingReadResult = OtherSettingSettings & {
@@ -75,8 +74,7 @@ export async function getOtherSetting(params: OtherSettingReadParams): Promise<O
 	const read_pattern = await getReadPattern(TAB);
 	const task = await createOtherSettingsReadTask(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		toBigIntUserId(params.user.userId),
 	);
 	const mqtt_published = await publishRemoteSettingPattern(task.macAddress, read_pattern);
@@ -106,8 +104,7 @@ export async function getOtherSetting(params: OtherSettingReadParams): Promise<O
 
 	const result = await getOtherSettingSettings(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 	);
 
 	return {
@@ -123,8 +120,7 @@ export async function submitOtherSetting(params: OtherSettingWriteParams): Promi
 	const scope = await resolveScope(params.user, params.fromService, params.targetEndUserId);
 	const task = await submitOtherSettingSettings(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		params.settings,
 		toBigIntUserId(params.user.userId),
 	);

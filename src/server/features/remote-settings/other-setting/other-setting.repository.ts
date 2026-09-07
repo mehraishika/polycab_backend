@@ -11,8 +11,7 @@ function toInputJson(value: Record<string, unknown>): Prisma.InputJsonValue {
 const INVERTER_SERIAL_NUMBER = BigInt(process.env.INVERTER_SERIAL_NUMBER!);
 export async function createOtherSettingsReadTask(
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 	createdById: bigint,
 ): Promise<{
     taskId: bigint;
@@ -21,8 +20,7 @@ export async function createOtherSettingsReadTask(
 	const inverter = await getScopedInverterOrThrow(
 		prisma,
 		scope,
-		plantId,
-		deviceId,
+		sn,
 	);
 
 	const task = await prisma.deviceRemoteSettingTask.create({
@@ -47,13 +45,12 @@ export async function createOtherSettingsReadTask(
 
 export async function getOtherSettingSettings(
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 ): Promise<{
 	rawSettings: Prisma.JsonValue | null;
 }> {
 	// ): Promise<OtherSettingSettings> {
-	const inverter = await getScopedInverterOrThrow(prisma, scope, plantId, deviceId);
+	const inverter = await getScopedInverterOrThrow(prisma, scope, sn,);
 
 	const row = await prisma.deviceRemoteSetting.findFirst({
 		where: {
@@ -80,15 +77,14 @@ export async function getOtherSettingSettings(
 // since that's what actually needs writing to the device this time.
 export async function submitOtherSettingSettings(
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 	settings: OtherSettingSettings,
 	updatedById: bigint,
 ): Promise<{
     taskId: bigint;
     macAddress: string;
 }> {
-	const inverter = await getScopedInverterOrThrow(prisma, scope, plantId, deviceId);
+	const inverter = await getScopedInverterOrThrow(prisma, scope, sn,);
 
 	const task = await prisma.deviceRemoteSettingTask.create({
 		data: {

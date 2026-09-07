@@ -43,15 +43,14 @@ function toBigIntUserId(userId: string): bigint {
 
 export interface ReactivePowerControlReadParams {
 	user: User;
-	deviceId: string;
-	plantId: string;
+	sn: string;
 	fromService?: boolean;
 	targetEndUserId?: string;
 }
 
 export interface ReactivePowerControlWriteParams extends ReactivePowerControlReadParams {
 	settings: ReactivePowerControlSettings;
-	sn?: string;
+	// sn?: string;
 }
 
 export type ReactivePowerControlReadResult = ReactivePowerControlSettings & {
@@ -81,8 +80,7 @@ export async function getReactivePowerControl(
 	const read_pattern = await getReadPattern(TAB);
 	const task = await createReactivePowerReadTask(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		toBigIntUserId(params.user.userId),
 	);
 	const mqtt_published = await publishRemoteSettingPattern(task.macAddress, read_pattern);
@@ -112,8 +110,7 @@ export async function getReactivePowerControl(
 
 	const result = await getReactivePowerControlSettings(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 	);
 
 	return {
@@ -131,8 +128,7 @@ export async function submitReactivePowerControl(
 	const scope = await resolveScope(params.user, params.fromService, params.targetEndUserId);
 	const task = await submitReactivePowerControlSettings(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		params.settings,
 		toBigIntUserId(params.user.userId),
 	);

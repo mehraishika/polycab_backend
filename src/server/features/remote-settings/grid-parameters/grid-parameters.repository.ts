@@ -50,29 +50,63 @@ function toInputJson(value: Record<string, unknown>): Prisma.InputJsonValue {
 // since that's what actually needs writing to the device this time.
 
 const INVERTER_SERIAL_NUMBER = BigInt(process.env.INVERTER_SERIAL_NUMBER!);
+// export async function createGridParametersReadTask(
+// 	scope: string[],
+// 	plantId: string,
+// 	deviceId: string,
+// 	createdById: bigint,
+// ): Promise<{
+//     taskId: bigint;
+//     macAddress: string;
+// }> {
+// 	const inverter = await getScopedInverterOrThrow(
+// 		prisma,
+// 		scope,
+// 		plantId,
+// 		deviceId,
+// 	);
+
+// 	const task = await prisma.deviceRemoteSettingTask.create({
+// 		data: {
+// 			deviceInverterId: BigInt(inverter.macAddress),
+// 			kind: "settings",
+// 			tab: TAB,
+// 			payload: {},
+// 			status: "pending",
+// 			createdById,
+// 		},
+// 		select: {
+// 			id: true,
+// 		},
+// 	});
+
+// 	return {
+// 		taskId: task.id,
+// 		macAddress: inverter.macAddress,
+// 	};
+// }
+
 export async function createGridParametersReadTask(
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 	createdById: bigint,
 ): Promise<{
-    taskId: bigint;
-    macAddress: string;
+	taskId: bigint;
+	macAddress: string;
 }> {
 	const inverter = await getScopedInverterOrThrow(
 		prisma,
 		scope,
-		plantId,
-		deviceId,
+		sn,
 	);
 
 	const task = await prisma.deviceRemoteSettingTask.create({
 		data: {
 			deviceInverterId: BigInt(inverter.macAddress),
-			kind: "settings",
+			kind: 'settings',
 			tab: TAB,
 			payload: {},
-			status: "pending",
+			status: 'pending',
 			createdById,
 		},
 		select: {
@@ -87,16 +121,14 @@ export async function createGridParametersReadTask(
 }
 export async function getGridParametersSettings(
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 ): Promise<{
 	rawSettings: Prisma.JsonValue | null;
 }> {
 	const inverter = await getScopedInverterOrThrow(
 		prisma,
 		scope,
-		plantId,
-		deviceId,
+		sn,
 	);
 
 	const row = await prisma.deviceRemoteSetting.findFirst({
@@ -105,7 +137,7 @@ export async function getGridParametersSettings(
 			tab: TAB,
 		},
 		orderBy: {
-			createdAt: "desc",
+			createdAt: 'desc',
 		},
 		select: {
 			settings: true,
@@ -113,34 +145,32 @@ export async function getGridParametersSettings(
 	});
 
 	return {
-		rawSettings: row?.settings ?? [],
+		rawSettings: row?.settings ?? null,
 	};
 }
 
 export async function submitGridParametersSettings(
 	scope: string[],
-	plantId: string,
-	deviceId: string,
+	sn: string,
 	settings: GridParametersSettings,
 	updatedById: bigint,
 ): Promise<{
-    taskId: bigint;
-    macAddress: string;
+	taskId: bigint;
+	macAddress: string;
 }> {
 	const inverter = await getScopedInverterOrThrow(
 		prisma,
 		scope,
-		plantId,
-		deviceId,
+		sn,
 	);
 
 	const task = await prisma.deviceRemoteSettingTask.create({
 		data: {
-			deviceInverterId:  BigInt(inverter.macAddress),
-			kind: "settings",
+			deviceInverterId: BigInt(inverter.macAddress),
+			kind: 'settings',
 			tab: TAB,
 			payload: toInputJson(settings),
-			status: "pending",
+			status: 'pending',
 			createdById: updatedById,
 		},
 		select: {

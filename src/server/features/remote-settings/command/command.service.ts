@@ -37,10 +37,8 @@ function toBigIntUserId(userId: string): bigint {
 
 export interface SubmitCommandParams {
 	user: User;
-	deviceId: string;
-	plantId: string;
 	command: CommandAction;
-	sn?: string;
+	sn: string;
 	fromService?: boolean;
 	targetEndUserId?: string;
 }
@@ -59,8 +57,7 @@ export async function submitCommand(params: SubmitCommandParams): Promise<Submit
 	const scope = await resolveScope(params.user, params.fromService, params.targetEndUserId);
 	const task = await submitCommandAction(
 		scope,
-		params.plantId,
-		params.deviceId,
+		params.sn,
 		params.command,
 		toBigIntUserId(params.user.userId),
 	);
@@ -70,30 +67,30 @@ export async function submitCommand(params: SubmitCommandParams): Promise<Submit
 	const read_pattern = await getCommandReadPattern();
 	const { pattern: write_pattern, unmappedFields: unmapped_fields } = await getCommandWritePattern(params.command);
 	const mqtt_published = await publishRemoteSettingPattern(task.macAddress, write_pattern);
-		if (!mqtt_published) {
-			throw new ApiError(500, "Failed to publish MQTT command.");
-		}
-	
-		const writeResult = await waitForTask(task.taskId);
-	
-		if (!writeResult.success) {
-			if (writeResult.status === "failed") {
-				throw new ApiError(400, "Device rejected the write request.");
-			}
-	
-			throw new ApiError(
-				408,
-				"Device did not respond.",
-			);
-		}
-	
-		return {
-			taskId: task.taskId.toString(),
-			registers,
-			read_pattern,
-			write_pattern,
-			unmapped_fields,
-			request_data: params.command,
-			mqtt_published,
-		};
+	if (!mqtt_published) {
+		throw new ApiError(500, "Failed to publish MQTT command.");
 	}
+
+	const writeResult = await waitForTask(task.taskId);
+
+	if (!writeResult.success) {
+		if (writeResult.status === "failed") {
+			throw new ApiError(400, "Device rejected the write request.");
+		}
+
+		throw new ApiError(
+			408,
+			"Device did not respond.",
+		);
+	}
+
+	return {
+		taskId: task.taskId.toString(),
+		registers,
+		read_pattern,
+		write_pattern,
+		unmapped_fields,
+		request_data: params.command,
+		mqtt_published,
+	};
+}

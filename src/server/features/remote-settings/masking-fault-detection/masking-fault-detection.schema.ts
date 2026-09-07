@@ -4,7 +4,7 @@ export const maskingFaultDetectionQuerySchema = z.object({
 	role: z.string().optional(),
 	fromService: z.boolean().optional(),
 	targetEndUserId: z.string().optional(),
-	plantId: z.string().min(1, 'plantId is required'),
+	sn: z.string().min(1, 'sn is required'),
 });
 
 export const maskingFaultDetectionSettingsSchema = z.object({
@@ -23,7 +23,7 @@ export const maskingFaultDetectionSettingsSchema = z.object({
 });
 
 export const maskingFaultDetectionBodySchema = z.object({
-	sn: z.string().optional(),
+	sn: z.string().min(1, 'sn is required'),
 	settings: maskingFaultDetectionSettingsSchema,
 });
 

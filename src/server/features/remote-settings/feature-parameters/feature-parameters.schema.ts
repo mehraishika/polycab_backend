@@ -4,7 +4,7 @@ export const featureParametersQuerySchema = z.object({
 	role: z.string().optional(),
 	fromService: z.boolean().optional(),
 	targetEndUserId: z.string().optional(),
-	plantId: z.string().min(1, 'plantId is required'),
+	sn: z.string().min(1, 'sn is required'),
 });
 
 export const featureParametersSettingsSchema = z.object({
@@ -18,7 +18,7 @@ export const featureParametersSettingsSchema = z.object({
 });
 
 export const featureParametersBodySchema = z.object({
-	sn: z.string().optional(),
+	sn: z.string().min(1, 'sn is required'),
 	settings: featureParametersSettingsSchema,
 });
 

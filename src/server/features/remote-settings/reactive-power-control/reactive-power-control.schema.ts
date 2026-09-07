@@ -4,7 +4,7 @@ export const reactivePowerControlQuerySchema = z.object({
 	role: z.string().optional(),
 	fromService: z.boolean().optional(),
 	targetEndUserId: z.string().optional(),
-	plantId: z.string().min(1, 'plantId is required'),
+	sn: z.string().min(1, 'sn is required'),
 });
 
 export const reactivePowerControlSettingsSchema = z.object({
@@ -13,7 +13,7 @@ export const reactivePowerControlSettingsSchema = z.object({
 });
 
 export const reactivePowerControlBodySchema = z.object({
-	sn: z.string().optional(),
+	sn: z.string().min(1, 'sn is required'),
 	settings: reactivePowerControlSettingsSchema,
 });
 
