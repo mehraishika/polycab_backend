@@ -398,6 +398,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
+  LoginVerification: 'LoginVerification',
   Plant: 'Plant',
   DeviceInverter: 'DeviceInverter',
   UserPlantInverterMap: 'UserPlantInverterMap',
@@ -405,6 +406,7 @@ export const ModelName = {
   DeviceDatalogger: 'DeviceDatalogger',
   DeviceLogs: 'DeviceLogs',
   DeviceLogsLatest: 'DeviceLogsLatest',
+  UserInverterTransferHistory: 'UserInverterTransferHistory',
   DeviceDailySummary: 'DeviceDailySummary',
   DeviceDailySummaryPerLineChart: 'DeviceDailySummaryPerLineChart',
   information_data: 'information_data',
@@ -441,7 +443,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "plant" | "deviceInverter" | "userPlantInverterMap" | "deviceInvertorStatus" | "deviceDatalogger" | "deviceLogs" | "deviceLogsLatest" | "deviceDailySummary" | "deviceDailySummaryPerLineChart" | "information_data" | "deviceConnectionStatus" | "fota" | "deviceCurrentStatus" | "deviceStatusHistory" | "plantCurrentStatus" | "deviceAlertState" | "alertEvent" | "faultDictionary" | "remoteSettingParameterMaster" | "remoteSettingCommandMaster" | "deviceRemoteSetting" | "deviceRemoteSettingTask" | "firmware" | "upgradeTask" | "taskJob" | "fotaJob" | "fotaConfig" | "fotaCommandLog"
+    modelProps: "user" | "loginVerification" | "plant" | "deviceInverter" | "userPlantInverterMap" | "deviceInvertorStatus" | "deviceDatalogger" | "deviceLogs" | "deviceLogsLatest" | "userInverterTransferHistory" | "deviceDailySummary" | "deviceDailySummaryPerLineChart" | "information_data" | "deviceConnectionStatus" | "fota" | "deviceCurrentStatus" | "deviceStatusHistory" | "plantCurrentStatus" | "deviceAlertState" | "alertEvent" | "faultDictionary" | "remoteSettingParameterMaster" | "remoteSettingCommandMaster" | "deviceRemoteSetting" | "deviceRemoteSettingTask" | "firmware" | "upgradeTask" | "taskJob" | "fotaJob" | "fotaConfig" | "fotaCommandLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -516,6 +518,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
+        }
+      }
+    }
+    LoginVerification: {
+      payload: Prisma.$LoginVerificationPayload<ExtArgs>
+      fields: Prisma.LoginVerificationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LoginVerificationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginVerificationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LoginVerificationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginVerificationPayload>
+        }
+        findFirst: {
+          args: Prisma.LoginVerificationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginVerificationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LoginVerificationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginVerificationPayload>
+        }
+        findMany: {
+          args: Prisma.LoginVerificationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginVerificationPayload>[]
+        }
+        create: {
+          args: Prisma.LoginVerificationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginVerificationPayload>
+        }
+        createMany: {
+          args: Prisma.LoginVerificationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LoginVerificationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginVerificationPayload>[]
+        }
+        delete: {
+          args: Prisma.LoginVerificationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginVerificationPayload>
+        }
+        update: {
+          args: Prisma.LoginVerificationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginVerificationPayload>
+        }
+        deleteMany: {
+          args: Prisma.LoginVerificationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LoginVerificationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LoginVerificationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginVerificationPayload>[]
+        }
+        upsert: {
+          args: Prisma.LoginVerificationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginVerificationPayload>
+        }
+        aggregate: {
+          args: Prisma.LoginVerificationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLoginVerification>
+        }
+        groupBy: {
+          args: Prisma.LoginVerificationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LoginVerificationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LoginVerificationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LoginVerificationCountAggregateOutputType> | number
         }
       }
     }
@@ -1034,6 +1110,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.DeviceLogsLatestCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.DeviceLogsLatestCountAggregateOutputType> | number
+        }
+      }
+    }
+    UserInverterTransferHistory: {
+      payload: Prisma.$UserInverterTransferHistoryPayload<ExtArgs>
+      fields: Prisma.UserInverterTransferHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserInverterTransferHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInverterTransferHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserInverterTransferHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInverterTransferHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.UserInverterTransferHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInverterTransferHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserInverterTransferHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInverterTransferHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.UserInverterTransferHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInverterTransferHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.UserInverterTransferHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInverterTransferHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.UserInverterTransferHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserInverterTransferHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInverterTransferHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.UserInverterTransferHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInverterTransferHistoryPayload>
+        }
+        update: {
+          args: Prisma.UserInverterTransferHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInverterTransferHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserInverterTransferHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserInverterTransferHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserInverterTransferHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInverterTransferHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.UserInverterTransferHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInverterTransferHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.UserInverterTransferHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserInverterTransferHistory>
+        }
+        groupBy: {
+          args: Prisma.UserInverterTransferHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserInverterTransferHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserInverterTransferHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserInverterTransferHistoryCountAggregateOutputType> | number
         }
       }
     }
@@ -2658,6 +2808,17 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const LoginVerificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  code: 'code',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type LoginVerificationScalarFieldEnum = (typeof LoginVerificationScalarFieldEnum)[keyof typeof LoginVerificationScalarFieldEnum]
+
+
 export const PlantScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -2847,6 +3008,18 @@ export const DeviceLogsLatestScalarFieldEnum = {
 } as const
 
 export type DeviceLogsLatestScalarFieldEnum = (typeof DeviceLogsLatestScalarFieldEnum)[keyof typeof DeviceLogsLatestScalarFieldEnum]
+
+
+export const UserInverterTransferHistoryScalarFieldEnum = {
+  id: 'id',
+  oldUserId: 'oldUserId',
+  newUserId: 'newUserId',
+  plantId: 'plantId',
+  serialNumber: 'serialNumber',
+  transferredAt: 'transferredAt'
+} as const
+
+export type UserInverterTransferHistoryScalarFieldEnum = (typeof UserInverterTransferHistoryScalarFieldEnum)[keyof typeof UserInverterTransferHistoryScalarFieldEnum]
 
 
 export const DeviceDailySummaryScalarFieldEnum = {
@@ -3701,6 +3874,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  loginVerification?: Prisma.LoginVerificationOmit
   plant?: Prisma.PlantOmit
   deviceInverter?: Prisma.DeviceInverterOmit
   userPlantInverterMap?: Prisma.UserPlantInverterMapOmit
@@ -3708,6 +3882,7 @@ export type GlobalOmitConfig = {
   deviceDatalogger?: Prisma.DeviceDataloggerOmit
   deviceLogs?: Prisma.DeviceLogsOmit
   deviceLogsLatest?: Prisma.DeviceLogsLatestOmit
+  userInverterTransferHistory?: Prisma.UserInverterTransferHistoryOmit
   deviceDailySummary?: Prisma.DeviceDailySummaryOmit
   deviceDailySummaryPerLineChart?: Prisma.DeviceDailySummaryPerLineChartOmit
   information_data?: Prisma.information_dataOmit

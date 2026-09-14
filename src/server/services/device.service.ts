@@ -882,58 +882,18 @@ export class DeviceService {
     };
   }
 
-  // private createMonthPoints(
-  //   logs: Array<{
-  //     dayDate: Date;
-  //     dailyProduction: Decimal | null;
-  //     totalEnergy: Decimal | null;
-  //   }>,
-  // ) {
-  //   if (logs.length === 0) {
-  //     return [];
-  //   }
-
-  //   const firstDate = new Date(logs[0].dayDate);
-
-  //   const daysInMonth = new Date(
-  //     firstDate.getFullYear(),
-  //     firstDate.getMonth() + 1,
-  //     0,
-  //   ).getDate();
-
-  //   return Array.from(
-  //     {
-  //       length: daysInMonth,
-  //     },
-  //     (_, index) => {
-  //       const day = index + 1;
-
-  //       const row = logs.find((log) => new Date(log.dayDate).getDate() === day);
-
-  //       return {
-  //         date: String(day).padStart(2, "0"),
-
-  //         total: row?.dailyProduction ?? 0,
-  //       };
-  //     },
-  //   );
-  // }
-
   private createMonthPoints(
     logs: Array<{
       dayDate: Date;
       dailyProduction: Decimal | null;
       totalEnergy: Decimal | null;
     }>,
+    date: string,
   ) {
-    if (logs.length === 0) {
-      return [];
-    }
+    const selectedDate = new Date(date);
 
-    const firstDate = new Date(logs[0].dayDate);
-
-    const year = firstDate.getFullYear();
-    const month = firstDate.getMonth();
+    const year = selectedDate.getFullYear();
+    const month = selectedDate.getMonth();
 
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
@@ -954,6 +914,42 @@ export class DeviceService {
       };
     });
   }
+
+  //   private createMonthPoints(
+  //     logs: Array<{
+  //       dayDate: Date;
+  //       dailyProduction: Decimal | null;
+  //       totalEnergy: Decimal | null;
+  //     }>,
+  //   ) {
+  //     if (logs.length === 0) {
+  //       return [];
+  //     }
+
+  //     const firstDate = new Date(logs[0].dayDate);
+
+  //     const year = firstDate.getFullYear();
+  //     const month = firstDate.getMonth();
+
+  //     const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  //     const dailyMap = new Map<number, number>();
+
+  //     for (const log of logs) {
+  //       const day = new Date(log.dayDate).getDate();
+
+  //       dailyMap.set(day, Number(log.dailyProduction ?? 0));
+  //     }
+
+  //     return Array.from({ length: daysInMonth }, (_, index) => {
+  //       const day = index + 1;
+
+  //       return {
+  //         date: String(day).padStart(2, "0"),
+  //         total: Number((dailyMap.get(day) ?? 0).toFixed(2)),
+  //       };
+  //     });
+  //   }
 
   // private createYearPoints(
   //   logs: Array<{
@@ -1082,7 +1078,7 @@ export class DeviceService {
 
         series: energySeries,
 
-        points: this.createMonthPoints(logs),
+        points: this.createMonthPoints(logs, params.date),
       };
     }
 
@@ -1349,23 +1345,29 @@ export class DeviceService {
   }
 
   async getDeviceCurrentAlerts(params: DeviceCurrentAlertsServiceParams) {
-    const scope = await this.resolveScope(
-      params.user,
-      params.fromService,
-      params.targetEndUserId,
-    );
     const repoParams: DeviceCurrentAlertsSnapshotParams = {
       plantId: params.plantId,
       deviceId: params.deviceId,
     };
 
+    // First get the device and its plant account
     const snapshot =
       await this.deviceRepository.getDeviceCurrentAlertsSnapshot(repoParams);
+
+    // Now resolve scope using the plant account
+    const scope = await this.resolveScope(
+      params.user,
+      params.fromService,
+      params.targetEndUserId,
+      snapshot.plantAccount,
+    );
+
     this.assertPlantAccess(scope, snapshot.plantAccount);
 
     const allItems = this.toCurrentAlertItems(snapshot);
 
     const liveItems = this.filterLiveRefreshItems(allItems, params.since);
+
     const sortedItems = this.sortCurrentAlertItems(
       liveItems,
       params.sortBy,
@@ -1373,10 +1375,14 @@ export class DeviceService {
     );
 
     const totalItems = sortedItems.length;
+
     const totalPages =
       totalItems > 0 ? Math.ceil(totalItems / params.pageSize) : 0;
+
     const safePage = totalPages > 0 ? Math.min(params.page, totalPages) : 1;
+
     const start = (safePage - 1) * params.pageSize;
+
     const items = sortedItems.slice(start, start + params.pageSize);
 
     return {

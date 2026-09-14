@@ -64,6 +64,7 @@ export interface DeviceLatestRecord {
   communicationStatus: any;
   communicationModuleVersion: any;
   communicationModuleSn: string;
+  monitorDeviceId: string | null;
 }
 
 export interface ModuleLatestRecord {
@@ -270,9 +271,10 @@ type ChangePasswordInput = {
 
 type ForgotPasswordInput = {
   account: string;
+  verificationCode: string;
   newPassword: string;
   confirmPassword: string;
-};
+}
 
 export interface DataloggerLatestRecord {
   id: bigint;
@@ -320,6 +322,14 @@ export interface SearchDataloggerResult {
     };
   };
 }
+
+export type ChangeUserInverterInput = {
+  accountName: string;
+  confirmAccountName: string;
+  serialNumber: string;
+};
+
+
 export class UserService {
   static searchDeviceBySN(sno: string) {
     throw new Error("Method not implemented.");
@@ -603,6 +613,7 @@ export class UserService {
       data: {
         device: {
           id: device.id.toString(),
+          monitorDeviceId: device.monitorDeviceId,
           sno: device.sno,
           inverterName: device.inverterName,
           dayDate: device.dayDate.toString(),
@@ -1041,19 +1052,98 @@ export class UserService {
     }
   }
 
+//   async deleteServiceAdminById(
+//     id: bigint,
+//     actorId: bigint,
+//     actorRole: string | undefined,
+//   ): Promise<ServiceAdminUserDeleteResult> {
+//     const accessError = await this.validateSubAccountManager(
+//       actorId,
+//       actorRole,
+//     );
+//     if (accessError) {
+//       return accessError;
+//     }
+
+//     if (id === actorId) {
+//       return {
+//         status: 400,
+//         message: "You cannot delete your own account",
+//       };
+//     }
+
+//     const existing = await this.userRepository.findScopedServiceAdminById(
+//       id,
+//       actorId,
+//     );
+
+//     if (!existing) {
+//       return {
+//         status: 404,
+//         message: "User not found",
+//       };
+//     }
+
+//     if (existing.isDeleted) {
+//       return {
+//         status: 400,
+//         message: "User is already deleted",
+//       };
+//     }
+
+//     try {
+//       const deleted =
+//         await this.userRepository.softDeleteScopedServiceAdminById(id, actorId);
+
+//       if (!deleted) {
+//         return {
+//           status: 400,
+//           message: "User is already deleted",
+//         };
+//       }
+
+//       return {
+//         status: 200,
+//         message: "User deleted successfully.",
+//         data: this.mapSubAccountDeleteData(deleted),
+//       };
+//     } catch (error: unknown) {
+//       return {
+//         status: 500,
+//         message: toErrorMessage(error),
+//       };
+//     }
+//   }
+
   async deleteServiceAdminById(
     id: bigint,
     actorId: bigint,
     actorRole: string | undefined,
-  ): Promise<ServiceAdminUserDeleteResult> {
+  ): Promise<ServiceAdminUserDeleteResult | DeleteUserServiceResult> {
     const accessError = await this.validateSubAccountManager(
       actorId,
       actorRole,
     );
+
     if (accessError) {
       return accessError;
     }
 
+    // Service Super Admin:
+    // delete the searched/target user directly by target user ID.
+    if (actorRole === "service_super_admin") {
+      if (id === actorId) {
+        return {
+          status: 400,
+          message: "You cannot delete your own account",
+        };
+      }
+
+      return this.deleteById(id);
+    }
+
+    // Service Admin:
+    // keep existing scoped delete behaviour.
     if (id === actorId) {
       return {
         status: 400,
@@ -1061,10 +1151,11 @@ export class UserService {
       };
     }
 
-    const existing = await this.userRepository.findScopedServiceAdminById(
-      id,
-      actorId,
-    );
+    const existing =
+      await this.userRepository.findScopedServiceAdminById(
+        id,
+        actorId,
+      );
 
     if (!existing) {
       return {
@@ -1082,7 +1173,10 @@ export class UserService {
 
     try {
       const deleted =
-        await this.userRepository.softDeleteScopedServiceAdminById(id, actorId);
+        await this.userRepository.softDeleteScopedServiceAdminById(
+          id,
+          actorId,
+        );
 
       if (!deleted) {
         return {
@@ -1148,7 +1242,52 @@ export class UserService {
     };
   }
 
-  async forgotPassword(data: ForgotPasswordInput) {
+//   async forgotPassword(data: ForgotPasswordInput) {
+//     const user = await this.userRepository.findPasswordByAccount(data.account);
+
+//     if (!user || user.isDeleted) {
+//       return {
+//         status: 404,
+//         message: "Account not found",
+//       };
+//     }
+
+//     const samePassword = await verifyPassword({
+//       plainPassword: data.newPassword,
+//       storedPasswordHash: user.passwordHash,
+//     });
+
+//     if (samePassword) {
+//       return {
+//         status: 400,
+//         message: "New password cannot be same as old password",
+//       };
+//     }
+
+//     const hashedPassword = await hashPassword(data.newPassword);
+
+//     await this.userRepository.updatePassword(user.id, hashedPassword);
+
+//     return {
+//       status: 200,
+//       message: "Password reset successfully",
+//     };
+//   }
+
+async forgotPassword(data: ForgotPasswordInput) {
+    const expectedVerificationCode = process.env.REGISTRATION_VERIFICATION_CODE;
+
+    if (
+      typeof expectedVerificationCode === "string" &&
+      expectedVerificationCode.length > 0 &&
+      data.verificationCode !== expectedVerificationCode
+    ) {
+      return {
+        status: 400,
+        message: "Invalid verification code",
+      };
+    }
+
     const user = await this.userRepository.findPasswordByAccount(data.account);
 
     if (!user || user.isDeleted) {
@@ -1177,6 +1316,70 @@ export class UserService {
     return {
       status: 200,
       message: "Password reset successfully",
+    };
+  }
+
+  
+    async changeUserInverter(data: ChangeUserInverterInput) {
+    if (data.accountName !== data.confirmAccountName) {
+      return {
+        status: 400,
+        message: "Account name and confirm account name do not match",
+      };
+    }
+
+    const newUser =
+      await this.userRepository.findActiveUserByAccount(
+        data.accountName,
+      );
+
+    if (!newUser) {
+      return {
+        status: 404,
+        message: "Account not found",
+      };
+    }
+
+    const mapping =
+      await this.userRepository.findInverterMappingBySerialNumber(
+        data.serialNumber,
+      );
+
+    if (!mapping) {
+      await this.userRepository.createUserInverterMapping({
+        userId: newUser.id,
+        serialNumber: data.serialNumber,
+        plantId: null,
+      });
+
+      return {
+        status: 200,
+        message: "Serial number assigned successfully",
+      };
+    }
+
+    if (
+      mapping.userId === newUser.id &&
+      !mapping.isDeleted
+    ) {
+      return {
+        status: 400,
+        message:
+          "Serial number is already assigned to this account",
+      };
+    }
+
+    await this.userRepository.transferInverterToUser({
+      mappingId: mapping.id,
+      oldUserId: mapping.userId,
+      newUserId: newUser.id,
+      plantId: mapping.plantId,
+      serialNumber: data.serialNumber,
+    });
+
+    return {
+      status: 200,
+      message: "Inverter transferred successfully",
     };
   }
 }

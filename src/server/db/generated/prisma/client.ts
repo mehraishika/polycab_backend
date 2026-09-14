@@ -47,6 +47,11 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
+ * Model LoginVerification
+ * 
+ */
+export type LoginVerification = Prisma.LoginVerificationModel
+/**
  * Model Plant
  * 
  */
@@ -81,6 +86,11 @@ export type DeviceLogs = Prisma.DeviceLogsModel
  * 
  */
 export type DeviceLogsLatest = Prisma.DeviceLogsLatestModel
+/**
+ * Model UserInverterTransferHistory
+ * 
+ */
+export type UserInverterTransferHistory = Prisma.UserInverterTransferHistoryModel
 /**
  * Model DeviceDailySummary
  * 

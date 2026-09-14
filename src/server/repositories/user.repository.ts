@@ -224,7 +224,7 @@ export class UserRepository {
     return user ? this.mapDetailRecord(user) : null;
   }
 
-  async findLatestDeviceBySN(
+    async findLatestDeviceBySN(
     sno: string,
     plantId?: string | bigint,
   ): Promise<DeviceLatestRecord | null> {
@@ -250,7 +250,7 @@ export class UserRepository {
       },
     });
 
-    if (!mapping) {
+    if (!mapping || mapping.plantId == null) {
       return null;
     }
 
@@ -286,6 +286,21 @@ export class UserRepository {
       return null;
     }
 
+    const inverter = await this.dbClient.deviceInverter.findFirst({
+      where: {
+        plantId: mapping.plantId,
+        serialNumber: sno,
+        deletedAt: null,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    if (!device) {
+      return null;
+    }
+
     const currentStatus = await this.dbClient.deviceCurrentStatus.findUnique({
       where: {
         sno,
@@ -312,6 +327,7 @@ export class UserRepository {
 
     return {
       id: device.id,
+      monitorDeviceId: inverter?.id.toString() ?? null,
       sno: device.sno,
       inverterName: device.inverterName,
       dayDate: device.dayDate,
@@ -412,6 +428,11 @@ export class UserRepository {
         epcEmail: true,
         epcAddress: true,
         updatedAt: true,
+        epcCompany: true,
+        epcInstaller: true,
+        epcMobile: true,
+        epcEmail: true,
+        epcAddress: true,
       },
     });
   }
@@ -1305,6 +1326,116 @@ export class UserRepository {
         isDeleted: true,
         passwordHash: true,
       },
+    });
+  }
+  
+    async findActiveUserByAccount(account: string) {
+    return prisma.user.findFirst({
+      where: {
+        account,
+        isDeleted: false,
+      },
+    });
+  }
+
+  async findInverterMappingBySerialNumber(
+    serialNumber: string,
+  ) {
+    return prisma.userPlantInverterMap.findUnique({
+      where: {
+        serialNumber,
+      },
+    });
+  }
+
+  async createUserInverterMapping(data: {
+    userId: bigint;
+    serialNumber: string;
+    plantId: bigint | null;
+  }) {
+    return prisma.userPlantInverterMap.create({
+      data: {
+        userId: data.userId,
+        serialNumber: data.serialNumber,
+        plantId: data.plantId,
+        isDeleted: false,
+        deletedAt: null,
+      },
+    });
+  }
+
+  async transferInverterToUser(data: {
+    mappingId: bigint;
+    oldUserId: bigint;
+    newUserId: bigint;
+    plantId: bigint | null;
+    serialNumber: string;
+  }) {
+    return prisma.$transaction(async (tx) => {
+      // 1. Save history
+      await tx.userInverterTransferHistory.create({
+        data: {
+          oldUserId: data.oldUserId,
+          newUserId: data.newUserId,
+          plantId: data.plantId,
+          serialNumber: data.serialNumber,
+        },
+      });
+
+      // 2. Deactivate other inverter mappings
+      //    for the same plant
+      if (data.plantId !== null) {
+        await tx.userPlantInverterMap.updateMany({
+          where: {
+            plantId: data.plantId,
+            serialNumber: {
+              not: data.serialNumber,
+            },
+            isDeleted: false,
+          },
+          data: {
+            isDeleted: true,
+            deletedAt: new Date(),
+          },
+        });
+      }
+
+      // 3. Transfer requested inverter
+      await tx.userPlantInverterMap.update({
+        where: {
+          id: data.mappingId,
+        },
+        data: {
+          userId: data.newUserId,
+          isDeleted: false,
+          deletedAt: null,
+        },
+      });
+
+      // 4. Transfer plant ownership
+      if (data.plantId !== null) {
+        const newUser = await tx.user.findUnique({
+          where: {
+            id: data.newUserId,
+          },
+          select: {
+            account: true,
+          },
+        });
+
+        if (!newUser) {
+          throw new Error("New user not found");
+        }
+
+        await tx.plant.update({
+          where: {
+            id: data.plantId,
+          },
+          data: {
+            userAccount: newUser.account,
+          },
+        });
+      }
     });
   }
 }

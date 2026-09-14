@@ -149,9 +149,24 @@ export const ChangePasswordValidator = z
     message: "Passwords do not match",
   });
 
+// export const ForgotPasswordValidator = z
+//   .object({
+//     account: z.string().trim().min(1),
+//     newPassword: z.string().min(8),
+//     confirmPassword: z.string().min(8),
+//   })
+//   .refine((data) => data.newPassword === data.confirmPassword, {
+//     path: ["confirmPassword"],
+//     message: "Passwords do not match",
+//   });
+
 export const ForgotPasswordValidator = z
   .object({
     account: z.string().trim().min(1),
+    verificationCode: z
+      .string()
+      .trim()
+      .min(1, "Verification code is required"),
     newPassword: z.string().min(8),
     confirmPassword: z.string().min(8),
   })
@@ -171,6 +186,21 @@ export const UpdateProfileValidator = z.object({
   epcEmail: z.string().trim().nullable().optional(),
   epcAddress: z.string().trim().nullable().optional(),
 });
+
+export const changeUserInverterSchema = z.object({
+  accountName: z.string().trim().min(1, 'Account name is required'),
+
+  confirmAccountName: z
+    .string()
+    .trim()
+    .min(1, 'Confirm account name is required'),
+
+  serialNumber: z
+    .string()
+    .trim()
+    .min(1, 'Serial number is required'),
+});
+
 
 export const searchMonitoringUserSchema = z.object({
   account: z.string().trim().min(1, "Account is required"),

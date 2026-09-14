@@ -1437,33 +1437,41 @@ export class DeviceRepository {
   }
 
   async getDeviceMonthChartLogs(params: { sno: string; date: string }) {
-    const current = new Date(params.date);
+  const current = new Date(params.date);
 
-    const start = new Date(current.getFullYear(), current.getMonth(), 1);
+  const start = new Date(
+    current.getFullYear(),
+    current.getMonth(),
+    1,
+  );
 
-    const end = new Date(current.getFullYear(), current.getMonth() + 1, 1);
+  const end = new Date(
+    current.getFullYear(),
+    current.getMonth() + 1,
+    1,
+  );
 
-    return this.dbClient.deviceLogsLatest.findMany({
-      where: {
-        sno: params.sno,
-        latestTimestamp: {
-          gte: start,
-          lt: end,
-        },
+  return this.dbClient.deviceLogsLatest.findMany({
+    where: {
+      sno: params.sno,
+      dayDate: {
+        gte: start,
+        lt: end,
       },
+    },
 
-      select: {
-        dayDate: true,
-        latestTimestamp: true,
-        dailyProduction: true,
-        totalEnergy: true,
-      },
+    select: {
+      dayDate: true,
+      latestTimestamp: true,
+      dailyProduction: true,
+      totalEnergy: true,
+    },
 
-      orderBy: {
-        dayDate: "asc",
-      },
-    });
-  }
+    orderBy: {
+      dayDate: "asc",
+    },
+  });
+}
 
   async getDeviceYearChartLogs(params: { sno: string; date: string }) {
     const current = new Date(params.date);

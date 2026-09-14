@@ -52,6 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  LoginVerification: 'LoginVerification',
   Plant: 'Plant',
   DeviceInverter: 'DeviceInverter',
   UserPlantInverterMap: 'UserPlantInverterMap',
@@ -59,6 +60,7 @@ export const ModelName = {
   DeviceDatalogger: 'DeviceDatalogger',
   DeviceLogs: 'DeviceLogs',
   DeviceLogsLatest: 'DeviceLogsLatest',
+  UserInverterTransferHistory: 'UserInverterTransferHistory',
   DeviceDailySummary: 'DeviceDailySummary',
   DeviceDailySummaryPerLineChart: 'DeviceDailySummaryPerLineChart',
   information_data: 'information_data',
@@ -124,6 +126,17 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const LoginVerificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  code: 'code',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type LoginVerificationScalarFieldEnum = (typeof LoginVerificationScalarFieldEnum)[keyof typeof LoginVerificationScalarFieldEnum]
 
 
 export const PlantScalarFieldEnum = {
@@ -315,6 +328,18 @@ export const DeviceLogsLatestScalarFieldEnum = {
 } as const
 
 export type DeviceLogsLatestScalarFieldEnum = (typeof DeviceLogsLatestScalarFieldEnum)[keyof typeof DeviceLogsLatestScalarFieldEnum]
+
+
+export const UserInverterTransferHistoryScalarFieldEnum = {
+  id: 'id',
+  oldUserId: 'oldUserId',
+  newUserId: 'newUserId',
+  plantId: 'plantId',
+  serialNumber: 'serialNumber',
+  transferredAt: 'transferredAt'
+} as const
+
+export type UserInverterTransferHistoryScalarFieldEnum = (typeof UserInverterTransferHistoryScalarFieldEnum)[keyof typeof UserInverterTransferHistoryScalarFieldEnum]
 
 
 export const DeviceDailySummaryScalarFieldEnum = {

@@ -25,14 +25,14 @@ model User {
   updatedAt         DateTime               @updatedAt @map("updated_at")
   isDeleted         Boolean                @default(false)
   deletedAt         DateTime?
-
+  
   // EPC Details 
   epcCompany String? @map("epc_company") 
   epcInstaller String? @map("epc_installer") 
   epcMobile String? @map("epc_mobile") 
   epcEmail String? @map("epc_email") 
   epcAddress String? @map("epc_address")
-
+  
   
   plants            Plant[]
   plantInverterMaps UserPlantInverterMap[]
@@ -42,12 +42,30 @@ model User {
   firmwaresCreated Firmware[]
   upgradeTasks     UpgradeTask[]
   startedFotaJobs  FotaJob[]
+   loginVerifications LoginVerification[]
+  
+  transferHistoryFrom UserInverterTransferHistory[] @relation("OldUserTransferHistory")
+  transferHistoryTo   UserInverterTransferHistory[] @relation("NewUserTransferHistory")
 
   @@unique([portal, email])
   @@index([portal, role])
   @@index([status])
   @@index([assignedById])
   @@map("users")
+}
+
+model LoginVerification {
+  id        String   @id @default(uuid())
+  userId    BigInt   @map("user_id")
+  code      String   @db.VarChar(4)
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("login_verifications")
 }
 
 model Plant {
@@ -296,6 +314,25 @@ model DeviceLogsLatest {
   @@index([sno, dayDate])
   @@index([batchKey])
   @@map("device_logs_latest")
+}
+
+model UserInverterTransferHistory {
+  id             BigInt   @id @default(autoincrement())
+  oldUserId      BigInt   @map("old_user_id")
+  newUserId      BigInt   @map("new_user_id")
+  plantId        BigInt?  @map("plant_id")
+  serialNumber   String   @map("serial_number")
+  transferredAt  DateTime @default(now()) @map("transferred_at")
+
+  oldUser        User     @relation("OldUserTransferHistory", fields: [oldUserId], references: [id])
+  newUser        User     @relation("NewUserTransferHistory", fields: [newUserId], references: [id])
+
+  @@index([oldUserId])
+  @@index([newUserId])
+  @@index([plantId])
+  @@index([serialNumber])
+  @@index([transferredAt])
+  @@map("user_inverter_transfer_history")
 }
 
 model DeviceDailySummary {
