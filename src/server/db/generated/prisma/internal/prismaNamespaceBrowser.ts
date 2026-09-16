@@ -52,6 +52,9 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  UserTwoFactor: 'UserTwoFactor',
+  TwoFactorLoginChallenge: 'TwoFactorLoginChallenge',
+  TwoFactorRecoveryCode: 'TwoFactorRecoveryCode',
   LoginVerification: 'LoginVerification',
   Plant: 'Plant',
   DeviceInverter: 'DeviceInverter',
@@ -118,14 +121,50 @@ export const UserScalarFieldEnum = {
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
   deletedAt: 'deletedAt',
+  epcAddress: 'epcAddress',
   epcCompany: 'epcCompany',
-  epcInstaller: 'epcInstaller',
-  epcMobile: 'epcMobile',
   epcEmail: 'epcEmail',
-  epcAddress: 'epcAddress'
+  epcInstaller: 'epcInstaller',
+  epcMobile: 'epcMobile'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const UserTwoFactorScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  secretEncrypted: 'secretEncrypted',
+  enabled: 'enabled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserTwoFactorScalarFieldEnum = (typeof UserTwoFactorScalarFieldEnum)[keyof typeof UserTwoFactorScalarFieldEnum]
+
+
+export const TwoFactorLoginChallengeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  remember: 'remember',
+  expiresAt: 'expiresAt',
+  attempts: 'attempts',
+  usedAt: 'usedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type TwoFactorLoginChallengeScalarFieldEnum = (typeof TwoFactorLoginChallengeScalarFieldEnum)[keyof typeof TwoFactorLoginChallengeScalarFieldEnum]
+
+
+export const TwoFactorRecoveryCodeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  codeHash: 'codeHash',
+  usedAt: 'usedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type TwoFactorRecoveryCodeScalarFieldEnum = (typeof TwoFactorRecoveryCodeScalarFieldEnum)[keyof typeof TwoFactorRecoveryCodeScalarFieldEnum]
 
 
 export const LoginVerificationScalarFieldEnum = {

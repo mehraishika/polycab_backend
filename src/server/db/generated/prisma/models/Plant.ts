@@ -312,14 +312,14 @@ export type PlantWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Plant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plant"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Plant"> | Date | string | null
+  alertEvents?: Prisma.AlertEventListRelationFilter
+  alertStates?: Prisma.DeviceAlertStateListRelationFilter
   dataloggers?: Prisma.DeviceDataloggerListRelationFilter
   inverters?: Prisma.DeviceInverterListRelationFilter
-  information_data?: Prisma.Information_dataListRelationFilter
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  currentStatus?: Prisma.XOR<Prisma.PlantCurrentStatusNullableScalarRelationFilter, Prisma.PlantCurrentStatusWhereInput> | null
-  alertStates?: Prisma.DeviceAlertStateListRelationFilter
-  alertEvents?: Prisma.AlertEventListRelationFilter
   fotaJobs?: Prisma.FotaJobListRelationFilter
+  information_data?: Prisma.Information_dataListRelationFilter
+  currentStatus?: Prisma.XOR<Prisma.PlantCurrentStatusNullableScalarRelationFilter, Prisma.PlantCurrentStatusWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type PlantOrderByWithRelationInput = {
@@ -339,14 +339,14 @@ export type PlantOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  alertEvents?: Prisma.AlertEventOrderByRelationAggregateInput
+  alertStates?: Prisma.DeviceAlertStateOrderByRelationAggregateInput
   dataloggers?: Prisma.DeviceDataloggerOrderByRelationAggregateInput
   inverters?: Prisma.DeviceInverterOrderByRelationAggregateInput
-  information_data?: Prisma.information_dataOrderByRelationAggregateInput
-  user?: Prisma.UserOrderByWithRelationInput
-  currentStatus?: Prisma.PlantCurrentStatusOrderByWithRelationInput
-  alertStates?: Prisma.DeviceAlertStateOrderByRelationAggregateInput
-  alertEvents?: Prisma.AlertEventOrderByRelationAggregateInput
   fotaJobs?: Prisma.FotaJobOrderByRelationAggregateInput
+  information_data?: Prisma.information_dataOrderByRelationAggregateInput
+  currentStatus?: Prisma.PlantCurrentStatusOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type PlantWhereUniqueInput = Prisma.AtLeast<{
@@ -369,14 +369,14 @@ export type PlantWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Plant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plant"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Plant"> | Date | string | null
+  alertEvents?: Prisma.AlertEventListRelationFilter
+  alertStates?: Prisma.DeviceAlertStateListRelationFilter
   dataloggers?: Prisma.DeviceDataloggerListRelationFilter
   inverters?: Prisma.DeviceInverterListRelationFilter
-  information_data?: Prisma.Information_dataListRelationFilter
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  currentStatus?: Prisma.XOR<Prisma.PlantCurrentStatusNullableScalarRelationFilter, Prisma.PlantCurrentStatusWhereInput> | null
-  alertStates?: Prisma.DeviceAlertStateListRelationFilter
-  alertEvents?: Prisma.AlertEventListRelationFilter
   fotaJobs?: Prisma.FotaJobListRelationFilter
+  information_data?: Prisma.Information_dataListRelationFilter
+  currentStatus?: Prisma.XOR<Prisma.PlantCurrentStatusNullableScalarRelationFilter, Prisma.PlantCurrentStatusWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type PlantOrderByWithAggregationInput = {
@@ -441,14 +441,14 @@ export type PlantCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
-  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
-  user: Prisma.UserCreateNestedOneWithoutPlantsInput
-  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
-  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
   fotaJobs?: Prisma.FotaJobCreateNestedManyWithoutPlantInput
+  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
+  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  user: Prisma.UserCreateNestedOneWithoutPlantsInput
 }
 
 export type PlantUncheckedCreateInput = {
@@ -468,13 +468,13 @@ export type PlantUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
+  fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
-  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
-  fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUpdateInput = {
@@ -493,14 +493,14 @@ export type PlantUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
-  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
-  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
   fotaJobs?: Prisma.FotaJobUpdateManyWithoutPlantNestedInput
+  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
+  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
 }
 
 export type PlantUncheckedUpdateInput = {
@@ -520,13 +520,13 @@ export type PlantUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
+  fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
-  fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateManyInput = {
@@ -842,13 +842,13 @@ export type PlantCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
+  fotaJobs?: Prisma.FotaJobCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
-  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
-  fotaJobs?: Prisma.FotaJobCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateWithoutUserInput = {
@@ -867,13 +867,13 @@ export type PlantUncheckedCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
+  fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
-  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
-  fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutUserInput = {
@@ -940,13 +940,13 @@ export type PlantCreateWithoutInvertersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
-  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
-  user: Prisma.UserCreateNestedOneWithoutPlantsInput
-  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
   alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
+  dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
   fotaJobs?: Prisma.FotaJobCreateNestedManyWithoutPlantInput
+  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
+  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  user: Prisma.UserCreateNestedOneWithoutPlantsInput
 }
 
 export type PlantUncheckedCreateWithoutInvertersInput = {
@@ -966,12 +966,12 @@ export type PlantUncheckedCreateWithoutInvertersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
+  fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
-  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
-  fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutInvertersInput = {
@@ -1006,13 +1006,13 @@ export type PlantUpdateWithoutInvertersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
-  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
-  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
   alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
+  dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
   fotaJobs?: Prisma.FotaJobUpdateManyWithoutPlantNestedInput
+  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
+  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutInvertersInput = {
@@ -1032,12 +1032,12 @@ export type PlantUncheckedUpdateWithoutInvertersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
+  fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
-  fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateWithoutDataloggersInput = {
@@ -1056,13 +1056,13 @@ export type PlantCreateWithoutDataloggersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
-  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
-  user: Prisma.UserCreateNestedOneWithoutPlantsInput
-  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
   alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
+  inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
   fotaJobs?: Prisma.FotaJobCreateNestedManyWithoutPlantInput
+  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
+  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  user: Prisma.UserCreateNestedOneWithoutPlantsInput
 }
 
 export type PlantUncheckedCreateWithoutDataloggersInput = {
@@ -1082,12 +1082,12 @@ export type PlantUncheckedCreateWithoutDataloggersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
+  fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
-  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
-  fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutDataloggersInput = {
@@ -1122,13 +1122,13 @@ export type PlantUpdateWithoutDataloggersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
-  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
-  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
   alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
+  inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
   fotaJobs?: Prisma.FotaJobUpdateManyWithoutPlantNestedInput
+  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
+  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutDataloggersInput = {
@@ -1148,12 +1148,12 @@ export type PlantUncheckedUpdateWithoutDataloggersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
+  fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
-  fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateWithoutInformation_dataInput = {
@@ -1172,13 +1172,13 @@ export type PlantCreateWithoutInformation_dataInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
-  user: Prisma.UserCreateNestedOneWithoutPlantsInput
-  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
-  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
   fotaJobs?: Prisma.FotaJobCreateNestedManyWithoutPlantInput
+  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  user: Prisma.UserCreateNestedOneWithoutPlantsInput
 }
 
 export type PlantUncheckedCreateWithoutInformation_dataInput = {
@@ -1198,12 +1198,12 @@ export type PlantUncheckedCreateWithoutInformation_dataInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
-  currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
-  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
   fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
+  currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutInformation_dataInput = {
@@ -1238,13 +1238,13 @@ export type PlantUpdateWithoutInformation_dataInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
-  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
   fotaJobs?: Prisma.FotaJobUpdateManyWithoutPlantNestedInput
+  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutInformation_dataInput = {
@@ -1264,12 +1264,12 @@ export type PlantUncheckedUpdateWithoutInformation_dataInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
-  currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
   fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
+  currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
 }
 
 export type PlantCreateWithoutCurrentStatusInput = {
@@ -1288,13 +1288,13 @@ export type PlantCreateWithoutCurrentStatusInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
+  fotaJobs?: Prisma.FotaJobCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
   user: Prisma.UserCreateNestedOneWithoutPlantsInput
-  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
-  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
-  fotaJobs?: Prisma.FotaJobCreateNestedManyWithoutPlantInput
 }
 
 export type PlantUncheckedCreateWithoutCurrentStatusInput = {
@@ -1314,12 +1314,12 @@ export type PlantUncheckedCreateWithoutCurrentStatusInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
-  information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
-  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
   fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
+  information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutCurrentStatusInput = {
@@ -1354,13 +1354,13 @@ export type PlantUpdateWithoutCurrentStatusInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
+  fotaJobs?: Prisma.FotaJobUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
-  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
-  fotaJobs?: Prisma.FotaJobUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutCurrentStatusInput = {
@@ -1380,12 +1380,12 @@ export type PlantUncheckedUpdateWithoutCurrentStatusInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
-  information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
   fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
+  information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateWithoutAlertStatesInput = {
@@ -1404,13 +1404,13 @@ export type PlantCreateWithoutAlertStatesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
-  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
-  user: Prisma.UserCreateNestedOneWithoutPlantsInput
-  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
-  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
   fotaJobs?: Prisma.FotaJobCreateNestedManyWithoutPlantInput
+  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
+  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  user: Prisma.UserCreateNestedOneWithoutPlantsInput
 }
 
 export type PlantUncheckedCreateWithoutAlertStatesInput = {
@@ -1430,12 +1430,12 @@ export type PlantUncheckedCreateWithoutAlertStatesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
+  fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
-  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
-  fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutAlertStatesInput = {
@@ -1470,13 +1470,13 @@ export type PlantUpdateWithoutAlertStatesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
-  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
-  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
   fotaJobs?: Prisma.FotaJobUpdateManyWithoutPlantNestedInput
+  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
+  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutAlertStatesInput = {
@@ -1496,12 +1496,12 @@ export type PlantUncheckedUpdateWithoutAlertStatesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
+  fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
-  fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateWithoutAlertEventsInput = {
@@ -1520,13 +1520,13 @@ export type PlantCreateWithoutAlertEventsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
-  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
-  user: Prisma.UserCreateNestedOneWithoutPlantsInput
-  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
   fotaJobs?: Prisma.FotaJobCreateNestedManyWithoutPlantInput
+  information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
+  currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
+  user: Prisma.UserCreateNestedOneWithoutPlantsInput
 }
 
 export type PlantUncheckedCreateWithoutAlertEventsInput = {
@@ -1546,12 +1546,12 @@ export type PlantUncheckedCreateWithoutAlertEventsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
+  fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
-  fotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutAlertEventsInput = {
@@ -1586,13 +1586,13 @@ export type PlantUpdateWithoutAlertEventsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
-  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
-  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
   fotaJobs?: Prisma.FotaJobUpdateManyWithoutPlantNestedInput
+  information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
+  currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutAlertEventsInput = {
@@ -1612,12 +1612,12 @@ export type PlantUncheckedUpdateWithoutAlertEventsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
+  fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
-  fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateWithoutFotaJobsInput = {
@@ -1636,13 +1636,13 @@ export type PlantCreateWithoutFotaJobsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataCreateNestedManyWithoutPlantInput
-  user: Prisma.UserCreateNestedOneWithoutPlantsInput
   currentStatus?: Prisma.PlantCurrentStatusCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateCreateNestedManyWithoutPlantInput
-  alertEvents?: Prisma.AlertEventCreateNestedManyWithoutPlantInput
+  user: Prisma.UserCreateNestedOneWithoutPlantsInput
 }
 
 export type PlantUncheckedCreateWithoutFotaJobsInput = {
@@ -1662,12 +1662,12 @@ export type PlantUncheckedCreateWithoutFotaJobsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedCreateNestedManyWithoutPlantInput
   inverters?: Prisma.DeviceInverterUncheckedCreateNestedManyWithoutPlantInput
   information_data?: Prisma.information_dataUncheckedCreateNestedManyWithoutPlantInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedCreateNestedOneWithoutPlantInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedCreateNestedManyWithoutPlantInput
-  alertEvents?: Prisma.AlertEventUncheckedCreateNestedManyWithoutPlantInput
 }
 
 export type PlantCreateOrConnectWithoutFotaJobsInput = {
@@ -1702,13 +1702,13 @@ export type PlantUpdateWithoutFotaJobsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPlantsNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutFotaJobsInput = {
@@ -1728,12 +1728,12 @@ export type PlantUncheckedUpdateWithoutFotaJobsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantCreateManyUserInput = {
@@ -1770,13 +1770,13 @@ export type PlantUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUpdateManyWithoutPlantNestedInput
+  fotaJobs?: Prisma.FotaJobUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUpdateManyWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUpdateManyWithoutPlantNestedInput
-  fotaJobs?: Prisma.FotaJobUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateWithoutUserInput = {
@@ -1795,13 +1795,13 @@ export type PlantUncheckedUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
+  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
   dataloggers?: Prisma.DeviceDataloggerUncheckedUpdateManyWithoutPlantNestedInput
   inverters?: Prisma.DeviceInverterUncheckedUpdateManyWithoutPlantNestedInput
+  fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
   information_data?: Prisma.information_dataUncheckedUpdateManyWithoutPlantNestedInput
   currentStatus?: Prisma.PlantCurrentStatusUncheckedUpdateOneWithoutPlantNestedInput
-  alertStates?: Prisma.DeviceAlertStateUncheckedUpdateManyWithoutPlantNestedInput
-  alertEvents?: Prisma.AlertEventUncheckedUpdateManyWithoutPlantNestedInput
-  fotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutPlantNestedInput
 }
 
 export type PlantUncheckedUpdateManyWithoutUserInput = {
@@ -1828,21 +1828,21 @@ export type PlantUncheckedUpdateManyWithoutUserInput = {
  */
 
 export type PlantCountOutputType = {
+  alertEvents: number
+  alertStates: number
   dataloggers: number
   inverters: number
-  information_data: number
-  alertStates: number
-  alertEvents: number
   fotaJobs: number
+  information_data: number
 }
 
 export type PlantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  alertEvents?: boolean | PlantCountOutputTypeCountAlertEventsArgs
+  alertStates?: boolean | PlantCountOutputTypeCountAlertStatesArgs
   dataloggers?: boolean | PlantCountOutputTypeCountDataloggersArgs
   inverters?: boolean | PlantCountOutputTypeCountInvertersArgs
-  information_data?: boolean | PlantCountOutputTypeCountInformation_dataArgs
-  alertStates?: boolean | PlantCountOutputTypeCountAlertStatesArgs
-  alertEvents?: boolean | PlantCountOutputTypeCountAlertEventsArgs
   fotaJobs?: boolean | PlantCountOutputTypeCountFotaJobsArgs
+  information_data?: boolean | PlantCountOutputTypeCountInformation_dataArgs
 }
 
 /**
@@ -1853,6 +1853,20 @@ export type PlantCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
    * Select specific fields to fetch from the PlantCountOutputType
    */
   select?: Prisma.PlantCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PlantCountOutputType without action
+ */
+export type PlantCountOutputTypeCountAlertEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AlertEventWhereInput
+}
+
+/**
+ * PlantCountOutputType without action
+ */
+export type PlantCountOutputTypeCountAlertStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DeviceAlertStateWhereInput
 }
 
 /**
@@ -1872,29 +1886,15 @@ export type PlantCountOutputTypeCountInvertersArgs<ExtArgs extends runtime.Types
 /**
  * PlantCountOutputType without action
  */
-export type PlantCountOutputTypeCountInformation_dataArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.information_dataWhereInput
-}
-
-/**
- * PlantCountOutputType without action
- */
-export type PlantCountOutputTypeCountAlertStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DeviceAlertStateWhereInput
-}
-
-/**
- * PlantCountOutputType without action
- */
-export type PlantCountOutputTypeCountAlertEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AlertEventWhereInput
-}
-
-/**
- * PlantCountOutputType without action
- */
 export type PlantCountOutputTypeCountFotaJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.FotaJobWhereInput
+}
+
+/**
+ * PlantCountOutputType without action
+ */
+export type PlantCountOutputTypeCountInformation_dataArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.information_dataWhereInput
 }
 
 
@@ -1915,14 +1915,14 @@ export type PlantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  alertEvents?: boolean | Prisma.Plant$alertEventsArgs<ExtArgs>
+  alertStates?: boolean | Prisma.Plant$alertStatesArgs<ExtArgs>
   dataloggers?: boolean | Prisma.Plant$dataloggersArgs<ExtArgs>
   inverters?: boolean | Prisma.Plant$invertersArgs<ExtArgs>
-  information_data?: boolean | Prisma.Plant$information_dataArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  currentStatus?: boolean | Prisma.Plant$currentStatusArgs<ExtArgs>
-  alertStates?: boolean | Prisma.Plant$alertStatesArgs<ExtArgs>
-  alertEvents?: boolean | Prisma.Plant$alertEventsArgs<ExtArgs>
   fotaJobs?: boolean | Prisma.Plant$fotaJobsArgs<ExtArgs>
+  information_data?: boolean | Prisma.Plant$information_dataArgs<ExtArgs>
+  currentStatus?: boolean | Prisma.Plant$currentStatusArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.PlantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["plant"]>
 
@@ -1987,14 +1987,14 @@ export type PlantSelectScalar = {
 
 export type PlantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "installed" | "lastUpdatedAt" | "kwp" | "price" | "priceUnit" | "longitude" | "latitude" | "address" | "pictureFileId" | "userAccount" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["plant"]>
 export type PlantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  alertEvents?: boolean | Prisma.Plant$alertEventsArgs<ExtArgs>
+  alertStates?: boolean | Prisma.Plant$alertStatesArgs<ExtArgs>
   dataloggers?: boolean | Prisma.Plant$dataloggersArgs<ExtArgs>
   inverters?: boolean | Prisma.Plant$invertersArgs<ExtArgs>
-  information_data?: boolean | Prisma.Plant$information_dataArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  currentStatus?: boolean | Prisma.Plant$currentStatusArgs<ExtArgs>
-  alertStates?: boolean | Prisma.Plant$alertStatesArgs<ExtArgs>
-  alertEvents?: boolean | Prisma.Plant$alertEventsArgs<ExtArgs>
   fotaJobs?: boolean | Prisma.Plant$fotaJobsArgs<ExtArgs>
+  information_data?: boolean | Prisma.Plant$information_dataArgs<ExtArgs>
+  currentStatus?: boolean | Prisma.Plant$currentStatusArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.PlantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PlantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2007,14 +2007,14 @@ export type PlantIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type $PlantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Plant"
   objects: {
+    alertEvents: Prisma.$AlertEventPayload<ExtArgs>[]
+    alertStates: Prisma.$DeviceAlertStatePayload<ExtArgs>[]
     dataloggers: Prisma.$DeviceDataloggerPayload<ExtArgs>[]
     inverters: Prisma.$DeviceInverterPayload<ExtArgs>[]
-    information_data: Prisma.$information_dataPayload<ExtArgs>[]
-    user: Prisma.$UserPayload<ExtArgs>
-    currentStatus: Prisma.$PlantCurrentStatusPayload<ExtArgs> | null
-    alertStates: Prisma.$DeviceAlertStatePayload<ExtArgs>[]
-    alertEvents: Prisma.$AlertEventPayload<ExtArgs>[]
     fotaJobs: Prisma.$FotaJobPayload<ExtArgs>[]
+    information_data: Prisma.$information_dataPayload<ExtArgs>[]
+    currentStatus: Prisma.$PlantCurrentStatusPayload<ExtArgs> | null
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -2427,14 +2427,14 @@ readonly fields: PlantFieldRefs;
  */
 export interface Prisma__PlantClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  alertEvents<T extends Prisma.Plant$alertEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$alertEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AlertEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  alertStates<T extends Prisma.Plant$alertStatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$alertStatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceAlertStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dataloggers<T extends Prisma.Plant$dataloggersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$dataloggersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceDataloggerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   inverters<T extends Prisma.Plant$invertersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$invertersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceInverterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  information_data<T extends Prisma.Plant$information_dataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$information_dataArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$information_dataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  currentStatus<T extends Prisma.Plant$currentStatusArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$currentStatusArgs<ExtArgs>>): Prisma.Prisma__PlantCurrentStatusClient<runtime.Types.Result.GetResult<Prisma.$PlantCurrentStatusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  alertStates<T extends Prisma.Plant$alertStatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$alertStatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceAlertStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  alertEvents<T extends Prisma.Plant$alertEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$alertEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AlertEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   fotaJobs<T extends Prisma.Plant$fotaJobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$fotaJobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FotaJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  information_data<T extends Prisma.Plant$information_dataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$information_dataArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$information_dataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  currentStatus<T extends Prisma.Plant$currentStatusArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plant$currentStatusArgs<ExtArgs>>): Prisma.Prisma__PlantCurrentStatusClient<runtime.Types.Result.GetResult<Prisma.$PlantCurrentStatusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2881,6 +2881,54 @@ export type PlantDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Plant.alertEvents
+ */
+export type Plant$alertEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AlertEvent
+   */
+  select?: Prisma.AlertEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AlertEvent
+   */
+  omit?: Prisma.AlertEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AlertEventInclude<ExtArgs> | null
+  where?: Prisma.AlertEventWhereInput
+  orderBy?: Prisma.AlertEventOrderByWithRelationInput | Prisma.AlertEventOrderByWithRelationInput[]
+  cursor?: Prisma.AlertEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AlertEventScalarFieldEnum | Prisma.AlertEventScalarFieldEnum[]
+}
+
+/**
+ * Plant.alertStates
+ */
+export type Plant$alertStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DeviceAlertState
+   */
+  select?: Prisma.DeviceAlertStateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DeviceAlertState
+   */
+  omit?: Prisma.DeviceAlertStateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DeviceAlertStateInclude<ExtArgs> | null
+  where?: Prisma.DeviceAlertStateWhereInput
+  orderBy?: Prisma.DeviceAlertStateOrderByWithRelationInput | Prisma.DeviceAlertStateOrderByWithRelationInput[]
+  cursor?: Prisma.DeviceAlertStateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DeviceAlertStateScalarFieldEnum | Prisma.DeviceAlertStateScalarFieldEnum[]
+}
+
+/**
  * Plant.dataloggers
  */
 export type Plant$dataloggersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2929,6 +2977,30 @@ export type Plant$invertersArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Plant.fotaJobs
+ */
+export type Plant$fotaJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FotaJob
+   */
+  select?: Prisma.FotaJobSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FotaJob
+   */
+  omit?: Prisma.FotaJobOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FotaJobInclude<ExtArgs> | null
+  where?: Prisma.FotaJobWhereInput
+  orderBy?: Prisma.FotaJobOrderByWithRelationInput | Prisma.FotaJobOrderByWithRelationInput[]
+  cursor?: Prisma.FotaJobWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FotaJobScalarFieldEnum | Prisma.FotaJobScalarFieldEnum[]
+}
+
+/**
  * Plant.information_data
  */
 export type Plant$information_dataArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2969,78 +3041,6 @@ export type Plant$currentStatusArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   include?: Prisma.PlantCurrentStatusInclude<ExtArgs> | null
   where?: Prisma.PlantCurrentStatusWhereInput
-}
-
-/**
- * Plant.alertStates
- */
-export type Plant$alertStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the DeviceAlertState
-   */
-  select?: Prisma.DeviceAlertStateSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the DeviceAlertState
-   */
-  omit?: Prisma.DeviceAlertStateOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceAlertStateInclude<ExtArgs> | null
-  where?: Prisma.DeviceAlertStateWhereInput
-  orderBy?: Prisma.DeviceAlertStateOrderByWithRelationInput | Prisma.DeviceAlertStateOrderByWithRelationInput[]
-  cursor?: Prisma.DeviceAlertStateWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.DeviceAlertStateScalarFieldEnum | Prisma.DeviceAlertStateScalarFieldEnum[]
-}
-
-/**
- * Plant.alertEvents
- */
-export type Plant$alertEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AlertEvent
-   */
-  select?: Prisma.AlertEventSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the AlertEvent
-   */
-  omit?: Prisma.AlertEventOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AlertEventInclude<ExtArgs> | null
-  where?: Prisma.AlertEventWhereInput
-  orderBy?: Prisma.AlertEventOrderByWithRelationInput | Prisma.AlertEventOrderByWithRelationInput[]
-  cursor?: Prisma.AlertEventWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AlertEventScalarFieldEnum | Prisma.AlertEventScalarFieldEnum[]
-}
-
-/**
- * Plant.fotaJobs
- */
-export type Plant$fotaJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the FotaJob
-   */
-  select?: Prisma.FotaJobSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the FotaJob
-   */
-  omit?: Prisma.FotaJobOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.FotaJobInclude<ExtArgs> | null
-  where?: Prisma.FotaJobWhereInput
-  orderBy?: Prisma.FotaJobOrderByWithRelationInput | Prisma.FotaJobOrderByWithRelationInput[]
-  cursor?: Prisma.FotaJobWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.FotaJobScalarFieldEnum | Prisma.FotaJobScalarFieldEnum[]
 }
 
 /**

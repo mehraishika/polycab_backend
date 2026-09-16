@@ -9,6 +9,9 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User'
+export type * from './models/UserTwoFactor'
+export type * from './models/TwoFactorLoginChallenge'
+export type * from './models/TwoFactorRecoveryCode'
 export type * from './models/LoginVerification'
 export type * from './models/Plant'
 export type * from './models/DeviceInverter'

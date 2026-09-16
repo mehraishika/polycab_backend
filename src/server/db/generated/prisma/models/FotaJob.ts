@@ -344,11 +344,11 @@ export type FotaJobWhereInput = {
   startedById?: Prisma.BigIntFilter<"FotaJob"> | bigint | number
   createdAt?: Prisma.DateTimeFilter<"FotaJob"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FotaJob"> | Date | string
-  plant?: Prisma.XOR<Prisma.PlantScalarRelationFilter, Prisma.PlantWhereInput>
+  commandLogs?: Prisma.FotaCommandLogListRelationFilter
   firmware?: Prisma.XOR<Prisma.FirmwareNullableScalarRelationFilter, Prisma.FirmwareWhereInput> | null
+  plant?: Prisma.XOR<Prisma.PlantScalarRelationFilter, Prisma.PlantWhereInput>
   startedBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   taskJobs?: Prisma.TaskJobListRelationFilter
-  commandLogs?: Prisma.FotaCommandLogListRelationFilter
 }
 
 export type FotaJobOrderByWithRelationInput = {
@@ -372,11 +372,11 @@ export type FotaJobOrderByWithRelationInput = {
   startedById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  plant?: Prisma.PlantOrderByWithRelationInput
+  commandLogs?: Prisma.FotaCommandLogOrderByRelationAggregateInput
   firmware?: Prisma.FirmwareOrderByWithRelationInput
+  plant?: Prisma.PlantOrderByWithRelationInput
   startedBy?: Prisma.UserOrderByWithRelationInput
   taskJobs?: Prisma.TaskJobOrderByRelationAggregateInput
-  commandLogs?: Prisma.FotaCommandLogOrderByRelationAggregateInput
 }
 
 export type FotaJobWhereUniqueInput = Prisma.AtLeast<{
@@ -403,11 +403,11 @@ export type FotaJobWhereUniqueInput = Prisma.AtLeast<{
   startedById?: Prisma.BigIntFilter<"FotaJob"> | bigint | number
   createdAt?: Prisma.DateTimeFilter<"FotaJob"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FotaJob"> | Date | string
-  plant?: Prisma.XOR<Prisma.PlantScalarRelationFilter, Prisma.PlantWhereInput>
+  commandLogs?: Prisma.FotaCommandLogListRelationFilter
   firmware?: Prisma.XOR<Prisma.FirmwareNullableScalarRelationFilter, Prisma.FirmwareWhereInput> | null
+  plant?: Prisma.XOR<Prisma.PlantScalarRelationFilter, Prisma.PlantWhereInput>
   startedBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   taskJobs?: Prisma.TaskJobListRelationFilter
-  commandLogs?: Prisma.FotaCommandLogListRelationFilter
 }, "jobId">
 
 export type FotaJobOrderByWithAggregationInput = {
@@ -482,11 +482,11 @@ export type FotaJobCreateInput = {
   lastHeartbeatAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  plant: Prisma.PlantCreateNestedOneWithoutFotaJobsInput
+  commandLogs?: Prisma.FotaCommandLogCreateNestedManyWithoutJobInput
   firmware?: Prisma.FirmwareCreateNestedOneWithoutFotaJobsInput
+  plant: Prisma.PlantCreateNestedOneWithoutFotaJobsInput
   startedBy: Prisma.UserCreateNestedOneWithoutStartedFotaJobsInput
   taskJobs?: Prisma.TaskJobCreateNestedManyWithoutJobInput
-  commandLogs?: Prisma.FotaCommandLogCreateNestedManyWithoutJobInput
 }
 
 export type FotaJobUncheckedCreateInput = {
@@ -510,8 +510,8 @@ export type FotaJobUncheckedCreateInput = {
   startedById: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
-  taskJobs?: Prisma.TaskJobUncheckedCreateNestedManyWithoutJobInput
   commandLogs?: Prisma.FotaCommandLogUncheckedCreateNestedManyWithoutJobInput
+  taskJobs?: Prisma.TaskJobUncheckedCreateNestedManyWithoutJobInput
 }
 
 export type FotaJobUpdateInput = {
@@ -532,11 +532,11 @@ export type FotaJobUpdateInput = {
   lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  plant?: Prisma.PlantUpdateOneRequiredWithoutFotaJobsNestedInput
+  commandLogs?: Prisma.FotaCommandLogUpdateManyWithoutJobNestedInput
   firmware?: Prisma.FirmwareUpdateOneWithoutFotaJobsNestedInput
+  plant?: Prisma.PlantUpdateOneRequiredWithoutFotaJobsNestedInput
   startedBy?: Prisma.UserUpdateOneRequiredWithoutStartedFotaJobsNestedInput
   taskJobs?: Prisma.TaskJobUpdateManyWithoutJobNestedInput
-  commandLogs?: Prisma.FotaCommandLogUpdateManyWithoutJobNestedInput
 }
 
 export type FotaJobUncheckedUpdateInput = {
@@ -560,8 +560,8 @@ export type FotaJobUncheckedUpdateInput = {
   startedById?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  taskJobs?: Prisma.TaskJobUncheckedUpdateManyWithoutJobNestedInput
   commandLogs?: Prisma.FotaCommandLogUncheckedUpdateManyWithoutJobNestedInput
+  taskJobs?: Prisma.TaskJobUncheckedUpdateManyWithoutJobNestedInput
 }
 
 export type FotaJobCreateManyInput = {
@@ -910,10 +910,10 @@ export type FotaJobCreateWithoutStartedByInput = {
   lastHeartbeatAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  plant: Prisma.PlantCreateNestedOneWithoutFotaJobsInput
-  firmware?: Prisma.FirmwareCreateNestedOneWithoutFotaJobsInput
-  taskJobs?: Prisma.TaskJobCreateNestedManyWithoutJobInput
   commandLogs?: Prisma.FotaCommandLogCreateNestedManyWithoutJobInput
+  firmware?: Prisma.FirmwareCreateNestedOneWithoutFotaJobsInput
+  plant: Prisma.PlantCreateNestedOneWithoutFotaJobsInput
+  taskJobs?: Prisma.TaskJobCreateNestedManyWithoutJobInput
 }
 
 export type FotaJobUncheckedCreateWithoutStartedByInput = {
@@ -936,8 +936,8 @@ export type FotaJobUncheckedCreateWithoutStartedByInput = {
   lastHeartbeatAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  taskJobs?: Prisma.TaskJobUncheckedCreateNestedManyWithoutJobInput
   commandLogs?: Prisma.FotaCommandLogUncheckedCreateNestedManyWithoutJobInput
+  taskJobs?: Prisma.TaskJobUncheckedCreateNestedManyWithoutJobInput
 }
 
 export type FotaJobCreateOrConnectWithoutStartedByInput = {
@@ -1010,10 +1010,10 @@ export type FotaJobCreateWithoutPlantInput = {
   lastHeartbeatAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  commandLogs?: Prisma.FotaCommandLogCreateNestedManyWithoutJobInput
   firmware?: Prisma.FirmwareCreateNestedOneWithoutFotaJobsInput
   startedBy: Prisma.UserCreateNestedOneWithoutStartedFotaJobsInput
   taskJobs?: Prisma.TaskJobCreateNestedManyWithoutJobInput
-  commandLogs?: Prisma.FotaCommandLogCreateNestedManyWithoutJobInput
 }
 
 export type FotaJobUncheckedCreateWithoutPlantInput = {
@@ -1036,8 +1036,8 @@ export type FotaJobUncheckedCreateWithoutPlantInput = {
   startedById: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
-  taskJobs?: Prisma.TaskJobUncheckedCreateNestedManyWithoutJobInput
   commandLogs?: Prisma.FotaCommandLogUncheckedCreateNestedManyWithoutJobInput
+  taskJobs?: Prisma.TaskJobUncheckedCreateNestedManyWithoutJobInput
 }
 
 export type FotaJobCreateOrConnectWithoutPlantInput = {
@@ -1084,10 +1084,10 @@ export type FotaJobCreateWithoutFirmwareInput = {
   lastHeartbeatAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  commandLogs?: Prisma.FotaCommandLogCreateNestedManyWithoutJobInput
   plant: Prisma.PlantCreateNestedOneWithoutFotaJobsInput
   startedBy: Prisma.UserCreateNestedOneWithoutStartedFotaJobsInput
   taskJobs?: Prisma.TaskJobCreateNestedManyWithoutJobInput
-  commandLogs?: Prisma.FotaCommandLogCreateNestedManyWithoutJobInput
 }
 
 export type FotaJobUncheckedCreateWithoutFirmwareInput = {
@@ -1110,8 +1110,8 @@ export type FotaJobUncheckedCreateWithoutFirmwareInput = {
   startedById: bigint | number
   createdAt?: Date | string
   updatedAt?: Date | string
-  taskJobs?: Prisma.TaskJobUncheckedCreateNestedManyWithoutJobInput
   commandLogs?: Prisma.FotaCommandLogUncheckedCreateNestedManyWithoutJobInput
+  taskJobs?: Prisma.TaskJobUncheckedCreateNestedManyWithoutJobInput
 }
 
 export type FotaJobCreateOrConnectWithoutFirmwareInput = {
@@ -1158,10 +1158,10 @@ export type FotaJobCreateWithoutTaskJobsInput = {
   lastHeartbeatAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  plant: Prisma.PlantCreateNestedOneWithoutFotaJobsInput
-  firmware?: Prisma.FirmwareCreateNestedOneWithoutFotaJobsInput
-  startedBy: Prisma.UserCreateNestedOneWithoutStartedFotaJobsInput
   commandLogs?: Prisma.FotaCommandLogCreateNestedManyWithoutJobInput
+  firmware?: Prisma.FirmwareCreateNestedOneWithoutFotaJobsInput
+  plant: Prisma.PlantCreateNestedOneWithoutFotaJobsInput
+  startedBy: Prisma.UserCreateNestedOneWithoutStartedFotaJobsInput
 }
 
 export type FotaJobUncheckedCreateWithoutTaskJobsInput = {
@@ -1222,10 +1222,10 @@ export type FotaJobUpdateWithoutTaskJobsInput = {
   lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  plant?: Prisma.PlantUpdateOneRequiredWithoutFotaJobsNestedInput
-  firmware?: Prisma.FirmwareUpdateOneWithoutFotaJobsNestedInput
-  startedBy?: Prisma.UserUpdateOneRequiredWithoutStartedFotaJobsNestedInput
   commandLogs?: Prisma.FotaCommandLogUpdateManyWithoutJobNestedInput
+  firmware?: Prisma.FirmwareUpdateOneWithoutFotaJobsNestedInput
+  plant?: Prisma.PlantUpdateOneRequiredWithoutFotaJobsNestedInput
+  startedBy?: Prisma.UserUpdateOneRequiredWithoutStartedFotaJobsNestedInput
 }
 
 export type FotaJobUncheckedUpdateWithoutTaskJobsInput = {
@@ -1270,8 +1270,8 @@ export type FotaJobCreateWithoutCommandLogsInput = {
   lastHeartbeatAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  plant: Prisma.PlantCreateNestedOneWithoutFotaJobsInput
   firmware?: Prisma.FirmwareCreateNestedOneWithoutFotaJobsInput
+  plant: Prisma.PlantCreateNestedOneWithoutFotaJobsInput
   startedBy: Prisma.UserCreateNestedOneWithoutStartedFotaJobsInput
   taskJobs?: Prisma.TaskJobCreateNestedManyWithoutJobInput
 }
@@ -1334,8 +1334,8 @@ export type FotaJobUpdateWithoutCommandLogsInput = {
   lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  plant?: Prisma.PlantUpdateOneRequiredWithoutFotaJobsNestedInput
   firmware?: Prisma.FirmwareUpdateOneWithoutFotaJobsNestedInput
+  plant?: Prisma.PlantUpdateOneRequiredWithoutFotaJobsNestedInput
   startedBy?: Prisma.UserUpdateOneRequiredWithoutStartedFotaJobsNestedInput
   taskJobs?: Prisma.TaskJobUpdateManyWithoutJobNestedInput
 }
@@ -1404,10 +1404,10 @@ export type FotaJobUpdateWithoutStartedByInput = {
   lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  plant?: Prisma.PlantUpdateOneRequiredWithoutFotaJobsNestedInput
-  firmware?: Prisma.FirmwareUpdateOneWithoutFotaJobsNestedInput
-  taskJobs?: Prisma.TaskJobUpdateManyWithoutJobNestedInput
   commandLogs?: Prisma.FotaCommandLogUpdateManyWithoutJobNestedInput
+  firmware?: Prisma.FirmwareUpdateOneWithoutFotaJobsNestedInput
+  plant?: Prisma.PlantUpdateOneRequiredWithoutFotaJobsNestedInput
+  taskJobs?: Prisma.TaskJobUpdateManyWithoutJobNestedInput
 }
 
 export type FotaJobUncheckedUpdateWithoutStartedByInput = {
@@ -1430,8 +1430,8 @@ export type FotaJobUncheckedUpdateWithoutStartedByInput = {
   lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  taskJobs?: Prisma.TaskJobUncheckedUpdateManyWithoutJobNestedInput
   commandLogs?: Prisma.FotaCommandLogUncheckedUpdateManyWithoutJobNestedInput
+  taskJobs?: Prisma.TaskJobUncheckedUpdateManyWithoutJobNestedInput
 }
 
 export type FotaJobUncheckedUpdateManyWithoutStartedByInput = {
@@ -1496,10 +1496,10 @@ export type FotaJobUpdateWithoutPlantInput = {
   lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  commandLogs?: Prisma.FotaCommandLogUpdateManyWithoutJobNestedInput
   firmware?: Prisma.FirmwareUpdateOneWithoutFotaJobsNestedInput
   startedBy?: Prisma.UserUpdateOneRequiredWithoutStartedFotaJobsNestedInput
   taskJobs?: Prisma.TaskJobUpdateManyWithoutJobNestedInput
-  commandLogs?: Prisma.FotaCommandLogUpdateManyWithoutJobNestedInput
 }
 
 export type FotaJobUncheckedUpdateWithoutPlantInput = {
@@ -1522,8 +1522,8 @@ export type FotaJobUncheckedUpdateWithoutPlantInput = {
   startedById?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  taskJobs?: Prisma.TaskJobUncheckedUpdateManyWithoutJobNestedInput
   commandLogs?: Prisma.FotaCommandLogUncheckedUpdateManyWithoutJobNestedInput
+  taskJobs?: Prisma.TaskJobUncheckedUpdateManyWithoutJobNestedInput
 }
 
 export type FotaJobUncheckedUpdateManyWithoutPlantInput = {
@@ -1588,10 +1588,10 @@ export type FotaJobUpdateWithoutFirmwareInput = {
   lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  commandLogs?: Prisma.FotaCommandLogUpdateManyWithoutJobNestedInput
   plant?: Prisma.PlantUpdateOneRequiredWithoutFotaJobsNestedInput
   startedBy?: Prisma.UserUpdateOneRequiredWithoutStartedFotaJobsNestedInput
   taskJobs?: Prisma.TaskJobUpdateManyWithoutJobNestedInput
-  commandLogs?: Prisma.FotaCommandLogUpdateManyWithoutJobNestedInput
 }
 
 export type FotaJobUncheckedUpdateWithoutFirmwareInput = {
@@ -1614,8 +1614,8 @@ export type FotaJobUncheckedUpdateWithoutFirmwareInput = {
   startedById?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  taskJobs?: Prisma.TaskJobUncheckedUpdateManyWithoutJobNestedInput
   commandLogs?: Prisma.FotaCommandLogUncheckedUpdateManyWithoutJobNestedInput
+  taskJobs?: Prisma.TaskJobUncheckedUpdateManyWithoutJobNestedInput
 }
 
 export type FotaJobUncheckedUpdateManyWithoutFirmwareInput = {
@@ -1646,13 +1646,13 @@ export type FotaJobUncheckedUpdateManyWithoutFirmwareInput = {
  */
 
 export type FotaJobCountOutputType = {
-  taskJobs: number
   commandLogs: number
+  taskJobs: number
 }
 
 export type FotaJobCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  taskJobs?: boolean | FotaJobCountOutputTypeCountTaskJobsArgs
   commandLogs?: boolean | FotaJobCountOutputTypeCountCommandLogsArgs
+  taskJobs?: boolean | FotaJobCountOutputTypeCountTaskJobsArgs
 }
 
 /**
@@ -1668,15 +1668,15 @@ export type FotaJobCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * FotaJobCountOutputType without action
  */
-export type FotaJobCountOutputTypeCountTaskJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TaskJobWhereInput
+export type FotaJobCountOutputTypeCountCommandLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FotaCommandLogWhereInput
 }
 
 /**
  * FotaJobCountOutputType without action
  */
-export type FotaJobCountOutputTypeCountCommandLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.FotaCommandLogWhereInput
+export type FotaJobCountOutputTypeCountTaskJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TaskJobWhereInput
 }
 
 
@@ -1701,11 +1701,11 @@ export type FotaJobSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   startedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
+  commandLogs?: boolean | Prisma.FotaJob$commandLogsArgs<ExtArgs>
   firmware?: boolean | Prisma.FotaJob$firmwareArgs<ExtArgs>
+  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   startedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   taskJobs?: boolean | Prisma.FotaJob$taskJobsArgs<ExtArgs>
-  commandLogs?: boolean | Prisma.FotaJob$commandLogsArgs<ExtArgs>
   _count?: boolean | Prisma.FotaJobCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["fotaJob"]>
 
@@ -1730,8 +1730,8 @@ export type FotaJobSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   startedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   firmware?: boolean | Prisma.FotaJob$firmwareArgs<ExtArgs>
+  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   startedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["fotaJob"]>
 
@@ -1756,8 +1756,8 @@ export type FotaJobSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   startedById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   firmware?: boolean | Prisma.FotaJob$firmwareArgs<ExtArgs>
+  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   startedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["fotaJob"]>
 
@@ -1786,32 +1786,32 @@ export type FotaJobSelectScalar = {
 
 export type FotaJobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"jobId" | "plantId" | "loggerImei" | "inverterSerialNo" | "currentFirmware" | "newFirmwareVersion" | "firmwareId" | "chipType" | "updateType" | "firmwareUrl" | "status" | "failureReason" | "stepTimeoutSeconds" | "stepDeadlineAt" | "workerId" | "claimedAt" | "lastHeartbeatAt" | "startedById" | "createdAt" | "updatedAt", ExtArgs["result"]["fotaJob"]>
 export type FotaJobInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
+  commandLogs?: boolean | Prisma.FotaJob$commandLogsArgs<ExtArgs>
   firmware?: boolean | Prisma.FotaJob$firmwareArgs<ExtArgs>
+  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   startedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   taskJobs?: boolean | Prisma.FotaJob$taskJobsArgs<ExtArgs>
-  commandLogs?: boolean | Prisma.FotaJob$commandLogsArgs<ExtArgs>
   _count?: boolean | Prisma.FotaJobCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type FotaJobIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   firmware?: boolean | Prisma.FotaJob$firmwareArgs<ExtArgs>
+  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   startedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type FotaJobIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   firmware?: boolean | Prisma.FotaJob$firmwareArgs<ExtArgs>
+  plant?: boolean | Prisma.PlantDefaultArgs<ExtArgs>
   startedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $FotaJobPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "FotaJob"
   objects: {
-    plant: Prisma.$PlantPayload<ExtArgs>
+    commandLogs: Prisma.$FotaCommandLogPayload<ExtArgs>[]
     firmware: Prisma.$FirmwarePayload<ExtArgs> | null
+    plant: Prisma.$PlantPayload<ExtArgs>
     startedBy: Prisma.$UserPayload<ExtArgs>
     taskJobs: Prisma.$TaskJobPayload<ExtArgs>[]
-    commandLogs: Prisma.$FotaCommandLogPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     jobId: string
@@ -2228,11 +2228,11 @@ readonly fields: FotaJobFieldRefs;
  */
 export interface Prisma__FotaJobClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  plant<T extends Prisma.PlantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlantDefaultArgs<ExtArgs>>): Prisma.Prisma__PlantClient<runtime.Types.Result.GetResult<Prisma.$PlantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  commandLogs<T extends Prisma.FotaJob$commandLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FotaJob$commandLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FotaCommandLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   firmware<T extends Prisma.FotaJob$firmwareArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FotaJob$firmwareArgs<ExtArgs>>): Prisma.Prisma__FirmwareClient<runtime.Types.Result.GetResult<Prisma.$FirmwarePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  plant<T extends Prisma.PlantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlantDefaultArgs<ExtArgs>>): Prisma.Prisma__PlantClient<runtime.Types.Result.GetResult<Prisma.$PlantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   startedBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   taskJobs<T extends Prisma.FotaJob$taskJobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FotaJob$taskJobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  commandLogs<T extends Prisma.FotaJob$commandLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FotaJob$commandLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FotaCommandLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2683,6 +2683,30 @@ export type FotaJobDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
+ * FotaJob.commandLogs
+ */
+export type FotaJob$commandLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FotaCommandLog
+   */
+  select?: Prisma.FotaCommandLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FotaCommandLog
+   */
+  omit?: Prisma.FotaCommandLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FotaCommandLogInclude<ExtArgs> | null
+  where?: Prisma.FotaCommandLogWhereInput
+  orderBy?: Prisma.FotaCommandLogOrderByWithRelationInput | Prisma.FotaCommandLogOrderByWithRelationInput[]
+  cursor?: Prisma.FotaCommandLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FotaCommandLogScalarFieldEnum | Prisma.FotaCommandLogScalarFieldEnum[]
+}
+
+/**
  * FotaJob.firmware
  */
 export type FotaJob$firmwareArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2723,30 +2747,6 @@ export type FotaJob$taskJobsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.TaskJobScalarFieldEnum | Prisma.TaskJobScalarFieldEnum[]
-}
-
-/**
- * FotaJob.commandLogs
- */
-export type FotaJob$commandLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the FotaCommandLog
-   */
-  select?: Prisma.FotaCommandLogSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the FotaCommandLog
-   */
-  omit?: Prisma.FotaCommandLogOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.FotaCommandLogInclude<ExtArgs> | null
-  where?: Prisma.FotaCommandLogWhereInput
-  orderBy?: Prisma.FotaCommandLogOrderByWithRelationInput | Prisma.FotaCommandLogOrderByWithRelationInput[]
-  cursor?: Prisma.FotaCommandLogWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.FotaCommandLogScalarFieldEnum | Prisma.FotaCommandLogScalarFieldEnum[]
 }
 
 /**

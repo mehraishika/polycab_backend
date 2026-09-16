@@ -236,8 +236,8 @@ export type UserInverterTransferHistoryWhereInput = {
   plantId?: Prisma.BigIntNullableFilter<"UserInverterTransferHistory"> | bigint | number | null
   serialNumber?: Prisma.StringFilter<"UserInverterTransferHistory"> | string
   transferredAt?: Prisma.DateTimeFilter<"UserInverterTransferHistory"> | Date | string
-  oldUser?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   newUser?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  oldUser?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type UserInverterTransferHistoryOrderByWithRelationInput = {
@@ -247,8 +247,8 @@ export type UserInverterTransferHistoryOrderByWithRelationInput = {
   plantId?: Prisma.SortOrderInput | Prisma.SortOrder
   serialNumber?: Prisma.SortOrder
   transferredAt?: Prisma.SortOrder
-  oldUser?: Prisma.UserOrderByWithRelationInput
   newUser?: Prisma.UserOrderByWithRelationInput
+  oldUser?: Prisma.UserOrderByWithRelationInput
 }
 
 export type UserInverterTransferHistoryWhereUniqueInput = Prisma.AtLeast<{
@@ -261,8 +261,8 @@ export type UserInverterTransferHistoryWhereUniqueInput = Prisma.AtLeast<{
   plantId?: Prisma.BigIntNullableFilter<"UserInverterTransferHistory"> | bigint | number | null
   serialNumber?: Prisma.StringFilter<"UserInverterTransferHistory"> | string
   transferredAt?: Prisma.DateTimeFilter<"UserInverterTransferHistory"> | Date | string
-  oldUser?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   newUser?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  oldUser?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type UserInverterTransferHistoryOrderByWithAggregationInput = {
@@ -296,8 +296,8 @@ export type UserInverterTransferHistoryCreateInput = {
   plantId?: bigint | number | null
   serialNumber: string
   transferredAt?: Date | string
-  oldUser: Prisma.UserCreateNestedOneWithoutTransferHistoryFromInput
   newUser: Prisma.UserCreateNestedOneWithoutTransferHistoryToInput
+  oldUser: Prisma.UserCreateNestedOneWithoutTransferHistoryFromInput
 }
 
 export type UserInverterTransferHistoryUncheckedCreateInput = {
@@ -314,8 +314,8 @@ export type UserInverterTransferHistoryUpdateInput = {
   plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
   transferredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  oldUser?: Prisma.UserUpdateOneRequiredWithoutTransferHistoryFromNestedInput
   newUser?: Prisma.UserUpdateOneRequiredWithoutTransferHistoryToNestedInput
+  oldUser?: Prisma.UserUpdateOneRequiredWithoutTransferHistoryFromNestedInput
 }
 
 export type UserInverterTransferHistoryUncheckedUpdateInput = {
@@ -403,13 +403,6 @@ export type UserInverterTransferHistorySumOrderByAggregateInput = {
   plantId?: Prisma.SortOrder
 }
 
-export type UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput = {
-  create?: Prisma.XOR<Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput, Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput> | Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput[] | Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput[]
-  connectOrCreate?: Prisma.UserInverterTransferHistoryCreateOrConnectWithoutOldUserInput | Prisma.UserInverterTransferHistoryCreateOrConnectWithoutOldUserInput[]
-  createMany?: Prisma.UserInverterTransferHistoryCreateManyOldUserInputEnvelope
-  connect?: Prisma.UserInverterTransferHistoryWhereUniqueInput | Prisma.UserInverterTransferHistoryWhereUniqueInput[]
-}
-
 export type UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput = {
   create?: Prisma.XOR<Prisma.UserInverterTransferHistoryCreateWithoutNewUserInput, Prisma.UserInverterTransferHistoryUncheckedCreateWithoutNewUserInput> | Prisma.UserInverterTransferHistoryCreateWithoutNewUserInput[] | Prisma.UserInverterTransferHistoryUncheckedCreateWithoutNewUserInput[]
   connectOrCreate?: Prisma.UserInverterTransferHistoryCreateOrConnectWithoutNewUserInput | Prisma.UserInverterTransferHistoryCreateOrConnectWithoutNewUserInput[]
@@ -417,7 +410,7 @@ export type UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput = {
   connect?: Prisma.UserInverterTransferHistoryWhereUniqueInput | Prisma.UserInverterTransferHistoryWhereUniqueInput[]
 }
 
-export type UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput = {
+export type UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput = {
   create?: Prisma.XOR<Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput, Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput> | Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput[] | Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput[]
   connectOrCreate?: Prisma.UserInverterTransferHistoryCreateOrConnectWithoutOldUserInput | Prisma.UserInverterTransferHistoryCreateOrConnectWithoutOldUserInput[]
   createMany?: Prisma.UserInverterTransferHistoryCreateManyOldUserInputEnvelope
@@ -431,18 +424,11 @@ export type UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserIn
   connect?: Prisma.UserInverterTransferHistoryWhereUniqueInput | Prisma.UserInverterTransferHistoryWhereUniqueInput[]
 }
 
-export type UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput = {
+export type UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput = {
   create?: Prisma.XOR<Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput, Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput> | Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput[] | Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput[]
   connectOrCreate?: Prisma.UserInverterTransferHistoryCreateOrConnectWithoutOldUserInput | Prisma.UserInverterTransferHistoryCreateOrConnectWithoutOldUserInput[]
-  upsert?: Prisma.UserInverterTransferHistoryUpsertWithWhereUniqueWithoutOldUserInput | Prisma.UserInverterTransferHistoryUpsertWithWhereUniqueWithoutOldUserInput[]
   createMany?: Prisma.UserInverterTransferHistoryCreateManyOldUserInputEnvelope
-  set?: Prisma.UserInverterTransferHistoryWhereUniqueInput | Prisma.UserInverterTransferHistoryWhereUniqueInput[]
-  disconnect?: Prisma.UserInverterTransferHistoryWhereUniqueInput | Prisma.UserInverterTransferHistoryWhereUniqueInput[]
-  delete?: Prisma.UserInverterTransferHistoryWhereUniqueInput | Prisma.UserInverterTransferHistoryWhereUniqueInput[]
   connect?: Prisma.UserInverterTransferHistoryWhereUniqueInput | Prisma.UserInverterTransferHistoryWhereUniqueInput[]
-  update?: Prisma.UserInverterTransferHistoryUpdateWithWhereUniqueWithoutOldUserInput | Prisma.UserInverterTransferHistoryUpdateWithWhereUniqueWithoutOldUserInput[]
-  updateMany?: Prisma.UserInverterTransferHistoryUpdateManyWithWhereWithoutOldUserInput | Prisma.UserInverterTransferHistoryUpdateManyWithWhereWithoutOldUserInput[]
-  deleteMany?: Prisma.UserInverterTransferHistoryScalarWhereInput | Prisma.UserInverterTransferHistoryScalarWhereInput[]
 }
 
 export type UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput = {
@@ -459,7 +445,7 @@ export type UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput = {
   deleteMany?: Prisma.UserInverterTransferHistoryScalarWhereInput | Prisma.UserInverterTransferHistoryScalarWhereInput[]
 }
 
-export type UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput = {
+export type UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput = {
   create?: Prisma.XOR<Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput, Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput> | Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput[] | Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput[]
   connectOrCreate?: Prisma.UserInverterTransferHistoryCreateOrConnectWithoutOldUserInput | Prisma.UserInverterTransferHistoryCreateOrConnectWithoutOldUserInput[]
   upsert?: Prisma.UserInverterTransferHistoryUpsertWithWhereUniqueWithoutOldUserInput | Prisma.UserInverterTransferHistoryUpsertWithWhereUniqueWithoutOldUserInput[]
@@ -487,30 +473,18 @@ export type UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedIn
   deleteMany?: Prisma.UserInverterTransferHistoryScalarWhereInput | Prisma.UserInverterTransferHistoryScalarWhereInput[]
 }
 
-export type UserInverterTransferHistoryCreateWithoutOldUserInput = {
-  id?: bigint | number
-  plantId?: bigint | number | null
-  serialNumber: string
-  transferredAt?: Date | string
-  newUser: Prisma.UserCreateNestedOneWithoutTransferHistoryToInput
-}
-
-export type UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput = {
-  id?: bigint | number
-  newUserId: bigint | number
-  plantId?: bigint | number | null
-  serialNumber: string
-  transferredAt?: Date | string
-}
-
-export type UserInverterTransferHistoryCreateOrConnectWithoutOldUserInput = {
-  where: Prisma.UserInverterTransferHistoryWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput, Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput>
-}
-
-export type UserInverterTransferHistoryCreateManyOldUserInputEnvelope = {
-  data: Prisma.UserInverterTransferHistoryCreateManyOldUserInput | Prisma.UserInverterTransferHistoryCreateManyOldUserInput[]
-  skipDuplicates?: boolean
+export type UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput = {
+  create?: Prisma.XOR<Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput, Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput> | Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput[] | Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput[]
+  connectOrCreate?: Prisma.UserInverterTransferHistoryCreateOrConnectWithoutOldUserInput | Prisma.UserInverterTransferHistoryCreateOrConnectWithoutOldUserInput[]
+  upsert?: Prisma.UserInverterTransferHistoryUpsertWithWhereUniqueWithoutOldUserInput | Prisma.UserInverterTransferHistoryUpsertWithWhereUniqueWithoutOldUserInput[]
+  createMany?: Prisma.UserInverterTransferHistoryCreateManyOldUserInputEnvelope
+  set?: Prisma.UserInverterTransferHistoryWhereUniqueInput | Prisma.UserInverterTransferHistoryWhereUniqueInput[]
+  disconnect?: Prisma.UserInverterTransferHistoryWhereUniqueInput | Prisma.UserInverterTransferHistoryWhereUniqueInput[]
+  delete?: Prisma.UserInverterTransferHistoryWhereUniqueInput | Prisma.UserInverterTransferHistoryWhereUniqueInput[]
+  connect?: Prisma.UserInverterTransferHistoryWhereUniqueInput | Prisma.UserInverterTransferHistoryWhereUniqueInput[]
+  update?: Prisma.UserInverterTransferHistoryUpdateWithWhereUniqueWithoutOldUserInput | Prisma.UserInverterTransferHistoryUpdateWithWhereUniqueWithoutOldUserInput[]
+  updateMany?: Prisma.UserInverterTransferHistoryUpdateManyWithWhereWithoutOldUserInput | Prisma.UserInverterTransferHistoryUpdateManyWithWhereWithoutOldUserInput[]
+  deleteMany?: Prisma.UserInverterTransferHistoryScalarWhereInput | Prisma.UserInverterTransferHistoryScalarWhereInput[]
 }
 
 export type UserInverterTransferHistoryCreateWithoutNewUserInput = {
@@ -539,32 +513,30 @@ export type UserInverterTransferHistoryCreateManyNewUserInputEnvelope = {
   skipDuplicates?: boolean
 }
 
-export type UserInverterTransferHistoryUpsertWithWhereUniqueWithoutOldUserInput = {
+export type UserInverterTransferHistoryCreateWithoutOldUserInput = {
+  id?: bigint | number
+  plantId?: bigint | number | null
+  serialNumber: string
+  transferredAt?: Date | string
+  newUser: Prisma.UserCreateNestedOneWithoutTransferHistoryToInput
+}
+
+export type UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput = {
+  id?: bigint | number
+  newUserId: bigint | number
+  plantId?: bigint | number | null
+  serialNumber: string
+  transferredAt?: Date | string
+}
+
+export type UserInverterTransferHistoryCreateOrConnectWithoutOldUserInput = {
   where: Prisma.UserInverterTransferHistoryWhereUniqueInput
-  update: Prisma.XOR<Prisma.UserInverterTransferHistoryUpdateWithoutOldUserInput, Prisma.UserInverterTransferHistoryUncheckedUpdateWithoutOldUserInput>
   create: Prisma.XOR<Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput, Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput>
 }
 
-export type UserInverterTransferHistoryUpdateWithWhereUniqueWithoutOldUserInput = {
-  where: Prisma.UserInverterTransferHistoryWhereUniqueInput
-  data: Prisma.XOR<Prisma.UserInverterTransferHistoryUpdateWithoutOldUserInput, Prisma.UserInverterTransferHistoryUncheckedUpdateWithoutOldUserInput>
-}
-
-export type UserInverterTransferHistoryUpdateManyWithWhereWithoutOldUserInput = {
-  where: Prisma.UserInverterTransferHistoryScalarWhereInput
-  data: Prisma.XOR<Prisma.UserInverterTransferHistoryUpdateManyMutationInput, Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserInput>
-}
-
-export type UserInverterTransferHistoryScalarWhereInput = {
-  AND?: Prisma.UserInverterTransferHistoryScalarWhereInput | Prisma.UserInverterTransferHistoryScalarWhereInput[]
-  OR?: Prisma.UserInverterTransferHistoryScalarWhereInput[]
-  NOT?: Prisma.UserInverterTransferHistoryScalarWhereInput | Prisma.UserInverterTransferHistoryScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"UserInverterTransferHistory"> | bigint | number
-  oldUserId?: Prisma.BigIntFilter<"UserInverterTransferHistory"> | bigint | number
-  newUserId?: Prisma.BigIntFilter<"UserInverterTransferHistory"> | bigint | number
-  plantId?: Prisma.BigIntNullableFilter<"UserInverterTransferHistory"> | bigint | number | null
-  serialNumber?: Prisma.StringFilter<"UserInverterTransferHistory"> | string
-  transferredAt?: Prisma.DateTimeFilter<"UserInverterTransferHistory"> | Date | string
+export type UserInverterTransferHistoryCreateManyOldUserInputEnvelope = {
+  data: Prisma.UserInverterTransferHistoryCreateManyOldUserInput | Prisma.UserInverterTransferHistoryCreateManyOldUserInput[]
+  skipDuplicates?: boolean
 }
 
 export type UserInverterTransferHistoryUpsertWithWhereUniqueWithoutNewUserInput = {
@@ -583,12 +555,32 @@ export type UserInverterTransferHistoryUpdateManyWithWhereWithoutNewUserInput = 
   data: Prisma.XOR<Prisma.UserInverterTransferHistoryUpdateManyMutationInput, Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserInput>
 }
 
-export type UserInverterTransferHistoryCreateManyOldUserInput = {
-  id?: bigint | number
-  newUserId: bigint | number
-  plantId?: bigint | number | null
-  serialNumber: string
-  transferredAt?: Date | string
+export type UserInverterTransferHistoryScalarWhereInput = {
+  AND?: Prisma.UserInverterTransferHistoryScalarWhereInput | Prisma.UserInverterTransferHistoryScalarWhereInput[]
+  OR?: Prisma.UserInverterTransferHistoryScalarWhereInput[]
+  NOT?: Prisma.UserInverterTransferHistoryScalarWhereInput | Prisma.UserInverterTransferHistoryScalarWhereInput[]
+  id?: Prisma.BigIntFilter<"UserInverterTransferHistory"> | bigint | number
+  oldUserId?: Prisma.BigIntFilter<"UserInverterTransferHistory"> | bigint | number
+  newUserId?: Prisma.BigIntFilter<"UserInverterTransferHistory"> | bigint | number
+  plantId?: Prisma.BigIntNullableFilter<"UserInverterTransferHistory"> | bigint | number | null
+  serialNumber?: Prisma.StringFilter<"UserInverterTransferHistory"> | string
+  transferredAt?: Prisma.DateTimeFilter<"UserInverterTransferHistory"> | Date | string
+}
+
+export type UserInverterTransferHistoryUpsertWithWhereUniqueWithoutOldUserInput = {
+  where: Prisma.UserInverterTransferHistoryWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserInverterTransferHistoryUpdateWithoutOldUserInput, Prisma.UserInverterTransferHistoryUncheckedUpdateWithoutOldUserInput>
+  create: Prisma.XOR<Prisma.UserInverterTransferHistoryCreateWithoutOldUserInput, Prisma.UserInverterTransferHistoryUncheckedCreateWithoutOldUserInput>
+}
+
+export type UserInverterTransferHistoryUpdateWithWhereUniqueWithoutOldUserInput = {
+  where: Prisma.UserInverterTransferHistoryWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserInverterTransferHistoryUpdateWithoutOldUserInput, Prisma.UserInverterTransferHistoryUncheckedUpdateWithoutOldUserInput>
+}
+
+export type UserInverterTransferHistoryUpdateManyWithWhereWithoutOldUserInput = {
+  where: Prisma.UserInverterTransferHistoryScalarWhereInput
+  data: Prisma.XOR<Prisma.UserInverterTransferHistoryUpdateManyMutationInput, Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserInput>
 }
 
 export type UserInverterTransferHistoryCreateManyNewUserInput = {
@@ -599,28 +591,12 @@ export type UserInverterTransferHistoryCreateManyNewUserInput = {
   transferredAt?: Date | string
 }
 
-export type UserInverterTransferHistoryUpdateWithoutOldUserInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  transferredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  newUser?: Prisma.UserUpdateOneRequiredWithoutTransferHistoryToNestedInput
-}
-
-export type UserInverterTransferHistoryUncheckedUpdateWithoutOldUserInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  newUserId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  transferredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  newUserId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  transferredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type UserInverterTransferHistoryCreateManyOldUserInput = {
+  id?: bigint | number
+  newUserId: bigint | number
+  plantId?: bigint | number | null
+  serialNumber: string
+  transferredAt?: Date | string
 }
 
 export type UserInverterTransferHistoryUpdateWithoutNewUserInput = {
@@ -647,6 +623,30 @@ export type UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserInput = 
   transferredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type UserInverterTransferHistoryUpdateWithoutOldUserInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  transferredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  newUser?: Prisma.UserUpdateOneRequiredWithoutTransferHistoryToNestedInput
+}
+
+export type UserInverterTransferHistoryUncheckedUpdateWithoutOldUserInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  newUserId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  transferredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  newUserId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  plantId?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  serialNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  transferredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 
 
 export type UserInverterTransferHistorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -656,8 +656,8 @@ export type UserInverterTransferHistorySelect<ExtArgs extends runtime.Types.Exte
   plantId?: boolean
   serialNumber?: boolean
   transferredAt?: boolean
-  oldUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   newUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  oldUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userInverterTransferHistory"]>
 
 export type UserInverterTransferHistorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -667,8 +667,8 @@ export type UserInverterTransferHistorySelectCreateManyAndReturn<ExtArgs extends
   plantId?: boolean
   serialNumber?: boolean
   transferredAt?: boolean
-  oldUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   newUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  oldUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userInverterTransferHistory"]>
 
 export type UserInverterTransferHistorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -678,8 +678,8 @@ export type UserInverterTransferHistorySelectUpdateManyAndReturn<ExtArgs extends
   plantId?: boolean
   serialNumber?: boolean
   transferredAt?: boolean
-  oldUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   newUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  oldUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userInverterTransferHistory"]>
 
 export type UserInverterTransferHistorySelectScalar = {
@@ -693,23 +693,23 @@ export type UserInverterTransferHistorySelectScalar = {
 
 export type UserInverterTransferHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "oldUserId" | "newUserId" | "plantId" | "serialNumber" | "transferredAt", ExtArgs["result"]["userInverterTransferHistory"]>
 export type UserInverterTransferHistoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  oldUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   newUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  oldUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type UserInverterTransferHistoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  oldUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   newUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  oldUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type UserInverterTransferHistoryIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  oldUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   newUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  oldUser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $UserInverterTransferHistoryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "UserInverterTransferHistory"
   objects: {
-    oldUser: Prisma.$UserPayload<ExtArgs>
     newUser: Prisma.$UserPayload<ExtArgs>
+    oldUser: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -1112,8 +1112,8 @@ readonly fields: UserInverterTransferHistoryFieldRefs;
  */
 export interface Prisma__UserInverterTransferHistoryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  oldUser<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   newUser<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  oldUser<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
