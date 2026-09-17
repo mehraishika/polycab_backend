@@ -158,15 +158,15 @@ export type TaskJobWhereInput = {
   NOT?: Prisma.TaskJobWhereInput | Prisma.TaskJobWhereInput[]
   taskId?: Prisma.UuidFilter<"TaskJob"> | string
   jobId?: Prisma.UuidFilter<"TaskJob"> | string
-  task?: Prisma.XOR<Prisma.UpgradeTaskScalarRelationFilter, Prisma.UpgradeTaskWhereInput>
   job?: Prisma.XOR<Prisma.FotaJobScalarRelationFilter, Prisma.FotaJobWhereInput>
+  task?: Prisma.XOR<Prisma.UpgradeTaskScalarRelationFilter, Prisma.UpgradeTaskWhereInput>
 }
 
 export type TaskJobOrderByWithRelationInput = {
   taskId?: Prisma.SortOrder
   jobId?: Prisma.SortOrder
-  task?: Prisma.UpgradeTaskOrderByWithRelationInput
   job?: Prisma.FotaJobOrderByWithRelationInput
+  task?: Prisma.UpgradeTaskOrderByWithRelationInput
 }
 
 export type TaskJobWhereUniqueInput = Prisma.AtLeast<{
@@ -176,8 +176,8 @@ export type TaskJobWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TaskJobWhereInput | Prisma.TaskJobWhereInput[]
   taskId?: Prisma.UuidFilter<"TaskJob"> | string
   jobId?: Prisma.UuidFilter<"TaskJob"> | string
-  task?: Prisma.XOR<Prisma.UpgradeTaskScalarRelationFilter, Prisma.UpgradeTaskWhereInput>
   job?: Prisma.XOR<Prisma.FotaJobScalarRelationFilter, Prisma.FotaJobWhereInput>
+  task?: Prisma.XOR<Prisma.UpgradeTaskScalarRelationFilter, Prisma.UpgradeTaskWhereInput>
 }, "taskId_jobId">
 
 export type TaskJobOrderByWithAggregationInput = {
@@ -197,8 +197,8 @@ export type TaskJobScalarWhereWithAggregatesInput = {
 }
 
 export type TaskJobCreateInput = {
-  task: Prisma.UpgradeTaskCreateNestedOneWithoutTaskJobsInput
   job: Prisma.FotaJobCreateNestedOneWithoutTaskJobsInput
+  task: Prisma.UpgradeTaskCreateNestedOneWithoutTaskJobsInput
 }
 
 export type TaskJobUncheckedCreateInput = {
@@ -207,8 +207,8 @@ export type TaskJobUncheckedCreateInput = {
 }
 
 export type TaskJobUpdateInput = {
-  task?: Prisma.UpgradeTaskUpdateOneRequiredWithoutTaskJobsNestedInput
   job?: Prisma.FotaJobUpdateOneRequiredWithoutTaskJobsNestedInput
+  task?: Prisma.UpgradeTaskUpdateOneRequiredWithoutTaskJobsNestedInput
 }
 
 export type TaskJobUncheckedUpdateInput = {
@@ -457,22 +457,22 @@ export type TaskJobUncheckedUpdateManyWithoutJobInput = {
 export type TaskJobSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   taskId?: boolean
   jobId?: boolean
-  task?: boolean | Prisma.UpgradeTaskDefaultArgs<ExtArgs>
   job?: boolean | Prisma.FotaJobDefaultArgs<ExtArgs>
+  task?: boolean | Prisma.UpgradeTaskDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["taskJob"]>
 
 export type TaskJobSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   taskId?: boolean
   jobId?: boolean
-  task?: boolean | Prisma.UpgradeTaskDefaultArgs<ExtArgs>
   job?: boolean | Prisma.FotaJobDefaultArgs<ExtArgs>
+  task?: boolean | Prisma.UpgradeTaskDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["taskJob"]>
 
 export type TaskJobSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   taskId?: boolean
   jobId?: boolean
-  task?: boolean | Prisma.UpgradeTaskDefaultArgs<ExtArgs>
   job?: boolean | Prisma.FotaJobDefaultArgs<ExtArgs>
+  task?: boolean | Prisma.UpgradeTaskDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["taskJob"]>
 
 export type TaskJobSelectScalar = {
@@ -482,23 +482,23 @@ export type TaskJobSelectScalar = {
 
 export type TaskJobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"taskId" | "jobId", ExtArgs["result"]["taskJob"]>
 export type TaskJobInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  task?: boolean | Prisma.UpgradeTaskDefaultArgs<ExtArgs>
   job?: boolean | Prisma.FotaJobDefaultArgs<ExtArgs>
+  task?: boolean | Prisma.UpgradeTaskDefaultArgs<ExtArgs>
 }
 export type TaskJobIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  task?: boolean | Prisma.UpgradeTaskDefaultArgs<ExtArgs>
   job?: boolean | Prisma.FotaJobDefaultArgs<ExtArgs>
+  task?: boolean | Prisma.UpgradeTaskDefaultArgs<ExtArgs>
 }
 export type TaskJobIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  task?: boolean | Prisma.UpgradeTaskDefaultArgs<ExtArgs>
   job?: boolean | Prisma.FotaJobDefaultArgs<ExtArgs>
+  task?: boolean | Prisma.UpgradeTaskDefaultArgs<ExtArgs>
 }
 
 export type $TaskJobPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TaskJob"
   objects: {
-    task: Prisma.$UpgradeTaskPayload<ExtArgs>
     job: Prisma.$FotaJobPayload<ExtArgs>
+    task: Prisma.$UpgradeTaskPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     taskId: string
@@ -897,8 +897,8 @@ readonly fields: TaskJobFieldRefs;
  */
 export interface Prisma__TaskJobClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  task<T extends Prisma.UpgradeTaskDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UpgradeTaskDefaultArgs<ExtArgs>>): Prisma.Prisma__UpgradeTaskClient<runtime.Types.Result.GetResult<Prisma.$UpgradeTaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   job<T extends Prisma.FotaJobDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FotaJobDefaultArgs<ExtArgs>>): Prisma.Prisma__FotaJobClient<runtime.Types.Result.GetResult<Prisma.$FotaJobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  task<T extends Prisma.UpgradeTaskDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UpgradeTaskDefaultArgs<ExtArgs>>): Prisma.Prisma__UpgradeTaskClient<runtime.Types.Result.GetResult<Prisma.$UpgradeTaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

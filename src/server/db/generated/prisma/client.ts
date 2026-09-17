@@ -47,6 +47,21 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
+ * Model UserTwoFactor
+ * 
+ */
+export type UserTwoFactor = Prisma.UserTwoFactorModel
+/**
+ * Model TwoFactorLoginChallenge
+ * 
+ */
+export type TwoFactorLoginChallenge = Prisma.TwoFactorLoginChallengeModel
+/**
+ * Model TwoFactorRecoveryCode
+ * 
+ */
+export type TwoFactorRecoveryCode = Prisma.TwoFactorRecoveryCodeModel
+/**
  * Model LoginVerification
  * 
  */

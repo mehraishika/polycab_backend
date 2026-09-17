@@ -2555,14 +2555,6 @@ export type DeviceDailySummaryPerLineChartUncheckedUpdateOneWithoutSourceLogNest
   update?: Prisma.XOR<Prisma.XOR<Prisma.DeviceDailySummaryPerLineChartUpdateToOneWithWhereWithoutSourceLogInput, Prisma.DeviceDailySummaryPerLineChartUpdateWithoutSourceLogInput>, Prisma.DeviceDailySummaryPerLineChartUncheckedUpdateWithoutSourceLogInput>
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type DeviceDailySummaryPerLineChartCreateWithoutUserPlantInverterMapInput = {
   id?: bigint | number
   dayDate: Date | string

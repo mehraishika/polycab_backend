@@ -398,6 +398,9 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
+  UserTwoFactor: 'UserTwoFactor',
+  TwoFactorLoginChallenge: 'TwoFactorLoginChallenge',
+  TwoFactorRecoveryCode: 'TwoFactorRecoveryCode',
   LoginVerification: 'LoginVerification',
   Plant: 'Plant',
   DeviceInverter: 'DeviceInverter',
@@ -443,7 +446,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "loginVerification" | "plant" | "deviceInverter" | "userPlantInverterMap" | "deviceInvertorStatus" | "deviceDatalogger" | "deviceLogs" | "deviceLogsLatest" | "userInverterTransferHistory" | "deviceDailySummary" | "deviceDailySummaryPerLineChart" | "information_data" | "deviceConnectionStatus" | "fota" | "deviceCurrentStatus" | "deviceStatusHistory" | "plantCurrentStatus" | "deviceAlertState" | "alertEvent" | "faultDictionary" | "remoteSettingParameterMaster" | "remoteSettingCommandMaster" | "deviceRemoteSetting" | "deviceRemoteSettingTask" | "firmware" | "upgradeTask" | "taskJob" | "fotaJob" | "fotaConfig" | "fotaCommandLog"
+    modelProps: "user" | "userTwoFactor" | "twoFactorLoginChallenge" | "twoFactorRecoveryCode" | "loginVerification" | "plant" | "deviceInverter" | "userPlantInverterMap" | "deviceInvertorStatus" | "deviceDatalogger" | "deviceLogs" | "deviceLogsLatest" | "userInverterTransferHistory" | "deviceDailySummary" | "deviceDailySummaryPerLineChart" | "information_data" | "deviceConnectionStatus" | "fota" | "deviceCurrentStatus" | "deviceStatusHistory" | "plantCurrentStatus" | "deviceAlertState" | "alertEvent" | "faultDictionary" | "remoteSettingParameterMaster" | "remoteSettingCommandMaster" | "deviceRemoteSetting" | "deviceRemoteSettingTask" | "firmware" | "upgradeTask" | "taskJob" | "fotaJob" | "fotaConfig" | "fotaCommandLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -518,6 +521,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
+        }
+      }
+    }
+    UserTwoFactor: {
+      payload: Prisma.$UserTwoFactorPayload<ExtArgs>
+      fields: Prisma.UserTwoFactorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserTwoFactorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserTwoFactorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserTwoFactorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserTwoFactorPayload>
+        }
+        findFirst: {
+          args: Prisma.UserTwoFactorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserTwoFactorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserTwoFactorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserTwoFactorPayload>
+        }
+        findMany: {
+          args: Prisma.UserTwoFactorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserTwoFactorPayload>[]
+        }
+        create: {
+          args: Prisma.UserTwoFactorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserTwoFactorPayload>
+        }
+        createMany: {
+          args: Prisma.UserTwoFactorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserTwoFactorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserTwoFactorPayload>[]
+        }
+        delete: {
+          args: Prisma.UserTwoFactorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserTwoFactorPayload>
+        }
+        update: {
+          args: Prisma.UserTwoFactorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserTwoFactorPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserTwoFactorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserTwoFactorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserTwoFactorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserTwoFactorPayload>[]
+        }
+        upsert: {
+          args: Prisma.UserTwoFactorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserTwoFactorPayload>
+        }
+        aggregate: {
+          args: Prisma.UserTwoFactorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserTwoFactor>
+        }
+        groupBy: {
+          args: Prisma.UserTwoFactorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserTwoFactorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserTwoFactorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserTwoFactorCountAggregateOutputType> | number
+        }
+      }
+    }
+    TwoFactorLoginChallenge: {
+      payload: Prisma.$TwoFactorLoginChallengePayload<ExtArgs>
+      fields: Prisma.TwoFactorLoginChallengeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TwoFactorLoginChallengeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorLoginChallengePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TwoFactorLoginChallengeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorLoginChallengePayload>
+        }
+        findFirst: {
+          args: Prisma.TwoFactorLoginChallengeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorLoginChallengePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TwoFactorLoginChallengeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorLoginChallengePayload>
+        }
+        findMany: {
+          args: Prisma.TwoFactorLoginChallengeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorLoginChallengePayload>[]
+        }
+        create: {
+          args: Prisma.TwoFactorLoginChallengeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorLoginChallengePayload>
+        }
+        createMany: {
+          args: Prisma.TwoFactorLoginChallengeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TwoFactorLoginChallengeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorLoginChallengePayload>[]
+        }
+        delete: {
+          args: Prisma.TwoFactorLoginChallengeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorLoginChallengePayload>
+        }
+        update: {
+          args: Prisma.TwoFactorLoginChallengeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorLoginChallengePayload>
+        }
+        deleteMany: {
+          args: Prisma.TwoFactorLoginChallengeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TwoFactorLoginChallengeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TwoFactorLoginChallengeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorLoginChallengePayload>[]
+        }
+        upsert: {
+          args: Prisma.TwoFactorLoginChallengeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorLoginChallengePayload>
+        }
+        aggregate: {
+          args: Prisma.TwoFactorLoginChallengeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTwoFactorLoginChallenge>
+        }
+        groupBy: {
+          args: Prisma.TwoFactorLoginChallengeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TwoFactorLoginChallengeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TwoFactorLoginChallengeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TwoFactorLoginChallengeCountAggregateOutputType> | number
+        }
+      }
+    }
+    TwoFactorRecoveryCode: {
+      payload: Prisma.$TwoFactorRecoveryCodePayload<ExtArgs>
+      fields: Prisma.TwoFactorRecoveryCodeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TwoFactorRecoveryCodeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorRecoveryCodePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TwoFactorRecoveryCodeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorRecoveryCodePayload>
+        }
+        findFirst: {
+          args: Prisma.TwoFactorRecoveryCodeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorRecoveryCodePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TwoFactorRecoveryCodeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorRecoveryCodePayload>
+        }
+        findMany: {
+          args: Prisma.TwoFactorRecoveryCodeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorRecoveryCodePayload>[]
+        }
+        create: {
+          args: Prisma.TwoFactorRecoveryCodeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorRecoveryCodePayload>
+        }
+        createMany: {
+          args: Prisma.TwoFactorRecoveryCodeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TwoFactorRecoveryCodeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorRecoveryCodePayload>[]
+        }
+        delete: {
+          args: Prisma.TwoFactorRecoveryCodeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorRecoveryCodePayload>
+        }
+        update: {
+          args: Prisma.TwoFactorRecoveryCodeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorRecoveryCodePayload>
+        }
+        deleteMany: {
+          args: Prisma.TwoFactorRecoveryCodeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TwoFactorRecoveryCodeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TwoFactorRecoveryCodeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorRecoveryCodePayload>[]
+        }
+        upsert: {
+          args: Prisma.TwoFactorRecoveryCodeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TwoFactorRecoveryCodePayload>
+        }
+        aggregate: {
+          args: Prisma.TwoFactorRecoveryCodeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTwoFactorRecoveryCode>
+        }
+        groupBy: {
+          args: Prisma.TwoFactorRecoveryCodeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TwoFactorRecoveryCodeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TwoFactorRecoveryCodeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TwoFactorRecoveryCodeCountAggregateOutputType> | number
         }
       }
     }
@@ -2798,14 +3023,50 @@ export const UserScalarFieldEnum = {
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
   deletedAt: 'deletedAt',
+  epcAddress: 'epcAddress',
   epcCompany: 'epcCompany',
-  epcInstaller: 'epcInstaller',
-  epcMobile: 'epcMobile',
   epcEmail: 'epcEmail',
-  epcAddress: 'epcAddress'
+  epcInstaller: 'epcInstaller',
+  epcMobile: 'epcMobile'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const UserTwoFactorScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  secretEncrypted: 'secretEncrypted',
+  enabled: 'enabled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserTwoFactorScalarFieldEnum = (typeof UserTwoFactorScalarFieldEnum)[keyof typeof UserTwoFactorScalarFieldEnum]
+
+
+export const TwoFactorLoginChallengeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  remember: 'remember',
+  expiresAt: 'expiresAt',
+  attempts: 'attempts',
+  usedAt: 'usedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type TwoFactorLoginChallengeScalarFieldEnum = (typeof TwoFactorLoginChallengeScalarFieldEnum)[keyof typeof TwoFactorLoginChallengeScalarFieldEnum]
+
+
+export const TwoFactorRecoveryCodeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  codeHash: 'codeHash',
+  usedAt: 'usedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type TwoFactorRecoveryCodeScalarFieldEnum = (typeof TwoFactorRecoveryCodeScalarFieldEnum)[keyof typeof TwoFactorRecoveryCodeScalarFieldEnum]
 
 
 export const LoginVerificationScalarFieldEnum = {
@@ -3542,20 +3803,6 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -3566,6 +3813,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -3874,6 +4135,9 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  userTwoFactor?: Prisma.UserTwoFactorOmit
+  twoFactorLoginChallenge?: Prisma.TwoFactorLoginChallengeOmit
+  twoFactorRecoveryCode?: Prisma.TwoFactorRecoveryCodeOmit
   loginVerification?: Prisma.LoginVerificationOmit
   plant?: Prisma.PlantOmit
   deviceInverter?: Prisma.DeviceInverterOmit

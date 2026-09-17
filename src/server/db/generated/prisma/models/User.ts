@@ -54,11 +54,11 @@ export type UserMinAggregateOutputType = {
   updatedAt: Date | null
   isDeleted: boolean | null
   deletedAt: Date | null
+  epcAddress: string | null
   epcCompany: string | null
+  epcEmail: string | null
   epcInstaller: string | null
   epcMobile: string | null
-  epcEmail: string | null
-  epcAddress: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -79,11 +79,11 @@ export type UserMaxAggregateOutputType = {
   updatedAt: Date | null
   isDeleted: boolean | null
   deletedAt: Date | null
+  epcAddress: string | null
   epcCompany: string | null
+  epcEmail: string | null
   epcInstaller: string | null
   epcMobile: string | null
-  epcEmail: string | null
-  epcAddress: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -104,11 +104,11 @@ export type UserCountAggregateOutputType = {
   updatedAt: number
   isDeleted: number
   deletedAt: number
+  epcAddress: number
   epcCompany: number
+  epcEmail: number
   epcInstaller: number
   epcMobile: number
-  epcEmail: number
-  epcAddress: number
   _all: number
 }
 
@@ -141,11 +141,11 @@ export type UserMinAggregateInputType = {
   updatedAt?: true
   isDeleted?: true
   deletedAt?: true
+  epcAddress?: true
   epcCompany?: true
+  epcEmail?: true
   epcInstaller?: true
   epcMobile?: true
-  epcEmail?: true
-  epcAddress?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -166,11 +166,11 @@ export type UserMaxAggregateInputType = {
   updatedAt?: true
   isDeleted?: true
   deletedAt?: true
+  epcAddress?: true
   epcCompany?: true
+  epcEmail?: true
   epcInstaller?: true
   epcMobile?: true
-  epcEmail?: true
-  epcAddress?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -191,11 +191,11 @@ export type UserCountAggregateInputType = {
   updatedAt?: true
   isDeleted?: true
   deletedAt?: true
+  epcAddress?: true
   epcCompany?: true
+  epcEmail?: true
   epcInstaller?: true
   epcMobile?: true
-  epcEmail?: true
-  epcAddress?: true
   _all?: true
 }
 
@@ -303,11 +303,11 @@ export type UserGroupByOutputType = {
   updatedAt: Date
   isDeleted: boolean
   deletedAt: Date | null
+  epcAddress: string | null
   epcCompany: string | null
+  epcEmail: string | null
   epcInstaller: string | null
   epcMobile: string | null
-  epcEmail: string | null
-  epcAddress: string | null
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -351,21 +351,24 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isDeleted?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  epcAddress?: Prisma.StringNullableFilter<"User"> | string | null
   epcCompany?: Prisma.StringNullableFilter<"User"> | string | null
+  epcEmail?: Prisma.StringNullableFilter<"User"> | string | null
   epcInstaller?: Prisma.StringNullableFilter<"User"> | string | null
   epcMobile?: Prisma.StringNullableFilter<"User"> | string | null
-  epcEmail?: Prisma.StringNullableFilter<"User"> | string | null
-  epcAddress?: Prisma.StringNullableFilter<"User"> | string | null
-  plants?: Prisma.PlantListRelationFilter
-  plantInverterMaps?: Prisma.UserPlantInverterMapListRelationFilter
-  assignedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  assignedUsers?: Prisma.UserListRelationFilter
   firmwaresCreated?: Prisma.FirmwareListRelationFilter
-  upgradeTasks?: Prisma.UpgradeTaskListRelationFilter
   startedFotaJobs?: Prisma.FotaJobListRelationFilter
   loginVerifications?: Prisma.LoginVerificationListRelationFilter
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryListRelationFilter
+  plants?: Prisma.PlantListRelationFilter
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeListRelationFilter
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeListRelationFilter
+  upgradeTasks?: Prisma.UpgradeTaskListRelationFilter
   transferHistoryTo?: Prisma.UserInverterTransferHistoryListRelationFilter
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryListRelationFilter
+  plantInverterMaps?: Prisma.UserPlantInverterMapListRelationFilter
+  twoFactor?: Prisma.XOR<Prisma.UserTwoFactorNullableScalarRelationFilter, Prisma.UserTwoFactorWhereInput> | null
+  assignedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  assignedUsers?: Prisma.UserListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -386,21 +389,24 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   epcCompany?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcEmail?: Prisma.SortOrderInput | Prisma.SortOrder
   epcInstaller?: Prisma.SortOrderInput | Prisma.SortOrder
   epcMobile?: Prisma.SortOrderInput | Prisma.SortOrder
-  epcEmail?: Prisma.SortOrderInput | Prisma.SortOrder
-  epcAddress?: Prisma.SortOrderInput | Prisma.SortOrder
-  plants?: Prisma.PlantOrderByRelationAggregateInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapOrderByRelationAggregateInput
-  assignedBy?: Prisma.UserOrderByWithRelationInput
-  assignedUsers?: Prisma.UserOrderByRelationAggregateInput
   firmwaresCreated?: Prisma.FirmwareOrderByRelationAggregateInput
-  upgradeTasks?: Prisma.UpgradeTaskOrderByRelationAggregateInput
   startedFotaJobs?: Prisma.FotaJobOrderByRelationAggregateInput
   loginVerifications?: Prisma.LoginVerificationOrderByRelationAggregateInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryOrderByRelationAggregateInput
+  plants?: Prisma.PlantOrderByRelationAggregateInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeOrderByRelationAggregateInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeOrderByRelationAggregateInput
+  upgradeTasks?: Prisma.UpgradeTaskOrderByRelationAggregateInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryOrderByRelationAggregateInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryOrderByRelationAggregateInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapOrderByRelationAggregateInput
+  twoFactor?: Prisma.UserTwoFactorOrderByWithRelationInput
+  assignedBy?: Prisma.UserOrderByWithRelationInput
+  assignedUsers?: Prisma.UserOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -425,21 +431,24 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isDeleted?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  epcAddress?: Prisma.StringNullableFilter<"User"> | string | null
   epcCompany?: Prisma.StringNullableFilter<"User"> | string | null
+  epcEmail?: Prisma.StringNullableFilter<"User"> | string | null
   epcInstaller?: Prisma.StringNullableFilter<"User"> | string | null
   epcMobile?: Prisma.StringNullableFilter<"User"> | string | null
-  epcEmail?: Prisma.StringNullableFilter<"User"> | string | null
-  epcAddress?: Prisma.StringNullableFilter<"User"> | string | null
-  plants?: Prisma.PlantListRelationFilter
-  plantInverterMaps?: Prisma.UserPlantInverterMapListRelationFilter
-  assignedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  assignedUsers?: Prisma.UserListRelationFilter
   firmwaresCreated?: Prisma.FirmwareListRelationFilter
-  upgradeTasks?: Prisma.UpgradeTaskListRelationFilter
   startedFotaJobs?: Prisma.FotaJobListRelationFilter
   loginVerifications?: Prisma.LoginVerificationListRelationFilter
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryListRelationFilter
+  plants?: Prisma.PlantListRelationFilter
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeListRelationFilter
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeListRelationFilter
+  upgradeTasks?: Prisma.UpgradeTaskListRelationFilter
   transferHistoryTo?: Prisma.UserInverterTransferHistoryListRelationFilter
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryListRelationFilter
+  plantInverterMaps?: Prisma.UserPlantInverterMapListRelationFilter
+  twoFactor?: Prisma.XOR<Prisma.UserTwoFactorNullableScalarRelationFilter, Prisma.UserTwoFactorWhereInput> | null
+  assignedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  assignedUsers?: Prisma.UserListRelationFilter
 }, "id" | "account" | "portal_email">
 
 export type UserOrderByWithAggregationInput = {
@@ -460,11 +469,11 @@ export type UserOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   epcCompany?: Prisma.SortOrderInput | Prisma.SortOrder
+  epcEmail?: Prisma.SortOrderInput | Prisma.SortOrder
   epcInstaller?: Prisma.SortOrderInput | Prisma.SortOrder
   epcMobile?: Prisma.SortOrderInput | Prisma.SortOrder
-  epcEmail?: Prisma.SortOrderInput | Prisma.SortOrder
-  epcAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -493,11 +502,11 @@ export type UserScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   isDeleted?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  epcAddress?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   epcCompany?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  epcEmail?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   epcInstaller?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   epcMobile?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  epcEmail?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  epcAddress?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
@@ -517,21 +526,24 @@ export type UserCreateInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
-  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
-  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
+  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
+  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -552,20 +564,23 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
-  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUpdateInput = {
@@ -585,21 +600,24 @@ export type UserUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
-  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
-  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
+  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
+  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -620,20 +638,23 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
-  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -654,11 +675,11 @@ export type UserCreateManyInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -678,11 +699,11 @@ export type UserUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -703,11 +724,11 @@ export type UserUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserNullableScalarRelationFilter = {
@@ -748,11 +769,11 @@ export type UserCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  epcAddress?: Prisma.SortOrder
   epcCompany?: Prisma.SortOrder
+  epcEmail?: Prisma.SortOrder
   epcInstaller?: Prisma.SortOrder
   epcMobile?: Prisma.SortOrder
-  epcEmail?: Prisma.SortOrder
-  epcAddress?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -778,11 +799,11 @@ export type UserMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  epcAddress?: Prisma.SortOrder
   epcCompany?: Prisma.SortOrder
+  epcEmail?: Prisma.SortOrder
   epcInstaller?: Prisma.SortOrder
   epcMobile?: Prisma.SortOrder
-  epcEmail?: Prisma.SortOrder
-  epcAddress?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -803,11 +824,11 @@ export type UserMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  epcAddress?: Prisma.SortOrder
   epcCompany?: Prisma.SortOrder
+  epcEmail?: Prisma.SortOrder
   epcInstaller?: Prisma.SortOrder
   epcMobile?: Prisma.SortOrder
-  epcEmail?: Prisma.SortOrder
-  epcAddress?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -926,6 +947,48 @@ export type UserUncheckedUpdateManyWithoutAssignedByNestedInput = {
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
+export type UserCreateNestedOneWithoutTwoFactorInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTwoFactorInput, Prisma.UserUncheckedCreateWithoutTwoFactorInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTwoFactorInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTwoFactorNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTwoFactorInput, Prisma.UserUncheckedCreateWithoutTwoFactorInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTwoFactorInput
+  upsert?: Prisma.UserUpsertWithoutTwoFactorInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTwoFactorInput, Prisma.UserUpdateWithoutTwoFactorInput>, Prisma.UserUncheckedUpdateWithoutTwoFactorInput>
+}
+
+export type UserCreateNestedOneWithoutTwoFactorLoginChallengesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTwoFactorLoginChallengesInput, Prisma.UserUncheckedCreateWithoutTwoFactorLoginChallengesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTwoFactorLoginChallengesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTwoFactorLoginChallengesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTwoFactorLoginChallengesInput, Prisma.UserUncheckedCreateWithoutTwoFactorLoginChallengesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTwoFactorLoginChallengesInput
+  upsert?: Prisma.UserUpsertWithoutTwoFactorLoginChallengesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTwoFactorLoginChallengesInput, Prisma.UserUpdateWithoutTwoFactorLoginChallengesInput>, Prisma.UserUncheckedUpdateWithoutTwoFactorLoginChallengesInput>
+}
+
+export type UserCreateNestedOneWithoutTwoFactorRecoveryCodesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTwoFactorRecoveryCodesInput, Prisma.UserUncheckedCreateWithoutTwoFactorRecoveryCodesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTwoFactorRecoveryCodesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTwoFactorRecoveryCodesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTwoFactorRecoveryCodesInput, Prisma.UserUncheckedCreateWithoutTwoFactorRecoveryCodesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTwoFactorRecoveryCodesInput
+  upsert?: Prisma.UserUpsertWithoutTwoFactorRecoveryCodesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTwoFactorRecoveryCodesInput, Prisma.UserUpdateWithoutTwoFactorRecoveryCodesInput>, Prisma.UserUncheckedUpdateWithoutTwoFactorRecoveryCodesInput>
+}
+
 export type UserCreateNestedOneWithoutLoginVerificationsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutLoginVerificationsInput, Prisma.UserUncheckedCreateWithoutLoginVerificationsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutLoginVerificationsInput
@@ -968,24 +1031,16 @@ export type UserUpdateOneRequiredWithoutPlantInverterMapsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPlantInverterMapsInput, Prisma.UserUpdateWithoutPlantInverterMapsInput>, Prisma.UserUncheckedUpdateWithoutPlantInverterMapsInput>
 }
 
-export type UserCreateNestedOneWithoutTransferHistoryFromInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTransferHistoryFromInput, Prisma.UserUncheckedCreateWithoutTransferHistoryFromInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTransferHistoryFromInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
 export type UserCreateNestedOneWithoutTransferHistoryToInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutTransferHistoryToInput, Prisma.UserUncheckedCreateWithoutTransferHistoryToInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutTransferHistoryToInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutTransferHistoryFromNestedInput = {
+export type UserCreateNestedOneWithoutTransferHistoryFromInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutTransferHistoryFromInput, Prisma.UserUncheckedCreateWithoutTransferHistoryFromInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutTransferHistoryFromInput
-  upsert?: Prisma.UserUpsertWithoutTransferHistoryFromInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTransferHistoryFromInput, Prisma.UserUpdateWithoutTransferHistoryFromInput>, Prisma.UserUncheckedUpdateWithoutTransferHistoryFromInput>
 }
 
 export type UserUpdateOneRequiredWithoutTransferHistoryToNestedInput = {
@@ -994,6 +1049,14 @@ export type UserUpdateOneRequiredWithoutTransferHistoryToNestedInput = {
   upsert?: Prisma.UserUpsertWithoutTransferHistoryToInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTransferHistoryToInput, Prisma.UserUpdateWithoutTransferHistoryToInput>, Prisma.UserUncheckedUpdateWithoutTransferHistoryToInput>
+}
+
+export type UserUpdateOneRequiredWithoutTransferHistoryFromNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTransferHistoryFromInput, Prisma.UserUncheckedCreateWithoutTransferHistoryFromInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTransferHistoryFromInput
+  upsert?: Prisma.UserUpsertWithoutTransferHistoryFromInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTransferHistoryFromInput, Prisma.UserUpdateWithoutTransferHistoryFromInput>, Prisma.UserUncheckedUpdateWithoutTransferHistoryFromInput>
 }
 
 export type UserCreateNestedOneWithoutFirmwaresCreatedInput = {
@@ -1059,20 +1122,23 @@ export type UserCreateWithoutAssignedUsersInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
-  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
   firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
+  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
 }
 
 export type UserUncheckedCreateWithoutAssignedUsersInput = {
@@ -1093,19 +1159,22 @@ export type UserUncheckedCreateWithoutAssignedUsersInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
   firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedUsersInput = {
@@ -1130,20 +1199,23 @@ export type UserCreateWithoutAssignedByInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
-  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedByInput = {
@@ -1163,20 +1235,23 @@ export type UserUncheckedCreateWithoutAssignedByInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
-  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedByInput = {
@@ -1217,20 +1292,23 @@ export type UserUpdateWithoutAssignedUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
-  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
   firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
+  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedUsersInput = {
@@ -1251,19 +1329,22 @@ export type UserUncheckedUpdateWithoutAssignedUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
   firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserUpsertWithWhereUniqueWithoutAssignedByInput = {
@@ -1303,11 +1384,491 @@ export type UserScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isDeleted?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  epcAddress?: Prisma.StringNullableFilter<"User"> | string | null
   epcCompany?: Prisma.StringNullableFilter<"User"> | string | null
+  epcEmail?: Prisma.StringNullableFilter<"User"> | string | null
   epcInstaller?: Prisma.StringNullableFilter<"User"> | string | null
   epcMobile?: Prisma.StringNullableFilter<"User"> | string | null
-  epcEmail?: Prisma.StringNullableFilter<"User"> | string | null
-  epcAddress?: Prisma.StringNullableFilter<"User"> | string | null
+}
+
+export type UserCreateWithoutTwoFactorInput = {
+  id?: bigint | number
+  account: string
+  email?: string | null
+  passwordHash: string
+  portal: $Enums.UserPortal
+  role: $Enums.UserRole
+  status?: $Enums.UserStatus
+  timezone?: string | null
+  phone?: string | null
+  address?: string | null
+  emailVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  epcAddress?: string | null
+  epcCompany?: string | null
+  epcEmail?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
+  startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
+  loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
+  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
+  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
+}
+
+export type UserUncheckedCreateWithoutTwoFactorInput = {
+  id?: bigint | number
+  account: string
+  email?: string | null
+  passwordHash: string
+  portal: $Enums.UserPortal
+  role: $Enums.UserRole
+  status?: $Enums.UserStatus
+  assignedById?: bigint | number | null
+  timezone?: string | null
+  phone?: string | null
+  address?: string | null
+  emailVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  epcAddress?: string | null
+  epcCompany?: string | null
+  epcEmail?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
+  startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
+  loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
+}
+
+export type UserCreateOrConnectWithoutTwoFactorInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTwoFactorInput, Prisma.UserUncheckedCreateWithoutTwoFactorInput>
+}
+
+export type UserUpsertWithoutTwoFactorInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTwoFactorInput, Prisma.UserUncheckedUpdateWithoutTwoFactorInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTwoFactorInput, Prisma.UserUncheckedCreateWithoutTwoFactorInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTwoFactorInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTwoFactorInput, Prisma.UserUncheckedUpdateWithoutTwoFactorInput>
+}
+
+export type UserUpdateWithoutTwoFactorInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  account?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  portal?: Prisma.EnumUserPortalFieldUpdateOperationsInput | $Enums.UserPortal
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
+  startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
+  loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
+  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
+  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTwoFactorInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  account?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  portal?: Prisma.EnumUserPortalFieldUpdateOperationsInput | $Enums.UserPortal
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  assignedById?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
+  startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
+  loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
+}
+
+export type UserCreateWithoutTwoFactorLoginChallengesInput = {
+  id?: bigint | number
+  account: string
+  email?: string | null
+  passwordHash: string
+  portal: $Enums.UserPortal
+  role: $Enums.UserRole
+  status?: $Enums.UserStatus
+  timezone?: string | null
+  phone?: string | null
+  address?: string | null
+  emailVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  epcAddress?: string | null
+  epcCompany?: string | null
+  epcEmail?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
+  startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
+  loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
+  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
+  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
+  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
+}
+
+export type UserUncheckedCreateWithoutTwoFactorLoginChallengesInput = {
+  id?: bigint | number
+  account: string
+  email?: string | null
+  passwordHash: string
+  portal: $Enums.UserPortal
+  role: $Enums.UserRole
+  status?: $Enums.UserStatus
+  assignedById?: bigint | number | null
+  timezone?: string | null
+  phone?: string | null
+  address?: string | null
+  emailVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  epcAddress?: string | null
+  epcCompany?: string | null
+  epcEmail?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
+  startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
+  loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
+}
+
+export type UserCreateOrConnectWithoutTwoFactorLoginChallengesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTwoFactorLoginChallengesInput, Prisma.UserUncheckedCreateWithoutTwoFactorLoginChallengesInput>
+}
+
+export type UserUpsertWithoutTwoFactorLoginChallengesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTwoFactorLoginChallengesInput, Prisma.UserUncheckedUpdateWithoutTwoFactorLoginChallengesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTwoFactorLoginChallengesInput, Prisma.UserUncheckedCreateWithoutTwoFactorLoginChallengesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTwoFactorLoginChallengesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTwoFactorLoginChallengesInput, Prisma.UserUncheckedUpdateWithoutTwoFactorLoginChallengesInput>
+}
+
+export type UserUpdateWithoutTwoFactorLoginChallengesInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  account?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  portal?: Prisma.EnumUserPortalFieldUpdateOperationsInput | $Enums.UserPortal
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
+  startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
+  loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
+  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
+  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
+  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTwoFactorLoginChallengesInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  account?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  portal?: Prisma.EnumUserPortalFieldUpdateOperationsInput | $Enums.UserPortal
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  assignedById?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
+  startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
+  loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
+}
+
+export type UserCreateWithoutTwoFactorRecoveryCodesInput = {
+  id?: bigint | number
+  account: string
+  email?: string | null
+  passwordHash: string
+  portal: $Enums.UserPortal
+  role: $Enums.UserRole
+  status?: $Enums.UserStatus
+  timezone?: string | null
+  phone?: string | null
+  address?: string | null
+  emailVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  epcAddress?: string | null
+  epcCompany?: string | null
+  epcEmail?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
+  startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
+  loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
+  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
+  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
+  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
+}
+
+export type UserUncheckedCreateWithoutTwoFactorRecoveryCodesInput = {
+  id?: bigint | number
+  account: string
+  email?: string | null
+  passwordHash: string
+  portal: $Enums.UserPortal
+  role: $Enums.UserRole
+  status?: $Enums.UserStatus
+  assignedById?: bigint | number | null
+  timezone?: string | null
+  phone?: string | null
+  address?: string | null
+  emailVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  epcAddress?: string | null
+  epcCompany?: string | null
+  epcEmail?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
+  startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
+  loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
+}
+
+export type UserCreateOrConnectWithoutTwoFactorRecoveryCodesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTwoFactorRecoveryCodesInput, Prisma.UserUncheckedCreateWithoutTwoFactorRecoveryCodesInput>
+}
+
+export type UserUpsertWithoutTwoFactorRecoveryCodesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTwoFactorRecoveryCodesInput, Prisma.UserUncheckedUpdateWithoutTwoFactorRecoveryCodesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTwoFactorRecoveryCodesInput, Prisma.UserUncheckedCreateWithoutTwoFactorRecoveryCodesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTwoFactorRecoveryCodesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTwoFactorRecoveryCodesInput, Prisma.UserUncheckedUpdateWithoutTwoFactorRecoveryCodesInput>
+}
+
+export type UserUpdateWithoutTwoFactorRecoveryCodesInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  account?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  portal?: Prisma.EnumUserPortalFieldUpdateOperationsInput | $Enums.UserPortal
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
+  startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
+  loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
+  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
+  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
+  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTwoFactorRecoveryCodesInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  account?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  portal?: Prisma.EnumUserPortalFieldUpdateOperationsInput | $Enums.UserPortal
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  assignedById?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
+  startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
+  loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutLoginVerificationsInput = {
@@ -1327,20 +1888,23 @@ export type UserCreateWithoutLoginVerificationsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
+  firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
+  startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
   plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
   assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
   assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
-  firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
-  startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
-  transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
 }
 
 export type UserUncheckedCreateWithoutLoginVerificationsInput = {
@@ -1361,19 +1925,22 @@ export type UserUncheckedCreateWithoutLoginVerificationsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
-  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutLoginVerificationsInput = {
@@ -1409,20 +1976,23 @@ export type UserUpdateWithoutLoginVerificationsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
+  startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
   plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
   assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
   assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
-  firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
-  startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
-  transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLoginVerificationsInput = {
@@ -1443,19 +2013,22 @@ export type UserUncheckedUpdateWithoutLoginVerificationsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
-  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutPlantsInput = {
@@ -1475,20 +2048,23 @@ export type UserCreateWithoutPlantsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
-  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
-  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
+  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
+  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutPlantsInput = {
@@ -1509,19 +2085,22 @@ export type UserUncheckedCreateWithoutPlantsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
-  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutPlantsInput = {
@@ -1557,20 +2136,23 @@ export type UserUpdateWithoutPlantsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
-  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
-  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
+  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
+  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPlantsInput = {
@@ -1591,19 +2173,22 @@ export type UserUncheckedUpdateWithoutPlantsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
-  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutPlantInverterMapsInput = {
@@ -1623,20 +2208,23 @@ export type UserCreateWithoutPlantInverterMapsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
-  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
-  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
+  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
+  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutPlantInverterMapsInput = {
@@ -1657,19 +2245,22 @@ export type UserUncheckedCreateWithoutPlantInverterMapsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
-  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutPlantInverterMapsInput = {
@@ -1705,20 +2296,23 @@ export type UserUpdateWithoutPlantInverterMapsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
-  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
-  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
+  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
+  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPlantInverterMapsInput = {
@@ -1739,90 +2333,22 @@ export type UserUncheckedUpdateWithoutPlantInverterMapsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
-  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
-}
-
-export type UserCreateWithoutTransferHistoryFromInput = {
-  id?: bigint | number
-  account: string
-  email?: string | null
-  passwordHash: string
-  portal: $Enums.UserPortal
-  role: $Enums.UserRole
-  status?: $Enums.UserStatus
-  timezone?: string | null
-  phone?: string | null
-  address?: string | null
-  emailVerifiedAt?: Date | string | null
-  lastLoginAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  isDeleted?: boolean
-  deletedAt?: Date | string | null
-  epcCompany?: string | null
-  epcInstaller?: string | null
-  epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
-  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
-  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
-  firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
-  startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
-  loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
-  transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
-}
-
-export type UserUncheckedCreateWithoutTransferHistoryFromInput = {
-  id?: bigint | number
-  account: string
-  email?: string | null
-  passwordHash: string
-  portal: $Enums.UserPortal
-  role: $Enums.UserRole
-  status?: $Enums.UserStatus
-  assignedById?: bigint | number | null
-  timezone?: string | null
-  phone?: string | null
-  address?: string | null
-  emailVerifiedAt?: Date | string | null
-  lastLoginAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  isDeleted?: boolean
-  deletedAt?: Date | string | null
-  epcCompany?: string | null
-  epcInstaller?: string | null
-  epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
-  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
-  firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
-  startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
-  loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
-  transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
-}
-
-export type UserCreateOrConnectWithoutTransferHistoryFromInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutTransferHistoryFromInput, Prisma.UserUncheckedCreateWithoutTransferHistoryFromInput>
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutTransferHistoryToInput = {
@@ -1842,20 +2368,23 @@ export type UserCreateWithoutTransferHistoryToInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
-  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
-  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
+  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
+  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
+  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutTransferHistoryToInput = {
@@ -1876,19 +2405,22 @@ export type UserUncheckedCreateWithoutTransferHistoryToInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
-  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutTransferHistoryToInput = {
@@ -1896,81 +2428,81 @@ export type UserCreateOrConnectWithoutTransferHistoryToInput = {
   create: Prisma.XOR<Prisma.UserCreateWithoutTransferHistoryToInput, Prisma.UserUncheckedCreateWithoutTransferHistoryToInput>
 }
 
-export type UserUpsertWithoutTransferHistoryFromInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutTransferHistoryFromInput, Prisma.UserUncheckedUpdateWithoutTransferHistoryFromInput>
+export type UserCreateWithoutTransferHistoryFromInput = {
+  id?: bigint | number
+  account: string
+  email?: string | null
+  passwordHash: string
+  portal: $Enums.UserPortal
+  role: $Enums.UserRole
+  status?: $Enums.UserStatus
+  timezone?: string | null
+  phone?: string | null
+  address?: string | null
+  emailVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  epcAddress?: string | null
+  epcCompany?: string | null
+  epcEmail?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
+  startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
+  loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
+  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
+  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
+  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
+}
+
+export type UserUncheckedCreateWithoutTransferHistoryFromInput = {
+  id?: bigint | number
+  account: string
+  email?: string | null
+  passwordHash: string
+  portal: $Enums.UserPortal
+  role: $Enums.UserRole
+  status?: $Enums.UserStatus
+  assignedById?: bigint | number | null
+  timezone?: string | null
+  phone?: string | null
+  address?: string | null
+  emailVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  epcAddress?: string | null
+  epcCompany?: string | null
+  epcEmail?: string | null
+  epcInstaller?: string | null
+  epcMobile?: string | null
+  firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
+  startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
+  loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
+}
+
+export type UserCreateOrConnectWithoutTransferHistoryFromInput = {
+  where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutTransferHistoryFromInput, Prisma.UserUncheckedCreateWithoutTransferHistoryFromInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutTransferHistoryFromInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutTransferHistoryFromInput, Prisma.UserUncheckedUpdateWithoutTransferHistoryFromInput>
-}
-
-export type UserUpdateWithoutTransferHistoryFromInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  account?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
-  portal?: Prisma.EnumUserPortalFieldUpdateOperationsInput | $Enums.UserPortal
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
-  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
-  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
-  firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
-  startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
-  loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
-  transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutTransferHistoryFromInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  account?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
-  portal?: Prisma.EnumUserPortalFieldUpdateOperationsInput | $Enums.UserPortal
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  assignedById?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
-  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
-  firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
-  startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
-  loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
-  transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
 }
 
 export type UserUpsertWithoutTransferHistoryToInput = {
@@ -2001,20 +2533,23 @@ export type UserUpdateWithoutTransferHistoryToInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
-  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
-  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
+  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
+  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
+  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTransferHistoryToInput = {
@@ -2035,19 +2570,105 @@ export type UserUncheckedUpdateWithoutTransferHistoryToInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
-  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
+}
+
+export type UserUpsertWithoutTransferHistoryFromInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTransferHistoryFromInput, Prisma.UserUncheckedUpdateWithoutTransferHistoryFromInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTransferHistoryFromInput, Prisma.UserUncheckedCreateWithoutTransferHistoryFromInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTransferHistoryFromInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTransferHistoryFromInput, Prisma.UserUncheckedUpdateWithoutTransferHistoryFromInput>
+}
+
+export type UserUpdateWithoutTransferHistoryFromInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  account?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  portal?: Prisma.EnumUserPortalFieldUpdateOperationsInput | $Enums.UserPortal
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
+  startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
+  loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
+  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
+  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
+  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTransferHistoryFromInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  account?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  portal?: Prisma.EnumUserPortalFieldUpdateOperationsInput | $Enums.UserPortal
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  assignedById?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
+  startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
+  loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutFirmwaresCreatedInput = {
@@ -2067,20 +2688,23 @@ export type UserCreateWithoutFirmwaresCreatedInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
-  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
-  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
-  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
+  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
+  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutFirmwaresCreatedInput = {
@@ -2101,19 +2725,22 @@ export type UserUncheckedCreateWithoutFirmwaresCreatedInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
-  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutFirmwaresCreatedInput = {
@@ -2149,20 +2776,23 @@ export type UserUpdateWithoutFirmwaresCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
-  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
-  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
+  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
+  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFirmwaresCreatedInput = {
@@ -2183,19 +2813,22 @@ export type UserUncheckedUpdateWithoutFirmwaresCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
-  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutUpgradeTasksInput = {
@@ -2215,20 +2848,23 @@ export type UserCreateWithoutUpgradeTasksInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
-  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
-  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
+  assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
+  assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutUpgradeTasksInput = {
@@ -2249,19 +2885,22 @@ export type UserUncheckedCreateWithoutUpgradeTasksInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
-  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
   startedFotaJobs?: Prisma.FotaJobUncheckedCreateNestedManyWithoutStartedByInput
   loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutUpgradeTasksInput = {
@@ -2297,20 +2936,23 @@ export type UserUpdateWithoutUpgradeTasksInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
-  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
-  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
+  assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
+  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpgradeTasksInput = {
@@ -2331,19 +2973,22 @@ export type UserUncheckedUpdateWithoutUpgradeTasksInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
-  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutStartedFotaJobsInput = {
@@ -2363,20 +3008,23 @@ export type UserCreateWithoutStartedFotaJobsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
+  firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
+  loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
   plants?: Prisma.PlantCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
   plantInverterMaps?: Prisma.UserPlantInverterMapCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorCreateNestedOneWithoutUserInput
   assignedBy?: Prisma.UserCreateNestedOneWithoutAssignedUsersInput
   assignedUsers?: Prisma.UserCreateNestedManyWithoutAssignedByInput
-  firmwaresCreated?: Prisma.FirmwareCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskCreateNestedManyWithoutCreatedByInput
-  loginVerifications?: Prisma.LoginVerificationCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutOldUserInput
-  transferHistoryTo?: Prisma.UserInverterTransferHistoryCreateNestedManyWithoutNewUserInput
 }
 
 export type UserUncheckedCreateWithoutStartedFotaJobsInput = {
@@ -2397,19 +3045,22 @@ export type UserUncheckedCreateWithoutStartedFotaJobsInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
-  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
-  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
   firmwaresCreated?: Prisma.FirmwareUncheckedCreateNestedManyWithoutCreatedByInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   loginVerifications?: Prisma.LoginVerificationUncheckedCreateNestedManyWithoutUserInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plants?: Prisma.PlantUncheckedCreateNestedManyWithoutUserInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedCreateNestedManyWithoutUserInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedCreateNestedManyWithoutUserInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedCreateNestedManyWithoutCreatedByInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutNewUserInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedCreateNestedManyWithoutOldUserInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedCreateNestedManyWithoutUserInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedCreateNestedOneWithoutUserInput
+  assignedUsers?: Prisma.UserUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutStartedFotaJobsInput = {
@@ -2445,20 +3096,23 @@ export type UserUpdateWithoutStartedFotaJobsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
+  loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
   plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
+  transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
   plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
   assignedBy?: Prisma.UserUpdateOneWithoutAssignedUsersNestedInput
   assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
-  firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
-  loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
-  transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStartedFotaJobsInput = {
@@ -2479,19 +3133,22 @@ export type UserUncheckedUpdateWithoutStartedFotaJobsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
-  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateManyAssignedByInput = {
@@ -2511,11 +3168,11 @@ export type UserCreateManyAssignedByInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  epcAddress?: string | null
   epcCompany?: string | null
+  epcEmail?: string | null
   epcInstaller?: string | null
   epcMobile?: string | null
-  epcEmail?: string | null
-  epcAddress?: string | null
 }
 
 export type UserUpdateWithoutAssignedByInput = {
@@ -2535,20 +3192,23 @@ export type UserUpdateWithoutAssignedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
-  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedByInput = {
@@ -2568,20 +3228,23 @@ export type UserUncheckedUpdateWithoutAssignedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
-  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
-  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
   firmwaresCreated?: Prisma.FirmwareUncheckedUpdateManyWithoutCreatedByNestedInput
-  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   startedFotaJobs?: Prisma.FotaJobUncheckedUpdateManyWithoutStartedByNestedInput
   loginVerifications?: Prisma.LoginVerificationUncheckedUpdateManyWithoutUserNestedInput
-  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plants?: Prisma.PlantUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorLoginChallenges?: Prisma.TwoFactorLoginChallengeUncheckedUpdateManyWithoutUserNestedInput
+  twoFactorRecoveryCodes?: Prisma.TwoFactorRecoveryCodeUncheckedUpdateManyWithoutUserNestedInput
+  upgradeTasks?: Prisma.UpgradeTaskUncheckedUpdateManyWithoutCreatedByNestedInput
   transferHistoryTo?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutNewUserNestedInput
+  transferHistoryFrom?: Prisma.UserInverterTransferHistoryUncheckedUpdateManyWithoutOldUserNestedInput
+  plantInverterMaps?: Prisma.UserPlantInverterMapUncheckedUpdateManyWithoutUserNestedInput
+  twoFactor?: Prisma.UserTwoFactorUncheckedUpdateOneWithoutUserNestedInput
+  assignedUsers?: Prisma.UserUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutAssignedByInput = {
@@ -2601,11 +3264,11 @@ export type UserUncheckedUpdateManyWithoutAssignedByInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcInstaller?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   epcMobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  epcAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -2614,27 +3277,31 @@ export type UserUncheckedUpdateManyWithoutAssignedByInput = {
  */
 
 export type UserCountOutputType = {
-  plants: number
-  plantInverterMaps: number
-  assignedUsers: number
   firmwaresCreated: number
-  upgradeTasks: number
   startedFotaJobs: number
   loginVerifications: number
-  transferHistoryFrom: number
+  plants: number
+  twoFactorLoginChallenges: number
+  twoFactorRecoveryCodes: number
+  upgradeTasks: number
   transferHistoryTo: number
+  transferHistoryFrom: number
+  plantInverterMaps: number
+  assignedUsers: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  plants?: boolean | UserCountOutputTypeCountPlantsArgs
-  plantInverterMaps?: boolean | UserCountOutputTypeCountPlantInverterMapsArgs
-  assignedUsers?: boolean | UserCountOutputTypeCountAssignedUsersArgs
   firmwaresCreated?: boolean | UserCountOutputTypeCountFirmwaresCreatedArgs
-  upgradeTasks?: boolean | UserCountOutputTypeCountUpgradeTasksArgs
   startedFotaJobs?: boolean | UserCountOutputTypeCountStartedFotaJobsArgs
   loginVerifications?: boolean | UserCountOutputTypeCountLoginVerificationsArgs
-  transferHistoryFrom?: boolean | UserCountOutputTypeCountTransferHistoryFromArgs
+  plants?: boolean | UserCountOutputTypeCountPlantsArgs
+  twoFactorLoginChallenges?: boolean | UserCountOutputTypeCountTwoFactorLoginChallengesArgs
+  twoFactorRecoveryCodes?: boolean | UserCountOutputTypeCountTwoFactorRecoveryCodesArgs
+  upgradeTasks?: boolean | UserCountOutputTypeCountUpgradeTasksArgs
   transferHistoryTo?: boolean | UserCountOutputTypeCountTransferHistoryToArgs
+  transferHistoryFrom?: boolean | UserCountOutputTypeCountTransferHistoryFromArgs
+  plantInverterMaps?: boolean | UserCountOutputTypeCountPlantInverterMapsArgs
+  assignedUsers?: boolean | UserCountOutputTypeCountAssignedUsersArgs
 }
 
 /**
@@ -2650,36 +3317,8 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountPlantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PlantWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountPlantInverterMapsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserPlantInverterMapWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountAssignedUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
 export type UserCountOutputTypeCountFirmwaresCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.FirmwareWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountUpgradeTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UpgradeTaskWhereInput
 }
 
 /**
@@ -2699,8 +3338,29 @@ export type UserCountOutputTypeCountLoginVerificationsArgs<ExtArgs extends runti
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountTransferHistoryFromArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserInverterTransferHistoryWhereInput
+export type UserCountOutputTypeCountPlantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PlantWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTwoFactorLoginChallengesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TwoFactorLoginChallengeWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTwoFactorRecoveryCodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TwoFactorRecoveryCodeWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountUpgradeTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UpgradeTaskWhereInput
 }
 
 /**
@@ -2708,6 +3368,27 @@ export type UserCountOutputTypeCountTransferHistoryFromArgs<ExtArgs extends runt
  */
 export type UserCountOutputTypeCountTransferHistoryToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.UserInverterTransferHistoryWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTransferHistoryFromArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserInverterTransferHistoryWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPlantInverterMapsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserPlantInverterMapWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAssignedUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserWhereInput
 }
 
 
@@ -2729,21 +3410,24 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
+  epcAddress?: boolean
   epcCompany?: boolean
+  epcEmail?: boolean
   epcInstaller?: boolean
   epcMobile?: boolean
-  epcEmail?: boolean
-  epcAddress?: boolean
-  plants?: boolean | Prisma.User$plantsArgs<ExtArgs>
-  plantInverterMaps?: boolean | Prisma.User$plantInverterMapsArgs<ExtArgs>
-  assignedBy?: boolean | Prisma.User$assignedByArgs<ExtArgs>
-  assignedUsers?: boolean | Prisma.User$assignedUsersArgs<ExtArgs>
   firmwaresCreated?: boolean | Prisma.User$firmwaresCreatedArgs<ExtArgs>
-  upgradeTasks?: boolean | Prisma.User$upgradeTasksArgs<ExtArgs>
   startedFotaJobs?: boolean | Prisma.User$startedFotaJobsArgs<ExtArgs>
   loginVerifications?: boolean | Prisma.User$loginVerificationsArgs<ExtArgs>
-  transferHistoryFrom?: boolean | Prisma.User$transferHistoryFromArgs<ExtArgs>
+  plants?: boolean | Prisma.User$plantsArgs<ExtArgs>
+  twoFactorLoginChallenges?: boolean | Prisma.User$twoFactorLoginChallengesArgs<ExtArgs>
+  twoFactorRecoveryCodes?: boolean | Prisma.User$twoFactorRecoveryCodesArgs<ExtArgs>
+  upgradeTasks?: boolean | Prisma.User$upgradeTasksArgs<ExtArgs>
   transferHistoryTo?: boolean | Prisma.User$transferHistoryToArgs<ExtArgs>
+  transferHistoryFrom?: boolean | Prisma.User$transferHistoryFromArgs<ExtArgs>
+  plantInverterMaps?: boolean | Prisma.User$plantInverterMapsArgs<ExtArgs>
+  twoFactor?: boolean | Prisma.User$twoFactorArgs<ExtArgs>
+  assignedBy?: boolean | Prisma.User$assignedByArgs<ExtArgs>
+  assignedUsers?: boolean | Prisma.User$assignedUsersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2765,11 +3449,11 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
+  epcAddress?: boolean
   epcCompany?: boolean
+  epcEmail?: boolean
   epcInstaller?: boolean
   epcMobile?: boolean
-  epcEmail?: boolean
-  epcAddress?: boolean
   assignedBy?: boolean | Prisma.User$assignedByArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2791,11 +3475,11 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
+  epcAddress?: boolean
   epcCompany?: boolean
+  epcEmail?: boolean
   epcInstaller?: boolean
   epcMobile?: boolean
-  epcEmail?: boolean
-  epcAddress?: boolean
   assignedBy?: boolean | Prisma.User$assignedByArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2817,25 +3501,28 @@ export type UserSelectScalar = {
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
+  epcAddress?: boolean
   epcCompany?: boolean
+  epcEmail?: boolean
   epcInstaller?: boolean
   epcMobile?: boolean
-  epcEmail?: boolean
-  epcAddress?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "account" | "email" | "passwordHash" | "portal" | "role" | "status" | "assignedById" | "timezone" | "phone" | "address" | "emailVerifiedAt" | "lastLoginAt" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "epcCompany" | "epcInstaller" | "epcMobile" | "epcEmail" | "epcAddress", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "account" | "email" | "passwordHash" | "portal" | "role" | "status" | "assignedById" | "timezone" | "phone" | "address" | "emailVerifiedAt" | "lastLoginAt" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt" | "epcAddress" | "epcCompany" | "epcEmail" | "epcInstaller" | "epcMobile", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  plants?: boolean | Prisma.User$plantsArgs<ExtArgs>
-  plantInverterMaps?: boolean | Prisma.User$plantInverterMapsArgs<ExtArgs>
-  assignedBy?: boolean | Prisma.User$assignedByArgs<ExtArgs>
-  assignedUsers?: boolean | Prisma.User$assignedUsersArgs<ExtArgs>
   firmwaresCreated?: boolean | Prisma.User$firmwaresCreatedArgs<ExtArgs>
-  upgradeTasks?: boolean | Prisma.User$upgradeTasksArgs<ExtArgs>
   startedFotaJobs?: boolean | Prisma.User$startedFotaJobsArgs<ExtArgs>
   loginVerifications?: boolean | Prisma.User$loginVerificationsArgs<ExtArgs>
-  transferHistoryFrom?: boolean | Prisma.User$transferHistoryFromArgs<ExtArgs>
+  plants?: boolean | Prisma.User$plantsArgs<ExtArgs>
+  twoFactorLoginChallenges?: boolean | Prisma.User$twoFactorLoginChallengesArgs<ExtArgs>
+  twoFactorRecoveryCodes?: boolean | Prisma.User$twoFactorRecoveryCodesArgs<ExtArgs>
+  upgradeTasks?: boolean | Prisma.User$upgradeTasksArgs<ExtArgs>
   transferHistoryTo?: boolean | Prisma.User$transferHistoryToArgs<ExtArgs>
+  transferHistoryFrom?: boolean | Prisma.User$transferHistoryFromArgs<ExtArgs>
+  plantInverterMaps?: boolean | Prisma.User$plantInverterMapsArgs<ExtArgs>
+  twoFactor?: boolean | Prisma.User$twoFactorArgs<ExtArgs>
+  assignedBy?: boolean | Prisma.User$assignedByArgs<ExtArgs>
+  assignedUsers?: boolean | Prisma.User$assignedUsersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2848,16 +3535,19 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    plants: Prisma.$PlantPayload<ExtArgs>[]
-    plantInverterMaps: Prisma.$UserPlantInverterMapPayload<ExtArgs>[]
-    assignedBy: Prisma.$UserPayload<ExtArgs> | null
-    assignedUsers: Prisma.$UserPayload<ExtArgs>[]
     firmwaresCreated: Prisma.$FirmwarePayload<ExtArgs>[]
-    upgradeTasks: Prisma.$UpgradeTaskPayload<ExtArgs>[]
     startedFotaJobs: Prisma.$FotaJobPayload<ExtArgs>[]
     loginVerifications: Prisma.$LoginVerificationPayload<ExtArgs>[]
-    transferHistoryFrom: Prisma.$UserInverterTransferHistoryPayload<ExtArgs>[]
+    plants: Prisma.$PlantPayload<ExtArgs>[]
+    twoFactorLoginChallenges: Prisma.$TwoFactorLoginChallengePayload<ExtArgs>[]
+    twoFactorRecoveryCodes: Prisma.$TwoFactorRecoveryCodePayload<ExtArgs>[]
+    upgradeTasks: Prisma.$UpgradeTaskPayload<ExtArgs>[]
     transferHistoryTo: Prisma.$UserInverterTransferHistoryPayload<ExtArgs>[]
+    transferHistoryFrom: Prisma.$UserInverterTransferHistoryPayload<ExtArgs>[]
+    plantInverterMaps: Prisma.$UserPlantInverterMapPayload<ExtArgs>[]
+    twoFactor: Prisma.$UserTwoFactorPayload<ExtArgs> | null
+    assignedBy: Prisma.$UserPayload<ExtArgs> | null
+    assignedUsers: Prisma.$UserPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -2877,11 +3567,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     updatedAt: Date
     isDeleted: boolean
     deletedAt: Date | null
+    epcAddress: string | null
     epcCompany: string | null
+    epcEmail: string | null
     epcInstaller: string | null
     epcMobile: string | null
-    epcEmail: string | null
-    epcAddress: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -3276,16 +3966,19 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  plants<T extends Prisma.User$plantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$plantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  plantInverterMaps<T extends Prisma.User$plantInverterMapsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$plantInverterMapsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPlantInverterMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  assignedBy<T extends Prisma.User$assignedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  assignedUsers<T extends Prisma.User$assignedUsersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedUsersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   firmwaresCreated<T extends Prisma.User$firmwaresCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$firmwaresCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FirmwarePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  upgradeTasks<T extends Prisma.User$upgradeTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$upgradeTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UpgradeTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   startedFotaJobs<T extends Prisma.User$startedFotaJobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$startedFotaJobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FotaJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   loginVerifications<T extends Prisma.User$loginVerificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$loginVerificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoginVerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  transferHistoryFrom<T extends Prisma.User$transferHistoryFromArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$transferHistoryFromArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserInverterTransferHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  plants<T extends Prisma.User$plantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$plantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  twoFactorLoginChallenges<T extends Prisma.User$twoFactorLoginChallengesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$twoFactorLoginChallengesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TwoFactorLoginChallengePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  twoFactorRecoveryCodes<T extends Prisma.User$twoFactorRecoveryCodesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$twoFactorRecoveryCodesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TwoFactorRecoveryCodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  upgradeTasks<T extends Prisma.User$upgradeTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$upgradeTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UpgradeTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   transferHistoryTo<T extends Prisma.User$transferHistoryToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$transferHistoryToArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserInverterTransferHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  transferHistoryFrom<T extends Prisma.User$transferHistoryFromArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$transferHistoryFromArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserInverterTransferHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  plantInverterMaps<T extends Prisma.User$plantInverterMapsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$plantInverterMapsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPlantInverterMapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  twoFactor<T extends Prisma.User$twoFactorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$twoFactorArgs<ExtArgs>>): Prisma.Prisma__UserTwoFactorClient<runtime.Types.Result.GetResult<Prisma.$UserTwoFactorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  assignedBy<T extends Prisma.User$assignedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  assignedUsers<T extends Prisma.User$assignedUsersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedUsersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3332,11 +4025,11 @@ export interface UserFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly isDeleted: Prisma.FieldRef<"User", 'Boolean'>
   readonly deletedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly epcAddress: Prisma.FieldRef<"User", 'String'>
   readonly epcCompany: Prisma.FieldRef<"User", 'String'>
+  readonly epcEmail: Prisma.FieldRef<"User", 'String'>
   readonly epcInstaller: Prisma.FieldRef<"User", 'String'>
   readonly epcMobile: Prisma.FieldRef<"User", 'String'>
-  readonly epcEmail: Prisma.FieldRef<"User", 'String'>
-  readonly epcAddress: Prisma.FieldRef<"User", 'String'>
 }
     
 
@@ -3738,97 +4431,6 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.plants
- */
-export type User$plantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Plant
-   */
-  select?: Prisma.PlantSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Plant
-   */
-  omit?: Prisma.PlantOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PlantInclude<ExtArgs> | null
-  where?: Prisma.PlantWhereInput
-  orderBy?: Prisma.PlantOrderByWithRelationInput | Prisma.PlantOrderByWithRelationInput[]
-  cursor?: Prisma.PlantWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PlantScalarFieldEnum | Prisma.PlantScalarFieldEnum[]
-}
-
-/**
- * User.plantInverterMaps
- */
-export type User$plantInverterMapsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UserPlantInverterMap
-   */
-  select?: Prisma.UserPlantInverterMapSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the UserPlantInverterMap
-   */
-  omit?: Prisma.UserPlantInverterMapOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserPlantInverterMapInclude<ExtArgs> | null
-  where?: Prisma.UserPlantInverterMapWhereInput
-  orderBy?: Prisma.UserPlantInverterMapOrderByWithRelationInput | Prisma.UserPlantInverterMapOrderByWithRelationInput[]
-  cursor?: Prisma.UserPlantInverterMapWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserPlantInverterMapScalarFieldEnum | Prisma.UserPlantInverterMapScalarFieldEnum[]
-}
-
-/**
- * User.assignedBy
- */
-export type User$assignedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
-}
-
-/**
- * User.assignedUsers
- */
-export type User$assignedUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
-  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
-  cursor?: Prisma.UserWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
-}
-
-/**
  * User.firmwaresCreated
  */
 export type User$firmwaresCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3850,30 +4452,6 @@ export type User$firmwaresCreatedArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.FirmwareScalarFieldEnum | Prisma.FirmwareScalarFieldEnum[]
-}
-
-/**
- * User.upgradeTasks
- */
-export type User$upgradeTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UpgradeTask
-   */
-  select?: Prisma.UpgradeTaskSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the UpgradeTask
-   */
-  omit?: Prisma.UpgradeTaskOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UpgradeTaskInclude<ExtArgs> | null
-  where?: Prisma.UpgradeTaskWhereInput
-  orderBy?: Prisma.UpgradeTaskOrderByWithRelationInput | Prisma.UpgradeTaskOrderByWithRelationInput[]
-  cursor?: Prisma.UpgradeTaskWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UpgradeTaskScalarFieldEnum | Prisma.UpgradeTaskScalarFieldEnum[]
 }
 
 /**
@@ -3925,27 +4503,99 @@ export type User$loginVerificationsArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * User.transferHistoryFrom
+ * User.plants
  */
-export type User$transferHistoryFromArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$plantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserInverterTransferHistory
+   * Select specific fields to fetch from the Plant
    */
-  select?: Prisma.UserInverterTransferHistorySelect<ExtArgs> | null
+  select?: Prisma.PlantSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserInverterTransferHistory
+   * Omit specific fields from the Plant
    */
-  omit?: Prisma.UserInverterTransferHistoryOmit<ExtArgs> | null
+  omit?: Prisma.PlantOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInverterTransferHistoryInclude<ExtArgs> | null
-  where?: Prisma.UserInverterTransferHistoryWhereInput
-  orderBy?: Prisma.UserInverterTransferHistoryOrderByWithRelationInput | Prisma.UserInverterTransferHistoryOrderByWithRelationInput[]
-  cursor?: Prisma.UserInverterTransferHistoryWhereUniqueInput
+  include?: Prisma.PlantInclude<ExtArgs> | null
+  where?: Prisma.PlantWhereInput
+  orderBy?: Prisma.PlantOrderByWithRelationInput | Prisma.PlantOrderByWithRelationInput[]
+  cursor?: Prisma.PlantWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.UserInverterTransferHistoryScalarFieldEnum | Prisma.UserInverterTransferHistoryScalarFieldEnum[]
+  distinct?: Prisma.PlantScalarFieldEnum | Prisma.PlantScalarFieldEnum[]
+}
+
+/**
+ * User.twoFactorLoginChallenges
+ */
+export type User$twoFactorLoginChallengesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TwoFactorLoginChallenge
+   */
+  select?: Prisma.TwoFactorLoginChallengeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TwoFactorLoginChallenge
+   */
+  omit?: Prisma.TwoFactorLoginChallengeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TwoFactorLoginChallengeInclude<ExtArgs> | null
+  where?: Prisma.TwoFactorLoginChallengeWhereInput
+  orderBy?: Prisma.TwoFactorLoginChallengeOrderByWithRelationInput | Prisma.TwoFactorLoginChallengeOrderByWithRelationInput[]
+  cursor?: Prisma.TwoFactorLoginChallengeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TwoFactorLoginChallengeScalarFieldEnum | Prisma.TwoFactorLoginChallengeScalarFieldEnum[]
+}
+
+/**
+ * User.twoFactorRecoveryCodes
+ */
+export type User$twoFactorRecoveryCodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TwoFactorRecoveryCode
+   */
+  select?: Prisma.TwoFactorRecoveryCodeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TwoFactorRecoveryCode
+   */
+  omit?: Prisma.TwoFactorRecoveryCodeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TwoFactorRecoveryCodeInclude<ExtArgs> | null
+  where?: Prisma.TwoFactorRecoveryCodeWhereInput
+  orderBy?: Prisma.TwoFactorRecoveryCodeOrderByWithRelationInput | Prisma.TwoFactorRecoveryCodeOrderByWithRelationInput[]
+  cursor?: Prisma.TwoFactorRecoveryCodeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TwoFactorRecoveryCodeScalarFieldEnum | Prisma.TwoFactorRecoveryCodeScalarFieldEnum[]
+}
+
+/**
+ * User.upgradeTasks
+ */
+export type User$upgradeTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UpgradeTask
+   */
+  select?: Prisma.UpgradeTaskSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UpgradeTask
+   */
+  omit?: Prisma.UpgradeTaskOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UpgradeTaskInclude<ExtArgs> | null
+  where?: Prisma.UpgradeTaskWhereInput
+  orderBy?: Prisma.UpgradeTaskOrderByWithRelationInput | Prisma.UpgradeTaskOrderByWithRelationInput[]
+  cursor?: Prisma.UpgradeTaskWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UpgradeTaskScalarFieldEnum | Prisma.UpgradeTaskScalarFieldEnum[]
 }
 
 /**
@@ -3970,6 +4620,116 @@ export type User$transferHistoryToArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.UserInverterTransferHistoryScalarFieldEnum | Prisma.UserInverterTransferHistoryScalarFieldEnum[]
+}
+
+/**
+ * User.transferHistoryFrom
+ */
+export type User$transferHistoryFromArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserInverterTransferHistory
+   */
+  select?: Prisma.UserInverterTransferHistorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserInverterTransferHistory
+   */
+  omit?: Prisma.UserInverterTransferHistoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInverterTransferHistoryInclude<ExtArgs> | null
+  where?: Prisma.UserInverterTransferHistoryWhereInput
+  orderBy?: Prisma.UserInverterTransferHistoryOrderByWithRelationInput | Prisma.UserInverterTransferHistoryOrderByWithRelationInput[]
+  cursor?: Prisma.UserInverterTransferHistoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserInverterTransferHistoryScalarFieldEnum | Prisma.UserInverterTransferHistoryScalarFieldEnum[]
+}
+
+/**
+ * User.plantInverterMaps
+ */
+export type User$plantInverterMapsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserPlantInverterMap
+   */
+  select?: Prisma.UserPlantInverterMapSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserPlantInverterMap
+   */
+  omit?: Prisma.UserPlantInverterMapOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserPlantInverterMapInclude<ExtArgs> | null
+  where?: Prisma.UserPlantInverterMapWhereInput
+  orderBy?: Prisma.UserPlantInverterMapOrderByWithRelationInput | Prisma.UserPlantInverterMapOrderByWithRelationInput[]
+  cursor?: Prisma.UserPlantInverterMapWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserPlantInverterMapScalarFieldEnum | Prisma.UserPlantInverterMapScalarFieldEnum[]
+}
+
+/**
+ * User.twoFactor
+ */
+export type User$twoFactorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserTwoFactor
+   */
+  select?: Prisma.UserTwoFactorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserTwoFactor
+   */
+  omit?: Prisma.UserTwoFactorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserTwoFactorInclude<ExtArgs> | null
+  where?: Prisma.UserTwoFactorWhereInput
+}
+
+/**
+ * User.assignedBy
+ */
+export type User$assignedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * User.assignedUsers
+ */
+export type User$assignedUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
+  cursor?: Prisma.UserWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
 }
 
 /**

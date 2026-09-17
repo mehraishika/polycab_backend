@@ -224,8 +224,8 @@ export type UpgradeTaskWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"UpgradeTask"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UpgradeTask"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"UpgradeTask"> | Date | string | null
-  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   taskJobs?: Prisma.TaskJobListRelationFilter
+  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type UpgradeTaskOrderByWithRelationInput = {
@@ -235,8 +235,8 @@ export type UpgradeTaskOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  createdBy?: Prisma.UserOrderByWithRelationInput
   taskJobs?: Prisma.TaskJobOrderByRelationAggregateInput
+  createdBy?: Prisma.UserOrderByWithRelationInput
 }
 
 export type UpgradeTaskWhereUniqueInput = Prisma.AtLeast<{
@@ -249,8 +249,8 @@ export type UpgradeTaskWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"UpgradeTask"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UpgradeTask"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"UpgradeTask"> | Date | string | null
-  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   taskJobs?: Prisma.TaskJobListRelationFilter
+  createdBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
 export type UpgradeTaskOrderByWithAggregationInput = {
@@ -285,8 +285,8 @@ export type UpgradeTaskCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  createdBy?: Prisma.UserCreateNestedOneWithoutUpgradeTasksInput
   taskJobs?: Prisma.TaskJobCreateNestedManyWithoutTaskInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutUpgradeTasksInput
 }
 
 export type UpgradeTaskUncheckedCreateInput = {
@@ -305,8 +305,8 @@ export type UpgradeTaskUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdBy?: Prisma.UserUpdateOneWithoutUpgradeTasksNestedInput
   taskJobs?: Prisma.TaskJobUpdateManyWithoutTaskNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutUpgradeTasksNestedInput
 }
 
 export type UpgradeTaskUncheckedUpdateInput = {
@@ -631,8 +631,8 @@ export type UpgradeTaskSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  createdBy?: boolean | Prisma.UpgradeTask$createdByArgs<ExtArgs>
   taskJobs?: boolean | Prisma.UpgradeTask$taskJobsArgs<ExtArgs>
+  createdBy?: boolean | Prisma.UpgradeTask$createdByArgs<ExtArgs>
   _count?: boolean | Prisma.UpgradeTaskCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["upgradeTask"]>
 
@@ -667,8 +667,8 @@ export type UpgradeTaskSelectScalar = {
 
 export type UpgradeTaskOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdById" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["upgradeTask"]>
 export type UpgradeTaskInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  createdBy?: boolean | Prisma.UpgradeTask$createdByArgs<ExtArgs>
   taskJobs?: boolean | Prisma.UpgradeTask$taskJobsArgs<ExtArgs>
+  createdBy?: boolean | Prisma.UpgradeTask$createdByArgs<ExtArgs>
   _count?: boolean | Prisma.UpgradeTaskCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UpgradeTaskIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -681,8 +681,8 @@ export type UpgradeTaskIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type $UpgradeTaskPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "UpgradeTask"
   objects: {
-    createdBy: Prisma.$UserPayload<ExtArgs> | null
     taskJobs: Prisma.$TaskJobPayload<ExtArgs>[]
+    createdBy: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1085,8 +1085,8 @@ readonly fields: UpgradeTaskFieldRefs;
  */
 export interface Prisma__UpgradeTaskClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  createdBy<T extends Prisma.UpgradeTask$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UpgradeTask$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   taskJobs<T extends Prisma.UpgradeTask$taskJobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UpgradeTask$taskJobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdBy<T extends Prisma.UpgradeTask$createdByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UpgradeTask$createdByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1523,25 +1523,6 @@ export type UpgradeTaskDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * UpgradeTask.createdBy
- */
-export type UpgradeTask$createdByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
-}
-
-/**
  * UpgradeTask.taskJobs
  */
 export type UpgradeTask$taskJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1563,6 +1544,25 @@ export type UpgradeTask$taskJobsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.TaskJobScalarFieldEnum | Prisma.TaskJobScalarFieldEnum[]
+}
+
+/**
+ * UpgradeTask.createdBy
+ */
+export type UpgradeTask$createdByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**
