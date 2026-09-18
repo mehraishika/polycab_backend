@@ -105,7 +105,6 @@
 // 	}
 // }
 
-
 import { prisma, type PrismaClient } from "@/server/db/prisma";
 import type { LoginInput } from "@/server/validators/auth.validator";
 import { createHash, randomBytes } from "node:crypto";
@@ -122,13 +121,9 @@ export interface AuthAccountRecord {
   role: string;
 }
 
-type AuthUserRecord = Awaited<
-  ReturnType<PrismaClient["user"]["findFirst"]>
->;
+type AuthUserRecord = Awaited<ReturnType<PrismaClient["user"]["findFirst"]>>;
 
-function mapRecord(
-  record: NonNullable<AuthUserRecord>,
-): AuthAccountRecord {
+function mapRecord(record: NonNullable<AuthUserRecord>): AuthAccountRecord {
   return {
     portal: record.portal as Portal,
     account: record.account,
@@ -141,9 +136,7 @@ function mapRecord(
 }
 
 export class AuthRepository {
-  constructor(
-    private readonly dbClient: PrismaClient = prisma,
-  ) {}
+  constructor(private readonly dbClient: PrismaClient = prisma) {}
 
   async findByPortalAndAccount(
     portal: Portal,
@@ -225,35 +218,31 @@ export class AuthRepository {
     code: string;
     expiresAt: Date;
   }): Promise<{ id: string }> {
-    const verification =
-      await this.dbClient.loginVerification.create({
-        data: {
-          userId: BigInt(input.userId),
-          code: input.code,
-          expiresAt: input.expiresAt,
-        },
-        select: {
-          id: true,
-        },
-      });
+    const verification = await this.dbClient.loginVerification.create({
+      data: {
+        userId: BigInt(input.userId),
+        code: input.code,
+        expiresAt: input.expiresAt,
+      },
+      select: {
+        id: true,
+      },
+    });
 
     return verification;
   }
 
-  async findLoginVerification(
-    id: string,
-  ): Promise<{
+  async findLoginVerification(id: string): Promise<{
     id: string;
     userId: string;
     code: string;
     expiresAt: Date;
   } | null> {
-    const verification =
-      await this.dbClient.loginVerification.findUnique({
-        where: {
-          id,
-        },
-      });
+    const verification = await this.dbClient.loginVerification.findUnique({
+      where: {
+        id,
+      },
+    });
 
     if (!verification) {
       return null;
@@ -267,9 +256,7 @@ export class AuthRepository {
     };
   }
 
-  async deleteLoginVerification(
-    id: string,
-  ): Promise<void> {
+  async deleteLoginVerification(id: string): Promise<void> {
     await this.dbClient.loginVerification.delete({
       where: {
         id,
@@ -281,19 +268,16 @@ export class AuthRepository {
      TWO FACTOR
      ============================ */
 
-  async findTwoFactorByUserId(
-    userId: string,
-  ): Promise<{
+  async findTwoFactorByUserId(userId: string): Promise<{
     userId: string;
     secretEncrypted: string | null;
     enabled: boolean;
   } | null> {
-    const record =
-      await this.dbClient.userTwoFactor.findUnique({
-        where: {
-          userId: BigInt(userId),
-        },
-      });
+    const record = await this.dbClient.userTwoFactor.findUnique({
+      where: {
+        userId: BigInt(userId),
+      },
+    });
 
     if (!record) {
       return null;
@@ -324,21 +308,20 @@ export class AuthRepository {
     secretEncrypted: string | null;
     enabled: boolean;
   }> {
-    const record =
-      await this.dbClient.userTwoFactor.upsert({
-        where: {
-          userId: BigInt(input.userId),
-        },
-        create: {
-          userId: BigInt(input.userId),
-          secretEncrypted: input.secretEncrypted,
-          enabled: false,
-        },
-        update: {
-          secretEncrypted: input.secretEncrypted,
-          enabled: false,
-        },
-      });
+    const record = await this.dbClient.userTwoFactor.upsert({
+      where: {
+        userId: BigInt(input.userId),
+      },
+      create: {
+        userId: BigInt(input.userId),
+        secretEncrypted: input.secretEncrypted,
+        enabled: false,
+      },
+      update: {
+        secretEncrypted: input.secretEncrypted,
+        enabled: false,
+      },
+    });
 
     return {
       userId: record.userId.toString(),
@@ -347,9 +330,7 @@ export class AuthRepository {
     };
   }
 
-  async enableTwoFactor(
-    userId: string,
-  ): Promise<void> {
+  async enableTwoFactor(userId: string): Promise<void> {
     await this.dbClient.userTwoFactor.update({
       where: {
         userId: BigInt(userId),
@@ -360,9 +341,7 @@ export class AuthRepository {
     });
   }
 
-  async disableTwoFactor(
-    userId: string,
-  ): Promise<void> {
+  async disableTwoFactor(userId: string): Promise<void> {
     await this.dbClient.userTwoFactor.updateMany({
       where: {
         userId: BigInt(userId),
@@ -378,29 +357,57 @@ export class AuthRepository {
      TWO FACTOR LOGIN CHALLENGE
      ============================ */
 
+  async findActiveTwoFactorLoginChallenge(
+    userId: string,
+  ): Promise<{ id: string } | null> {
+    const challenge = await this.dbClient.twoFactorLoginChallenge.findFirst({
+      where: {
+        userId: BigInt(userId),
+        usedAt: null,
+        expiresAt: {
+          gt: new Date(),
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    return challenge;
+  }
+
+  async deleteStaleTwoFactorLoginChallenges(userId: string): Promise<void> {
+    await this.dbClient.twoFactorLoginChallenge.deleteMany({
+      where: {
+        userId: BigInt(userId),
+        OR: [{ usedAt: { not: null } }, { expiresAt: { lte: new Date() } }],
+      },
+    });
+  }
+
   async createTwoFactorLoginChallenge(input: {
     userId: string;
     remember: boolean;
     expiresAt: Date;
   }): Promise<{ id: string }> {
-    const challenge =
-      await this.dbClient.twoFactorLoginChallenge.create({
-        data: {
-          userId: BigInt(input.userId),
-          remember: input.remember,
-          expiresAt: input.expiresAt,
-        },
-        select: {
-          id: true,
-        },
-      });
+    const challenge = await this.dbClient.twoFactorLoginChallenge.create({
+      data: {
+        userId: BigInt(input.userId),
+        remember: input.remember,
+        expiresAt: input.expiresAt,
+      },
+      select: {
+        id: true,
+      },
+    });
 
     return challenge;
   }
 
-  async findTwoFactorLoginChallenge(
-    id: string,
-  ): Promise<{
+  async findTwoFactorLoginChallenge(id: string): Promise<{
     id: string;
     userId: string;
     remember: boolean;
@@ -408,12 +415,11 @@ export class AuthRepository {
     attempts: number;
     usedAt: Date | null;
   } | null> {
-    const challenge =
-      await this.dbClient.twoFactorLoginChallenge.findUnique({
-        where: {
-          id,
-        },
-      });
+    const challenge = await this.dbClient.twoFactorLoginChallenge.findUnique({
+      where: {
+        id,
+      },
+    });
 
     if (!challenge) {
       return null;
@@ -429,9 +435,7 @@ export class AuthRepository {
     };
   }
 
-  async updateTwoFactorLoginChallengeAttempts(
-    id: string,
-  ): Promise<void> {
+  async updateTwoFactorLoginChallengeAttempts(id: string): Promise<void> {
     await this.dbClient.twoFactorLoginChallenge.update({
       where: {
         id,
@@ -444,9 +448,7 @@ export class AuthRepository {
     });
   }
 
-  async consumeTwoFactorLoginChallenge(
-    id: string,
-  ): Promise<void> {
+  async consumeTwoFactorLoginChallenge(id: string): Promise<void> {
     await this.dbClient.twoFactorLoginChallenge.update({
       where: {
         id,
@@ -457,9 +459,7 @@ export class AuthRepository {
     });
   }
 
-  async deleteTwoFactorLoginChallenge(
-    id: string,
-  ): Promise<void> {
+  async deleteTwoFactorLoginChallenge(id: string): Promise<void> {
     await this.dbClient.twoFactorLoginChallenge.delete({
       where: {
         id,
@@ -471,12 +471,8 @@ export class AuthRepository {
      TWO FACTOR RECOVERY CODES
      ============================ */
 
-  private hashRecoveryCode(
-    code: string,
-  ): string {
-    return createHash("sha256")
-      .update(code.trim().toUpperCase())
-      .digest("hex");
+  private hashRecoveryCode(code: string): string {
+    return createHash("sha256").update(code.trim().toUpperCase()).digest("hex");
   }
 
   async createTwoFactorRecoveryCodes(
@@ -486,14 +482,10 @@ export class AuthRepository {
     const recoveryCodes: string[] = [];
 
     for (let i = 0; i < count; i++) {
-      const raw = randomBytes(6)
-        .toString("hex")
-        .toUpperCase();
+      const raw = randomBytes(6).toString("hex").toUpperCase();
 
       const formatted =
-        `${raw.slice(0, 4)}-` +
-        `${raw.slice(4, 8)}-` +
-        `${raw.slice(8, 12)}`;
+        `${raw.slice(0, 4)}-` + `${raw.slice(4, 8)}-` + `${raw.slice(8, 12)}`;
 
       recoveryCodes.push(formatted);
     }
@@ -514,17 +506,15 @@ export class AuthRepository {
   ): Promise<{ id: string } | null> {
     const codeHash = this.hashRecoveryCode(code);
 
-    const recoveryCode =
-      await this.dbClient.twoFactorRecoveryCode.findFirst({
-        where: {
-          userId: BigInt(userId),
-          codeHash,
-          usedAt: null,
-        },
-        select: {
-          id: true,
-        },
-      });
+    const recoveryCode = await this.dbClient.twoFactorRecoveryCode.findFirst({
+      where: {
+        userId: BigInt(userId),
+        codeHash,
+      },
+      select: {
+        id: true,
+      },
+    });
 
     if (!recoveryCode) {
       return null;
@@ -535,26 +525,7 @@ export class AuthRepository {
     };
   }
 
-  async consumeTwoFactorRecoveryCode(
-    recoveryCodeId: string,
-  ): Promise<boolean> {
-    const result =
-      await this.dbClient.twoFactorRecoveryCode.updateMany({
-        where: {
-          id: BigInt(recoveryCodeId),
-          usedAt: null,
-        },
-        data: {
-          usedAt: new Date(),
-        },
-      });
-
-    return result.count === 1;
-  }
-
-  async deleteUnusedTwoFactorRecoveryCodes(
-    userId: string,
-  ): Promise<void> {
+  async deleteUnusedTwoFactorRecoveryCodes(userId: string): Promise<void> {
     await this.dbClient.twoFactorRecoveryCode.deleteMany({
       where: {
         userId: BigInt(userId),
@@ -567,15 +538,12 @@ export class AuthRepository {
      USER
      ============================ */
 
-  async findByUserId(
-    userId: string,
-  ): Promise<AuthAccountRecord | null> {
-    const record =
-      await this.dbClient.user.findUnique({
-        where: {
-          id: BigInt(userId),
-        },
-      });
+  async findByUserId(userId: string): Promise<AuthAccountRecord | null> {
+    const record = await this.dbClient.user.findUnique({
+      where: {
+        id: BigInt(userId),
+      },
+    });
 
     if (!record) {
       return null;

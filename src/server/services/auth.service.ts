@@ -22,28 +22,15 @@ import type {
 
 type AuthPortal = LoginInput["portal"];
 
-const TWO_FACTOR_CHALLENGE_EXPIRY_MS =
-  5 * 60 * 1000;
+const AUTHENTICATOR_APP_LINKS = {
+  android:
+    "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2",
+  ios: "https://apps.apple.com/app/google-authenticator/id388497605",
+} as const;
+
+const TWO_FACTOR_CHALLENGE_EXPIRY_MS = 5 * 60 * 1000;
 
 const TWO_FACTOR_MAX_ATTEMPTS = 5;
-
-export interface TwoFactorChoiceRequired {
-  status: 200;
-  message: string;
-  data: {
-    requiresVerification: false;
-    requiresTwoFactorChoice: true;
-    challengeId: string;
-    twoFactorEnabled: boolean;
-    account: string;
-    user: {
-      userId: string;
-      account: string;
-      portal: LoginInput["portal"];
-      role: string;
-    };
-  };
-}
 
 export interface LoginServiceSuccess {
   status: 200;
@@ -69,9 +56,7 @@ export interface LoginServiceSuccess {
 export interface LoginServiceError {
   status: 400 | 401 | 404 | 409 | 429 | 500;
   message: string;
-  errorCode?:
-    | "ACCOUNT_NOT_FOUND"
-    | "INVALID_PASSWORD";
+  errorCode?: "ACCOUNT_NOT_FOUND" | "INVALID_PASSWORD";
 }
 
 export interface RegisterServiceSuccess {
@@ -116,22 +101,35 @@ export interface RefreshServiceError {
   message: string;
 }
 
+export interface LoginTwoFactorRequired {
+  status: 200;
+  message: string;
+  data: {
+    requiresVerification: false;
+    requiresTwoFactor: true;
+    twoFactorChallengeId: string;
+    verificationMethods: ("authenticator" | "recovery")[];
+    user: {
+      userId: string;
+      account: string;
+      portal: LoginInput["portal"];
+      role: string;
+    };
+  };
+}
+
 export type LoginServiceResult =
   | LoginServiceSuccess
   | LoginServiceError
-  | TwoFactorChoiceRequired;
+  | LoginTwoFactorRequired;
 
 export type RegisterServiceResult =
   | RegisterServiceSuccess
   | RegisterServiceError;
 
-export type RefreshServiceResult =
-  | RefreshServiceSuccess
-  | RefreshServiceError;
+export type RefreshServiceResult = RefreshServiceSuccess | RefreshServiceError;
 
-function resolveRedirect(
-  portal: AuthPortal,
-): string {
+function resolveRedirect(portal: AuthPortal): string {
   if (portal === "monitoring") {
     return "/monitor";
   }
@@ -141,19 +139,15 @@ function resolveRedirect(
 
 export class AuthService {
   constructor(
-    private readonly authRepository: AuthRepository =
-      new AuthRepository(),
-    private readonly twoFactorService: TwoFactorService =
-      new TwoFactorService(),
+    private readonly authRepository: AuthRepository = new AuthRepository(),
+    private readonly twoFactorService: TwoFactorService = new TwoFactorService(),
   ) {}
 
   /* ============================================================
      LOGIN
      ============================================================ */
 
-  async login(
-    input: LoginInput,
-  ): Promise<LoginServiceResult> {
+  async login(input: LoginInput): Promise<LoginServiceResult> {
     const accessSecret = getAccessTokenSecret();
     const refreshSecret = getRefreshTokenSecret();
 
@@ -164,11 +158,10 @@ export class AuthService {
       };
     }
 
-    const accountRecord =
-      await this.authRepository.findByPortalAndAccount(
-        input.portal,
-        input.account,
-      );
+    const accountRecord = await this.authRepository.findByPortalAndAccount(
+      input.portal,
+      input.account,
+    );
 
     if (!accountRecord) {
       return {
@@ -178,12 +171,10 @@ export class AuthService {
       };
     }
 
-    const isValidPassword =
-      await verifyPassword({
-        plainPassword: input.password,
-        storedPasswordHash:
-          accountRecord.passwordHash,
-      });
+    const isValidPassword = await verifyPassword({
+      plainPassword: input.password,
+      storedPasswordHash: accountRecord.passwordHash,
+    });
 
     if (!isValidPassword) {
       return {
@@ -193,48 +184,56 @@ export class AuthService {
       };
     }
 
-    const twoFactor =
-      await this.authRepository.findTwoFactorByUserId(
+    const twoFactor = await this.authRepository.findTwoFactorByUserId(
+      accountRecord.userId,
+    );
+
+    /*
+     * 2FA DISABLED
+     *
+     * Normal login:
+     * Account + Password
+     *       ↓
+     * JWT
+     */
+    if (!twoFactor?.enabled) {
+      return this.issueTokens(accountRecord, input.remember);
+    }
+
+    /*
+     * 2FA ENABLED
+     *
+     * Account + Password
+     *       ↓
+     * Authenticator Code
+     */
+    const activeChallenge =
+      await this.authRepository.findActiveTwoFactorLoginChallenge(
         accountRecord.userId,
       );
 
-    const challenge =
-      await this.authRepository.createTwoFactorLoginChallenge({
-        userId: accountRecord.userId,
-        remember: input.remember,
-        expiresAt: new Date(
-          Date.now() +
-            TWO_FACTOR_CHALLENGE_EXPIRY_MS,
-        ),
-      });
+    let challenge = activeChallenge;
 
-    /*
-     * IMPORTANT:
-     *
-     * Password is correct, but JWT is NOT issued yet.
-     *
-     * We ALWAYS return the 2FA choice.
-     *
-     * Frontend decides:
-     *
-     * YES:
-     *   check twoFactorEnabled
-     *
-     * NO:
-     *   ignore twoFactorEnabled
-     *   generate a fresh secret
-     */
+    if (!challenge) {
+      await this.authRepository.deleteStaleTwoFactorLoginChallenges(
+        accountRecord.userId,
+      );
+
+      challenge = await this.authRepository.createTwoFactorLoginChallenge({
+        userId: accountRecord.userId,
+        remember: input.remember ?? false,
+        expiresAt: new Date(Date.now() + TWO_FACTOR_CHALLENGE_EXPIRY_MS),
+      });
+    }
+
     return {
       status: 200,
-      message:
-        "Please choose your Google Authenticator setup status",
+      message: "Authenticator verification required",
       data: {
         requiresVerification: false,
-        requiresTwoFactorChoice: true,
-        challengeId: challenge.id,
-        twoFactorEnabled:
-          twoFactor?.enabled === true,
-        account: accountRecord.account,
+        requiresTwoFactor: true,
+        twoFactorChallengeId: challenge.id,
+        verificationMethods: ["authenticator", "recovery"],
         user: {
           userId: accountRecord.userId,
           account: accountRecord.account,
@@ -255,8 +254,7 @@ export class AuthService {
   }): Promise<LoginServiceError> {
     return {
       status: 401,
-      message:
-        "The old 4-digit login verification flow is no longer supported",
+      message: "The old 4-digit login verification flow is no longer supported",
     };
   }
 
@@ -273,67 +271,53 @@ export class AuthService {
    *
    * It NEVER enables a disabled 2FA record.
    */
-  async verifyTwoFactor(
-    input: {
-      challengeId: string;
-      method: "authenticator";
-      code: string;
-    },
-  ): Promise<
-    LoginServiceSuccess | LoginServiceError
-  > {
-    const challenge =
-      await this.authRepository.findTwoFactorLoginChallenge(
-        input.challengeId,
-      );
+  async verifyTwoFactor(input: {
+    challengeId: string;
+    method: "authenticator" | "recovery";
+    code: string;
+  }): Promise<LoginServiceSuccess | LoginServiceError> {
+    const challenge = await this.authRepository.findTwoFactorLoginChallenge(
+      input.challengeId,
+    );
 
     if (!challenge) {
       return {
         status: 401,
-        message:
-          "Invalid two-factor authentication request",
+        message: "Invalid two-factor authentication request",
       };
     }
 
     if (challenge.usedAt) {
       return {
         status: 401,
-        message:
-          "Two-factor authentication request already used",
+        message: "Two-factor authentication request already used",
       };
     }
 
-    if (
-      challenge.expiresAt.getTime() <=
-      Date.now()
-    ) {
-      await this.authRepository.deleteTwoFactorLoginChallenge(
-        challenge.id,
-      );
+    if (challenge.expiresAt.getTime() <= Date.now()) {
+      await this.authRepository.deleteTwoFactorLoginChallenge(challenge.id);
 
       return {
         status: 401,
-        message:
-          "Two-factor authentication request expired",
+        message: "Two-factor authentication request expired",
       };
     }
 
-    if (
-      challenge.attempts >=
-      TWO_FACTOR_MAX_ATTEMPTS
-    ) {
-      await this.authRepository.consumeTwoFactorLoginChallenge(
-        challenge.id,
-      );
+    if (challenge.attempts >= TWO_FACTOR_MAX_ATTEMPTS) {
+      await this.authRepository.consumeTwoFactorLoginChallenge(challenge.id);
 
       return {
         status: 429,
-        message:
-          "Too many verification attempts",
+        message: "Too many verification attempts",
       };
     }
 
-    if (!/^\d{6}$/.test(input.code)) {
+    const isValidCodeFormat =
+      input.method === "authenticator"
+        ? /^\d{6}$/.test(input.code)
+        : /^[A-F0-9]{4}(?:-[A-F0-9]{4}){2}$/i.test(input.code);
+
+    if (!isValidCodeFormat) {
       await this.authRepository.updateTwoFactorLoginChallengeAttempts(
         challenge.id,
       );
@@ -341,14 +325,15 @@ export class AuthService {
       return {
         status: 400,
         message:
-          "Verification code must be 6 digits",
+          input.method === "authenticator"
+            ? "Verification code must be 6 digits"
+            : "Recovery code must be in the format XXXX-XXXX-XXXX",
       };
     }
 
-    const twoFactor =
-      await this.authRepository.findTwoFactorByUserId(
-        challenge.userId,
-      );
+    const twoFactor = await this.authRepository.findTwoFactorByUserId(
+      challenge.userId,
+    );
 
     /*
      * CRITICAL:
@@ -359,24 +344,54 @@ export class AuthService {
     if (!twoFactor?.enabled) {
       return {
         status: 400,
-        message:
-          "Google Authenticator is not enabled. Please enable it first.",
+        message: "Google Authenticator is not enabled. Please enable it first.",
       };
+    }
+
+    if (input.method === "recovery") {
+      const recoveryCode = await this.authRepository.findTwoFactorRecoveryCode(
+        challenge.userId,
+        input.code,
+      );
+
+      if (!recoveryCode) {
+        await this.authRepository.updateTwoFactorLoginChallengeAttempts(
+          challenge.id,
+        );
+
+        return {
+          status: 401,
+          message: "Invalid recovery code",
+        };
+      }
+
+      await this.authRepository.consumeTwoFactorLoginChallenge(challenge.id);
+
+      const accountRecord = await this.authRepository.findByUserId(
+        challenge.userId,
+      );
+
+      if (!accountRecord) {
+        return {
+          status: 404,
+          message: "User account not found",
+        };
+      }
+
+      return this.issueTokens(accountRecord, challenge.remember);
     }
 
     if (!twoFactor.secretEncrypted) {
       return {
         status: 400,
-        message:
-          "Google Authenticator secret is not configured",
+        message: "Google Authenticator secret is not configured",
       };
     }
 
-    const isValid =
-      await this.twoFactorService.verifyCode(
-        twoFactor.secretEncrypted,
-        input.code,
-      );
+    const isValid = await this.twoFactorService.verifyCode(
+      twoFactor.secretEncrypted,
+      input.code,
+    );
 
     if (!isValid) {
       await this.authRepository.updateTwoFactorLoginChallengeAttempts(
@@ -385,19 +400,15 @@ export class AuthService {
 
       return {
         status: 401,
-        message:
-          "Invalid Google Authenticator code",
+        message: "Invalid Google Authenticator code",
       };
     }
 
-    await this.authRepository.consumeTwoFactorLoginChallenge(
-      challenge.id,
-    );
+    await this.authRepository.consumeTwoFactorLoginChallenge(challenge.id);
 
-    const accountRecord =
-      await this.authRepository.findByUserId(
-        challenge.userId,
-      );
+    const accountRecord = await this.authRepository.findByUserId(
+      challenge.userId,
+    );
 
     if (!accountRecord) {
       return {
@@ -406,10 +417,7 @@ export class AuthService {
       };
     }
 
-    return this.issueTokens(
-      accountRecord,
-      challenge.remember,
-    );
+    return this.issueTokens(accountRecord, challenge.remember);
   }
 
   /* ============================================================
@@ -428,62 +436,43 @@ export class AuthService {
    * It verifies the newly generated secret,
    * enables 2FA and then logs the user in.
    */
-  async verifyTwoFactorSetup(
-    input: {
-      challengeId: string;
-      code: string;
-    },
-  ): Promise<
-    LoginServiceSuccess | LoginServiceError
-  > {
-    const challenge =
-      await this.authRepository.findTwoFactorLoginChallenge(
-        input.challengeId,
-      );
+  async verifyTwoFactorSetup(input: {
+    challengeId: string;
+    code: string;
+  }): Promise<LoginServiceSuccess | LoginServiceError> {
+    const challenge = await this.authRepository.findTwoFactorLoginChallenge(
+      input.challengeId,
+    );
 
     if (!challenge) {
       return {
         status: 401,
-        message:
-          "Invalid two-factor setup request",
+        message: "Invalid two-factor setup request",
       };
     }
 
     if (challenge.usedAt) {
       return {
         status: 401,
-        message:
-          "Two-factor setup request already used",
+        message: "Two-factor setup request already used",
       };
     }
 
-    if (
-      challenge.expiresAt.getTime() <=
-      Date.now()
-    ) {
-      await this.authRepository.deleteTwoFactorLoginChallenge(
-        challenge.id,
-      );
+    if (challenge.expiresAt.getTime() <= Date.now()) {
+      await this.authRepository.deleteTwoFactorLoginChallenge(challenge.id);
 
       return {
         status: 401,
-        message:
-          "Two-factor setup request expired",
+        message: "Two-factor setup request expired",
       };
     }
 
-    if (
-      challenge.attempts >=
-      TWO_FACTOR_MAX_ATTEMPTS
-    ) {
-      await this.authRepository.consumeTwoFactorLoginChallenge(
-        challenge.id,
-      );
+    if (challenge.attempts >= TWO_FACTOR_MAX_ATTEMPTS) {
+      await this.authRepository.consumeTwoFactorLoginChallenge(challenge.id);
 
       return {
         status: 429,
-        message:
-          "Too many verification attempts",
+        message: "Too many verification attempts",
       };
     }
 
@@ -494,15 +483,13 @@ export class AuthService {
 
       return {
         status: 400,
-        message:
-          "Verification code must be 6 digits",
+        message: "Verification code must be 6 digits",
       };
     }
 
-    const twoFactor =
-      await this.authRepository.findTwoFactorByUserId(
-        challenge.userId,
-      );
+    const twoFactor = await this.authRepository.findTwoFactorByUserId(
+      challenge.userId,
+    );
 
     /*
      * Setup verification requires:
@@ -513,8 +500,7 @@ export class AuthService {
     if (!twoFactor?.secretEncrypted) {
       return {
         status: 400,
-        message:
-          "Google Authenticator setup has not been initialized",
+        message: "Google Authenticator setup has not been initialized",
       };
     }
 
@@ -525,16 +511,14 @@ export class AuthService {
     if (twoFactor.enabled) {
       return {
         status: 409,
-        message:
-          "Google Authenticator is already enabled",
+        message: "Google Authenticator is already enabled",
       };
     }
 
-    const isValid =
-      await this.twoFactorService.verifyCode(
-        twoFactor.secretEncrypted,
-        input.code,
-      );
+    const isValid = await this.twoFactorService.verifyCode(
+      twoFactor.secretEncrypted,
+      input.code,
+    );
 
     if (!isValid) {
       await this.authRepository.updateTwoFactorLoginChallengeAttempts(
@@ -543,17 +527,14 @@ export class AuthService {
 
       return {
         status: 401,
-        message:
-          "Invalid Google Authenticator code",
+        message: "Invalid Google Authenticator code",
       };
     }
 
     /*
      * Enable 2FA ONLY after successful TOTP verification.
      */
-    await this.authRepository.enableTwoFactor(
-      challenge.userId,
-    );
+    await this.authRepository.enableTwoFactor(challenge.userId);
 
     /*
      * Old recovery codes are no longer valid
@@ -574,14 +555,11 @@ export class AuthService {
         8,
       );
 
-    await this.authRepository.consumeTwoFactorLoginChallenge(
-      challenge.id,
-    );
+    await this.authRepository.consumeTwoFactorLoginChallenge(challenge.id);
 
-    const accountRecord =
-      await this.authRepository.findByUserId(
-        challenge.userId,
-      );
+    const accountRecord = await this.authRepository.findByUserId(
+      challenge.userId,
+    );
 
     if (!accountRecord) {
       return {
@@ -590,23 +568,261 @@ export class AuthService {
       };
     }
 
-    return this.issueTokens(
-      accountRecord,
-      challenge.remember,
-      recoveryCodes,
-    );
+    return this.issueTokens(accountRecord, challenge.remember, recoveryCodes);
   }
+  async startTwoFactorSetup(userId: string): Promise<
+    | {
+        status: 200;
+        message: string;
+        data: {
+          secret: string;
+          otpauthUrl: string;
+          authenticatorAppLinks: {
+            android: string;
+            ios: string;
+          };
+        };
+      }
+    | LoginServiceError
+  > {
+    const account = await this.authRepository.findByUserId(userId);
 
+    if (!account) {
+      return {
+        status: 404,
+        message: "User account not found",
+      };
+    }
+
+    const existingTwoFactor =
+      await this.authRepository.findTwoFactorByUserId(userId);
+
+    if (existingTwoFactor?.enabled) {
+      return {
+        status: 409,
+        message: "Two-factor authentication is already enabled",
+      };
+    }
+
+    const setup = this.twoFactorService.generateSetup(account.account);
+
+    await this.authRepository.createOrResetTwoFactor({
+      userId,
+      secretEncrypted: setup.encryptedSecret,
+    });
+
+    await this.authRepository.deleteUnusedTwoFactorRecoveryCodes(userId);
+
+    return {
+      status: 200,
+      message: "Two-factor authentication setup generated",
+      data: {
+        secret: setup.secret,
+        otpauthUrl: setup.otpauthUrl,
+        authenticatorAppLinks: AUTHENTICATOR_APP_LINKS,
+      },
+    };
+  }
+  async getTwoFactorStatus(userId: string): Promise<
+    | {
+        status: 200;
+        message: string;
+        data: {
+          enabled: boolean;
+        };
+      }
+    | LoginServiceError
+  > {
+    const account = await this.authRepository.findByUserId(userId);
+
+    if (!account) {
+      return {
+        status: 404,
+        message: "User account not found",
+      };
+    }
+
+    const twoFactor = await this.authRepository.findTwoFactorByUserId(userId);
+
+    return {
+      status: 200,
+      message: "Two-factor authentication status fetched successfully",
+      data: {
+        enabled: twoFactor?.enabled === true,
+      },
+    };
+  }
+  async confirmTwoFactorSetup(
+    userId: string,
+    code: string,
+  ): Promise<
+    | {
+        status: 200;
+        message: string;
+        data: {
+          enabled: true;
+          recoveryCodes: string[];
+        };
+      }
+    | LoginServiceError
+  > {
+    if (!/^\d{6}$/.test(code)) {
+      return {
+        status: 400,
+        message: "Verification code must be exactly 6 digits",
+      };
+    }
+
+    const twoFactor = await this.authRepository.findTwoFactorByUserId(userId);
+
+    if (!twoFactor?.secretEncrypted) {
+      return {
+        status: 400,
+        message: "Two-factor authentication setup has not been initialized",
+      };
+    }
+
+    if (twoFactor.enabled) {
+      return {
+        status: 409,
+        message: "Two-factor authentication is already enabled",
+      };
+    }
+
+    const valid = await this.twoFactorService.verifyCode(
+      twoFactor.secretEncrypted,
+      code,
+    );
+
+    if (!valid) {
+      return {
+        status: 401,
+        message: "Invalid Google Authenticator code",
+      };
+    }
+
+    await this.authRepository.enableTwoFactor(userId);
+
+    await this.authRepository.deleteUnusedTwoFactorRecoveryCodes(userId);
+
+    const recoveryCodes =
+      await this.authRepository.createTwoFactorRecoveryCodes(userId, 8);
+
+    return {
+      status: 200,
+      message: "Two-factor authentication enabled successfully",
+      data: {
+        enabled: true,
+        recoveryCodes,
+      },
+    };
+  }
+  async disableTwoFactorFromSettings(
+    userId: string,
+    code: string,
+  ): Promise<
+    | {
+        status: 200;
+        message: string;
+        data: {
+          enabled: false;
+        };
+      }
+    | LoginServiceError
+  > {
+    const account = await this.authRepository.findByUserId(userId);
+
+    if (!account) {
+      return {
+        status: 404,
+        message: "User account not found",
+      };
+    }
+
+    const isAuthenticatorCode = /^\d{6}$/.test(code);
+    const isRecoveryCode = /^[A-F0-9]{4}(?:-[A-F0-9]{4}){2}$/i.test(code);
+
+    if (!isAuthenticatorCode && !isRecoveryCode) {
+      return {
+        status: 400,
+        message:
+          "Enter a 6-digit authenticator code or an XXXX-XXXX-XXXX recovery code",
+      };
+    }
+
+    const twoFactor = await this.authRepository.findTwoFactorByUserId(userId);
+
+    if (!twoFactor?.enabled) {
+      return {
+        status: 400,
+        message: "Two-factor authentication is already disabled",
+      };
+    }
+
+    if (isRecoveryCode) {
+      const recoveryCode = await this.authRepository.findTwoFactorRecoveryCode(
+        userId,
+        code,
+      );
+
+      if (!recoveryCode) {
+        return {
+          status: 401,
+          message: "Invalid or already used recovery code",
+        };
+      }
+
+      await this.authRepository.disableTwoFactor(userId);
+      await this.authRepository.deleteUnusedTwoFactorRecoveryCodes(userId);
+
+      return {
+        status: 200,
+        message: "Two-factor authentication disabled successfully",
+        data: {
+          enabled: false,
+        },
+      };
+    }
+
+    if (!twoFactor.secretEncrypted) {
+      return {
+        status: 400,
+        message: "Authenticator configuration is missing",
+      };
+    }
+
+    const validCode = await this.twoFactorService.verifyCode(
+      twoFactor.secretEncrypted,
+      code,
+    );
+
+    if (!validCode) {
+      return {
+        status: 401,
+        message: "Invalid Google Authenticator code",
+      };
+    }
+
+    await this.authRepository.disableTwoFactor(userId);
+
+    await this.authRepository.deleteUnusedTwoFactorRecoveryCodes(userId);
+
+    return {
+      status: 200,
+      message: "Two-factor authentication disabled successfully",
+      data: {
+        enabled: false,
+      },
+    };
+  }
   /* ============================================================
      TWO FACTOR RECOVERY
      ============================================================ */
 
-  async verifyTwoFactorRecovery(
-    input: {
-      challengeId: string;
-      recoveryCode: string;
-    },
-  ): Promise<
+  async verifyTwoFactorRecovery(input: {
+    challengeId: string;
+    recoveryCode: string;
+  }): Promise<
     | {
         status: 200;
         message: string;
@@ -618,57 +834,41 @@ export class AuthService {
       }
     | LoginServiceError
   > {
-    const challenge =
-      await this.authRepository.findTwoFactorLoginChallenge(
-        input.challengeId,
-      );
+    const challenge = await this.authRepository.findTwoFactorLoginChallenge(
+      input.challengeId,
+    );
 
     if (!challenge) {
       return {
         status: 401,
-        message:
-          "Two-factor authentication challenge not found",
+        message: "Two-factor authentication challenge not found",
       };
     }
 
     if (challenge.usedAt) {
       return {
         status: 401,
-        message:
-          "Two-factor authentication challenge has already been used",
+        message: "Two-factor authentication challenge has already been used",
       };
     }
 
-    if (
-      challenge.expiresAt.getTime() <=
-      Date.now()
-    ) {
+    if (challenge.expiresAt.getTime() <= Date.now()) {
       return {
         status: 401,
-        message:
-          "Two-factor authentication challenge has expired",
+        message: "Two-factor authentication challenge has expired",
       };
     }
 
-    if (
-      challenge.attempts >=
-      TWO_FACTOR_MAX_ATTEMPTS
-    ) {
-      await this.authRepository.consumeTwoFactorLoginChallenge(
-        challenge.id,
-      );
+    if (challenge.attempts >= TWO_FACTOR_MAX_ATTEMPTS) {
+      await this.authRepository.consumeTwoFactorLoginChallenge(challenge.id);
 
       return {
         status: 401,
-        message:
-          "Too many verification attempts",
+        message: "Too many verification attempts",
       };
     }
 
-    const normalizedRecoveryCode =
-      input.recoveryCode
-        .trim()
-        .toUpperCase();
+    const normalizedRecoveryCode = input.recoveryCode.trim().toUpperCase();
 
     if (!normalizedRecoveryCode) {
       await this.authRepository.updateTwoFactorLoginChallengeAttempts(
@@ -681,11 +881,10 @@ export class AuthService {
       };
     }
 
-    const recoveryCode =
-      await this.authRepository.findTwoFactorRecoveryCode(
-        challenge.userId,
-        normalizedRecoveryCode,
-      );
+    const recoveryCode = await this.authRepository.findTwoFactorRecoveryCode(
+      challenge.userId,
+      normalizedRecoveryCode,
+    );
 
     if (!recoveryCode) {
       await this.authRepository.updateTwoFactorLoginChallengeAttempts(
@@ -694,31 +893,11 @@ export class AuthService {
 
       return {
         status: 401,
-        message:
-          "Invalid or already used recovery code",
+        message: "Invalid or already used recovery code",
       };
     }
 
-    const consumed =
-      await this.authRepository.consumeTwoFactorRecoveryCode(
-        recoveryCode.id,
-      );
-
-    if (!consumed) {
-      await this.authRepository.updateTwoFactorLoginChallengeAttempts(
-        challenge.id,
-      );
-
-      return {
-        status: 401,
-        message:
-          "Invalid or already used recovery code",
-      };
-    }
-
-    await this.authRepository.disableTwoFactor(
-      challenge.userId,
-    );
+    await this.authRepository.disableTwoFactor(challenge.userId);
 
     await this.authRepository.deleteUnusedTwoFactorRecoveryCodes(
       challenge.userId,
@@ -743,13 +922,8 @@ export class AuthService {
   async completeTwoFactorSetup(
     userId: string,
     remember: boolean,
-  ): Promise<
-    LoginServiceSuccess | LoginServiceError
-  > {
-    const accountRecord =
-      await this.authRepository.findByUserId(
-        userId,
-      );
+  ): Promise<LoginServiceSuccess | LoginServiceError> {
+    const accountRecord = await this.authRepository.findByUserId(userId);
 
     if (!accountRecord) {
       return {
@@ -758,23 +932,16 @@ export class AuthService {
       };
     }
 
-    const twoFactor =
-      await this.authRepository.findTwoFactorByUserId(
-        userId,
-      );
+    const twoFactor = await this.authRepository.findTwoFactorByUserId(userId);
 
     if (!twoFactor?.enabled) {
       return {
         status: 401,
-        message:
-          "Two-factor authentication must be enabled before login",
+        message: "Two-factor authentication must be enabled before login",
       };
     }
 
-    return this.issueTokens(
-      accountRecord,
-      remember,
-    );
+    return this.issueTokens(accountRecord, remember);
   }
 
   /* ============================================================
@@ -783,28 +950,11 @@ export class AuthService {
 
   private async issueTokens(
     accountRecord: NonNullable<
-      Awaited<
-        ReturnType<AuthRepository["findByUserId"]>
-      >
+      Awaited<ReturnType<AuthRepository["findByUserId"]>>
     >,
     remember = false,
     recoveryCodes?: string[],
-  ): Promise<
-    LoginServiceSuccess | LoginServiceError
-  > {
-    const twoFactor =
-      await this.authRepository.findTwoFactorByUserId(
-        accountRecord.userId,
-      );
-
-    if (!twoFactor?.enabled) {
-      return {
-        status: 401,
-        message:
-          "Two-factor authentication must be enabled before login",
-      };
-    }
-
+  ): Promise<LoginServiceSuccess | LoginServiceError> {
     const accessSecret = getAccessTokenSecret();
     const refreshSecret = getRefreshTokenSecret();
 
@@ -815,8 +965,8 @@ export class AuthService {
       };
     }
 
-    const expiresIn =
-      getAccessTokenExpiry(remember);
+    // existing token generation continues...
+    const expiresIn = getAccessTokenExpiry(remember);
 
     const accessToken = signAccessToken(
       {
@@ -829,8 +979,7 @@ export class AuthService {
       expiresIn,
     );
 
-    const refreshExpiresIn =
-      getRefreshTokenExpiry();
+    const refreshExpiresIn = getRefreshTokenExpiry();
 
     const refreshToken = signRefreshToken(
       {
@@ -842,8 +991,7 @@ export class AuthService {
       refreshExpiresIn,
     );
 
-    const redirect =
-      resolveRedirect(accountRecord.portal);
+    const redirect = resolveRedirect(accountRecord.portal);
 
     return {
       status: 200,
@@ -860,11 +1008,8 @@ export class AuthService {
           role: accountRecord.role,
         },
         redirect,
-        cookieMaxAge: remember
-          ? 60 * 60 * 24 * 7
-          : 60 * 15,
-        refreshCookieMaxAge:
-          60 * 60 * 24 * 7,
+        cookieMaxAge: remember ? 60 * 60 * 24 * 7 : 60 * 15,
+        refreshCookieMaxAge: 60 * 60 * 24 * 7,
         ...(recoveryCodes
           ? {
               recoveryCodes,
@@ -878,18 +1023,13 @@ export class AuthService {
      REGISTER
      ============================================================ */
 
-  async register(
-    input: RegisterInput,
-  ): Promise<RegisterServiceResult> {
-    const expectedVerificationCode =
-      process.env.REGISTRATION_VERIFICATION_CODE;
+  async register(input: RegisterInput): Promise<RegisterServiceResult> {
+    const expectedVerificationCode = process.env.REGISTRATION_VERIFICATION_CODE;
 
     if (
-      typeof expectedVerificationCode ===
-        "string" &&
+      typeof expectedVerificationCode === "string" &&
       expectedVerificationCode.length > 0 &&
-      input.verificationCode !==
-        expectedVerificationCode
+      input.verificationCode !== expectedVerificationCode
     ) {
       return {
         status: 400,
@@ -897,11 +1037,10 @@ export class AuthService {
       };
     }
 
-    const existingAccount =
-      await this.authRepository.findByPortalAndAccount(
-        "monitoring",
-        input.account,
-      );
+    const existingAccount = await this.authRepository.findByPortalAndAccount(
+      "monitoring",
+      input.account,
+    );
 
     if (existingAccount) {
       return {
@@ -910,11 +1049,10 @@ export class AuthService {
       };
     }
 
-    const existingEmail =
-      await this.authRepository.findByPortalAndEmail(
-        "monitoring",
-        input.email,
-      );
+    const existingEmail = await this.authRepository.findByPortalAndEmail(
+      "monitoring",
+      input.email,
+    );
 
     if (existingEmail) {
       return {
@@ -924,21 +1062,19 @@ export class AuthService {
     }
 
     try {
-      const passwordHash =
-        await hashPassword(input.password);
+      const passwordHash = await hashPassword(input.password);
 
-      const user =
-        await this.authRepository.createMonitoringUser({
-          account: input.account,
-          email: input.email,
-          timezone: input.timezone,
-          passwordHash,
-          epcCompany: input.epcCompany,
-          epcInstaller: input.epcInstaller,
-          epcMobile: input.epcMobile,
-          epcEmail: input.epcEmail,
-          epcAddress: input.epcAddress,
-        });
+      const user = await this.authRepository.createMonitoringUser({
+        account: input.account,
+        email: input.email,
+        timezone: input.timezone,
+        passwordHash,
+        epcCompany: input.epcCompany,
+        epcInstaller: input.epcInstaller,
+        epcMobile: input.epcMobile,
+        epcEmail: input.epcEmail,
+        epcAddress: input.epcAddress,
+      });
 
       return {
         status: 201,
@@ -947,10 +1083,8 @@ export class AuthService {
           user: {
             userId: user.userId,
             account: user.account,
-            email:
-              user.email ?? input.email,
-            timezone:
-              user.timezone ?? input.timezone,
+            email: user.email ?? input.email,
+            timezone: user.timezone ?? input.timezone,
             portal: "monitoring",
             role: user.role,
           },
@@ -968,14 +1102,10 @@ export class AuthService {
      REFRESH TOKEN
      ============================================================ */
 
-  async refresh(
-    input: RefreshInput,
-  ): Promise<RefreshServiceResult> {
-    const accessSecret =
-      getAccessTokenSecret();
+  async refresh(input: RefreshInput): Promise<RefreshServiceResult> {
+    const accessSecret = getAccessTokenSecret();
 
-    const refreshSecret =
-      getRefreshTokenSecret();
+    const refreshSecret = getRefreshTokenSecret();
 
     if (!accessSecret || !refreshSecret) {
       return {
@@ -984,16 +1114,12 @@ export class AuthService {
       };
     }
 
-    const payload = verifyRefreshToken(
-      input.refreshToken,
-      refreshSecret,
-    );
+    const payload = verifyRefreshToken(input.refreshToken, refreshSecret);
 
     if (!payload) {
       return {
         status: 401,
-        message:
-          "Invalid or expired refresh token",
+        message: "Invalid or expired refresh token",
       };
     }
 
@@ -1003,8 +1129,7 @@ export class AuthService {
 
     if (
       typeof portal !== "string" ||
-      (portal !== "monitoring" &&
-        portal !== "service") ||
+      (portal !== "monitoring" && portal !== "service") ||
       typeof account !== "string" ||
       account.length === 0 ||
       typeof userId !== "string" ||
@@ -1012,64 +1137,41 @@ export class AuthService {
     ) {
       return {
         status: 401,
-        message:
-          "Invalid refresh token payload",
+        message: "Invalid refresh token payload",
       };
     }
 
-    const accountRecord =
-      await this.authRepository.findByPortalAndAccount(
-        portal as AuthPortal,
-        account,
-      );
+    const accountRecord = await this.authRepository.findByPortalAndAccount(
+      portal as AuthPortal,
+      account,
+    );
 
-    if (
-      !accountRecord ||
-      accountRecord.userId !== userId
-    ) {
+    if (!accountRecord || accountRecord.userId !== userId) {
       return {
         status: 401,
-        message:
-          "Refresh token user is invalid",
+        message: "Refresh token user is invalid",
       };
     }
 
-    const twoFactor =
-      await this.authRepository.findTwoFactorByUserId(
-        accountRecord.userId,
-      );
-
-    if (!twoFactor?.enabled) {
-      return {
-        status: 401,
-        message:
-          "Two-factor authentication must be enabled",
-      };
-    }
-
-    const expiresIn =
-      getAccessTokenExpiry(false);
+    const expiresIn = getAccessTokenExpiry(false);
 
     const accessToken = signAccessToken(
       {
         userId: accountRecord.userId,
         role: accountRecord.role,
-        portal:
-          portal as LoginInput["portal"],
+        portal: portal as LoginInput["portal"],
         account,
       },
       accessSecret,
       expiresIn,
     );
 
-    const refreshExpiresIn =
-      getRefreshTokenExpiry();
+    const refreshExpiresIn = getRefreshTokenExpiry();
 
     const refreshToken = signRefreshToken(
       {
         userId: accountRecord.userId,
-        portal:
-          portal as LoginInput["portal"],
+        portal: portal as LoginInput["portal"],
         account,
       },
       refreshSecret,
@@ -1078,21 +1180,18 @@ export class AuthService {
 
     return {
       status: 200,
-      message:
-        "Token refreshed successfully",
+      message: "Token refreshed successfully",
       data: {
         accessToken,
         refreshToken,
         user: {
           userId: accountRecord.userId,
           account,
-          portal:
-            portal as LoginInput["portal"],
+          portal: portal as LoginInput["portal"],
           role: accountRecord.role,
         },
         cookieMaxAge: 60 * 15,
-        refreshCookieMaxAge:
-          60 * 60 * 24 * 7,
+        refreshCookieMaxAge: 60 * 60 * 24 * 7,
       },
     };
   }
