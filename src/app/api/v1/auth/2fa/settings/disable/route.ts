@@ -7,15 +7,13 @@ import { errorResponse, successResponse } from "@/server/utils/api-response";
 const authService = new AuthService();
 
 export const POST = requireAuth(async (request) => {
-  let body: unknown;
+  let body: unknown = {};
 
   try {
-    body = await request.json();
+    const text = await request.text();
+    body = text.trim() ? JSON.parse(text) : {};
   } catch {
-    return NextResponse.json(
-      { message: "Invalid JSON payload" },
-      { status: 400 },
-    );
+    body = {};
   }
 
   const code =

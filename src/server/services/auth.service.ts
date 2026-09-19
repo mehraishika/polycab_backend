@@ -739,17 +739,6 @@ export class AuthService {
       };
     }
 
-    const isAuthenticatorCode = /^\d{6}$/.test(code);
-    const isRecoveryCode = /^[A-F0-9]{4}(?:-[A-F0-9]{4}){2}$/i.test(code);
-
-    if (!isAuthenticatorCode && !isRecoveryCode) {
-      return {
-        status: 400,
-        message:
-          "Enter a 6-digit authenticator code or an XXXX-XXXX-XXXX recovery code",
-      };
-    }
-
     const twoFactor = await this.authRepository.findTwoFactorByUserId(userId);
 
     if (!twoFactor?.enabled) {
@@ -759,10 +748,38 @@ export class AuthService {
       };
     }
 
+    const normalizedCode = code.trim();
+
+    if (!normalizedCode) {
+      await this.authRepository.disableTwoFactor(userId);
+      await this.authRepository.deleteUnusedTwoFactorRecoveryCodes(userId);
+
+      return {
+        status: 200,
+        message: "Two-factor authentication disabled successfully",
+        data: {
+          enabled: false,
+        },
+      };
+    }
+
+    const isAuthenticatorCode = /^\d{6}$/.test(normalizedCode);
+    const isRecoveryCode = /^[A-F0-9]{4}(?:-[A-F0-9]{4}){2}$/i.test(
+      normalizedCode,
+    );
+
+    if (!isAuthenticatorCode && !isRecoveryCode) {
+      return {
+        status: 400,
+        message:
+          "Enter a 6-digit authenticator code or an XXXX-XXXX-XXXX recovery code",
+      };
+    }
+
     if (isRecoveryCode) {
       const recoveryCode = await this.authRepository.findTwoFactorRecoveryCode(
         userId,
-        code,
+        normalizedCode,
       );
 
       if (!recoveryCode) {
@@ -793,7 +810,7 @@ export class AuthService {
 
     const validCode = await this.twoFactorService.verifyCode(
       twoFactor.secretEncrypted,
-      code,
+      normalizedCode,
     );
 
     if (!validCode) {
